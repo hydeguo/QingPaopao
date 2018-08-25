@@ -50,6 +50,9 @@ class ShopMainPageVC: UIViewController,UIScrollViewDelegate {
     
     override func viewDidAppear(_ animated: Bool) {
         
+        self.navigationController?.setNavigationBarHidden(false, animated: false)
+        navigationController?.topViewController?.title = Language.getString( "积分商城")
+        
         if(ShopMainPageVC.autoShow){
             ShopMainPageVC.autoShow = false
             

@@ -16,6 +16,11 @@ class InfosViewController: UIViewController {
         super.viewDidLoad()
         createGradientLayer(view: self.topView)
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        
+        self.navigationController?.setNavigationBarHidden(true, animated: false)
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

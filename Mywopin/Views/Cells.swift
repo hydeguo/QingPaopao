@@ -320,6 +320,6 @@ class ScoresShopCell: UICollectionViewCell {
             imagePic.image(fromUrl: goods.images.first!.src)
         }
         titleLabel.text = goods.name
-        price.text = "¥"+goods.price
+        price.text = goods.price+"积分"
     }
 }

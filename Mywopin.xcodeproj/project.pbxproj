@@ -369,6 +369,7 @@
 		C11A100720EA3006000979B3 /* Discover */ = {
 			isa = PBXGroup;
 			children = (
+				C192AA5120C3D54E004EE98D /* InfosViewController.swift */,
 				C1F6E04320C6CE580031200D /* InfoDetailViewController.swift */,
 				C1008E0820C5668F00E73F8F /* PostListViewController.swift */,
 			);
@@ -568,10 +569,8 @@
 				C1406356210467B500AB8914 /* ExchangeShop */,
 				C1383A4420DF97F400F1EBE6 /* Login */,
 				C17862C620E1218B008F4042 /* Profile */,
-				C192AA5120C3D54E004EE98D /* InfosViewController.swift */,
 				C1D5B60320F460B7004DCE83 /* Orders */,
 				C192AA5320C3D54E004EE98D /* MessageViewController.swift */,
-				C1406365210D9D7800AB8914 /* ShopMainPageVC.swift */,
 				C11A100720EA3006000979B3 /* Discover */,
 				C11A100420EA0D35000979B3 /* Device */,
 				C16980DD20E8D3730034E954 /* MainPage */,
@@ -751,6 +750,7 @@
 				C1F226ED21295AFC0066C9EC /* ScoresShopList.swift */,
 				C1F226F5212964510066C9EC /* ScoresBuyBtnVC.swift */,
 				C1F226EF21295DE20066C9EC /* ScoresShopDetailVC.swift */,
+				C1406365210D9D7800AB8914 /* ShopMainPageVC.swift */,
 				C1F226F3212963AF0066C9EC /* ScoresBuyVC.swift */,
 			);
 			path = ScoresShop;
