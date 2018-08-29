@@ -12,25 +12,16 @@ import Foundation
 import Moya
 
 
-//enum BLE_EVENT:String {
-//
-//    case BLE_scanDeviceRefrash = "BLE_scanDeviceRefrash"
-//
-//    case BLE_didDisconnectDevice = "BLE_didDisconnectDevice"
-//
-//    case BLE_receiveDeviceBattery = "BLE_receiveDeviceBattery"
-//
-//    case BLE_receiveDeviceDataSuccess_1 = "BLE_receiveDeviceDataSuccess_1"
-//
-//    case BLE_connectDeviceSuccess = "BLE_connectDeviceSuccess"
-//}
+
 enum WooAPI {
 
     case getExchangeGoods()
-    case getExchangeCategory
+    case getExchangeCategory    // for main image
     case getExchangeOldProducts
     case getScoresGoods()
-    case getScoresCategory
+    case getNumerousGoods()
+    case getScoresCategory  // for main image
+    case getNumerousCategory    // for main image
     
     case updateProduceStock(id:Int,target:Int)  // 无效
 }
@@ -57,6 +48,8 @@ extension WooAPI: TargetType,AccessTokenAuthorizable {
             return .requestParameters(parameters:["consumer_key" : wooConsumerWriteKey, "consumer_secret" : wooConsumerWriteSecret,"username" : wooConsumerWriteKey, "password" : wooConsumerWriteSecret,"stock_quantity":target], encoding: URLEncoding.default)
         case .getScoresGoods:
             return .requestParameters(parameters:["consumer_key" : wooConsumerKey, "consumer_secret" : wooConsumerSecret,"category":20], encoding: URLEncoding.default)
+        case .getNumerousGoods:
+            return .requestParameters(parameters:["consumer_key" : wooConsumerKey, "consumer_secret" : wooConsumerSecret,"category":17], encoding: URLEncoding.default)
         default:
             return .requestParameters(parameters:["consumer_key" : wooConsumerKey, "consumer_secret" : wooConsumerSecret], encoding: URLEncoding.default)
         }
@@ -78,12 +71,14 @@ extension WooAPI: TargetType,AccessTokenAuthorizable {
     
     public var path: String {
         switch self {
-        case .getExchangeGoods, .getExchangeOldProducts,.getScoresGoods:
+        case .getExchangeGoods, .getExchangeOldProducts,.getScoresGoods,.getNumerousGoods:
             return "/wp-json/wc/v2/products"
         case .getExchangeCategory:
             return "/wp-json/wc/v2/products/categories/16"
         case .getScoresCategory:
             return "/wp-json/wc/v2/products/categories/20"
+        case .getNumerousCategory:
+            return "/wp-json/wc/v2/products/categories/17"
         case .updateProduceStock(let id,_):
             return "/wp-json/wc/v2/products/\(id)"
         }

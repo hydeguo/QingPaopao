@@ -189,6 +189,55 @@ class OldExchangeCell: UITableViewCell {
     }
 }
 
+class CrowdfundingCell: UITableViewCell {
+    
+    @IBOutlet weak var imagePic: UIImageView!
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var persTitle: UILabel!
+    @IBOutlet weak var price: UILabel!
+    @IBOutlet weak var per_Silder: UISlider!
+    
+
+    
+    func configure(goods:WooGoodsItem) -> Void {
+        if goods.images.count > 0
+        {
+            //            Log(goods.images.first!.src)
+            imagePic.image(fromUrl: goods.images.first!.src)
+        }
+        if(goods.attributes.count > 0){
+            price.text = "¥"+goods.attributes[0].name
+        }
+        per_Silder.setThumbImage(UIImage(), for: .application)
+        per_Silder.size.height = 10
+      
+        titleLabel.text = goods.name
+        
+        _ = Wolf.requestList(type: MyAPI.crowdfundingOrderTotalMoney(goodsId: goods.id), completion: { (info: [CrowdfundingMoney]?, msg, code) in
+            if(code == "0" )
+            {
+                var totalPrice = 0
+                if(info != nil && info!.count>0)
+                {
+                    totalPrice = Int(info![0].totalPrice!)
+                }
+ 
+                let persent = Int(totalPrice * 100 / Int(goods.price)!)
+                self.per_Silder.setValue(Float(CGFloat(persent)/100), animated: true)
+                
+                self.persTitle.text = "\(persent)%"
+            }
+            else
+            {
+                _ = SweetAlert().showAlert("", subTitle: msg, style: AlertStyle.warning)
+            }
+        }, failure: nil)
+        
+    }
+}
+
+
+
 class ExchangeOrderCell: UITableViewCell {
     
     @IBOutlet weak var imagePic: UIImageView!
@@ -278,7 +327,44 @@ class CreditsOrderCell: UITableViewCell {
         
     }
 }
-
+class CrowdfundingOrderCell: UITableViewCell {
+    
+    @IBOutlet weak var imagePic: UIImageView!
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var orderId: UILabel!
+    @IBOutlet weak var date: UILabel!
+    @IBOutlet weak var status: UILabel!
+    @IBOutlet weak var price: UILabel!
+    @IBOutlet weak var num: UILabel!
+    @IBOutlet weak var deliverBtn: UIButton!
+    var addFunc:(()->Void)?
+    var orderItem:CrowdfundingOrderItem?
+    
+    @IBAction func onClickAdd()
+    {
+        addFunc?()
+    }
+    
+    func configure(order:CrowdfundingOrderItem) -> Void {
+        
+        orderItem = order
+        deliverBtn.layer.cornerRadius = 5;
+        deliverBtn.layer.masksToBounds = true;
+        deliverBtn.layer.borderColor = UIColor.darkGray.cgColor
+        deliverBtn.layer.borderWidth = 1;
+        
+        let payPrice = order.singlePrice //* order.num
+        
+        orderId.text = order.orderId
+        date.text = order.createDate
+        status.text = order.orderStatus
+        imagePic.image(fromUrl: order.image ?? "")
+        titleLabel.text = order.title ?? ""
+        //                cell.typeLb.text = order.orderStatus
+        price.text = "\(payPrice)\(Language.getString("元"))"
+        
+    }
+}
 class AddressCell: UITableViewCell {
     
     @IBOutlet weak var editBtn: UIButton!

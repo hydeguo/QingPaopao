@@ -304,7 +304,7 @@ class WifiTableViewController: UITableViewController, QRCodeReaderViewController
         request.httpBody = postString.data(using: .utf8)
         
         timer = setTimeout(delay: 30, block: {
-            self.showSuccess(msg: "连接网络超时，请重试", OkAction: nil)
+            self.showSuccess(msg: "切换网络超时", OkAction: nil)
             self.removeSpinner(spinner: self.sv!)
         })
         

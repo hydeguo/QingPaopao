@@ -92,8 +92,8 @@ class DrinkViewController: UIViewController, CLLocationManagerDelegate {
             if(code == "0" && info != nil)
             {
                 todayDrinks = info
-                self.updateDrinkText()
             }
+            self.updateDrinkText()
         }, failure: nil)
     }
     

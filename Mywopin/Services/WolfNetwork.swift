@@ -86,6 +86,7 @@ public class Wolf {
         return provider.request(type, progress: progress, completion: { (event) in
             switch event {
             case let .success(response):
+//                Log("type:\(type) |response:\(String(data: response.data, encoding: String.Encoding(rawValue: String.Encoding.utf8.rawValue)))")
                 WolfTransformModel.objectFromJSON(response.data, completion)
             case let .failure(error):
                 debugPrint(error.localizedDescription)
@@ -122,7 +123,7 @@ public class Wolf {
         return provider.request(type, progress: progress, completion: { (event) in
             switch event {
             case let .success(response):
-                Log(response)
+//                Log("type:\(type) |response:\(String(data: response.data, encoding: String.Encoding(rawValue: String.Encoding.utf8.rawValue)))")
                 WolfTransformModel.listFromJSON(response.data, completion)
              case let .failure(error):
                 debugPrint(error.localizedDescription)

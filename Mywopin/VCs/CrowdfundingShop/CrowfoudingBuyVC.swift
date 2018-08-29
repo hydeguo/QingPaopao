@@ -1,35 +1,44 @@
 //
-//  ScoresBuyVC.swift
+//  CrowfoudingBuyVC.swift
 //  Mywopin
 //
-//  Created by Hydeguo on 2018/8/19.
+//  Created by Hydeguo on 2018/8/26.
 //  Copyright © 2018 Wopin. All rights reserved.
 //
 
 import Foundation
 
 
-class ScoresBuyVC: UIViewController {
+class CrowfoudingBuyVC: UIViewController {
     
     
     static var selectedAddress:AddressItem?
     @IBOutlet var bgImage:UIImageView!
     @IBOutlet var priceLf:UILabel!
-    @IBOutlet var original_priceLf:UILabel!
     @IBOutlet var addressLf:UILabel!
-    @IBOutlet var numEditer:BuyNumEditer!
-  
+    @IBOutlet var titleLf:UILabel!
+    @IBOutlet var goodsImage:UIImageView!
+    
     var goods:WooGoodsItem?
+    
+    var selectedOptionIndex:Int = 0
+    var selectedPrice:Int = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        numEditer.onChange = onchange
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        let myScores = myClientVo?.scores != nil ? Int(myClientVo!.scores!) : 0
-        original_priceLf.text = "\(myScores) \(Language.getString("积分"))"
-        priceLf.text = "\((Int(goods!.price)! * Int(numEditer.numLf.text!)!) )\(Language.getString("积分"))"
+        
+        if goods != nil && goods!.attributes.count > selectedOptionIndex
+        {
+            var option = goods!.attributes[selectedOptionIndex];
+            selectedPrice = Int(option.name)!
+            priceLf.text = "¥"+option.name
+            titleLf.text = option.options[0]
+            goodsImage.image(fromUrl: goods!.images.first!.src)
+        }
         if let _selectedAddress = ExchangeNewBuyVC.selectedAddress
         {
             
@@ -41,11 +50,6 @@ class ScoresBuyVC: UIViewController {
         }
     }
     
-    func onchange()
-    {
-        
-        priceLf.text = "\((Int(goods!.price)! * Int(numEditer.numLf.text!)! ) )\(Language.getString("积分"))"
-    }
     
     @IBAction func changeAddress()
     {
@@ -66,7 +70,7 @@ class ScoresBuyVC: UIViewController {
     {
         if let _selectedAddress = ExchangeNewBuyVC.selectedAddress
         {
-            _ = Wolf.request(type: MyAPI.payMentScores(addressId: _selectedAddress.addressId, title: goods?.name ?? "", image: goods?.images.first?.src ?? "", goodsId: goods!.id, num: Int(numEditer.numLf.text!)!, singlePrice: Int(goods!.price)!), completion: { (info: User?, msg, code) in
+            _ = Wolf.request(type: MyAPI.payMentCrowdfunding(addressId: _selectedAddress.addressId, title: goods?.name ?? "", image: goods?.images.first?.src ?? "", goodsId: goods!.id, num: 1, singlePrice: selectedPrice), completion: { (info: User?, msg, code) in
                 if(code == "0" )
                 {
                     myClientVo = info

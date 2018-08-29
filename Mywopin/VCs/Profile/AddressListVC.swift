@@ -92,7 +92,7 @@ class AddressListVC: UITableViewController {
         if let address = myClientVo?.addressList![indexPath.row]
         {
             cell.line1.text = "\(address.userName ) \(String(Int(address.tel!)))"
-            cell.line2.text = "\(address.address1 ) \(String(address.address2!))"
+            cell.line2.text = "\(address.address1 ?? "" ) \(String(address.address2 ?? ""))"
         }
         cell.editBtn.tag = indexPath.row
         

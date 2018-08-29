@@ -69,7 +69,9 @@ class ExchangeBuyVC: UIViewController {
             _ = Wolf.request(type: MyAPI.payMentExchange(addressId: _selectedAddress.addressId, title: goods?.name ?? "", image: goods?.images.first?.src ?? "", goodsId: goods!.id, num: Int(numEditer.numLf.text!)!, offerPrice: Int(oldGoods!.price)!, singlePrice: Int(goods!.price)!), completion: { (info: BaseReponse?, msg, code) in
                 if(code == "0" )
                 {
-                    _ = SweetAlert().showAlert(Language.getString("订单提交成功"), subTitle: "", style: AlertStyle.success)
+                    _ = SweetAlert().showAlert(Language.getString("订单提交成功"), subTitle: "", style: AlertStyle.success,buttonTitle: "确定", action: { _ in
+                        self.closeAction();
+                    })
                 }
             }, failure: nil)
         }
@@ -136,7 +138,9 @@ class ExchangeNewBuyVC: UIViewController {
             _ = Wolf.request(type: MyAPI.payMentExchange(addressId: _selectedAddress.addressId, title:  goods?.name ?? "",image: goods?.images.first?.src ?? "", goodsId: goods!.id, num: Int(numEditer.numLf.text!)!, offerPrice: 0, singlePrice: Int(goods!.price)!), completion: { (info: BaseReponse?, msg, code) in
                 if(code == "0" )
                 {
-                    _ = SweetAlert().showAlert(Language.getString("订单提交成功"), subTitle: "", style: AlertStyle.success)
+                    _ = SweetAlert().showAlert(Language.getString("订单提交成功"), subTitle: "", style: AlertStyle.success,buttonTitle: "确定", action: { _ in
+                        self.closeAction();
+                    })
                 }
             }, failure: nil)
         }

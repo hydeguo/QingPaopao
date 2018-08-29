@@ -20,8 +20,10 @@ struct WooGoodsItem: WolfMapper {
     var short_description:String
     var price:String
     var regular_price:String
+    var date_on_sale_to:String?
     var sale_price:String
     var images:[MainImage]
+    var attributes:[WooAttributes]
 
 }
 
@@ -32,6 +34,15 @@ struct MainImage: Codable {
     var name: String
     var position: Int
 }
+struct WooAttributes: Codable {
+    
+    var id: Int
+    var name: String
+    var position:Int
+    var visible: Bool
+    var options: [String]
+}
+
 
 struct ExchangeCategory:WolfMapper{
     func didInit() {

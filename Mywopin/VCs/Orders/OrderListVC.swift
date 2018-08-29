@@ -104,7 +104,7 @@ class OrderListVC: UITableViewController {
     }
     func refreshCrowdfundingOrder()
     {
-        _ = Wolf.requestList(type: MyAPI.getScoresOrder, completion: { (orders: [CrowdfundingOrderItem]?, msg, code) in
+        _ = Wolf.requestList(type: MyAPI.getCrowdfundingOrder, completion: { (orders: [CrowdfundingOrderItem]?, msg, code) in
             
             if(code == "0")
             {
@@ -155,7 +155,7 @@ class OrderListVC: UITableViewController {
         }
         else
         {
-            
+            refreshCrowdfundingOrder()
         }
     }
     
@@ -219,8 +219,8 @@ class OrderListVC: UITableViewController {
             return cell
         }
         else {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "ExchangeOrderCell", for: indexPath) as! ExchangeOrderCell
-            let order = exchangeList[indexPath.row]
+            let cell = tableView.dequeueReusableCell(withIdentifier: "CrowdfundingOrderCell", for: indexPath) as! CrowdfundingOrderCell
+            let order = crowdfundingList[indexPath.row]
             cell.configure(order: order)
             
             return cell

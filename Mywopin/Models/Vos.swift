@@ -98,7 +98,22 @@ struct OneDrinks: WolfMapper {
     func didInit() {
     }
 }
-
+struct CrowdfundingPeople: WolfMapper {
+    var _id: String?
+    var totalPeople: Double?
+    
+    func didInit() {
+        debugPrint("didInt")
+    }
+}
+struct CrowdfundingMoney: WolfMapper {
+    var _id: String?
+    var totalPrice: Double?
+    
+    func didInit() {
+        debugPrint("didInt")
+    }
+}
 let DeviceTypeBLE = "BLE"
 let DeviceTypeWifi = "WIFI"
 struct CupItem: WolfMapper {

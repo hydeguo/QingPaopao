@@ -37,6 +37,8 @@ enum MyAPI {
     case getDrinkList
     case getUserData
     case exchangeOrderUpdate(orderId:String,expressId:String)
+    case crowdfundingOrderTotalMoney(goodsId:Int)
+    case crowdfundingOrderTotalPeople(goodsId:Int)
     case addGeolocationParameters(device_id: String, time: String, lat: Double, long: Double, link: String)
 }
 
@@ -97,6 +99,10 @@ extension MyAPI: TargetType {
             return .requestParameters(parameters: [ "addressId" : addressId,"title":title,"image":image, "goodsId" : goodsId, "num" : num,"singlePrice" : singlePrice], encoding: URLEncoding.default)
         case .payMentCrowdfunding(let addressId,let title,let image,let goodsId,let num,let singlePrice):
             return .requestParameters(parameters: [ "addressId" : addressId,"title":title,"image":image, "goodsId" : goodsId, "num" : num,"singlePrice" : singlePrice], encoding: URLEncoding.default)
+        case .crowdfundingOrderTotalMoney(let goodsId):
+            return .requestParameters(parameters: [ "goodsId" : goodsId], encoding: URLEncoding.default)
+        case .crowdfundingOrderTotalPeople(let goodsId):
+            return .requestParameters(parameters: [ "goodsId" : goodsId], encoding: URLEncoding.default)
         default:
             return .requestPlain
         }
@@ -177,12 +183,16 @@ extension MyAPI: TargetType {
             return "/goods/crowdfundingOrderList"
         case .getUserData:
             return "/users/getUserData"
+        case .crowdfundingOrderTotalMoney:
+            return "/goods/crowdfundingOrderTotalMoney"
+        case .crowdfundingOrderTotalPeople:
+            return "/goods/crowdfundingOrderTotalPeople"
         }
     }
     
     var method: Moya.Method {
         switch self {
-            case  .getExchangeOrder ,.getExchangeGoods,.getScoresOrder,.cupList,.getUserData:
+            case  .getExchangeOrder ,.getExchangeGoods,.getScoresOrder,.getCrowdfundingOrder,.cupList,.getUserData:
             return .get
     
             default:

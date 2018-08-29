@@ -141,7 +141,7 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
   
-  /// This `R.image` struct is generated, and contains static references to 73 images.
+  /// This `R.image` struct is generated, and contains static references to 74 images.
   struct image {
     /// Image `AMCP_color_wheel`.
     static let amcp_color_wheel = Rswift.ImageResource(bundle: R.hostingBundle, name: "AMCP_color_wheel")
@@ -225,6 +225,8 @@ struct R: Rswift.Validatable {
     static let more = Rswift.ImageResource(bundle: R.hostingBundle, name: "more")
     /// Image `msgBtn`.
     static let msgBtn = Rswift.ImageResource(bundle: R.hostingBundle, name: "msgBtn")
+    /// Image `numerous`.
+    static let numerous = Rswift.ImageResource(bundle: R.hostingBundle, name: "numerous")
     /// Image `powerOff`.
     static let powerOff = Rswift.ImageResource(bundle: R.hostingBundle, name: "powerOff")
     /// Image `powerOn`.
@@ -495,6 +497,11 @@ struct R: Rswift.Validatable {
       return UIKit.UIImage(resource: R.image.msgBtn, compatibleWith: traitCollection)
     }
     
+    /// `UIImage(named: "numerous", bundle: ..., traitCollection: ...)`
+    static func numerous(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.numerous, compatibleWith: traitCollection)
+    }
+    
     /// `UIImage(named: "powerOff", bundle: ..., traitCollection: ...)`
     static func powerOff(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.powerOff, compatibleWith: traitCollection)
@@ -663,7 +670,7 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
   
-  /// This `R.reuseIdentifier` struct is generated, and contains static references to 10 reuse identifiers.
+  /// This `R.reuseIdentifier` struct is generated, and contains static references to 12 reuse identifiers.
   struct reuseIdentifier {
     /// Reuse identifier `AddDevice`.
     static let addDevice: Rswift.ReuseIdentifier<AddDeviceCell> = Rswift.ReuseIdentifier(identifier: "AddDevice")
@@ -671,6 +678,10 @@ struct R: Rswift.Validatable {
     static let addressCell: Rswift.ReuseIdentifier<AddressCell> = Rswift.ReuseIdentifier(identifier: "AddressCell")
     /// Reuse identifier `CreditsOrderCell`.
     static let creditsOrderCell: Rswift.ReuseIdentifier<CreditsOrderCell> = Rswift.ReuseIdentifier(identifier: "CreditsOrderCell")
+    /// Reuse identifier `CrowdfundingCell`.
+    static let crowdfundingCell: Rswift.ReuseIdentifier<CrowdfundingCell> = Rswift.ReuseIdentifier(identifier: "CrowdfundingCell")
+    /// Reuse identifier `CrowdfundingOrderCell`.
+    static let crowdfundingOrderCell: Rswift.ReuseIdentifier<CrowdfundingOrderCell> = Rswift.ReuseIdentifier(identifier: "CrowdfundingOrderCell")
     /// Reuse identifier `Device`.
     static let device: Rswift.ReuseIdentifier<DeviceCell> = Rswift.ReuseIdentifier(identifier: "Device")
     /// Reuse identifier `ExchangeOrderCell`.
@@ -1226,6 +1237,7 @@ struct _R: Rswift.Validatable {
       let landingPage = StoryboardViewControllerResource<LandingVC>(identifier: "LandingPage")
       let mainPage = StoryboardViewControllerResource<UIKit.UINavigationController>(identifier: "MainPage")
       let name = "Main"
+      let numerousShopPage = StoryboardViewControllerResource<CrowdfundingShopPage>(identifier: "NumerousShopPage")
       let orderListTopVC = StoryboardViewControllerResource<OrderListTopVC>(identifier: "OrderListTopVC")
       let returnOrderNumVC = StoryboardViewControllerResource<ReturnOrderNumVC>(identifier: "ReturnOrderNumVC")
       let wifiScanListVC = StoryboardViewControllerResource<WifiScanListVC>(identifier: "wifiScanListVC")
@@ -1274,6 +1286,10 @@ struct _R: Rswift.Validatable {
         return UIKit.UIStoryboard(resource: self).instantiateViewController(withResource: mainPage)
       }
       
+      func numerousShopPage(_: Void = ()) -> CrowdfundingShopPage? {
+        return UIKit.UIStoryboard(resource: self).instantiateViewController(withResource: numerousShopPage)
+      }
+      
       func orderListTopVC(_: Void = ()) -> OrderListTopVC? {
         return UIKit.UIStoryboard(resource: self).instantiateViewController(withResource: orderListTopVC)
       }
@@ -1314,6 +1330,7 @@ struct _R: Rswift.Validatable {
         if UIKit.UIImage(named: "资源 21") == nil { throw Rswift.ValidationError(description: "[R.swift] Image named '资源 21' is used in storyboard 'Main', but couldn't be loaded.") }
         if UIKit.UIImage(named: "lightUI1") == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'lightUI1' is used in storyboard 'Main', but couldn't be loaded.") }
         if UIKit.UIImage(named: "cup") == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'cup' is used in storyboard 'Main', but couldn't be loaded.") }
+        if UIKit.UIImage(named: "numerous") == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'numerous' is used in storyboard 'Main', but couldn't be loaded.") }
         if UIKit.UIImage(named: "bluetouch") == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'bluetouch' is used in storyboard 'Main', but couldn't be loaded.") }
         if UIKit.UIImage(named: "back") == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'back' is used in storyboard 'Main', but couldn't be loaded.") }
         if UIKit.UIImage(named: "资源 13") == nil { throw Rswift.ValidationError(description: "[R.swift] Image named '资源 13' is used in storyboard 'Main', but couldn't be loaded.") }
@@ -1353,6 +1370,7 @@ struct _R: Rswift.Validatable {
         if _R.storyboard.main().exchangePage() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'exchangePage' could not be loaded from storyboard 'Main' as 'ExchangePage'.") }
         if _R.storyboard.main().addressListVC() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'addressListVC' could not be loaded from storyboard 'Main' as 'UIKit.UINavigationController'.") }
         if _R.storyboard.main().returnOrderNumVC() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'returnOrderNumVC' could not be loaded from storyboard 'Main' as 'ReturnOrderNumVC'.") }
+        if _R.storyboard.main().numerousShopPage() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'numerousShopPage' could not be loaded from storyboard 'Main' as 'CrowdfundingShopPage'.") }
         if _R.storyboard.main().wifiScanListVC() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'wifiScanListVC' could not be loaded from storyboard 'Main' as 'WifiScanListVC'.") }
         if _R.storyboard.main().deviceList() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'deviceList' could not be loaded from storyboard 'Main' as 'DeviceListViewController'.") }
         if _R.storyboard.main().changePassword() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'changePassword' could not be loaded from storyboard 'Main' as 'ChangePassword'.") }
@@ -1364,6 +1382,9 @@ struct _R: Rswift.Validatable {
     
     struct shop: Rswift.StoryboardResourceType, Rswift.Validatable {
       let bundle = R.hostingBundle
+      let crowdfoudingBuyBtnVC = StoryboardViewControllerResource<CrowdfoudingBuyBtnVC>(identifier: "CrowdfoudingBuyBtnVC")
+      let crowdfundingShopDetailVC = StoryboardViewControllerResource<CrowdfundingShopDetailVC>(identifier: "CrowdfundingShopDetailVC")
+      let crowfoudingBuyVC = StoryboardViewControllerResource<CrowfoudingBuyVC>(identifier: "CrowfoudingBuyVC")
       let exchangeBuyBtnVC = StoryboardViewControllerResource<ExchangeBuyBtnVC>(identifier: "ExchangeBuyBtnVC")
       let exchangeBuyVC = StoryboardViewControllerResource<ExchangeBuyVC>(identifier: "ExchangeBuyVC")
       let exchangeNewBuyVC = StoryboardViewControllerResource<ExchangeNewBuyVC>(identifier: "ExchangeNewBuyVC")
@@ -1372,6 +1393,18 @@ struct _R: Rswift.Validatable {
       let scoresBuyBtnVC = StoryboardViewControllerResource<ScoresBuyBtnVC>(identifier: "ScoresBuyBtnVC")
       let scoresBuyVC = StoryboardViewControllerResource<ScoresBuyVC>(identifier: "ScoresBuyVC")
       let scoresShopDetailVC = StoryboardViewControllerResource<ScoresShopDetailVC>(identifier: "ScoresShopDetailVC")
+      
+      func crowdfoudingBuyBtnVC(_: Void = ()) -> CrowdfoudingBuyBtnVC? {
+        return UIKit.UIStoryboard(resource: self).instantiateViewController(withResource: crowdfoudingBuyBtnVC)
+      }
+      
+      func crowdfundingShopDetailVC(_: Void = ()) -> CrowdfundingShopDetailVC? {
+        return UIKit.UIStoryboard(resource: self).instantiateViewController(withResource: crowdfundingShopDetailVC)
+      }
+      
+      func crowfoudingBuyVC(_: Void = ()) -> CrowfoudingBuyVC? {
+        return UIKit.UIStoryboard(resource: self).instantiateViewController(withResource: crowfoudingBuyVC)
+      }
       
       func exchangeBuyBtnVC(_: Void = ()) -> ExchangeBuyBtnVC? {
         return UIKit.UIStoryboard(resource: self).instantiateViewController(withResource: exchangeBuyBtnVC)
@@ -1411,9 +1444,12 @@ struct _R: Rswift.Validatable {
         if _R.storyboard.shop().scoresBuyBtnVC() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'scoresBuyBtnVC' could not be loaded from storyboard 'Shop' as 'ScoresBuyBtnVC'.") }
         if _R.storyboard.shop().scoresShopDetailVC() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'scoresShopDetailVC' could not be loaded from storyboard 'Shop' as 'ScoresShopDetailVC'.") }
         if _R.storyboard.shop().exchangeBuyVC() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'exchangeBuyVC' could not be loaded from storyboard 'Shop' as 'ExchangeBuyVC'.") }
+        if _R.storyboard.shop().crowfoudingBuyVC() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'crowfoudingBuyVC' could not be loaded from storyboard 'Shop' as 'CrowfoudingBuyVC'.") }
         if _R.storyboard.shop().exchangeNewBuyVC() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'exchangeNewBuyVC' could not be loaded from storyboard 'Shop' as 'ExchangeNewBuyVC'.") }
         if _R.storyboard.shop().exchangeBuyBtnVC() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'exchangeBuyBtnVC' could not be loaded from storyboard 'Shop' as 'ExchangeBuyBtnVC'.") }
         if _R.storyboard.shop().exchangeShopDetailVC() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'exchangeShopDetailVC' could not be loaded from storyboard 'Shop' as 'ExchangeShopDetailVC'.") }
+        if _R.storyboard.shop().crowdfoudingBuyBtnVC() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'crowdfoudingBuyBtnVC' could not be loaded from storyboard 'Shop' as 'CrowdfoudingBuyBtnVC'.") }
+        if _R.storyboard.shop().crowdfundingShopDetailVC() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'crowdfundingShopDetailVC' could not be loaded from storyboard 'Shop' as 'CrowdfundingShopDetailVC'.") }
       }
       
       fileprivate init() {}
