@@ -103,7 +103,7 @@ class CrowdfundingShopDetailVC: UITableViewController ,UIWebViewDelegate{
         
         //-------------------------------------
         
-        if data!.date_on_sale_to!.count > 0
+        if data!.date_on_sale_to != nil && data!.date_on_sale_to!.count > 0
         {
             let dateFormatterGet = DateFormatter()
             dateFormatterGet.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
@@ -316,10 +316,10 @@ class CrowdfundingShopDetailVC: UITableViewController ,UIWebViewDelegate{
         detailWebView.backgroundColor = UIColor.clear
         detailWebView.isOpaque = false
         detailWebView.dataDetectorTypes = UIDataDetectorTypes.init(rawValue: 0)
-        detailWebView.scrollView.isScrollEnabled = false
+//        detailWebView.scrollView.isScrollEnabled = false
         detailWebView.scrollView.showsVerticalScrollIndicator = false
         detailWebView.scrollView.showsHorizontalScrollIndicator = false
-        detailWebView.isUserInteractionEnabled = false
+//        detailWebView.isUserInteractionEnabled = false
         detailWebView.tag = detailWebViewSection
         detailWebView.loadHTMLString(htmlString, baseURL: nil)
         webViewDict.updateValue(detailWebView, forKey: detailWebViewSection)
@@ -328,8 +328,9 @@ class CrowdfundingShopDetailVC: UITableViewController ,UIWebViewDelegate{
     func webViewDidFinishLoad(_ webView: UIWebView) {
         // 使webView自适应高度
         webView.sizeToFit()
-        let height = webView.bounds.size.height
+        var height = webView.bounds.size.height //webView.scrollView.contentSize.height//
         Log(height)
+        height = max(height, SCREEN_HEIGHT * 0.8)
         webView.frame = CGRect.init(x: 10, y: 0, width: screenWidth - 20, height: height)
         if !heightDict.keys.contains(webView.tag) {
             heightDict.updateValue(height, forKey: webView.tag)
