@@ -27,6 +27,7 @@ class DrinkViewController: UIViewController, CLLocationManagerDelegate {
     @IBOutlet var drinkCupTotalLabel:UILabel!
     
     var locationManager:CLLocationManager!
+    var startElectrolyFlag = false
     
     var _timer:Timer?
     
@@ -112,6 +113,9 @@ class DrinkViewController: UIViewController, CLLocationManagerDelegate {
         self.navigationItem.backBarButtonItem?.title = ""
         self.navigationController?.setNavigationBarHidden(true, animated: false)
         self.parent?.navigationController?.setNavigationBarHidden(true, animated: false)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(onReceiveDeviceDataSuccess), name: NSNotification.Name(rawValue: BLE_EVENT.BLE_receiveDeviceDataSuccess_1.rawValue), object: nil)
+        
         if startElectrolyTime == 0 || Date().timeIntervalSince1970 - startElectrolyTime > electrolyTime
         {
             self.slider.isEnabled = true
@@ -119,15 +123,21 @@ class DrinkViewController: UIViewController, CLLocationManagerDelegate {
         }
         else
         {
-            actionBtn?.backgroundColor = UIColor.lightGray
-            actionBtn?.setTitle(Language.getString("停止电解"), for: .normal)
+            startElectrolyUI()
             sliderNum.value = Float(electrolyTime / 60)
-            self.slider.isEnabled = false
             _timer = setInterval(interval: 1, block: {
                 self.updateTimeLabel();
             })
         }
         getTodayDrinks()
+    }
+    
+    private func startElectrolyUI()
+    {
+        actionBtn?.backgroundColor = UIColor.lightGray
+        actionBtn?.setTitle(Language.getString("停止电解"), for: .normal)
+        self.slider.isEnabled = false
+        startElectrolyFlag = true
     }
     
     func updateDrinkText()
@@ -141,8 +151,59 @@ class DrinkViewController: UIViewController, CLLocationManagerDelegate {
     
     override func viewWillDisappear(_ animated: Bool) {
         _timer?.invalidate()
+        NotificationCenter.default.removeObserver(self)
     }
     
+    @objc func onReceiveDeviceDataSuccess(_ notice:Notification)
+    {
+        if let _:CBPeripheral=(notice as NSNotification).userInfo!["device"] as? CBPeripheral,let data:Data=(notice as NSNotification).userInfo!["data"] as? Data
+        {
+            let bytes = [UInt8] (data as Data)
+            var hexString = ""
+            for byte in bytes {
+                hexString = hexString.appendingFormat("%02X", UInt(byte))
+            }
+            
+            if(hexString.count > 16 ){
+                
+                let indexMsg = hexString.index(hexString.startIndex, offsetBy: 16)
+                onCupDataCommand(String(hexString[hexString.startIndex..<indexMsg]))
+                onCupDataCommand(String(hexString[indexMsg..<hexString.endIndex]))
+            }
+            else if(hexString.count == 16 )
+            {
+                onCupDataCommand(hexString)
+            }
+        }
+    }
+    private func onCupDataCommand(_ dataStr:String)
+    {
+        let cmd = parseCupData(dataStr)
+        if cmd.a == "3"
+        {
+            if(cmd.b == "01")
+            {
+                if(!startElectrolyFlag){
+                    startElectrolyUI()
+                }else{
+                    _timer?.invalidate()
+                }
+            }
+            else if (cmd.b == "02")
+            {
+                if(startElectrolyFlag){
+                    stopElectroly()
+                }
+            }
+        }
+        else if cmd.a == "5"
+        {
+            if(startElectrolyFlag)
+            {
+                self.timeLabel?.text = "\(String(format: "%02d", Int(cmd.b, radix: 16)!)):\(String(format: "%02d", Int(cmd.c, radix: 16)!))"
+            }
+        }
+    }
     
     @IBAction func onClickElectroly()
     {
@@ -202,6 +263,8 @@ class DrinkViewController: UIViewController, CLLocationManagerDelegate {
     
     func stopElectroly()
     {
+        
+        startElectrolyFlag = false
         startElectrolyTime = 0
         electrolyTime = 0
         UserDefaults.standard.set(electrolyTime, forKey: "electrolyTime")

@@ -134,19 +134,28 @@ class DeviceInfoVC: UITableViewController {
         for byte in bytes {
             hexString = hexString.appendingFormat("%02X", UInt(byte))
         }
-        if(hexString.count == 16 )
+        
+        if(hexString.count > 16 ){
+            
+            let indexMsg = hexString.index(hexString.startIndex, offsetBy: 16)
+            onCupDataCommand(String(hexString[hexString.startIndex..<indexMsg]))
+            onCupDataCommand(String(hexString[indexMsg..<hexString.endIndex]))
+        }
+        else if(hexString.count == 16 )
         {
-            let index1 = hexString.index(hexString.startIndex, offsetBy: 7);
-            if hexString[index1] == "1"
-            {
-                let indexE1 = hexString.index(hexString.startIndex, offsetBy: 8);
-                let indexE2 = hexString.index(hexString.startIndex, offsetBy: 10);
-                let power = hexString[indexE1..<indexE2]
-                powerLf.text = "\(power)%"
-            }
+            onCupDataCommand(hexString)
         }
 //        print("Received some data: \(hexString)")
         
+    }
+    
+    private func onCupDataCommand(_ dataStr:String)
+    {
+        let cmd = parseCupData(dataStr)
+        if cmd.a == "1"
+        {
+            powerLf.text = "\(cmd.b)%"
+        }
     }
     
 //    func receiveDeviceBattery(_ battery: Int, device: CBPeripheral)

@@ -125,3 +125,14 @@ public class BLEController:NSObject,BLEManagerDelegate
     }
     #endif
 }
+
+
+func parseCupData(_ dataStr:String)->(a:Character,b:String,c:String)
+{
+    let index1 = dataStr.index(dataStr.startIndex, offsetBy: 7);
+
+    let indexE1 = dataStr.index(dataStr.startIndex, offsetBy: 8);
+    let indexE2 = dataStr.index(dataStr.startIndex, offsetBy: 10);
+    let indexE4 = dataStr.index(dataStr.startIndex, offsetBy: 12);
+    return ( dataStr[index1],String(dataStr[indexE1..<indexE2]),String(dataStr[indexE2..<indexE4]) )
+}
