@@ -108,4 +108,32 @@ class MyProfileViewController: UIViewController {
         }
     }
     
+    
+    @IBAction func shareApp()
+    {
+        let shareParams: NSMutableDictionary = NSMutableDictionary()
+        shareParams.ssdkSetupShareParams(byText: "一杯好水改变生活轨迹", images: "https://is3-ssl.mzstatic.com/image/thumb/Purple118/v4/f4/1c/64/f41c64d3-21e4-6e66-26d4-9b48872fd3c9/AppIcon-1x_U007emarketing-85-220-3.png/230x0w.jpg", url: URL.init(string: "http://wifi.h2popo.com:8081/downloadApp"), title: "邀请您一起", type: SSDKContentType.auto)
+        
+        ShareSDK.showShareActionSheet(nil, items: nil, shareParams: shareParams) { (state, type, info, entity, error, end) in
+
+            if state == SSDKResponseState.success {
+                print("分享成功")
+            } else {
+                print("分享失败")
+            }
+        }
+        
+//        ShareSDK.share(.typeQQ, parameters: shareParams) { (state, info, entity, error) in
+//            Log(error)
+//             Log(state)
+//            if state == SSDKResponseState.success {
+//                                print("分享成功")
+//                            } else {
+//                                print("分享失败")
+//                            }
+//        }
+        
+    }
+    
+   
 }
