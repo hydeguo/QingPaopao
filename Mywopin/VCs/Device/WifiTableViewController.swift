@@ -258,6 +258,7 @@ class WifiTableViewController: UITableViewController, QRCodeReaderViewController
                             WifiController.shared.savedWifi.append(self.device_id!)
                             UserDefaults.standard.set(WifiController.shared.savedWifi, forKey: "WiFi_list")
                         }
+                        WifiController.shared.startAutoConnect()
                         _ = Wolf.request(type: MyAPI.addOrUpdateACup(type: DeviceTypeWifi, uuid: self.device_id!, name: self.device_id!, add: true), completion: { (user: User?, msg, code) in
                             
                             self.tipsAlert?.dismiss(animated: false, completion: nil)
@@ -343,8 +344,6 @@ class WifiTableViewController: UITableViewController, QRCodeReaderViewController
                 let httpResponseData = String(data: data!, encoding: .utf8)
                 do {
                     let ra = try JSONDecoder().decode(WifiResponse.self, from: (httpResponseData?.data(using: .utf8)!)!)
-                    print(ra.status)
-                    print(ra.deviceId)
                     self.removeSpinner(spinner: self.sv!)
                     if (ra.status == "Connecting")
                     {

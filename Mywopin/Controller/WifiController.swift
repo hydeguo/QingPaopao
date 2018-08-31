@@ -12,6 +12,7 @@ import CoreLocation
 
 //ESP8266 Device Related
 let wopinWifiURL = "http://172.16.0.1/wopin_wifi"
+let wopin_device_endfix = "-D";   // Publish message to the cup
 
 //MQTT Related
 let wopinMqttServer = "wifi.h2popo.com"
@@ -103,9 +104,9 @@ public class WifiController : NSObject, CocoaMQTTDelegate
     func sendHydroOnOffCommandToWopin(on : Bool, timeString: String) {
         for uuid in savedWifi {
             if (on) {
-                mqtt?.publish(uuid, withString: "021" + timeString)
+                mqtt?.publish(uuid + wopin_device_endfix, withString: "021" + timeString)
             } else {
-                mqtt?.publish(uuid, withString: "02000000")
+                mqtt?.publish(uuid + wopin_device_endfix, withString: "02000000")
             }
         }
     }
@@ -113,7 +114,17 @@ public class WifiController : NSObject, CocoaMQTTDelegate
     func sendRGBCommandToWopin(r: Int, g: Int, b: Int) {
         let code = wopinWifiLEDCommand(r: r, g: g, b: b)
         for uuid in savedWifi {
-            mqtt?.publish(uuid, withString: code)
+            mqtt?.publish(uuid + wopin_device_endfix, withString: code)
+        }
+    }
+    
+    func sendCleanOnOffCommandToWopin(on: Bool) {
+        for uuid in savedWifi {
+            if (on) {
+                mqtt?.publish(uuid + wopin_device_endfix, withString: "031")
+            } else {
+                mqtt?.publish(uuid + wopin_device_endfix, withString: "030")
+            }
         }
     }
     
@@ -123,6 +134,7 @@ public class WifiController : NSObject, CocoaMQTTDelegate
         let blue_val = String(format:"%02X", b)
         return "01" + red_val + green_val + blue_val
     }
+    
     
     func subscribeWopinWifiDevice(uuid : String) {
         mqtt?.subscribe(uuid)
@@ -138,15 +150,23 @@ public class WifiController : NSObject, CocoaMQTTDelegate
     }
     
     public func mqtt(_ mqtt: CocoaMQTT, didPublishMessage message: CocoaMQTTMessage, id: UInt16) {
-        print("didPublishMessage")
     }
     
     public func mqtt(_ mqtt: CocoaMQTT, didPublishAck id: UInt16) {
-        print("didPublishAck")
     }
     
     public func mqtt(_ mqtt: CocoaMQTT, didReceiveMessage message: CocoaMQTTMessage, id: UInt16 ) {
         print("didReceiveMessage " + message.topic + " " + message.string!)
+        if (savedWifi.contains(message.topic)) {
+            print("updating device info " + message.topic)
+            var res = message.string!.split(separator: ":")
+            if (res.count == 2)
+            {
+                if (res[0] == "P") {   //Power information
+                    print("\(message.topic) Power: \(res[1])")
+                }
+            }
+        }
     }
     
     public func mqtt(_ mqtt: CocoaMQTT, didSubscribeTopic topic: String) {
@@ -158,11 +178,9 @@ public class WifiController : NSObject, CocoaMQTTDelegate
     }
     
     public func mqttDidPing(_ mqtt: CocoaMQTT) {
-        print("mqttDidPing")
     }
     
     public func mqttDidReceivePong(_ mqtt: CocoaMQTT) {
-        print("mqttDidReceivePong")
     }
     
     public func mqttDidDisconnect(_ mqtt: CocoaMQTT, withError err: Error?) {
