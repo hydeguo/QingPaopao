@@ -66,12 +66,14 @@ class CleanCupViewController: UIViewController {
         startCleanTime = Date().timeIntervalSince1970
         UserDefaults.standard.set(startCleanTime, forKey: "startCleanTime")
         BLEController.shared.setTimeOutClean()
+        WifiController.shared.sendCleanOnOffCommandToWopin(on: true)
     }
-     @IBAction func stopClean()
+    @IBAction func stopClean()
     {
         startCleanTime = 0
         UserDefaults.standard.set(startCleanTime, forKey: "startCleanTime")
         BLEController.shared.sendCommandToConnectedDevice(WopinCommand.CLEAN_OFF)
+        WifiController.shared.sendCleanOnOffCommandToWopin(on: false)
         know()
     }
     
