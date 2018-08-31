@@ -136,6 +136,7 @@
 		C1C4295420D6AA1D0071532F /* MOBFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C1C4293F20D6AA1D0071532F /* MOBFoundation.framework */; };
 		C1D5B60220F3B54F004DCE83 /* ReturnOrderNumVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1D5B60120F3B54E004DCE83 /* ReturnOrderNumVC.swift */; };
 		C1D5B60520F46104004DCE83 /* ExchangeOrderDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1D5B60420F46104004DCE83 /* ExchangeOrderDetailVC.swift */; };
+		C1F128292139150300BBD457 /* Toast.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1F128282139150200BBD457 /* Toast.swift */; };
 		C1F226EE21295AFC0066C9EC /* ScoresShopList.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1F226ED21295AFC0066C9EC /* ScoresShopList.swift */; };
 		C1F226F021295DE20066C9EC /* ScoresShopDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1F226EF21295DE20066C9EC /* ScoresShopDetailVC.swift */; };
 		C1F226F221295EAB0066C9EC /* Shop.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C1F226F121295EAB0066C9EC /* Shop.storyboard */; };
@@ -143,6 +144,7 @@
 		C1F226F6212964510066C9EC /* ScoresBuyBtnVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1F226F5212964510066C9EC /* ScoresBuyBtnVC.swift */; };
 		C1F6E04420C6CE580031200D /* InfoDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1F6E04320C6CE580031200D /* InfoDetailViewController.swift */; };
 		C1F6E04720C6D0060031200D /* WordPressWebServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1F6E04620C6D0060031200D /* WordPressWebServices.swift */; };
+		C1FC3502213909D10052DD6D /* InternetReachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1FC3501213909D10052DD6D /* InternetReachability.swift */; };
 		CDD4DBDEF63152BF994876A2 /* Pods_Mywopin.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6BCB3A9CE3429E550758934F /* Pods_Mywopin.framework */; };
 /* End PBXBuildFile section */
 
@@ -296,6 +298,7 @@
 		C1C4293F20D6AA1D0071532F /* MOBFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = MOBFoundation.framework; sourceTree = "<group>"; };
 		C1D5B60120F3B54E004DCE83 /* ReturnOrderNumVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReturnOrderNumVC.swift; sourceTree = "<group>"; };
 		C1D5B60420F46104004DCE83 /* ExchangeOrderDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeOrderDetailVC.swift; sourceTree = "<group>"; };
+		C1F128282139150200BBD457 /* Toast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Toast.swift; sourceTree = "<group>"; };
 		C1F226ED21295AFC0066C9EC /* ScoresShopList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoresShopList.swift; sourceTree = "<group>"; };
 		C1F226EF21295DE20066C9EC /* ScoresShopDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoresShopDetailVC.swift; sourceTree = "<group>"; };
 		C1F226F121295EAB0066C9EC /* Shop.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Shop.storyboard; sourceTree = "<group>"; };
@@ -303,6 +306,7 @@
 		C1F226F5212964510066C9EC /* ScoresBuyBtnVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoresBuyBtnVC.swift; sourceTree = "<group>"; };
 		C1F6E04320C6CE580031200D /* InfoDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoDetailViewController.swift; sourceTree = "<group>"; };
 		C1F6E04620C6D0060031200D /* WordPressWebServices.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WordPressWebServices.swift; sourceTree = "<group>"; };
+		C1FC3501213909D10052DD6D /* InternetReachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InternetReachability.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -554,7 +558,9 @@
 		C192AA2420C23EA9004EE98D /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				C1F128282139150200BBD457 /* Toast.swift */,
 				C192AA2520C23EA9004EE98D /* UIView+Extensions.swift */,
+				C1FC3501213909D10052DD6D /* InternetReachability.swift */,
 				C192AA2620C23EA9004EE98D /* DatePickerViewController.swift */,
 				C192AA2720C23EA9004EE98D /* View(Extension).swift */,
 				C1383A3B20DF865A00F1EBE6 /* Language.swift */,
@@ -924,7 +930,6 @@
 				"${BUILT_PRODUCTS_DIR}/PKHUD/PKHUD.framework",
 				"${BUILT_PRODUCTS_DIR}/QRCodeReader.swift/QRCodeReader.framework",
 				"${BUILT_PRODUCTS_DIR}/R.swift.Library/Rswift.framework",
-				"${BUILT_PRODUCTS_DIR}/ReachabilitySwift/Reachability.framework",
 				"${BUILT_PRODUCTS_DIR}/Result/Result.framework",
 				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
@@ -943,7 +948,6 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PKHUD.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/QRCodeReader.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Rswift.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Reachability.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Result.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
@@ -1066,6 +1070,7 @@
 				C146CB3320FC9E2F00AED9B2 /* BindingThirdpartAccountVC.swift in Sources */,
 				C15AEF8820F07EE9009F4A0E /* TGDropBoxView.swift in Sources */,
 				C1F226F6212964510066C9EC /* ScoresBuyBtnVC.swift in Sources */,
+				C1F128292139150300BBD457 /* Toast.swift in Sources */,
 				C1406353210460C800AB8914 /* GoodsModel.swift in Sources */,
 				C192AA1120C23770004EE98D /* AppDelegate.swift in Sources */,
 				C1F6E04420C6CE580031200D /* InfoDetailViewController.swift in Sources */,
@@ -1084,6 +1089,7 @@
 				C192AA3720C23EA9004EE98D /* Utils.swift in Sources */,
 				C1406362210619E900AB8914 /* ExchangeBuyBtnVC.swift in Sources */,
 				C1315F6E20DB6740000DB991 /* User.swift in Sources */,
+				C1FC3502213909D10052DD6D /* InternetReachability.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -11,7 +11,6 @@ import UIKit
 import NetworkExtension
 import SystemConfiguration.CaptiveNetwork
 import Moya
-import Reachability
 
 #if targetEnvironment(simulator)
 class WifiTableViewController: UITableViewController {}
@@ -20,11 +19,13 @@ import QRCodeReader
 
 class WifiTableViewController: UITableViewController, QRCodeReaderViewControllerDelegate {
     
-    let reachability = Reachability()!
+    let inetReachability = InternetReachability()!
     var essids = [String]()
     var device_id : String?
     var wopinSSID = ""
     var timer:Timer?
+    var tipsAlert:UIAlertController?
+    var retryPasswordToCup = 2
     
     @IBOutlet weak var selectedSSID: UITextField!
     @IBOutlet weak var wifiPasswordTextField: UITextField!
@@ -32,11 +33,17 @@ class WifiTableViewController: UITableViewController, QRCodeReaderViewController
     var sv : UIView?
     
     override func viewWillAppear(_ animated: Bool) {
+        NotificationCenter.default.addObserver(self, selector: #selector(internetChanged), name: Notification.Name.reachabilityChanged, object: inetReachability)
+    }
+    override func viewWillDisappear(_ animated: Bool) {
+        
+        NotificationCenter.default.removeObserver(self);
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         scanQRcode(UIButton())
+        
     }
     
     private func displaySpinner(onView : UIView) -> UIView {
@@ -171,7 +178,7 @@ class WifiTableViewController: UITableViewController, QRCodeReaderViewController
         self.essids.removeAll()
         
         self.removeSpinner(spinner: self.sv!)
-        let alert = UIAlertController(title: nil, message: "Please wait...", preferredStyle: .alert)
+        let alert = UIAlertController(title: nil, message: "请稍候...", preferredStyle: .alert)
         
         let loadingIndicator = UIActivityIndicatorView(frame: CGRect(x: 10, y: 5, width: 50, height: 50))
         loadingIndicator.hidesWhenStopped = true
@@ -228,45 +235,54 @@ class WifiTableViewController: UITableViewController, QRCodeReaderViewController
     
         dataTask.resume()
     }
-    @objc func reachabilityChanged(note: Notification) {
+    
+    @objc func internetChanged(note:Notification) {
         
-        let reachability = note.object as! Reachability
+        let reachability =  note.object as! InternetReachability
         
-        switch reachability.connection {
-        case .wifi ,.cellular:
-            print("Reachable via WiFi \(self.getWifiSsid())")
-            if (self.getWifiSsid() != wopinSSID)
-            {
-                timer?.invalidate()
-                reachability.stopNotifier()
-                NotificationCenter.default.removeObserver(self, name: .reachabilityChanged, object: reachability)
-                //Wopin AP will be disconnected after the wifi configurtion
-                DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                    print("Uploading to server")
-                    _ = Wolf.request(type: MyAPI.addOrUpdateACup(type: DeviceTypeWifi, uuid: self.device_id!, name: self.device_id!, add: true), completion: { (user: User?, msg, code) in
-                        self.removeSpinner(spinner: self.sv!)
-                        if(code == "0")
+        //reachability.isReachable is deprecated, right solution --> connection != .none
+        if reachability.connection != .none {
+            
+            //reachability.isReachableViaWiFi is deprecated, right solution --> connection == .wifi
+            if reachability.connection == .wifi {
+                if (self.getWifiSsid() != wopinSSID)
+                {
+                    timer?.invalidate()
+                    reachability.stopNotifier()
+                    //Wopin AP will be disconnected after the wifi configurtion
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                        print("Uploading to server")
+                        
+                        if(self.device_id != nil && !WifiController.shared.savedWifi.contains(self.device_id!))
                         {
-                            myClientVo = user
-                            let detail_info_vc = R.storyboard.main.deviceInfo()
-                            detail_info_vc?.onSetData(info: CupItem(type: DeviceTypeWifi, name: self.device_id!, uuid: self.device_id!, firstRegisterTime: "", registerTime: "", userId: myClientVo?._id, produceScores: 0))
-                            self.show(detail_info_vc!, sender: nil)
+                            WifiController.shared.savedWifi.append(self.device_id!)
+                            UserDefaults.standard.set(WifiController.shared.savedWifi, forKey: "WiFi_list")
                         }
-                        else
-                        {
-                            _ = SweetAlert().showAlert("Sorry", subTitle: msg, style: AlertStyle.warning)
+                        _ = Wolf.request(type: MyAPI.addOrUpdateACup(type: DeviceTypeWifi, uuid: self.device_id!, name: self.device_id!, add: true), completion: { (user: User?, msg, code) in
+                            
+                            self.tipsAlert?.dismiss(animated: false, completion: nil)
+                            if(code == "0")
+                            {
+                                myClientVo = user
+                                let detail_info_vc = R.storyboard.main.deviceInfo()
+                                detail_info_vc?.onSetData(info: CupItem(type: DeviceTypeWifi, name: self.device_id!, uuid: self.device_id!, firstRegisterTime: "", registerTime: "", userId: myClientVo?._id, produceScores: 0))
+                                self.show(detail_info_vc!, sender: nil)
+                            }
+                            else
+                            {
+                                _ = SweetAlert().showAlert("Sorry", subTitle: msg, style: AlertStyle.warning)
+                            }
+                        }) { (error) in
+                            self.tipsAlert?.dismiss(animated: false, completion: nil)
+                            _ = SweetAlert().showAlert("Sorry", subTitle: error?.errorDescription, style: AlertStyle.warning)
                         }
-                    }) { (error) in
-                        self.removeSpinner(spinner: self.sv!)
-                        _ = SweetAlert().showAlert("Sorry", subTitle: error?.errorDescription, style: AlertStyle.warning)
                     }
                 }
             }
-//            print("Reachable via Cellular")
-        case .none:
-            print("Network not reachable")
+        } else {
         }
     }
+
     @IBAction func linkWifiWopin(_ sender: Any) {
         if (selectedSSID.text?.count == 0 || wifiPasswordTextField.text?.count == 0)
         {
@@ -277,15 +293,24 @@ class WifiTableViewController: UITableViewController, QRCodeReaderViewController
             return
         }
         
-        reachability.stopNotifier()
-        NotificationCenter.default.removeObserver(self, name: .reachabilityChanged, object: reachability)
-        NotificationCenter.default.addObserver(self, selector: #selector(reachabilityChanged(note:)), name: .reachabilityChanged, object: reachability)
-        do{
-            try reachability.startNotifier()
-        }catch{
-            print("could not start reachability notifier")
+        do {
+            try inetReachability.startNotifier()
+        } catch {
+            print("Could not start notifier")
         }
+
+        timer = setTimeout(delay: 30, block: {
+            self.tipsAlert?.dismiss(animated: false, completion: nil)
+            self.showSuccess(msg: "切换网络超时", OkAction: nil)
+        })
         
+        retryPasswordToCup = 2
+        sendPasswordToCup()
+    
+    }
+    
+    func sendPasswordToCup()
+    {
         let ssid = selectedSSID.text
         let password = wifiPasswordTextField.text
         self.sv = self.displaySpinner(onView: self.view)
@@ -302,16 +327,16 @@ class WifiTableViewController: UITableViewController, QRCodeReaderViewController
         request.httpMethod = "POST"
         request.allHTTPHeaderFields = headers as? [String : String]
         request.httpBody = postString.data(using: .utf8)
-        
-        timer = setTimeout(delay: 30, block: {
-            self.showSuccess(msg: "切换网络超时", OkAction: nil)
-            self.removeSpinner(spinner: self.sv!)
-        })
-        
+
         let session = URLSession.shared
         let dataTask = session.dataTask(with: request, completionHandler: { (data, response, error) -> Void in
             if (error != nil) {
                 print(error ?? "")
+                if(self.retryPasswordToCup > 1){
+                    Log("retry sendPasswordToCup")
+                    self.retryPasswordToCup -= 1;
+                    self.sendPasswordToCup();
+                }
             } else {
                 let httpResponse = response as? HTTPURLResponse
                 print(httpResponse ?? "")
@@ -321,18 +346,20 @@ class WifiTableViewController: UITableViewController, QRCodeReaderViewController
                     print(ra.status)
                     print(ra.deviceId)
                     self.removeSpinner(spinner: self.sv!)
-                    if (ra.status == "Connected")
+                    if (ra.status == "Connecting")
                     {
-                        self.showSuccess(msg: "设备连接网络成功",OkAction: {
-                            self.sv = self.displaySpinner(onView: self.view)
-                        })
+                        DispatchQueue.main.async() {
+                            
+                            self.tipsAlert = UIAlertController(title: nil, message: "设备连接网络中...", preferredStyle: .alert)
+                            let loadingIndicator = UIActivityIndicatorView(frame: CGRect(x: 10, y: 5, width: 50, height: 50))
+                            loadingIndicator.hidesWhenStopped = true
+                            loadingIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.gray
+                            loadingIndicator.startAnimating();
+                            self.tipsAlert?.view.addSubview(loadingIndicator)
+                            self.present(self.tipsAlert!, animated: true, completion: nil)
+                        }
                         //self.topic = ra.deviceId
                         self.device_id = ra.deviceId
-                        if(!WifiController.shared.savedWifi.contains(ra.deviceId))
-                        {
-                            WifiController.shared.savedWifi.append(ra.deviceId)
-                            UserDefaults.standard.set(WifiController.shared.savedWifi, forKey: "WiFi_list")
-                        }
                     }
                 } catch {
                     print(error)

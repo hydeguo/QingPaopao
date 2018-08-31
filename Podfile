@@ -6,6 +6,7 @@ target 'Mywopin' do
   use_frameworks!
 
     pod 'R.swift'
+#    pod 'Toast-Swift'
     pod 'RxCocoa',    '~> 4.0'
     pod 'Moya/RxSwift'
     pod 'IHKeyboardAvoiding', '~> 4.0'
@@ -15,7 +16,6 @@ target 'Mywopin' do
     pod 'PKHUD'
     pod 'CocoaMQTT'
     pod 'QRCodeReader.swift', '~> 8.2.0'
-    pod 'ReachabilitySwift'
     pod 'Kingfisher'
 
 end

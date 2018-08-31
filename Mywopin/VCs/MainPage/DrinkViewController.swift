@@ -130,6 +130,7 @@ class DrinkViewController: UIViewController, CLLocationManagerDelegate {
             })
         }
         getTodayDrinks()
+        
     }
     
     private func startElectrolyUI()
