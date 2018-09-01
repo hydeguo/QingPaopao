@@ -175,6 +175,10 @@ class WifiTableViewController: UITableViewController, QRCodeReaderViewController
     }
     
     func scanNearbyWifi(isPresent : Bool) {
+        
+        if (getWifiSsid() != wopinSSID) {
+            
+        }
         self.essids.removeAll()
         
         self.removeSpinner(spinner: self.sv!)
@@ -200,10 +204,15 @@ class WifiTableViewController: UITableViewController, QRCodeReaderViewController
         request.httpMethod = "GET"
         request.allHTTPHeaderFields = headers
         request.httpBody = postString.data(using: .utf8)
-        
-        let session = URLSession.shared
+        print("Scanning wifi...")
+        let configuration = URLSessionConfiguration.default
+        configuration.timeoutIntervalForRequest = 300
+        let session = URLSession(configuration: configuration)
         let dataTask = session.dataTask(with: request, completionHandler: { (data, response, error) -> Void in
             if (error != nil) {
+                print("scanning wifi fail")
+                alert.dismiss(animated: false, completion: nil)
+                self.scanNearbyWifi(isPresent : true)
                 print(error ?? "")
             } else {
                 do {
@@ -218,6 +227,8 @@ class WifiTableViewController: UITableViewController, QRCodeReaderViewController
                         self.essids.append(r.essid)
                     }
                 } catch {
+                    alert.dismiss(animated: false, completion: nil)
+                    self.scanNearbyWifi(isPresent : true)
                     print(error)
                 }
                 
@@ -236,8 +247,43 @@ class WifiTableViewController: UITableViewController, QRCodeReaderViewController
         dataTask.resume()
     }
     
+    func updateDeviceSetting() {
+        if (self.getWifiSsid() != wopinSSID && self.device_id != nil)
+        {
+            print("updateDeviceSetting")
+            timer?.invalidate()
+            //Wopin AP will be disconnected after the wifi configurtion
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                print("Uploading to server")
+                if(self.device_id != nil && !WifiController.shared.savedWifi.contains(self.device_id!))
+                {
+                    WifiController.shared.savedWifi.append(self.device_id!)
+                    UserDefaults.standard.set(WifiController.shared.savedWifi, forKey: "WiFi_list")
+                }
+                WifiController.shared.startAutoConnect()
+                _ = Wolf.request(type: MyAPI.addOrUpdateACup(type: DeviceTypeWifi, uuid: self.device_id!, name: self.device_id!, add: true), completion: { (user: User?, msg, code) in
+                    self.tipsAlert?.dismiss(animated: false, completion: nil)
+                    if(code == "0")
+                    {
+                        myClientVo = user
+                        let detail_info_vc = R.storyboard.main.deviceInfo()
+                        detail_info_vc?.onSetData(info: CupItem(type: DeviceTypeWifi, name: self.device_id!, uuid: self.device_id!, firstRegisterTime: "", registerTime: "", userId: myClientVo?._id, produceScores: 0))
+                        self.show(detail_info_vc!, sender: nil)
+                    }
+                    else
+                    {
+                        _ = SweetAlert().showAlert("Sorry", subTitle: msg, style: AlertStyle.warning)
+                    }
+                }) { (error) in
+                    self.tipsAlert?.dismiss(animated: false, completion: nil)
+                    _ = SweetAlert().showAlert("Sorry", subTitle: error?.errorDescription, style: AlertStyle.warning)
+                }
+            }
+        }
+    }
+    
     @objc func internetChanged(note:Notification) {
-        
+        print("internetChanged")
         let reachability =  note.object as! InternetReachability
         
         //reachability.isReachable is deprecated, right solution --> connection != .none
@@ -301,8 +347,10 @@ class WifiTableViewController: UITableViewController, QRCodeReaderViewController
         }
 
         timer = setTimeout(delay: 30, block: {
+            print("Current connected ssid : \(self.getWifiSsid())")
             self.tipsAlert?.dismiss(animated: false, completion: nil)
-            self.showSuccess(msg: "切换网络超时", OkAction: nil)
+            self.updateDeviceSetting()
+            //self.showSuccess(msg: "切换网络超时", OkAction: nil)
         })
         
         retryPasswordToCup = 2
@@ -312,6 +360,7 @@ class WifiTableViewController: UITableViewController, QRCodeReaderViewController
     
     func sendPasswordToCup()
     {
+        print("sendPasswordToCup")
         let ssid = selectedSSID.text
         let password = wifiPasswordTextField.text
         self.sv = self.displaySpinner(onView: self.view)
@@ -329,9 +378,13 @@ class WifiTableViewController: UITableViewController, QRCodeReaderViewController
         request.allHTTPHeaderFields = headers as? [String : String]
         request.httpBody = postString.data(using: .utf8)
 
-        let session = URLSession.shared
+        //let session = URLSession.shared
+        let configuration = URLSessionConfiguration.default
+        configuration.timeoutIntervalForRequest = 300
+        let session = URLSession(configuration: configuration)
         let dataTask = session.dataTask(with: request, completionHandler: { (data, response, error) -> Void in
             if (error != nil) {
+                print("sendPasswordToCup Fail")
                 print(error ?? "")
                 if(self.retryPasswordToCup > 1){
                     Log("retry sendPasswordToCup")
@@ -347,6 +400,8 @@ class WifiTableViewController: UITableViewController, QRCodeReaderViewController
                     self.removeSpinner(spinner: self.sv!)
                     if (ra.status == "Connecting")
                     {
+                        print("Connecting \(ra.deviceId)")
+                        self.device_id = ra.deviceId
                         DispatchQueue.main.async() {
                             
                             self.tipsAlert = UIAlertController(title: nil, message: "设备连接网络中...", preferredStyle: .alert)
@@ -357,8 +412,6 @@ class WifiTableViewController: UITableViewController, QRCodeReaderViewController
                             self.tipsAlert?.view.addSubview(loadingIndicator)
                             self.present(self.tipsAlert!, animated: true, completion: nil)
                         }
-                        //self.topic = ra.deviceId
-                        self.device_id = ra.deviceId
                     }
                 } catch {
                     print(error)
