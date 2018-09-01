@@ -169,7 +169,7 @@ class CrowdfundingShopDetailVC: UITableViewController ,UIWebViewDelegate{
             return
         }
         if let handleView = self.per_slider.subviews.last as? UIImageView {
-            let s_thumb = UIImageView(image: UIImage(named: "slider"))
+            let s_thumb = UIImageView(image: UIImage(named: "slider_b"))
             s_thumb.frame = CGRect(x: (handleView.bounds.width-50)/2, y: 0, width: 60, height: handleView.bounds.height)
             handleView.addSubview(s_thumb)
             

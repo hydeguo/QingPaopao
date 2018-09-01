@@ -51,6 +51,10 @@ class DeviceInfoVC: UITableViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(dateUpdate), name: NSNotification.Name(rawValue: "DeviceInfoChange"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(onReceiveDeviceDataSuccess), name: NSNotification.Name(rawValue: BLE_EVENT.BLE_receiveDeviceDataSuccess_1.rawValue), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(onConnectDeviceSuccess), name: NSNotification.Name(rawValue: BLE_EVENT.BLE_connectDeviceSuccess.rawValue), object: nil)
+        
+         NotificationCenter.default.addObserver(self, selector: #selector(onReceiveWifiDeviceData), name: NSNotification.Name(rawValue: WIFI_EVENT.WIFI_POWER.rawValue), object: nil)
+        
+        
         self.nameLf.text =   deviceInfo?.name
         checkStatus()
         
@@ -70,6 +74,15 @@ class DeviceInfoVC: UITableViewController {
             self.navigationController?.popToViewController(vc, animated: true)
         }else{
             self.dismiss(animated: true, completion: nil)
+        }
+    }
+    @objc func onReceiveWifiDeviceData(_ notice:Notification){
+        
+        let cupId:String=(notice as NSNotification).userInfo!["device"] as! String
+        let cupPower:String=(notice as NSNotification).userInfo!["power"] as! String
+        if(deviceInfo?.uuid == cupId){
+            statusLf.setTitle(Language.getString("已连接"), for: .normal)
+            powerLf.text = "\(cupPower)%"
         }
     }
     
@@ -119,7 +132,20 @@ class DeviceInfoVC: UITableViewController {
             }
             else
             {
-                    
+                WifiController.shared.allOnlineWifiCup.forEach { (wifiCup) in
+                    if(deviceInfo?.uuid == wifiCup.uuid){
+                        if(Date().timeIntervalSince1970 - wifiCup.lastOnline < 30)
+                        {
+                            statusLf.setTitle(Language.getString("已连接"), for: .normal)
+                            powerLf.text = "\(wifiCup.power)%"
+                        }
+                        else
+                        {
+                            statusLf.setTitle(Language.getString("未连接"), for: .normal)
+                            powerLf.text = "--"
+                        }
+                    }
+                }
             }
         
         #endif

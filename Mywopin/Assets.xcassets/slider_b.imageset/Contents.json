@@ -2,12 +2,12 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "timeCircle@1x.png",
+      "filename" : "slider@1x.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "timeCircle@2x.png",
+      "filename" : "slider@2x.png",
       "scale" : "2x"
     },
     {
