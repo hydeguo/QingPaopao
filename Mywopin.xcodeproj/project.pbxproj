@@ -137,6 +137,8 @@
 		C1D5B60220F3B54F004DCE83 /* ReturnOrderNumVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1D5B60120F3B54E004DCE83 /* ReturnOrderNumVC.swift */; };
 		C1D5B60520F46104004DCE83 /* ExchangeOrderDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1D5B60420F46104004DCE83 /* ExchangeOrderDetailVC.swift */; };
 		C1F128292139150300BBD457 /* Toast.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1F128282139150200BBD457 /* Toast.swift */; };
+		C1F1282B213A4A1E00BBD457 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C1F1282A213A4A1E00BBD457 /* CoreMotion.framework */; };
+		C1F1282D213A4C8000BBD457 /* PayManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1F1282C213A4C8000BBD457 /* PayManager.swift */; };
 		C1F226EE21295AFC0066C9EC /* ScoresShopList.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1F226ED21295AFC0066C9EC /* ScoresShopList.swift */; };
 		C1F226F021295DE20066C9EC /* ScoresShopDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1F226EF21295DE20066C9EC /* ScoresShopDetailVC.swift */; };
 		C1F226F221295EAB0066C9EC /* Shop.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C1F226F121295EAB0066C9EC /* Shop.storyboard */; };
@@ -299,6 +301,8 @@
 		C1D5B60120F3B54E004DCE83 /* ReturnOrderNumVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReturnOrderNumVC.swift; sourceTree = "<group>"; };
 		C1D5B60420F46104004DCE83 /* ExchangeOrderDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeOrderDetailVC.swift; sourceTree = "<group>"; };
 		C1F128282139150200BBD457 /* Toast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Toast.swift; sourceTree = "<group>"; };
+		C1F1282A213A4A1E00BBD457 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
+		C1F1282C213A4C8000BBD457 /* PayManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayManager.swift; sourceTree = "<group>"; };
 		C1F226ED21295AFC0066C9EC /* ScoresShopList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoresShopList.swift; sourceTree = "<group>"; };
 		C1F226EF21295DE20066C9EC /* ScoresShopDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoresShopDetailVC.swift; sourceTree = "<group>"; };
 		C1F226F121295EAB0066C9EC /* Shop.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Shop.storyboard; sourceTree = "<group>"; };
@@ -314,6 +318,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C1F1282B213A4A1E00BBD457 /* CoreMotion.framework in Frameworks */,
 				C17862C520DBE756008F4042 /* CoreBluetooth.framework in Frameworks */,
 				C1C4295420D6AA1D0071532F /* MOBFoundation.framework in Frameworks */,
 				C1C4295220D6AA1D0071532F /* SinaWeiboConnector.framework in Frameworks */,
@@ -351,6 +356,7 @@
 		BCC00C06BC6D5DAA25A3FA48 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				C1F1282A213A4A1E00BBD457 /* CoreMotion.framework */,
 				20327AE42111AE21006935FB /* ExternalAccessory.framework */,
 				20327AE22111AE1A006935FB /* NetworkExtension.framework */,
 				C17862C420DBE756008F4042 /* CoreBluetooth.framework */,
@@ -477,6 +483,7 @@
 				C16E052A20DE4127009ED462 /* BLEController.swift */,
 				C15AEF3620EDAF4D009F4A0E /* NoticeController.swift */,
 				20327AD821115788006935FB /* WifiController.swift */,
+				C1F1282C213A4C8000BBD457 /* PayManager.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -1023,6 +1030,7 @@
 				20327AE12111943D006935FB /* WifiScanListVC.swift in Sources */,
 				C1BA807520D7980A007D2B48 /* WolfNetwork.swift in Sources */,
 				C192AA5020C37FCF004EE98D /* ColorPicker.swift in Sources */,
+				C1F1282D213A4C8000BBD457 /* PayManager.swift in Sources */,
 				C1C428CF20D65E490071532F /* LoginVC.swift in Sources */,
 				C15AEF9120F0D4C6009F4A0E /* AddressPickerView.swift in Sources */,
 				C15D2679213243E400C6B1BF /* CrowdfundingShopPage.swift in Sources */,

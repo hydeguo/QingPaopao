@@ -56,12 +56,15 @@ class ExchangeOrderDetailVC: UITableViewController {
             address1Line1.text = "收件人：\(orderData.address!.userName) \(orderData.address!.tel!)"
             address1Line2.text = "\(orderData.address!.address1!)\(orderData.address!.address2!)"
             
+            payBtn.isHidden =  orderData.orderStatus == "未付款"
+            expressBtn.isHidden =  orderData.orderStatus != "未付款"
+            
         }
     }
     
     @IBAction func payAction()
     {
-        
+//        PayManager.shared.doPayment(orderId: <#T##String#>, price: <#T##Int#>, channel: <#T##MPSChannel#>, item: <#T##WooGoodsItem#>)
     }
     
     @IBAction func expressInfoAction()

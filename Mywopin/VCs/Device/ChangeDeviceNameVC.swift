@@ -37,7 +37,7 @@ class ChangeDeviceNameVC: UIViewController,UITextFieldDelegate {
             return
         }
          self.cupData?.name = nameLf.text!
-        _ = Wolf.request(type: MyAPI.addOrUpdateACup(type: cupData!.type!, uuid: cupData!.uuid!, name: nameLf.text!, add: false), completion: { (user: User?, msg, code) in
+        _ = Wolf.request(type: MyAPI.addOrUpdateACup(type: cupData!.type!, uuid: cupData!.uuid, name: nameLf.text!, add: false), completion: { (user: User?, msg, code) in
             if(code == "0")
             {
                 myClientVo = user

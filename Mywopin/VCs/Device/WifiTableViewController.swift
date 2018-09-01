@@ -258,7 +258,6 @@ class WifiTableViewController: UITableViewController, QRCodeReaderViewController
                 if(self.device_id != nil && !WifiController.shared.savedWifi.contains(self.device_id!))
                 {
                     WifiController.shared.savedWifi.append(self.device_id!)
-                    UserDefaults.standard.set(WifiController.shared.savedWifi, forKey: "WiFi_list")
                 }
                 WifiController.shared.startAutoConnect()
                 _ = Wolf.request(type: MyAPI.addOrUpdateACup(type: DeviceTypeWifi, uuid: self.device_id!, name: self.device_id!, add: true), completion: { (user: User?, msg, code) in

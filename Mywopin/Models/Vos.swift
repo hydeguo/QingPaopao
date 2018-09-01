@@ -122,7 +122,7 @@ struct CupItem: WolfMapper {
     }
     var type: String?
     var name: String?
-    var uuid: String?
+    var uuid: String
     var firstRegisterTime: String?
     var registerTime: String?
     var userId: String?
