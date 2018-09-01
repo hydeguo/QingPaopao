@@ -265,6 +265,7 @@ public extension InternetReachability {
 fileprivate extension InternetReachability {
     
     func reachabilityChanged() {
+        print("reachabilityChanged")
         guard previousFlags != flags else { return }
         
         let block = connection != .none ? whenReachable : whenUnreachable
