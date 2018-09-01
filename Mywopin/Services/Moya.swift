@@ -23,6 +23,7 @@ enum MyAPI {
     case deleteACup(uuid:String)
     case cupList
     case addOrUpdateAddress(addressId:String,userName:String,address1: String,address2: String,tel:Int,isDefault: Bool)
+    case setDefaultAddress(addressId:String)
     case payMentExchange(addressId:String,title:String,image:String,goodsId:Int,num: Int,offerPrice:Int,singlePrice:Int)
     case payMentScores(addressId:String,title:String,image:String,goodsId:Int,num: Int,singlePrice:Int)
     case payMentCrowdfunding(addressId:String,title:String,image:String,goodsId:Int,num: Int,singlePrice:Int)
@@ -74,6 +75,8 @@ extension MyAPI: TargetType {
             return .requestParameters(parameters: [  "uuid" : uuid], encoding: URLEncoding.default)
         case .addOrUpdateAddress(let addressId, let userName, let address1, let address2,let tel, let isDefault):
             return .requestParameters(parameters: [ "addressId" : addressId, "userName" : userName, "address1" : address1,"address2" : address2, "tel" : tel, "isDefault" : isDefault], encoding: URLEncoding.default)
+        case .setDefaultAddress(let addressId):
+            return .requestParameters(parameters: [ "addressId" : addressId], encoding: URLEncoding.default)
         case .payMentExchange(let addressId,let title,let image,let goodsId,let num,let offerPrice,let singlePrice):
             return .requestParameters(parameters: [ "addressId" : addressId,"title":title,"image":image, "goodsId" : goodsId, "num" : num,"offerPrice" : offerPrice,"singlePrice" : singlePrice], encoding: URLEncoding.default)
         case .getExchangeOrder,.getExchangeGoods,.getScoresOrder,.getCrowdfundingOrder:
@@ -151,6 +154,8 @@ extension MyAPI: TargetType {
             return "/users/cupList"
         case .addOrUpdateAddress:
             return "/users/addOrUpdateAddress"
+        case .setDefaultAddress:
+            return "/users/setDefaultAddress"
         case .getExchangeOrder:
             return "/goods/exchangeOrderList"
         case .getExchangeGoods:

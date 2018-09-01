@@ -54,3 +54,16 @@ func getExchangeGoodsById(id:String)->ExchangeGoodsItem?
     return nil
 }
 
+var selectedAddress:AddressItem?
+func getDefaultAddress()->AddressItem?
+{
+    if let myVo = myClientVo
+    {
+        for item in myVo.addressList ?? [] {
+            if item.isDefault == true{
+                return item
+            }
+        }
+    }
+    return nil
+}

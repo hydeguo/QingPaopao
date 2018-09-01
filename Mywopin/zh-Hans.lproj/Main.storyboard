@@ -4584,7 +4584,7 @@ DQ
                         </collectionViewFlowLayout>
                         <cells>
                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" misplaced="YES" reuseIdentifier="ScoresShopCell" id="2aw-6l-4OA" customClass="ScoresShopCell" customModule="Mywopin" customModuleProvider="target">
-                                <rect key="frame" x="85.5" y="0.0" width="204" height="223"/>
+                                <rect key="frame" x="86" y="0.0" width="204" height="223"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
                                     <rect key="frame" x="0.0" y="0.0" width="204" height="223"/>
@@ -4627,7 +4627,7 @@ HIFI音响</string>
                                 </connections>
                             </collectionViewCell>
                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" misplaced="YES" reuseIdentifier="LoadingCell" id="hWA-KZ-g3p">
-                                <rect key="frame" x="85.5" y="224" width="204" height="223"/>
+                                <rect key="frame" x="86" y="224" width="204" height="223"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
                                     <rect key="frame" x="0.0" y="0.0" width="204" height="223"/>
@@ -4867,6 +4867,7 @@ HIFI音响</string>
                                             </userDefinedRuntimeAttributes>
                                             <connections>
                                                 <action selector="onDefaultEdit" destination="wFO-M4-KhK" eventType="touchUpInside" id="JLQ-gt-td7"/>
+                                                <action selector="onSetDefault:" destination="5ft-mH-CLc" eventType="touchUpInside" id="sRr-lM-qKv"/>
                                             </connections>
                                         </button>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yhJ-iK-Zpx">

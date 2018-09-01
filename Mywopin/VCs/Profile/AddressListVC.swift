@@ -69,6 +69,28 @@ class AddressListVC: UITableViewController {
         }
     }
     
+    @IBAction func onSetDefault(_ btn:UIButton)
+    {
+        
+        if let address = myClientVo?.addressList![btn.tag]
+        {
+            _ = Wolf.request(type: MyAPI.setDefaultAddress(addressId: address.addressId), completion: { (user: User?, msg, code) in
+                if(code == "0")
+                {
+                    myClientVo = user
+                    self.tableView.reloadData()
+                    return
+                }
+                else
+                {
+                    _ = SweetAlert().showAlert("Sorry", subTitle: msg, style: AlertStyle.warning)
+                }
+            }) { (error) in
+                _ = SweetAlert().showAlert("Sorry", subTitle: error?.errorDescription, style: AlertStyle.warning)
+            }
+        }
+        
+    }
     
     // MARK: - Table View
     //    override func  tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -93,16 +115,17 @@ class AddressListVC: UITableViewController {
         {
             cell.line1.text = "\(address.userName ) \(String(Int(address.tel!)))"
             cell.line2.text = "\(address.address1 ?? "" ) \(String(address.address2 ?? ""))"
+            cell.defaultBtn.isSelected = address.isDefault == true
         }
         cell.editBtn.tag = indexPath.row
+        cell.defaultBtn.tag = indexPath.row
         
         return cell
     }
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 //        NSLog("You selected cell number: \(indexPath.row)!")
 //        self.performSegue(withIdentifier: "yourIdentifier", sender: self)
-        ExchangeBuyVC.selectedAddress = myClientVo?.addressList![indexPath.row]
-        ExchangeNewBuyVC.selectedAddress = myClientVo?.addressList![indexPath.row]
+        selectedAddress = myClientVo?.addressList![indexPath.row]
         onReturn()
     }
     

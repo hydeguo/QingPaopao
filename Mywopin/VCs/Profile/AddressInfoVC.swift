@@ -85,6 +85,10 @@ class AddressInfoVC: UITableViewController,AddressPickerViewDelegate ,UITextFiel
             return
         }
         
+        if(myClientVo?.addressList?.count == 0){
+            myAddressItem.isDefault = true
+        }
+        
 //        let address = "\(addressLf1.text! )\(addressLf2.text!)"
         _ = Wolf.request(type: MyAPI.addOrUpdateAddress(addressId: myAddressItem.addressId, userName: nameLf.text!, address1:addressLf1.text!, address2: addressLf2.text! , tel: Int(phoneLf.text!)! , isDefault: myAddressItem.isDefault!), completion: { (user: User?, msg, code) in
             

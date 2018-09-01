@@ -11,8 +11,6 @@ import Foundation
 
 class ScoresBuyVC: UIViewController {
     
-    
-    static var selectedAddress:AddressItem?
     @IBOutlet var bgImage:UIImageView!
     @IBOutlet var priceLf:UILabel!
     @IBOutlet var original_priceLf:UILabel!
@@ -30,7 +28,7 @@ class ScoresBuyVC: UIViewController {
         let myScores = myClientVo?.scores != nil ? Int(myClientVo!.scores!) : 0
         original_priceLf.text = "\(myScores) \(Language.getString("积分"))"
         priceLf.text = "\((Int(goods!.price)! * Int(numEditer.numLf.text!)!) )\(Language.getString("积分"))"
-        if let _selectedAddress = ExchangeNewBuyVC.selectedAddress
+        if let _selectedAddress = selectedAddress ?? getDefaultAddress()
         {
             
             addressLf.text = "\(_selectedAddress.userName)\(" ")\(String(Int(_selectedAddress.tel!)))\("\n")\(_selectedAddress.address1!)\(_selectedAddress.address2!)"
@@ -64,7 +62,7 @@ class ScoresBuyVC: UIViewController {
     
     @IBAction func buyAction()
     {
-        if let _selectedAddress = ExchangeNewBuyVC.selectedAddress
+        if let _selectedAddress = selectedAddress ?? getDefaultAddress()
         {
             _ = Wolf.request(type: MyAPI.payMentScores(addressId: _selectedAddress.addressId, title: goods?.name ?? "", image: goods?.images.first?.src ?? "", goodsId: goods!.id, num: Int(numEditer.numLf.text!)!, singlePrice: Int(goods!.price)!), completion: { (info: User?, msg, code) in
                 if(code == "0" )

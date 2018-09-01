@@ -11,8 +11,6 @@ import Foundation
 
 class CrowfoudingBuyVC: UIViewController {
     
-    
-    static var selectedAddress:AddressItem?
     @IBOutlet var bgImage:UIImageView!
     @IBOutlet var priceLf:UILabel!
     @IBOutlet var addressLf:UILabel!
@@ -39,7 +37,7 @@ class CrowfoudingBuyVC: UIViewController {
             titleLf.text = option.options[0]
             goodsImage.image(fromUrl: goods!.images.first!.src)
         }
-        if let _selectedAddress = ExchangeNewBuyVC.selectedAddress
+        if let _selectedAddress = selectedAddress ?? getDefaultAddress()
         {
             
             addressLf.text = "\(_selectedAddress.userName)\(" ")\(String(Int(_selectedAddress.tel!)))\("\n")\(_selectedAddress.address1!)\(_selectedAddress.address2!)"
@@ -68,7 +66,7 @@ class CrowfoudingBuyVC: UIViewController {
     
     @IBAction func buyAction()
     {
-        if let _selectedAddress = ExchangeNewBuyVC.selectedAddress
+        if let _selectedAddress = selectedAddress ?? getDefaultAddress()
         {
             _ = Wolf.request(type: MyAPI.payMentCrowdfunding(addressId: _selectedAddress.addressId, title: goods?.name ?? "", image: goods?.images.first?.src ?? "", goodsId: goods!.id, num: 1, singlePrice: selectedPrice), completion: { (info: User?, msg, code) in
                 if(code == "0" )

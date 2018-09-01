@@ -10,8 +10,7 @@ import Foundation
 
 class ExchangeBuyVC: UIViewController {
     
-    
-    static var selectedAddress:AddressItem?
+
     @IBOutlet var bgImage:UIImageView!
     @IBOutlet var priceLf:UILabel!
     @IBOutlet var original_priceLf:UILabel!
@@ -30,7 +29,7 @@ class ExchangeBuyVC: UIViewController {
         exchange_priceLf.text = (oldGoods?.price)! + Language.getString("元")
         original_priceLf.text = (goods?.price)! + Language.getString("元")
         priceLf.text = "\((Int(goods!.price)! * Int(numEditer.numLf.text!)! - Int(oldGoods!.price)!) )\(Language.getString("元"))"
-        if let _selectedAddress = ExchangeNewBuyVC.selectedAddress
+        if let _selectedAddress = selectedAddress ?? getDefaultAddress()
         {
             
             addressLf.text = "\(_selectedAddress.userName)\(" ")\(String(Int(_selectedAddress.tel!)))\("\n")\(_selectedAddress.address1!)\(_selectedAddress.address2!)"
@@ -64,7 +63,7 @@ class ExchangeBuyVC: UIViewController {
     
     @IBAction func buyAction()
     {
-        if let _selectedAddress = ExchangeNewBuyVC.selectedAddress
+        if let _selectedAddress = selectedAddress ?? getDefaultAddress()
         {
             _ = Wolf.request(type: MyAPI.payMentExchange(addressId: _selectedAddress.addressId, title: goods?.name ?? "", image: goods?.images.first?.src ?? "", goodsId: goods!.id, num: Int(numEditer.numLf.text!)!, offerPrice: Int(oldGoods!.price)!, singlePrice: Int(goods!.price)!), completion: { (info: BaseReponse?, msg, code) in
                 if(code == "0" )
@@ -84,7 +83,6 @@ class ExchangeBuyVC: UIViewController {
 
 class ExchangeNewBuyVC: UIViewController {
     
-    static var selectedAddress:AddressItem?
     @IBOutlet var bgImage:UIImageView!
     @IBOutlet var priceLf:UILabel!
     @IBOutlet var addressLf:UILabel!
@@ -101,7 +99,7 @@ class ExchangeNewBuyVC: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         priceLf.text = (goods?.price)! + Language.getString("元")
-        if let _selectedAddress = ExchangeNewBuyVC.selectedAddress
+        if let _selectedAddress = selectedAddress ?? getDefaultAddress()
         {
             
             addressLf.text = "\(_selectedAddress.userName)\(" ")\(String(Int(_selectedAddress.tel!)))\("\n")\(_selectedAddress.address1!)\(_selectedAddress.address2!)"
@@ -133,7 +131,7 @@ class ExchangeNewBuyVC: UIViewController {
     
     @IBAction func buyAction()
     {
-        if let _selectedAddress = ExchangeNewBuyVC.selectedAddress
+        if let _selectedAddress = selectedAddress ?? getDefaultAddress()
         {
             _ = Wolf.request(type: MyAPI.payMentExchange(addressId: _selectedAddress.addressId, title:  goods?.name ?? "",image: goods?.images.first?.src ?? "", goodsId: goods!.id, num: Int(numEditer.numLf.text!)!, offerPrice: 0, singlePrice: Int(goods!.price)!), completion: { (info: BaseReponse?, msg, code) in
                 if(code == "0" )

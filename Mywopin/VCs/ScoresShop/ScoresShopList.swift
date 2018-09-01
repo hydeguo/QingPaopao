@@ -11,7 +11,7 @@ import UIKit
 
 class ScoresShopList:UICollectionViewController,UICollectionViewDelegateFlowLayout {
     
-    var items = [WooGoodsItem]()
+    static var items = [WooGoodsItem]()
     var loading:Bool = true
     
     
@@ -41,7 +41,7 @@ class ScoresShopList:UICollectionViewController,UICollectionViewDelegateFlowLayo
                 self.loading  = false
                 if let goodsItems = goods
                 {
-                    self.items = goodsItems
+                    ScoresShopList.items = goodsItems
                     self.collectionView?.reloadData()
                 }
             }
@@ -62,7 +62,7 @@ class ScoresShopList:UICollectionViewController,UICollectionViewDelegateFlowLayo
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
-        return loading ? 4 : items.count
+        return loading ? 4 : ScoresShopList.items.count
     }
     
     
@@ -83,13 +83,13 @@ class ScoresShopList:UICollectionViewController,UICollectionViewDelegateFlowLayo
         }
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ScoresShopCell", for: indexPath) as! ScoresShopCell
-        cell.configure(goods: items[indexPath.row])
+        cell.configure(goods: ScoresShopList.items[indexPath.row])
         return cell
     }
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
-        let goods = self.items[indexPath.row]
+        let goods = ScoresShopList.items[indexPath.row]
         let vc = R.storyboard.shop.scoresBuyBtnVC()
         vc?.data = goods
         self.show(vc!, sender: nil)
