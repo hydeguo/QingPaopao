@@ -20,6 +20,13 @@ let wopinMqttServerPort = 8083
 let wopinMqttUsername = "wopin"
 let wopinMqttPassword = "wopinH2popo"
 
+
+enum WIFI_EVENT:String {
+    
+    case WIFI_POWER = "WIFI_POWER"
+    
+}
+
 struct WifiScanResult: Codable {
     let essid: String
     let bssid: String
@@ -58,11 +65,18 @@ struct LocationData: Codable {
     }
 }
 
+struct OnlineWifiCup {
+    let uuid:String
+    var power:String
+    var lastOnline:TimeInterval
+}
+
 public class WifiController : NSObject, CocoaMQTTDelegate
 {
     static let shared:WifiController = WifiController()
     
     var savedWifi : [String] = []
+    var allOnlineWifiCup : [OnlineWifiCup] = []
     var mqtt : CocoaMQTT?
     
     private override init() {
@@ -159,11 +173,31 @@ public class WifiController : NSObject, CocoaMQTTDelegate
         print("didReceiveMessage " + message.topic + " " + message.string!)
         if (savedWifi.contains(message.topic)) {
             print("updating device info " + message.topic)
-            var res = message.string!.split(separator: ":")
-            if (res.count == 2)
+            let resAll = message.string!.split(separator: ";")
+            for resOne in resAll
             {
-                if (res[0] == "P") {   //Power information
-                    print("\(message.topic) Power: \(res[1])")
+                let res = resOne.split(separator: ":")
+                if (res.count == 2)
+                {
+                    if (res[0] == "P") {   //Power information
+                        print("\(message.topic) Power: \(res[1])")
+                        if(!allOnlineWifiCup.contains(where: { (wifiCup) -> Bool in
+                            return wifiCup.uuid == message.topic
+                        }))
+                        {
+                            allOnlineWifiCup.append(OnlineWifiCup(uuid: message.topic, power: String(res[1]), lastOnline: Date().timeIntervalSince1970))
+                        }
+                        else
+                        {
+                            allOnlineWifiCup.forEach { ( wifiCup) in
+                                if(wifiCup.uuid == message.topic){
+                                    var cupdata = wifiCup
+                                    cupdata.lastOnline = Date().timeIntervalSince1970
+                                }
+                            }
+                        }
+                        NotificationCenter.default.post(name: NSNotification.Name(rawValue: WIFI_EVENT.WIFI_POWER.rawValue), object: self, userInfo: ["power":message.topic,"device":res[1]])
+                    }
                 }
             }
         }

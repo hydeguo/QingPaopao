@@ -141,7 +141,7 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
   
-  /// This `R.image` struct is generated, and contains static references to 74 images.
+  /// This `R.image` struct is generated, and contains static references to 75 images.
   struct image {
     /// Image `AMCP_color_wheel`.
     static let amcp_color_wheel = Rswift.ImageResource(bundle: R.hostingBundle, name: "AMCP_color_wheel")
@@ -249,6 +249,8 @@ struct R: Rswift.Validatable {
     static let sina0 = Rswift.ImageResource(bundle: R.hostingBundle, name: "sina0")
     /// Image `sina`.
     static let sina = Rswift.ImageResource(bundle: R.hostingBundle, name: "sina")
+    /// Image `slider_b`.
+    static let slider_b = Rswift.ImageResource(bundle: R.hostingBundle, name: "slider_b")
     /// Image `slider`.
     static let slider = Rswift.ImageResource(bundle: R.hostingBundle, name: "slider")
     /// Image `star`.
@@ -560,6 +562,11 @@ struct R: Rswift.Validatable {
     /// `UIImage(named: "slider", bundle: ..., traitCollection: ...)`
     static func slider(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.slider, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "slider_b", bundle: ..., traitCollection: ...)`
+    static func slider_b(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.slider_b, compatibleWith: traitCollection)
     }
     
     /// `UIImage(named: "star", bundle: ..., traitCollection: ...)`
