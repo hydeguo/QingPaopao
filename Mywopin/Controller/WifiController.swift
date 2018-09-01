@@ -196,7 +196,7 @@ public class WifiController : NSObject, CocoaMQTTDelegate
                                 }
                             }
                         }
-                        NotificationCenter.default.post(name: NSNotification.Name(rawValue: WIFI_EVENT.WIFI_POWER.rawValue), object: self, userInfo: ["power":message.topic,"device":res[1]])
+                        NotificationCenter.default.post(name: NSNotification.Name(rawValue: WIFI_EVENT.WIFI_POWER.rawValue), object: self, userInfo: ["power":res[1] ?? "","device":message.topic])
                     }
                 }
             }
