@@ -7,14 +7,14 @@
 //
 
 import UIKit
-
+import Disk
 import PKHUD
 
 
 class PostListViewController: UITableViewController {
     
     var category = Dictionary<String, AnyObject>()
-    static var posts = [Dictionary<String, AnyObject>]()
+    var posts = [PostItem]()
     var cellHeight:CGFloat = 140
     
     override func awakeFromNib() {
@@ -31,18 +31,28 @@ class PostListViewController: UITableViewController {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        do {
+            let retrievedMessage = try Disk.retrieve("PostList.json", from: .caches, as: [PostItem].self)
+            posts = retrievedMessage
+        } catch _ as NSError {}
+        
         self.updatePostList()
     }
     
     func updatePostList() {
-        if(PostListViewController.posts.count==0){
+        if(posts.count==0){
             HUD.show(.progress)
         }
         WordPressWebServices.sharedInstance.lastPosts(page:1, number: 100, completionHandler: { (posts, error) -> Void in
-            if posts != nil {
-                PostListViewController.posts = posts!
+            if let _posts = posts {
+                self.posts = _posts
+                
+                do {
+                    try Disk.save(self.posts, to: .caches, as: "PostList.json")
+                } catch _ as NSError {}
+                
                 DispatchQueue.main.async(execute: {     // access to UI in the main thread only !
-                    
                     HUD.hide()
                     self.tableView.reloadData()
                 })
@@ -56,7 +66,7 @@ class PostListViewController: UITableViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showDetail" {
             if let indexPath = self.tableView.indexPathForSelectedRow {
-                let post = PostListViewController.posts[indexPath.row]
+                let post = posts[indexPath.row]
                 let controller = (segue.destination as! UINavigationController).topViewController as! InfoDetailViewController
                 controller.detailItem = post
                 controller.navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem
@@ -75,7 +85,7 @@ class PostListViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return PostListViewController.posts.count
+        return posts.count
     }
     
     override func  tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -85,7 +95,7 @@ class PostListViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Post", for: indexPath) as! PostTableViewCell
-        let post = PostListViewController.posts[indexPath.row]
+        let post = posts[indexPath.row]
         cell.configureWithPostDictionary(post);
         
         

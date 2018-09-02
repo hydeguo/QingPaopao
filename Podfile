@@ -21,6 +21,7 @@ target 'Mywopin' do
     pod 'mob_paysdk/Channels/WeChat'
 #    pod 'mob_paysdk/Channels/AliPay'
 #    pod 'mob_paysdk/Channels/UnionPay'
+    pod 'Disk', '~> 0.3.3'
 end
 
 

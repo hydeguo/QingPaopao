@@ -62,14 +62,14 @@ class PostTableViewCell: UITableViewCell {
     var postIdentifier:Int = 0
     var imageRequestedForIdentifier:Int = 0
     
-    func configureWithPostDictionary (_ post:Dictionary<String, AnyObject>) {
+    func configureWithPostDictionary (_ post:PostItem) {
         
-        let title = post["title"] as? String
+        let title = post.title
         self.titleLabel!.text = title//String(htmlEncodedString: title!)
         
         self.dateLabel!.text = nil;
         
-        if let dateStringFull = post["date"] as? String {
+        if let dateStringFull = post.date {
             // date is in the format "2016-01-29T01:45:33+02:00",
             let dateString = dateStringFull.substring(to: dateStringFull.characters.index(dateStringFull.startIndex, offsetBy: 10))  // keep only the date part
             
@@ -85,11 +85,9 @@ class PostTableViewCell: UITableViewCell {
         }
         
         self.featuredImageView!.image = nil;
-        if let idf = post["ID"] as? Int {
-            postIdentifier = idf
-        }
+        postIdentifier = post.ID
         
-        if let url = post["featured_image"] as? String {    // there is a link to an image
+        if let url = post.featured_image {    // there is a link to an image
             if url != "" {
                 imageRequestedForIdentifier = postIdentifier
                 WordPressWebServices.sharedInstance.loadImage (url, completionHandler: {(image, error) -> Void in

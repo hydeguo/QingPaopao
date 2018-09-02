@@ -71,12 +71,8 @@ class DeviceListViewController: UITableViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showDetail" {
-            if let indexPath = self.tableView.indexPathForSelectedRow {
-                let post = cups[indexPath.row]
-                let controller = (segue.destination as! UINavigationController).topViewController as! InfoDetailViewController
-                controller.detailItem = post
-                controller.navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem
-                controller.navigationItem.leftItemsSupplementBackButton = true
+            if self.tableView.indexPathForSelectedRow != nil {
+               
             }
         }
     }

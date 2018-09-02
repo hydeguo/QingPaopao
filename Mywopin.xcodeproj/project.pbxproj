@@ -38,6 +38,7 @@
 		C1406366210D9D7800AB8914 /* ShopMainPageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1406365210D9D7800AB8914 /* ShopMainPageVC.swift */; };
 		C146CB3320FC9E2F00AED9B2 /* BindingThirdpartAccountVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C146CB3220FC9E2F00AED9B2 /* BindingThirdpartAccountVC.swift */; };
 		C158F721213B7A220090EE1A /* DeliverPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C158F720213B7A220090EE1A /* DeliverPageViewController.swift */; };
+		C158F729213BB0470090EE1A /* PostModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C158F728213BB0470090EE1A /* PostModel.swift */; };
 		C15AEF3720EDAF4D009F4A0E /* NoticeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C15AEF3620EDAF4D009F4A0E /* NoticeController.swift */; };
 		C15AEF8820F07EE9009F4A0E /* TGDropBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C15AEF8720F07EE9009F4A0E /* TGDropBoxView.swift */; };
 		C15AEF8B20F07F22009F4A0E /* ExchangeShopDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C15AEF8A20F07F22009F4A0E /* ExchangeShopDetailVC.swift */; };
@@ -189,6 +190,7 @@
 		C1406365210D9D7800AB8914 /* ShopMainPageVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopMainPageVC.swift; sourceTree = "<group>"; };
 		C146CB3220FC9E2F00AED9B2 /* BindingThirdpartAccountVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BindingThirdpartAccountVC.swift; sourceTree = "<group>"; };
 		C158F720213B7A220090EE1A /* DeliverPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeliverPageViewController.swift; sourceTree = "<group>"; };
+		C158F728213BB0470090EE1A /* PostModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostModel.swift; sourceTree = "<group>"; };
 		C15AEF3620EDAF4D009F4A0E /* NoticeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoticeController.swift; sourceTree = "<group>"; };
 		C15AEF5720EDCAA5009F4A0E /* Mywopin.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Mywopin.entitlements; sourceTree = "<group>"; };
 		C15AEF8720F07EE9009F4A0E /* TGDropBoxView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TGDropBoxView.swift; sourceTree = "<group>"; };
@@ -591,6 +593,7 @@
 			children = (
 				C192AA3A20C23EB7004EE98D /* Vos.swift */,
 				C1406352210460C800AB8914 /* GoodsModel.swift */,
+				C158F728213BB0470090EE1A /* PostModel.swift */,
 				C1BA807220D7980A007D2B48 /* WolfBaseModel.swift */,
 				C192AA3B20C23EB7004EE98D /* Helper Files.swift */,
 				C192AA4020C23EB7004EE98D /* Const.swift */,
@@ -934,6 +937,7 @@
 				"${BUILT_PRODUCTS_DIR}/CocoaAsyncSocket/CocoaAsyncSocket.framework",
 				"${BUILT_PRODUCTS_DIR}/CocoaMQTT/CocoaMQTT.framework",
 				"${BUILT_PRODUCTS_DIR}/DLLocalNotifications/DLLocalNotifications.framework",
+				"${BUILT_PRODUCTS_DIR}/Disk/Disk.framework",
 				"${BUILT_PRODUCTS_DIR}/IHKeyboardAvoiding/IHKeyboardAvoiding.framework",
 				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
 				"${BUILT_PRODUCTS_DIR}/Moya/Moya.framework",
@@ -952,6 +956,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CocoaAsyncSocket.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CocoaMQTT.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DLLocalNotifications.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Disk.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IHKeyboardAvoiding.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Moya.framework",
@@ -1008,6 +1013,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C172312020FE249500BF6160 /* RKChartTitleView.swift in Sources */,
+				C158F729213BB0470090EE1A /* PostModel.swift in Sources */,
 				C192AAA820C431E8004EE98D /* MyProfileTableVC.swift in Sources */,
 				C1008E0920C5669000E73F8F /* PostListViewController.swift in Sources */,
 				C11A0FFF20E9B4E1000979B3 /* DrinkHistory.swift in Sources */,
