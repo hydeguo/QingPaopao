@@ -27,7 +27,9 @@ class ScoresShopList:UICollectionViewController,UICollectionViewDelegateFlowLayo
 
         self.navigationController?.setNavigationBarHidden(false, animated: false)
         
-        loading  = true
+        if(ScoresShopList.items.count==0){
+            loading  = true
+        }
         self.collectionView?.reloadData()
         refreahList()
     }
