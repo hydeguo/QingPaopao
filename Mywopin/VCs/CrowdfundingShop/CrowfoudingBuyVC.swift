@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import PKHUD
 
 
 class CrowfoudingBuyVC: UIViewController {
@@ -18,6 +19,7 @@ class CrowfoudingBuyVC: UIViewController {
     @IBOutlet var goodsImage:UIImageView!
     
     var goods:WooGoodsItem?
+    var order:CrowdfundingOrderItem?
     
     var selectedOptionIndex:Int = 0
     var selectedPrice:Int = 0
@@ -68,23 +70,68 @@ class CrowfoudingBuyVC: UIViewController {
     {
         if let _selectedAddress = selectedAddress ?? getDefaultAddress()
         {
-            _ = Wolf.request(type: MyAPI.payMentCrowdfunding(addressId: _selectedAddress.addressId, title: goods?.name ?? "", image: goods?.images.first?.src ?? "", goodsId: goods!.id, num: 1, singlePrice: selectedPrice), completion: { (info: User?, msg, code) in
-                if(code == "0" )
-                {
-                    myClientVo = info
-                    _ = SweetAlert().showAlert(Language.getString("订单提交成功"), subTitle: "", style: AlertStyle.success,buttonTitle: "确定", action: { _ in
-                        self.closeAction();
-                    })
+            HUD.show(.progress)
+            _ = Wolf.request(type: MyAPI.payMentCrowdfunding(addressId: _selectedAddress.addressId, title: titleLf.text!.count > 0 ? titleLf.text! : goods!.name, image: goods?.images.first?.src ?? "", goodsId: goods!.id, num: 1, singlePrice: selectedPrice), completion: { (order: CrowdfundingOrderItem?, msg, code) in
+                if(code == "0" ){
+                    if let myOrder = order
+                    {
+                        NotificationCenter.default.addObserver(self, selector: #selector(self.onPaymentReturn), name: NSNotification.Name(rawValue: PaymentEvent.paymentReturn.rawValue), object: nil)
+                        
+                        self.order = myOrder
+                        let payPrice = self.selectedPrice
+                        let address1Line = self.addressLf.text
+                        PayManager.shared.doPayment(orderId: myOrder.orderId, price: payPrice, channel: .weChat, itemDesc: self.titleLf.text!, address: address1Line!)
+                    }
                 }
-                else
-                {
-                    _ = SweetAlert().showAlert("", subTitle: msg, style: AlertStyle.warning)
-                }
+//                if(code == "0" )
+//                {
+//                    myClientVo = info
+//                    _ = SweetAlert().showAlert(Language.getString("订单提交成功"), subTitle: "", style: AlertStyle.success,buttonTitle: "确定", action: { _ in
+//                        self.closeAction();
+//                    })
+//                }
+//                else
+//                {
+//                    _ = SweetAlert().showAlert("", subTitle: msg, style: AlertStyle.warning)
+//                }
             }, failure: nil)
         }
         else
         {
             _ = SweetAlert().showAlert("Sorry", subTitle: Language.getString("请输入详细地址"), style: AlertStyle.warning)
+        }
+    }
+    
+    @objc func onPaymentReturn(_ notice:Notification)
+    {
+        if let status:MPSPayStatus=(notice as NSNotification).userInfo!["status"] as? MPSPayStatus
+        {
+            HUD.hide()
+            if status == .success
+            {
+                HUD.show(.progress)
+                NotificationCenter.default.removeObserver(self)
+                _ = Wolf.request(type: MyAPI.orderStatusUpdate(orderId: order!.orderId, status: 1), completion: { (order: BaseReponse?, msg, code) in
+                    HUD.hide()
+                    if(code == "0")
+                    {
+                        _ = SweetAlert().showAlert(Language.getString("订单提交成功"), subTitle: "", style: AlertStyle.success,buttonTitle: "确定", action: { _ in
+                            self.closeAction();
+                        })
+                    }
+                    else
+                    {
+                        _ = SweetAlert().showAlert("Sorry", subTitle: msg, style: AlertStyle.warning)
+                    }
+                }) { (error) in
+                    _ = SweetAlert().showAlert("Sorry", subTitle: error?.errorDescription, style: AlertStyle.warning)
+                }
+            }
+            else if(status == .cancel || status == .fail)
+            {
+                NotificationCenter.default.removeObserver(self)
+                _ = SweetAlert().showAlert("付款未成功", subTitle: "可以到我的订单继续完成付款", style: AlertStyle.warning)
+            }
         }
     }
 }

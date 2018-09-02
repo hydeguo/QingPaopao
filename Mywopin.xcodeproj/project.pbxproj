@@ -37,6 +37,7 @@
 		C1406364210A084500AB8914 /* WooCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1406363210A084500AB8914 /* WooCommand.swift */; };
 		C1406366210D9D7800AB8914 /* ShopMainPageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1406365210D9D7800AB8914 /* ShopMainPageVC.swift */; };
 		C146CB3320FC9E2F00AED9B2 /* BindingThirdpartAccountVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C146CB3220FC9E2F00AED9B2 /* BindingThirdpartAccountVC.swift */; };
+		C158F721213B7A220090EE1A /* DeliverPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C158F720213B7A220090EE1A /* DeliverPageViewController.swift */; };
 		C15AEF3720EDAF4D009F4A0E /* NoticeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C15AEF3620EDAF4D009F4A0E /* NoticeController.swift */; };
 		C15AEF8820F07EE9009F4A0E /* TGDropBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C15AEF8720F07EE9009F4A0E /* TGDropBoxView.swift */; };
 		C15AEF8B20F07F22009F4A0E /* ExchangeShopDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C15AEF8A20F07F22009F4A0E /* ExchangeShopDetailVC.swift */; };
@@ -187,6 +188,7 @@
 		C1406363210A084500AB8914 /* WooCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WooCommand.swift; sourceTree = "<group>"; };
 		C1406365210D9D7800AB8914 /* ShopMainPageVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopMainPageVC.swift; sourceTree = "<group>"; };
 		C146CB3220FC9E2F00AED9B2 /* BindingThirdpartAccountVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BindingThirdpartAccountVC.swift; sourceTree = "<group>"; };
+		C158F720213B7A220090EE1A /* DeliverPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeliverPageViewController.swift; sourceTree = "<group>"; };
 		C15AEF3620EDAF4D009F4A0E /* NoticeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoticeController.swift; sourceTree = "<group>"; };
 		C15AEF5720EDCAA5009F4A0E /* Mywopin.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Mywopin.entitlements; sourceTree = "<group>"; };
 		C15AEF8720F07EE9009F4A0E /* TGDropBoxView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TGDropBoxView.swift; sourceTree = "<group>"; };
@@ -776,6 +778,7 @@
 				C1D5B60120F3B54E004DCE83 /* ReturnOrderNumVC.swift */,
 				C15AEF9720F2114C009F4A0E /* OrderListVC.swift */,
 				C1D5B60420F46104004DCE83 /* ExchangeOrderDetailVC.swift */,
+				C158F720213B7A220090EE1A /* DeliverPageViewController.swift */,
 			);
 			path = Orders;
 			sourceTree = "<group>";
@@ -1078,6 +1081,7 @@
 				C146CB3320FC9E2F00AED9B2 /* BindingThirdpartAccountVC.swift in Sources */,
 				C15AEF8820F07EE9009F4A0E /* TGDropBoxView.swift in Sources */,
 				C1F226F6212964510066C9EC /* ScoresBuyBtnVC.swift in Sources */,
+				C158F721213B7A220090EE1A /* DeliverPageViewController.swift in Sources */,
 				C1F128292139150300BBD457 /* Toast.swift in Sources */,
 				C1406353210460C800AB8914 /* GoodsModel.swift in Sources */,
 				C192AA1120C23770004EE98D /* AppDelegate.swift in Sources */,

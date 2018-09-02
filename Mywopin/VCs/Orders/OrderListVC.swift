@@ -7,11 +7,14 @@
 //
 
 import Foundation
+import PKHUD
 
 class OrderListTopVC: UIViewController {
     
+    static var selectIndex  = 1
     @IBOutlet var segmentedControl:UISegmentedControl!
     var tabelOrderListVC:OrderListVC!
+    var crowdfundingOrder:CrowdfundingOrderItem?
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let vc = segue.destination as? OrderListVC,
@@ -22,6 +25,7 @@ class OrderListTopVC: UIViewController {
     
     @IBAction func segmentedControlAction(sender: AnyObject) {
         tabelOrderListVC.changeType(index: segmentedControl.selectedSegmentIndex)
+        OrderListTopVC.selectIndex = segmentedControl.selectedSegmentIndex
     }
     
     override func viewDidLoad() {
@@ -29,8 +33,8 @@ class OrderListTopVC: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        tabelOrderListVC.changeType(index: 1)
-        segmentedControl.selectedSegmentIndex = 1
+        tabelOrderListVC.changeType(index: OrderListTopVC.selectIndex)
+        segmentedControl.selectedSegmentIndex = OrderListTopVC.selectIndex
     }
     
 }
@@ -44,6 +48,7 @@ class OrderListVC: UITableViewController {
     var cellHeight:CGFloat = 140
     var currentType :Int = -1
     
+    var crowdfundingOrder:CrowdfundingOrderItem?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -159,6 +164,81 @@ class OrderListVC: UITableViewController {
         }
     }
     
+    @IBAction func checkExpress(_ btn:UIButton)
+    {
+        
+        if currentType == 0
+        {
+            let order = scoresList[btn.tag]
+            DeliverPageViewController.url = URL(string:"http://m.kuaidi100.com/result.jsp?nu=\(order.expressSendId ?? "")")
+        }
+        else
+        {
+            let order = crowdfundingList[btn.tag]
+            DeliverPageViewController.url = URL(string:"http://m.kuaidi100.com/result.jsp?nu=\(order.expressSendId ?? "")")
+        }
+        
+        let vc = R.storyboard.main.deliverPageViewController()
+        
+        self.show(vc!, sender: nil)
+    }
+    
+    @IBAction func crowdfundingOrderPayAction(_ btn:UIButton)
+    {
+        let order = crowdfundingList[btn.tag]
+        crowdfundingOrder = order
+        
+        HUD.show(.progress)
+        NotificationCenter.default.addObserver(self, selector: #selector(onPaymentReturn), name: NSNotification.Name(rawValue: PaymentEvent.paymentReturn.rawValue), object: nil)
+        
+        let payPrice = order.singlePrice
+        
+        let address1Line = "\(order.address!.address1!)\(order.address!.address2!) \(order.address!.userName) \(order.address!.tel!) "
+        PayManager.shared.doPayment(orderId: order.orderId, price: payPrice, channel: .weChat, itemDesc:  order.title!, address: address1Line)
+            
+        
+    }
+    @objc func onPaymentReturn(_ notice:Notification)
+    {
+        if let status:MPSPayStatus=(notice as NSNotification).userInfo!["status"] as? MPSPayStatus
+        {
+            HUD.hide()
+            if status == .success
+            {
+                if(crowdfundingOrder == nil){
+                    return
+                }
+                HUD.show(.progress)
+                NotificationCenter.default.removeObserver(self)
+                _ = Wolf.request(type: MyAPI.orderStatusUpdate(orderId: crowdfundingOrder!.orderId, status: 1), completion: { (order: BaseReponse?, msg, code) in
+                    HUD.hide()
+                    if(code == "0")
+                    {
+                        self.crowdfundingOrder?.orderStatus = orderStatusArr[1]
+                        self.refreshCrowdfundingOrder()
+                        _ = SweetAlert().showAlert(Language.getString("付款成功"), subTitle: "", style: AlertStyle.success)
+                    }
+                    else
+                    {
+                        _ = SweetAlert().showAlert("Sorry", subTitle: msg, style: AlertStyle.warning)
+                    }
+                }) { (error) in
+                    _ = SweetAlert().showAlert("Sorry", subTitle: error?.errorDescription, style: AlertStyle.warning)
+                }
+            }
+            else if(status == .cancel || status == .fail)
+            {
+                NotificationCenter.default.removeObserver(self)
+                _ = SweetAlert().showAlert("付款未成功", subTitle: "请稍候重试", style: AlertStyle.warning)
+            }
+        }
+    }
+    
+    
+    
+    
+    
+    
     
     // MARK: - Segues
     
@@ -208,6 +288,7 @@ class OrderListVC: UITableViewController {
             let cell = tableView.dequeueReusableCell(withIdentifier: "CreditsOrderCell", for: indexPath) as! CreditsOrderCell
             let order = scoresList[indexPath.row]
             cell.configure(order: order)
+            cell.deliverBtn.tag = indexPath.row
             
             return cell
         }
@@ -222,6 +303,8 @@ class OrderListVC: UITableViewController {
             let cell = tableView.dequeueReusableCell(withIdentifier: "CrowdfundingOrderCell", for: indexPath) as! CrowdfundingOrderCell
             let order = crowdfundingList[indexPath.row]
             cell.configure(order: order)
+            cell.paymentBtn.tag = indexPath.row
+            cell.deliverBtn.tag = indexPath.row
             
             return cell
         }

@@ -314,6 +314,7 @@ class CreditsOrderCell: UITableViewCell {
         deliverBtn.layer.masksToBounds = true;
         deliverBtn.layer.borderColor = UIColor.darkGray.cgColor
         deliverBtn.layer.borderWidth = 1;
+        deliverBtn.isHidden = order.orderStatus != orderStatusArr[2]
         
        let payPrice = order.singlePrice //* order.num
         
@@ -337,6 +338,7 @@ class CrowdfundingOrderCell: UITableViewCell {
     @IBOutlet weak var price: UILabel!
     @IBOutlet weak var num: UILabel!
     @IBOutlet weak var deliverBtn: UIButton!
+    @IBOutlet weak var paymentBtn: UIButton!
     var addFunc:(()->Void)?
     var orderItem:CrowdfundingOrderItem?
     
@@ -353,6 +355,11 @@ class CrowdfundingOrderCell: UITableViewCell {
         deliverBtn.layer.borderColor = UIColor.darkGray.cgColor
         deliverBtn.layer.borderWidth = 1;
         
+        paymentBtn.layer.cornerRadius = 5;
+        paymentBtn.layer.masksToBounds = true;
+        paymentBtn.layer.borderColor = UIColor.darkGray.cgColor
+        paymentBtn.layer.borderWidth = 1;
+        
         let payPrice = order.singlePrice //* order.num
         
         orderId.text = order.orderId
@@ -360,6 +367,10 @@ class CrowdfundingOrderCell: UITableViewCell {
         status.text = order.orderStatus
         imagePic.image(fromUrl: order.image ?? "")
         titleLabel.text = order.title ?? ""
+        
+        paymentBtn.isHidden = order.orderStatus != orderStatusArr[0]
+        deliverBtn.isHidden = order.orderStatus != orderStatusArr[2]
+        
         //                cell.typeLb.text = order.orderStatus
         price.text = "\(payPrice)\(Language.getString("元"))"
         
