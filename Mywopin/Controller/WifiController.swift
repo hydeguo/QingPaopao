@@ -103,6 +103,11 @@ public class WifiController : NSObject, CocoaMQTTDelegate
         #endif
     }
     
+    func reconnect() {
+        mqtt?.disconnect()
+        mqtt?.connect()
+    }
+    
     //ToDo: Add time interval in the firmware
     func setTimeOutEle(time:TimeInterval)
     {
@@ -151,6 +156,7 @@ public class WifiController : NSObject, CocoaMQTTDelegate
     
     
     func subscribeWopinWifiDevice(uuid : String) {
+        mqtt?.unsubscribe(uuid)
         mqtt?.subscribe(uuid)
     }
     
