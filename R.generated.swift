@@ -1237,6 +1237,7 @@ struct _R: Rswift.Validatable {
       let bindingPhone = StoryboardViewControllerResource<ChangePhoneVC>(identifier: "BindingPhone")
       let bundle = R.hostingBundle
       let changePassword = StoryboardViewControllerResource<ChangePassword>(identifier: "ChangePassword")
+      let deliverPageViewController = StoryboardViewControllerResource<DeliverPageViewController>(identifier: "DeliverPageViewController")
       let deviceInfo = StoryboardViewControllerResource<DeviceInfoVC>(identifier: "deviceInfo")
       let deviceList = StoryboardViewControllerResource<DeviceListViewController>(identifier: "deviceList")
       let exchangeOrderDetailVC = StoryboardViewControllerResource<ExchangeOrderDetailVC>(identifier: "ExchangeOrderDetailVC")
@@ -1267,6 +1268,10 @@ struct _R: Rswift.Validatable {
       
       func changePassword(_: Void = ()) -> ChangePassword? {
         return UIKit.UIStoryboard(resource: self).instantiateViewController(withResource: changePassword)
+      }
+      
+      func deliverPageViewController(_: Void = ()) -> DeliverPageViewController? {
+        return UIKit.UIStoryboard(resource: self).instantiateViewController(withResource: deliverPageViewController)
       }
       
       func deviceInfo(_: Void = ()) -> DeviceInfoVC? {
@@ -1377,6 +1382,7 @@ struct _R: Rswift.Validatable {
         if _R.storyboard.main().exchangePage() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'exchangePage' could not be loaded from storyboard 'Main' as 'ExchangePage'.") }
         if _R.storyboard.main().addressListVC() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'addressListVC' could not be loaded from storyboard 'Main' as 'UIKit.UINavigationController'.") }
         if _R.storyboard.main().returnOrderNumVC() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'returnOrderNumVC' could not be loaded from storyboard 'Main' as 'ReturnOrderNumVC'.") }
+        if _R.storyboard.main().deliverPageViewController() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'deliverPageViewController' could not be loaded from storyboard 'Main' as 'DeliverPageViewController'.") }
         if _R.storyboard.main().numerousShopPage() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'numerousShopPage' could not be loaded from storyboard 'Main' as 'CrowdfundingShopPage'.") }
         if _R.storyboard.main().wifiScanListVC() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'wifiScanListVC' could not be loaded from storyboard 'Main' as 'WifiScanListVC'.") }
         if _R.storyboard.main().deviceList() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'deviceList' could not be loaded from storyboard 'Main' as 'DeviceListViewController'.") }

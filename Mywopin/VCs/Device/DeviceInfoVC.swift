@@ -57,21 +57,28 @@ class DeviceInfoVC: UITableViewController {
         
         self.nameLf.text =   deviceInfo?.name
 
-        WifiController.shared.allOnlineWifiCup.forEach { (wifiCup) in
-            if(deviceInfo?.uuid == wifiCup.uuid){
-                if(Date().timeIntervalSince1970 - wifiCup.lastOnline < 30)
-                {
-                    statusLf.setTitle(Language.getString("已连接"), for: .normal)
-                    powerLf.text = "\(wifiCup.power)%"
-                }
-                else
-                {
-                    statusLf.setTitle(Language.getString("未连接"), for: .normal)
-                    powerLf.text = "--"
+        if deviceInfo?.type == "WIFI"
+        {
+            WifiController.shared.allOnlineWifiCup.forEach { (wifiCup) in
+                if(deviceInfo?.uuid == wifiCup.uuid){
+                    if(Date().timeIntervalSince1970 - wifiCup.lastOnline < 30)
+                    {
+                        statusLf.setTitle(Language.getString("已连接"), for: .normal)
+                        powerLf.text = "\(wifiCup.power)%"
+                    }
+                    else
+                    {
+                        statusLf.setTitle(Language.getString("未连接"), for: .normal)
+                        powerLf.text = "--"
+                    }
                 }
             }
         }
-        checkStatus()
+        else
+        {
+            checkStatus()
+        }
+        
         
         
         noticeForDrink.isOn = switchNotice

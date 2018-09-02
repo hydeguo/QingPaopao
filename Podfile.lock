@@ -5,9 +5,19 @@ PODS:
   - CocoaMQTT (1.1.2):
     - CocoaAsyncSocket (~> 7.6.1)
     - SwiftyTimer (~> 2.0.0)
+  - Disk (0.3.3)
   - DLLocalNotifications (0.06)
   - IHKeyboardAvoiding (4.2)
   - Kingfisher (4.8.1)
+  - mob_paysdk (1.0.0):
+    - mob_paysdk/PaySDK (= 1.0.0)
+    - MOBFoundation
+  - mob_paysdk/Channels/WeChat (1.0.0):
+    - mob_paysdk/PaySDK
+    - MOBFoundation
+  - mob_paysdk/PaySDK (1.0.0):
+    - MOBFoundation
+  - MOBFoundation (3.1.8)
   - Moya/Core (11.0.2):
     - Alamofire (~> 4.1)
     - Result (~> 3.0)
@@ -28,9 +38,12 @@ PODS:
 DEPENDENCIES:
   - ChromaColorPicker
   - CocoaMQTT
+  - Disk (~> 0.3.3)
   - DLLocalNotifications
   - IHKeyboardAvoiding (~> 4.0)
   - Kingfisher
+  - mob_paysdk
+  - mob_paysdk/Channels/WeChat
   - Moya/RxSwift
   - PKHUD
   - QRCodeReader.swift (~> 8.2.0)
@@ -43,9 +56,12 @@ SPEC REPOS:
     - ChromaColorPicker
     - CocoaAsyncSocket
     - CocoaMQTT
+    - Disk
     - DLLocalNotifications
     - IHKeyboardAvoiding
     - Kingfisher
+    - mob_paysdk
+    - MOBFoundation
     - Moya
     - PKHUD
     - QRCodeReader.swift
@@ -61,9 +77,12 @@ SPEC CHECKSUMS:
   ChromaColorPicker: 33efa67b17cca51dd253689d18b83ac7e05642c2
   CocoaAsyncSocket: eafaa68a7e0ec99ead0a7b35015e0bf25d2c8987
   CocoaMQTT: d33ab3cd4e329f9f1cfbb62e25306a318a606616
+  Disk: d1f55cd61f6ca20f368232d0c6e37e3c3dfcb63e
   DLLocalNotifications: 751d53da896bc396bb23d4d3570b7fd3c7654e4e
   IHKeyboardAvoiding: 9fbf816b7c3c84911964802ff110d12caf40ebef
   Kingfisher: 868c1149679a7ab6869be118faa9b5aed154aaf0
+  mob_paysdk: 6ca4412389736281c0876726bca11617d14a38ae
+  MOBFoundation: 7f1e157be332576e4d45809a03bc733292c6ad8d
   Moya: a725035953bc1c0eb1be505ab903984501d82440
   PKHUD: 62ea46a1e88c4def1da784878d199bb54c841e3c
   QRCodeReader.swift: 003eb32f18a5a675b936ec82ba0ff368cddbff45
@@ -74,6 +93,6 @@ SPEC CHECKSUMS:
   RxSwift: 99e10317ddfcc7fbe01356aafd118fde4a0be104
   SwiftyTimer: 2efd74b060d69ad4f1496baf5bbedbe132125fcf
 
-PODFILE CHECKSUM: 324490e98851a0d5ad97921794bab7cc60aee039
+PODFILE CHECKSUM: 908408b9d2f34e4b3e493129c15eae76ee3d5dbf
 
 COCOAPODS: 1.5.3

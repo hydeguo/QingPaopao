@@ -17,7 +17,7 @@ class InfoDetailViewController: UIViewController,UIWebViewDelegate{
     
     var postContent:Dictionary<String, AnyObject>? = [:]
     
-    var detailItem: Any? {
+    var detailItem: PostItem? {
         didSet {
             self.updatePost()
         }
@@ -60,7 +60,7 @@ class InfoDetailViewController: UIViewController,UIWebViewDelegate{
     }
     
     func updatePost() {
-        if let postDesc = self.detailItem as? Dictionary<String, AnyObject>, let identifier = postDesc["ID"] as? Int {
+        if let postDesc = self.detailItem  {
 //            WordPressWebServices.sharedInstance.postByIdentifier(identifier, completionHandler: { (postContent, error) -> Void in
 //                if postContent != nil {
 //                    self.postContent = postContent
@@ -70,8 +70,8 @@ class InfoDetailViewController: UIViewController,UIWebViewDelegate{
 //                }
 //            })
             
-            Log( identifier  )
-           _identifier = identifier
+            Log( postDesc.ID  )
+           _identifier = postDesc.ID
         }
         
     }

@@ -55,6 +55,10 @@
 //#import <ShareSDKUI/SSUIShareActionSheetItem.h>
 //#import <ShareSDKUI/SSUIShareActionSheetCustomItem.h>
 
+
+#import <MOBPaySDK/MOBPay.h>
+
+
 #endif
 
 

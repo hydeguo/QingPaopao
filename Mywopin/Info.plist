@@ -117,9 +117,9 @@
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>MOBAppKey</key>
-	<string>278ddd922b874</string>
+	<string>27a89440df526</string>
 	<key>MOBAppSecret</key>
-	<string>5b85ff46b646a4299211c4ff0494a51b</string>
+	<string>292406c50d207abb194814722bc73b27</string>
 	<key>NSAppTransportSecurity</key>
 	<dict>
 		<key>NSAllowsArbitraryLoads</key>
@@ -133,8 +133,8 @@
 	<string>App need to know your location</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>App need to know your location</string>
-    <key>NSPhotoLibraryUsageDescription</key>
-    <string>此 App 需要您的同意才能读取媒体资料库</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>此 App 需要您的同意才能读取媒体资料库</string>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>bluetooth-central</string>

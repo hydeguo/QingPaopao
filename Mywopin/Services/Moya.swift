@@ -38,6 +38,7 @@ enum MyAPI {
     case getDrinkList
     case getUserData
     case exchangeOrderUpdate(orderId:String,expressId:String)
+    case orderStatusUpdate(orderId:String,status:Int)
     case crowdfundingOrderTotalMoney(goodsId:Int)
     case crowdfundingOrderTotalPeople(goodsId:Int)
     case addGeolocationParameters(device_id: String, time: String, lat: Double, long: Double, link: String)
@@ -96,6 +97,8 @@ extension MyAPI: TargetType {
             return .requestParameters(parameters: ["target" : target], encoding: URLEncoding.default)
         case .exchangeOrderUpdate(let orderId , let expressId):
             return .requestParameters(parameters: ["orderId" : orderId,"expressId" : expressId], encoding: URLEncoding.default)
+        case .orderStatusUpdate(let orderId , let status):
+            return .requestParameters(parameters: ["orderId" : orderId,"status" : status], encoding: URLEncoding.default)
         case .addGeolocationParameters(let device_id, let time, let lat, let long, let link):
             return .requestParameters(parameters: ["device_id" : device_id, "time" : time, "lat" : lat, "long" : long, "link" : link ], encoding: URLEncoding.default)
         case .payMentScores(let addressId,let title,let image,let goodsId,let num,let singlePrice):
@@ -174,6 +177,8 @@ extension MyAPI: TargetType {
             return "/goods/payMentExchange"
         case .exchangeOrderUpdate:
             return "/goods/exchangeOrderUpdate"
+        case .orderStatusUpdate:
+            return "/goods/orderStatusUpdate"
         case .addGeolocationParameters:
             return "/location"
         case .attendance:

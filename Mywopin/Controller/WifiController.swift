@@ -162,7 +162,24 @@ public class WifiController : NSObject, CocoaMQTTDelegate
     
     public func mqtt(_ mqtt: CocoaMQTT, didConnectAck ack: CocoaMQTTConnAck) {
         print("didConnectAck")
-        startAutoConnect()
+        
+        _ = Wolf.requestList(type: MyAPI.cupList, completion: { (cups: [CupItem]?, msg, code) in
+            if(code == "0")
+            {
+                if let cupsItems = cups
+                {
+                    self.savedWifi = []
+                    for cup in cupsItems
+                    {
+                        if cup.type == "WIFI"
+                        {
+                            self.savedWifi.append(cup.uuid)
+                        }
+                    }
+                }
+                self.startAutoConnect()
+            }
+        }, failure: nil)
     }
     
     public func mqtt(_ mqtt: CocoaMQTT, didStateChangeTo state: CocoaMQTTConnState) {
@@ -186,12 +203,13 @@ public class WifiController : NSObject, CocoaMQTTDelegate
                 if (res.count == 2)
                 {
                     if (res[0] == "P") {   //Power information
-                        print("\(message.topic) Power: \(res[1])")
+                        Log("\(message.topic) Power: \(res[1])")
+                        let power = String(res[1])
                         if(!allOnlineWifiCup.contains(where: { (wifiCup) -> Bool in
                             return wifiCup.uuid == message.topic
                         }))
                         {
-                            allOnlineWifiCup.append(OnlineWifiCup(uuid: message.topic, power: String(res[1]), lastOnline: Date().timeIntervalSince1970))
+                            allOnlineWifiCup.append(OnlineWifiCup(uuid: message.topic, power: power, lastOnline: Date().timeIntervalSince1970))
                         }
                         else
                         {
@@ -202,7 +220,7 @@ public class WifiController : NSObject, CocoaMQTTDelegate
                                 }
                             }
                         }
-                        NotificationCenter.default.post(name: NSNotification.Name(rawValue: WIFI_EVENT.WIFI_POWER.rawValue), object: self, userInfo: ["power":res[1] ?? "","device":message.topic])
+                        NotificationCenter.default.post(name: NSNotification.Name(rawValue: WIFI_EVENT.WIFI_POWER.rawValue), object: self, userInfo: ["power":power ,"device":message.topic])
                     }
                 }
             }

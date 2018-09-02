@@ -71,12 +71,8 @@ class DeviceListViewController: UITableViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showDetail" {
-            if let indexPath = self.tableView.indexPathForSelectedRow {
-                let post = cups[indexPath.row]
-                let controller = (segue.destination as! UINavigationController).topViewController as! InfoDetailViewController
-                controller.detailItem = post
-                controller.navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem
-                controller.navigationItem.leftItemsSupplementBackButton = true
+            if self.tableView.indexPathForSelectedRow != nil {
+               
             }
         }
     }
@@ -134,8 +130,8 @@ class DeviceListViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            print("Deleted \(cups[indexPath.row].uuid!)")
-            _ = Wolf.request(type: MyAPI.deleteACup(uuid: cups[indexPath.row].uuid!), completion: { (user: User?, msg, code) in
+            print("Deleted \(cups[indexPath.row].uuid)")
+            _ = Wolf.request(type: MyAPI.deleteACup(uuid: cups[indexPath.row].uuid), completion: { (user: User?, msg, code) in
                 if(code == "0")
                 {
                     self.cups.remove(at: indexPath.row)

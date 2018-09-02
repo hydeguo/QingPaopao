@@ -8,11 +8,12 @@
 
 import Foundation
 import UIKit
+import Disk
 
 class ScoresShopList:UICollectionViewController,UICollectionViewDelegateFlowLayout {
     
-    static var items = [WooGoodsItem]()
-    var loading:Bool = true
+    var items = [WooGoodsItem]()
+    var loading:Bool = false
     
     
     override func viewDidLoad() {
@@ -27,7 +28,13 @@ class ScoresShopList:UICollectionViewController,UICollectionViewDelegateFlowLayo
 
         self.navigationController?.setNavigationBarHidden(false, animated: false)
         
-        loading  = true
+        do {
+            let retrievedMessage = try Disk.retrieve("ScoresShopList.json", from: .caches, as: [WooGoodsItem].self)
+            items = retrievedMessage
+        } catch _ as NSError {}
+        
+        loading  = items.count==0
+        
         self.collectionView?.reloadData()
         refreahList()
     }
@@ -41,7 +48,10 @@ class ScoresShopList:UICollectionViewController,UICollectionViewDelegateFlowLayo
                 self.loading  = false
                 if let goodsItems = goods
                 {
-                    ScoresShopList.items = goodsItems
+                    self.items = goodsItems
+                    do {
+                        try Disk.save(self.items, to: .caches, as: "ScoresShopList.json")
+                    } catch _ as NSError {}
                     self.collectionView?.reloadData()
                 }
             }
@@ -50,6 +60,7 @@ class ScoresShopList:UICollectionViewController,UICollectionViewDelegateFlowLayo
                 _ = SweetAlert().showAlert("Sorry", subTitle: msg, style: AlertStyle.warning)
             }
         }, failure: nil)
+        
     }
     
     
@@ -62,7 +73,7 @@ class ScoresShopList:UICollectionViewController,UICollectionViewDelegateFlowLayo
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
-        return loading ? 4 : ScoresShopList.items.count
+        return loading ? 4 : items.count
     }
     
     
@@ -83,13 +94,13 @@ class ScoresShopList:UICollectionViewController,UICollectionViewDelegateFlowLayo
         }
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ScoresShopCell", for: indexPath) as! ScoresShopCell
-        cell.configure(goods: ScoresShopList.items[indexPath.row])
+        cell.configure(goods: items[indexPath.row])
         return cell
     }
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
-        let goods = ScoresShopList.items[indexPath.row]
+        let goods = items[indexPath.row]
         let vc = R.storyboard.shop.scoresBuyBtnVC()
         vc?.data = goods
         self.show(vc!, sender: nil)

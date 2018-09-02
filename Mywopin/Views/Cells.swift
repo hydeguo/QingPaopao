@@ -62,14 +62,14 @@ class PostTableViewCell: UITableViewCell {
     var postIdentifier:Int = 0
     var imageRequestedForIdentifier:Int = 0
     
-    func configureWithPostDictionary (_ post:Dictionary<String, AnyObject>) {
+    func configureWithPostDictionary (_ post:PostItem) {
         
-        let title = post["title"] as? String
+        let title = post.title
         self.titleLabel!.text = title//String(htmlEncodedString: title!)
         
         self.dateLabel!.text = nil;
         
-        if let dateStringFull = post["date"] as? String {
+        if let dateStringFull = post.date {
             // date is in the format "2016-01-29T01:45:33+02:00",
             let dateString = dateStringFull.substring(to: dateStringFull.characters.index(dateStringFull.startIndex, offsetBy: 10))  // keep only the date part
             
@@ -85,11 +85,9 @@ class PostTableViewCell: UITableViewCell {
         }
         
         self.featuredImageView!.image = nil;
-        if let idf = post["ID"] as? Int {
-            postIdentifier = idf
-        }
+        postIdentifier = post.ID
         
-        if let url = post["featured_image"] as? String {    // there is a link to an image
+        if let url = post.featured_image {    // there is a link to an image
             if url != "" {
                 imageRequestedForIdentifier = postIdentifier
                 WordPressWebServices.sharedInstance.loadImage (url, completionHandler: {(image, error) -> Void in
@@ -314,6 +312,7 @@ class CreditsOrderCell: UITableViewCell {
         deliverBtn.layer.masksToBounds = true;
         deliverBtn.layer.borderColor = UIColor.darkGray.cgColor
         deliverBtn.layer.borderWidth = 1;
+        deliverBtn.isHidden = order.orderStatus != orderStatusArr[2]
         
        let payPrice = order.singlePrice //* order.num
         
@@ -337,6 +336,7 @@ class CrowdfundingOrderCell: UITableViewCell {
     @IBOutlet weak var price: UILabel!
     @IBOutlet weak var num: UILabel!
     @IBOutlet weak var deliverBtn: UIButton!
+    @IBOutlet weak var paymentBtn: UIButton!
     var addFunc:(()->Void)?
     var orderItem:CrowdfundingOrderItem?
     
@@ -353,6 +353,11 @@ class CrowdfundingOrderCell: UITableViewCell {
         deliverBtn.layer.borderColor = UIColor.darkGray.cgColor
         deliverBtn.layer.borderWidth = 1;
         
+        paymentBtn.layer.cornerRadius = 5;
+        paymentBtn.layer.masksToBounds = true;
+        paymentBtn.layer.borderColor = UIColor.darkGray.cgColor
+        paymentBtn.layer.borderWidth = 1;
+        
         let payPrice = order.singlePrice //* order.num
         
         orderId.text = order.orderId
@@ -360,6 +365,10 @@ class CrowdfundingOrderCell: UITableViewCell {
         status.text = order.orderStatus
         imagePic.image(fromUrl: order.image ?? "")
         titleLabel.text = order.title ?? ""
+        
+        paymentBtn.isHidden = order.orderStatus != orderStatusArr[0]
+        deliverBtn.isHidden = order.orderStatus != orderStatusArr[2]
+        
         //                cell.typeLb.text = order.orderStatus
         price.text = "\(payPrice)\(Language.getString("元"))"
         

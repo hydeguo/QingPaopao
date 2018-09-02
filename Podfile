@@ -17,7 +17,11 @@ target 'Mywopin' do
     pod 'CocoaMQTT'
     pod 'QRCodeReader.swift', '~> 8.2.0'
     pod 'Kingfisher'
-
+    pod 'mob_paysdk'
+    pod 'mob_paysdk/Channels/WeChat'
+#    pod 'mob_paysdk/Channels/AliPay'
+#    pod 'mob_paysdk/Channels/UnionPay'
+    pod 'Disk', '~> 0.3.3'
 end
 
 

@@ -17,7 +17,7 @@ let wooConsumerWriteSecret = "cs_322de70d9956c27899eee79e97dedb6a403e8781"
 var fb_token = ""
 var myClientVo:User?
 var myThirdpartyVo:SSDKUser?
-
+var orderStatusArr = ["等待付款", "待发货", "已发货"];
 var cup_list = [CupItem]()
 //var video_list = [JSON]()
 var strDeviceToken : String = ""

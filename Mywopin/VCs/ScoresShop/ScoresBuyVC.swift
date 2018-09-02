@@ -8,7 +8,6 @@
 
 import Foundation
 
-
 class ScoresBuyVC: UIViewController {
     
     @IBOutlet var bgImage:UIImageView!
@@ -83,4 +82,6 @@ class ScoresBuyVC: UIViewController {
             _ = SweetAlert().showAlert("Sorry", subTitle: Language.getString("请输入详细地址"), style: AlertStyle.warning)
         }
     }
+    
+
 }

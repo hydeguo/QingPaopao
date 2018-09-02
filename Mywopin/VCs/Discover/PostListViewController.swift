@@ -7,14 +7,14 @@
 //
 
 import UIKit
-
+import Disk
 import PKHUD
 
 
 class PostListViewController: UITableViewController {
     
     var category = Dictionary<String, AnyObject>()
-    var posts = [Dictionary<String, AnyObject>]()
+    var posts = [PostItem]()
     var cellHeight:CGFloat = 140
     
     override func awakeFromNib() {
@@ -31,17 +31,28 @@ class PostListViewController: UITableViewController {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        do {
+            let retrievedMessage = try Disk.retrieve("PostList.json", from: .caches, as: [PostItem].self)
+            posts = retrievedMessage
+        } catch _ as NSError {}
+        
         self.updatePostList()
     }
     
     func updatePostList() {
-        
-        HUD.show(.progress)
+        if(posts.count==0){
+            HUD.show(.progress)
+        }
         WordPressWebServices.sharedInstance.lastPosts(page:1, number: 100, completionHandler: { (posts, error) -> Void in
-            if posts != nil {
-                self.posts = posts!
+            if let _posts = posts {
+                self.posts = _posts
+                
+                do {
+                    try Disk.save(self.posts, to: .caches, as: "PostList.json")
+                } catch _ as NSError {}
+                
                 DispatchQueue.main.async(execute: {     // access to UI in the main thread only !
-                    
                     HUD.hide()
                     self.tableView.reloadData()
                 })
