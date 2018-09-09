@@ -61,17 +61,18 @@ class InfoDetailViewController: UIViewController,UIWebViewDelegate{
     
     func updatePost() {
         if let postDesc = self.detailItem  {
-//            WordPressWebServices.sharedInstance.postByIdentifier(identifier, completionHandler: { (postContent, error) -> Void in
-//                if postContent != nil {
-//                    self.postContent = postContent
-//                    DispatchQueue.main.async(execute: { // access to UI in the main thread
-//                        self.updateWebView()
-//                    })
-//                }
-//            })
             
+            _identifier = postDesc.ID
             Log( postDesc.ID  )
-           _identifier = postDesc.ID
+            WordPressWebServices.sharedInstance.postByIdentifier(postDesc.ID, completionHandler: { (postContent, error) -> Void in
+                if postContent != nil {
+                    self.postContent = postContent
+                    DispatchQueue.main.async(execute: { // access to UI in the main thread
+                        self.updateWebView()
+                    })
+                }
+            })
+            
         }
         
     }
@@ -103,6 +104,7 @@ class InfoDetailViewController: UIViewController,UIWebViewDelegate{
             </body>\
             </html>
             """
+            Log(contentString)
             webView.loadHTMLString(htmls, baseURL: nil)
         }
         if let titleString = self.postContent!["title"] as? String {

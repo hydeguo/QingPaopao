@@ -37,14 +37,26 @@ class PostListViewController: UITableViewController {
             posts = retrievedMessage
         } catch _ as NSError {}
         
+        
+        refreshControl = UIRefreshControl()
+        refreshControl!.addTarget(self, action: #selector(updatePostList),
+                                  for: .valueChanged)
+        refreshControl!.attributedTitle = NSAttributedString(string: "reloading...")
+        tableView.addSubview(refreshControl!)
+        
         self.updatePostList()
     }
     
-    func updatePostList() {
+    func changeType(type:Int)
+    {
+        
+    }
+    
+    @objc func updatePostList() {
         if(posts.count==0){
             HUD.show(.progress)
         }
-        WordPressWebServices.sharedInstance.lastPosts(page:1, number: 100, completionHandler: { (posts, error) -> Void in
+        WordPressWebServices.sharedInstance.lastPosts(page:1, number: 20, completionHandler: { (posts, error) -> Void in
             if let _posts = posts {
                 self.posts = _posts
                 
@@ -54,6 +66,7 @@ class PostListViewController: UITableViewController {
                 
                 DispatchQueue.main.async(execute: {     // access to UI in the main thread only !
                     HUD.hide()
+                    self.refreshControl?.endRefreshing()
                     self.tableView.reloadData()
                 })
             }
@@ -97,7 +110,6 @@ class PostListViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Post", for: indexPath) as! PostTableViewCell
         let post = posts[indexPath.row]
         cell.configureWithPostDictionary(post);
-        
         
         return cell
     }

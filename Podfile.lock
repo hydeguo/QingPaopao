@@ -7,8 +7,9 @@ PODS:
     - SwiftyTimer (~> 2.0.0)
   - Disk (0.3.3)
   - DLLocalNotifications (0.06)
-  - IHKeyboardAvoiding (4.2)
-  - Kingfisher (4.8.1)
+  - Gridicons (0.16)
+  - IHKeyboardAvoiding (4.3)
+  - Kingfisher (4.9.0)
   - mob_paysdk (1.0.0):
     - mob_paysdk/PaySDK (= 1.0.0)
     - MOBFoundation
@@ -34,12 +35,17 @@ PODS:
     - RxSwift (~> 4.0)
   - RxSwift (4.2.0)
   - SwiftyTimer (2.0.0)
+  - WordPress-Aztec-iOS (1.0.0)
+  - WordPress-Editor-iOS (1.0.0):
+    - WordPress-Aztec-iOS (= 1.0.0)
 
 DEPENDENCIES:
+  - Alamofire
   - ChromaColorPicker
   - CocoaMQTT
   - Disk (~> 0.3.3)
   - DLLocalNotifications
+  - Gridicons
   - IHKeyboardAvoiding (~> 4.0)
   - Kingfisher
   - mob_paysdk
@@ -49,6 +55,8 @@ DEPENDENCIES:
   - QRCodeReader.swift (~> 8.2.0)
   - R.swift
   - RxCocoa (~> 4.0)
+  - WordPress-Aztec-iOS (= 1.0.0)
+  - WordPress-Editor-iOS (= 1.0.0)
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
@@ -58,6 +66,7 @@ SPEC REPOS:
     - CocoaMQTT
     - Disk
     - DLLocalNotifications
+    - Gridicons
     - IHKeyboardAvoiding
     - Kingfisher
     - mob_paysdk
@@ -71,6 +80,8 @@ SPEC REPOS:
     - RxCocoa
     - RxSwift
     - SwiftyTimer
+    - WordPress-Aztec-iOS
+    - WordPress-Editor-iOS
 
 SPEC CHECKSUMS:
   Alamofire: c7287b6e5d7da964a70935e5db17046b7fde6568
@@ -79,8 +90,9 @@ SPEC CHECKSUMS:
   CocoaMQTT: d33ab3cd4e329f9f1cfbb62e25306a318a606616
   Disk: d1f55cd61f6ca20f368232d0c6e37e3c3dfcb63e
   DLLocalNotifications: 751d53da896bc396bb23d4d3570b7fd3c7654e4e
-  IHKeyboardAvoiding: 9fbf816b7c3c84911964802ff110d12caf40ebef
-  Kingfisher: 868c1149679a7ab6869be118faa9b5aed154aaf0
+  Gridicons: 8cc5cb666d5ad8b8f1771d3c7a93d27ae25b7c2e
+  IHKeyboardAvoiding: e6a8f06434baf4c3b45825c3eedb35cea5d0d76b
+  Kingfisher: 64539b51826b778206daa6ed815d12653caa69dd
   mob_paysdk: 6ca4412389736281c0876726bca11617d14a38ae
   MOBFoundation: 7f1e157be332576e4d45809a03bc733292c6ad8d
   Moya: a725035953bc1c0eb1be505ab903984501d82440
@@ -92,7 +104,9 @@ SPEC CHECKSUMS:
   RxCocoa: 0b54909c902e1e581212a03e690bbd94032d8baa
   RxSwift: 99e10317ddfcc7fbe01356aafd118fde4a0be104
   SwiftyTimer: 2efd74b060d69ad4f1496baf5bbedbe132125fcf
+  WordPress-Aztec-iOS: cea2bedf9b807d862ad331a080c98292e355f144
+  WordPress-Editor-iOS: c997f66a110cdee3317ccaaa5e6b2a09a2e5444a
 
-PODFILE CHECKSUM: 908408b9d2f34e4b3e493129c15eae76ee3d5dbf
+PODFILE CHECKSUM: 10db17b10b6255941b1fc6e4b5f1cd373105363b
 
 COCOAPODS: 1.5.3

@@ -59,11 +59,19 @@ class PostTableViewCell: UITableViewCell {
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var featuredImageView: UIImageView!
     
+    @IBOutlet weak var authorLabel: UILabel!
+    @IBOutlet weak var authorImageView: UIImageView!
+    @IBOutlet weak var likeLabel: UILabel?
+    @IBOutlet weak var starLabel: UILabel?
+    @IBOutlet weak var commentLabel: UILabel?
+    
+    
     var postIdentifier:Int = 0
     var imageRequestedForIdentifier:Int = 0
     
     func configureWithPostDictionary (_ post:PostItem) {
         
+        postIdentifier = post.ID
         let title = post.title
         self.titleLabel!.text = title//String(htmlEncodedString: title!)
         
@@ -71,10 +79,10 @@ class PostTableViewCell: UITableViewCell {
         
         if let dateStringFull = post.date {
             // date is in the format "2016-01-29T01:45:33+02:00",
-            let dateString = dateStringFull.substring(to: dateStringFull.characters.index(dateStringFull.startIndex, offsetBy: 10))  // keep only the date part
+            let dateString = String(dateStringFull[dateStringFull.startIndex..<dateStringFull.index(dateStringFull.startIndex, offsetBy: 19)])
             
             let parsingDateFormatter = DateFormatter()        // TODO: a static var
-            parsingDateFormatter.dateFormat = "yyyy-MM-dd"
+            parsingDateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
             let date = parsingDateFormatter.date(from: dateString)
             
             let printingDateFormatter = DateFormatter()       // TODO: a static var
@@ -85,24 +93,26 @@ class PostTableViewCell: UITableViewCell {
         }
         
         self.featuredImageView!.image = nil;
-        postIdentifier = post.ID
+        self.featuredImageView.image(fromUrl: post.featured_image ?? "")
         
-        if let url = post.featured_image {    // there is a link to an image
-            if url != "" {
-                imageRequestedForIdentifier = postIdentifier
-                WordPressWebServices.sharedInstance.loadImage (url, completionHandler: {(image, error) -> Void in
-                    DispatchQueue.main.async(execute: {
-                        // test if the cell has been recycled since we request the image !
-                        if self.postIdentifier == self.imageRequestedForIdentifier {
-                            self.featuredImageView!.image = image;
-                            self.setNeedsLayout()
-                        }
-                        else {
-                            print("postIdentifier: \(self.postIdentifier) different from imageRequestedForIdentifier: \(self.imageRequestedForIdentifier)")
-                        }
-                    })
-                })
+        self.authorLabel.text = post.author?.nice_name
+        self.authorImageView.image(fromUrl: post.author?.avatar_URL ?? "")
+        
+        
+        _ = Wolf.request(type: MyAPI.getBlogPostData(id: postIdentifier), completion: { (postData: BaseBlogPost?, msg, code) in
+            if(code == "0" )
+            {
+                self.likeLabel?.text = String(postData?.likes?.count ?? 0)
+                self.starLabel?.text = String(postData?.collect?.count ?? 0)
+                self.commentLabel?.text = String(postData?.comments ?? 0)
             }
+            else
+            {
+                self.likeLabel?.text = "0"
+                self.starLabel?.text = "0"
+                self.commentLabel?.text = "0"
+            }
+        }) { (error) in
         }
         
     }

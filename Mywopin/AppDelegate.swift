@@ -27,6 +27,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UINavigationBar.appearance().titleTextAttributes = attrs
         
         Language.share.setLanguage("zh-Hans")
+        
+//        WordPressWebServices.sharedInstance.loginWP(id: "") { (flag, err) in
+//            Log("WordPressWebServices login...\(flag)")
+//        }
 //        Language.share.setLanguage("en")
         
         if let s_clean_time = UserDefaults.standard.value(forKey: "startCleanTime")

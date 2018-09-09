@@ -141,7 +141,7 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
   
-  /// This `R.image` struct is generated, and contains static references to 75 images.
+  /// This `R.image` struct is generated, and contains static references to 76 images.
   struct image {
     /// Image `AMCP_color_wheel`.
     static let amcp_color_wheel = Rswift.ImageResource(bundle: R.hostingBundle, name: "AMCP_color_wheel")
@@ -255,6 +255,8 @@ struct R: Rswift.Validatable {
     static let slider = Rswift.ImageResource(bundle: R.hostingBundle, name: "slider")
     /// Image `star`.
     static let star = Rswift.ImageResource(bundle: R.hostingBundle, name: "star")
+    /// Image `unlike`.
+    static let unlike = Rswift.ImageResource(bundle: R.hostingBundle, name: "unlike")
     /// Image `wechat`.
     static let wechat = Rswift.ImageResource(bundle: R.hostingBundle, name: "wechat")
     /// Image `weixin`.
@@ -574,6 +576,11 @@ struct R: Rswift.Validatable {
       return UIKit.UIImage(resource: R.image.star, compatibleWith: traitCollection)
     }
     
+    /// `UIImage(named: "unlike", bundle: ..., traitCollection: ...)`
+    static func unlike(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.unlike, compatibleWith: traitCollection)
+    }
+    
     /// `UIImage(named: "wechat", bundle: ..., traitCollection: ...)`
     static func wechat(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.wechat, compatibleWith: traitCollection)
@@ -707,7 +714,7 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
   
-  /// This `R.segue` struct is generated, and contains static references to 6 view controllers.
+  /// This `R.segue` struct is generated, and contains static references to 7 view controllers.
   struct segue {
     /// This struct is generated for `AddressListVC`, and contains static references to 1 segues.
     struct addressListVC {
@@ -749,6 +756,21 @@ struct R: Rswift.Validatable {
       /// For use inside `prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?)`.
       static func queue(segue: UIKit.UIStoryboardSegue) -> Rswift.TypedStoryboardSegueInfo<UIKit.UIStoryboardSegue, DrinkViewController, CleanCupViewController>? {
         return Rswift.TypedStoryboardSegueInfo(segueIdentifier: R.segue.drinkViewController.queue, segue: segue)
+      }
+      
+      fileprivate init() {}
+    }
+    
+    /// This struct is generated for `InfosViewController`, and contains static references to 1 segues.
+    struct infosViewController {
+      /// Segue identifier `EmbedSegue`.
+      static let embedSegue: Rswift.StoryboardSegueIdentifier<UIKit.UIStoryboardSegue, InfosViewController, PostListViewController> = Rswift.StoryboardSegueIdentifier(identifier: "EmbedSegue")
+      
+      /// Optionally returns a typed version of segue `EmbedSegue`.
+      /// Returns nil if either the segue identifier, the source, destination, or segue types don't match.
+      /// For use inside `prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?)`.
+      static func embedSegue(segue: UIKit.UIStoryboardSegue) -> Rswift.TypedStoryboardSegueInfo<UIKit.UIStoryboardSegue, InfosViewController, PostListViewController>? {
+        return Rswift.TypedStoryboardSegueInfo(segueIdentifier: R.segue.infosViewController.embedSegue, segue: segue)
       }
       
       fileprivate init() {}
@@ -802,8 +824,10 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
   
-  /// This `R.storyboard` struct is generated, and contains static references to 4 storyboards.
+  /// This `R.storyboard` struct is generated, and contains static references to 5 storyboards.
   struct storyboard {
+    /// Storyboard `AttachmentDetailsViewController`.
+    static let attachmentDetailsViewController = _R.storyboard.attachmentDetailsViewController()
     /// Storyboard `LaunchScreen`.
     static let launchScreen = _R.storyboard.launchScreen()
     /// Storyboard `Login`.
@@ -812,6 +836,11 @@ struct R: Rswift.Validatable {
     static let main = _R.storyboard.main()
     /// Storyboard `Shop`.
     static let shop = _R.storyboard.shop()
+    
+    /// `UIStoryboard(name: "AttachmentDetailsViewController", bundle: ...)`
+    static func attachmentDetailsViewController(_: Void = ()) -> UIKit.UIStoryboard {
+      return UIKit.UIStoryboard(resource: R.storyboard.attachmentDetailsViewController)
+    }
     
     /// `UIStoryboard(name: "LaunchScreen", bundle: ...)`
     static func launchScreen(_: Void = ()) -> UIKit.UIStoryboard {
@@ -1182,7 +1211,24 @@ struct _R: Rswift.Validatable {
       try main.validate()
       try login.validate()
       try shop.validate()
+      try attachmentDetailsViewController.validate()
       try launchScreen.validate()
+    }
+    
+    struct attachmentDetailsViewController: Rswift.StoryboardResourceType, Rswift.Validatable {
+      let attachmentDetailsViewController = StoryboardViewControllerResource<AttachmentDetailsViewController>(identifier: "AttachmentDetailsViewController")
+      let bundle = R.hostingBundle
+      let name = "AttachmentDetailsViewController"
+      
+      func attachmentDetailsViewController(_: Void = ()) -> AttachmentDetailsViewController? {
+        return UIKit.UIStoryboard(resource: self).instantiateViewController(withResource: attachmentDetailsViewController)
+      }
+      
+      static func validate() throws {
+        if _R.storyboard.attachmentDetailsViewController().attachmentDetailsViewController() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'attachmentDetailsViewController' could not be loaded from storyboard 'AttachmentDetailsViewController' as 'AttachmentDetailsViewController'.") }
+      }
+      
+      fileprivate init() {}
     }
     
     struct launchScreen: Rswift.StoryboardResourceWithInitialControllerType, Rswift.Validatable {
@@ -1316,7 +1362,6 @@ struct _R: Rswift.Validatable {
       
       static func validate() throws {
         if UIKit.UIImage(named: "icon2") == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'icon2' is used in storyboard 'Main', but couldn't be loaded.") }
-        if UIKit.UIImage(named: "btn-queueSmall-pressed") == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'btn-queueSmall-pressed' is used in storyboard 'Main', but couldn't be loaded.") }
         if UIKit.UIImage(named: "arrow") == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'arrow' is used in storyboard 'Main', but couldn't be loaded.") }
         if UIKit.UIImage(named: "powerOff") == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'powerOff' is used in storyboard 'Main', but couldn't be loaded.") }
         if UIKit.UIImage(named: "checkbox_selected1") == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'checkbox_selected1' is used in storyboard 'Main', but couldn't be loaded.") }
@@ -1362,7 +1407,6 @@ struct _R: Rswift.Validatable {
         if UIKit.UIImage(named: "name") == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'name' is used in storyboard 'Main', but couldn't be loaded.") }
         if UIKit.UIImage(named: "资源 23") == nil { throw Rswift.ValidationError(description: "[R.swift] Image named '资源 23' is used in storyboard 'Main', but couldn't be loaded.") }
         if UIKit.UIImage(named: "资源 2") == nil { throw Rswift.ValidationError(description: "[R.swift] Image named '资源 2' is used in storyboard 'Main', but couldn't be loaded.") }
-        if UIKit.UIImage(named: "btn-edit-pressed") == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'btn-edit-pressed' is used in storyboard 'Main', but couldn't be loaded.") }
         if UIKit.UIImage(named: "BG1-1") == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'BG1-1' is used in storyboard 'Main', but couldn't be loaded.") }
         if UIKit.UIImage(named: "drinkIcon1") == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'drinkIcon1' is used in storyboard 'Main', but couldn't be loaded.") }
         if UIKit.UIImage(named: "sina") == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'sina' is used in storyboard 'Main', but couldn't be loaded.") }
