@@ -55,7 +55,7 @@ class WordPressWebServices {
     
     // page parameter is one based [1..[
     func lastPosts (page:Int, number:Int, completionHandler:@escaping ([PostItem]?, NSError?) -> Void) {
-        let requestURL = baseURL! + "/posts/?page=\(page)&number=\(number)&fields=ID,title,date,featured_image,author"
+        let requestURL = baseURL! + "/posts/?page=\(page)&number=\(number)&fields=ID,title,date,featured_image,author,URL"
         let url = URL(string: requestURL)!
         let urlSession = URLSession.shared
         
@@ -74,6 +74,28 @@ class WordPressWebServices {
             }
         })
         
+        dataTask.resume()
+    }
+    
+    func commentsByPost (id:Int,page:Int, number:Int, completionHandler:@escaping ([CommentItem]?, NSError?) -> Void) {
+        let requestURL = baseURL! + "/posts/\(id)/replies/?page=\(page)&number=\(number)&fields=ID,title,date,author,content,parent"
+        let url = URL(string: requestURL)!
+        let urlSession = URLSession.shared
+        
+        let dataTask = urlSession.dataTask(with: url, completionHandler: { (data, response, error) -> Void in
+            if error != nil {
+                completionHandler(nil, error as NSError?);
+                return;
+            }
+            do {
+                let data:CommentList = try JSONDecoder().decode(CommentList.self, from: data!)
+                completionHandler(data.comments, nil);
+            } catch let error as NSError {
+                completionHandler(nil, error);
+            } catch {
+                fatalError()
+            }
+        })
         dataTask.resume()
     }
     

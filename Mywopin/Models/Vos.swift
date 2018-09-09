@@ -45,7 +45,7 @@ struct ThirdpartLogin: WolfMapper {
 
 struct User: WolfMapper {
   
-    var _id: String?
+    var _id: String
     var userName: String?
     var userPwd: String?
     var icon: String?

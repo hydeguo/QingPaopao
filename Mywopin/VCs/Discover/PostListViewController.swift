@@ -80,7 +80,7 @@ class PostListViewController: UITableViewController {
         if segue.identifier == "showDetail" {
             if let indexPath = self.tableView.indexPathForSelectedRow {
                 let post = posts[indexPath.row]
-                let controller = (segue.destination as! UINavigationController).topViewController as! InfoDetailViewController
+                let controller = (segue.destination as! UINavigationController).topViewController as! PostDetailController
                 controller.detailItem = post
                 controller.navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem
                 controller.navigationItem.leftItemsSupplementBackButton = true

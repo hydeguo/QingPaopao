@@ -141,7 +141,7 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
   
-  /// This `R.image` struct is generated, and contains static references to 76 images.
+  /// This `R.image` struct is generated, and contains static references to 80 images.
   struct image {
     /// Image `AMCP_color_wheel`.
     static let amcp_color_wheel = Rswift.ImageResource(bundle: R.hostingBundle, name: "AMCP_color_wheel")
@@ -179,6 +179,8 @@ struct R: Rswift.Validatable {
     static let clean = Rswift.ImageResource(bundle: R.hostingBundle, name: "clean")
     /// Image `closeBtn`.
     static let closeBtn = Rswift.ImageResource(bundle: R.hostingBundle, name: "closeBtn")
+    /// Image `comment-1`.
+    static let comment1 = Rswift.ImageResource(bundle: R.hostingBundle, name: "comment-1")
     /// Image `comment`.
     static let comment = Rswift.ImageResource(bundle: R.hostingBundle, name: "comment")
     /// Image `cup`.
@@ -255,6 +257,8 @@ struct R: Rswift.Validatable {
     static let slider = Rswift.ImageResource(bundle: R.hostingBundle, name: "slider")
     /// Image `star`.
     static let star = Rswift.ImageResource(bundle: R.hostingBundle, name: "star")
+    /// Image `unStar`.
+    static let unStar = Rswift.ImageResource(bundle: R.hostingBundle, name: "unStar")
     /// Image `unlike`.
     static let unlike = Rswift.ImageResource(bundle: R.hostingBundle, name: "unlike")
     /// Image `wechat`.
@@ -265,6 +269,10 @@ struct R: Rswift.Validatable {
     static let wifi_select = Rswift.ImageResource(bundle: R.hostingBundle, name: "wifi_select")
     /// Image `wifi`.
     static let wifi = Rswift.ImageResource(bundle: R.hostingBundle, name: "wifi")
+    /// Image `写评论`.
+    static let 写评论 = Rswift.ImageResource(bundle: R.hostingBundle, name: "写评论")
+    /// Image `分享`.
+    static let 分享 = Rswift.ImageResource(bundle: R.hostingBundle, name: "分享")
     /// Image `资源 10`.
     static let 资源10 = Rswift.ImageResource(bundle: R.hostingBundle, name: "资源 10")
     /// Image `资源 11`.
@@ -389,6 +397,11 @@ struct R: Rswift.Validatable {
     /// `UIImage(named: "comment", bundle: ..., traitCollection: ...)`
     static func comment(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.comment, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "comment-1", bundle: ..., traitCollection: ...)`
+    static func comment1(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.comment1, compatibleWith: traitCollection)
     }
     
     /// `UIImage(named: "cup", bundle: ..., traitCollection: ...)`
@@ -576,6 +589,11 @@ struct R: Rswift.Validatable {
       return UIKit.UIImage(resource: R.image.star, compatibleWith: traitCollection)
     }
     
+    /// `UIImage(named: "unStar", bundle: ..., traitCollection: ...)`
+    static func unStar(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.unStar, compatibleWith: traitCollection)
+    }
+    
     /// `UIImage(named: "unlike", bundle: ..., traitCollection: ...)`
     static func unlike(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.unlike, compatibleWith: traitCollection)
@@ -599,6 +617,16 @@ struct R: Rswift.Validatable {
     /// `UIImage(named: "wifi_select", bundle: ..., traitCollection: ...)`
     static func wifi_select(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.wifi_select, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "写评论", bundle: ..., traitCollection: ...)`
+    static func 写评论(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.写评论, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "分享", bundle: ..., traitCollection: ...)`
+    static func 分享(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.分享, compatibleWith: traitCollection)
     }
     
     /// `UIImage(named: "资源 10", bundle: ..., traitCollection: ...)`
@@ -684,7 +712,7 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
   
-  /// This `R.reuseIdentifier` struct is generated, and contains static references to 12 reuse identifiers.
+  /// This `R.reuseIdentifier` struct is generated, and contains static references to 18 reuse identifiers.
   struct reuseIdentifier {
     /// Reuse identifier `AddDevice`.
     static let addDevice: Rswift.ReuseIdentifier<AddDeviceCell> = Rswift.ReuseIdentifier(identifier: "AddDevice")
@@ -708,8 +736,20 @@ struct R: Rswift.Validatable {
     static let post: Rswift.ReuseIdentifier<PostTableViewCell> = Rswift.ReuseIdentifier(identifier: "Post")
     /// Reuse identifier `ScoresShopCell`.
     static let scoresShopCell: Rswift.ReuseIdentifier<ScoresShopCell> = Rswift.ReuseIdentifier(identifier: "ScoresShopCell")
+    /// Reuse identifier `btnCell`.
+    static let btnCell: Rswift.ReuseIdentifier<PostBtnCell> = Rswift.ReuseIdentifier(identifier: "btnCell")
     /// Reuse identifier `cell`.
     static let cell: Rswift.ReuseIdentifier<UIKit.UITableViewCell> = Rswift.ReuseIdentifier(identifier: "cell")
+    /// Reuse identifier `comment`.
+    static let comment: Rswift.ReuseIdentifier<CommentTableViewCell> = Rswift.ReuseIdentifier(identifier: "comment")
+    /// Reuse identifier `lebelCell`.
+    static let lebelCell: Rswift.ReuseIdentifier<UIKit.UITableViewCell> = Rswift.ReuseIdentifier(identifier: "lebelCell")
+    /// Reuse identifier `separateCell`.
+    static let separateCell: Rswift.ReuseIdentifier<UIKit.UITableViewCell> = Rswift.ReuseIdentifier(identifier: "separateCell")
+    /// Reuse identifier `subComment`.
+    static let subComment: Rswift.ReuseIdentifier<SubCommentTableViewCell> = Rswift.ReuseIdentifier(identifier: "subComment")
+    /// Reuse identifier `webCell`.
+    static let webCell: Rswift.ReuseIdentifier<WebViewCell> = Rswift.ReuseIdentifier(identifier: "webCell")
     
     fileprivate init() {}
   }
@@ -1362,11 +1402,13 @@ struct _R: Rswift.Validatable {
       
       static func validate() throws {
         if UIKit.UIImage(named: "icon2") == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'icon2' is used in storyboard 'Main', but couldn't be loaded.") }
+        if UIKit.UIImage(named: "分享") == nil { throw Rswift.ValidationError(description: "[R.swift] Image named '分享' is used in storyboard 'Main', but couldn't be loaded.") }
         if UIKit.UIImage(named: "arrow") == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'arrow' is used in storyboard 'Main', but couldn't be loaded.") }
         if UIKit.UIImage(named: "powerOff") == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'powerOff' is used in storyboard 'Main', but couldn't be loaded.") }
         if UIKit.UIImage(named: "checkbox_selected1") == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'checkbox_selected1' is used in storyboard 'Main', but couldn't be loaded.") }
         if UIKit.UIImage(named: "icon4") == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'icon4' is used in storyboard 'Main', but couldn't be loaded.") }
         if UIKit.UIImage(named: "profileIcon") == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'profileIcon' is used in storyboard 'Main', but couldn't be loaded.") }
+        if UIKit.UIImage(named: "unStar") == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'unStar' is used in storyboard 'Main', but couldn't be loaded.") }
         if UIKit.UIImage(named: "qq-1") == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'qq-1' is used in storyboard 'Main', but couldn't be loaded.") }
         if UIKit.UIImage(named: "资源 20") == nil { throw Rswift.ValidationError(description: "[R.swift] Image named '资源 20' is used in storyboard 'Main', but couldn't be loaded.") }
         if UIKit.UIImage(named: "资源 14") == nil { throw Rswift.ValidationError(description: "[R.swift] Image named '资源 14' is used in storyboard 'Main', but couldn't be loaded.") }
@@ -1375,11 +1417,13 @@ struct _R: Rswift.Validatable {
         if UIKit.UIImage(named: "cleanBtn") == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'cleanBtn' is used in storyboard 'Main', but couldn't be loaded.") }
         if UIKit.UIImage(named: "star") == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'star' is used in storyboard 'Main', but couldn't be loaded.") }
         if UIKit.UIImage(named: "wifi") == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'wifi' is used in storyboard 'Main', but couldn't be loaded.") }
-        if UIKit.UIImage(named: "资源 18") == nil { throw Rswift.ValidationError(description: "[R.swift] Image named '资源 18' is used in storyboard 'Main', but couldn't be loaded.") }
+        if UIKit.UIImage(named: "写评论") == nil { throw Rswift.ValidationError(description: "[R.swift] Image named '写评论' is used in storyboard 'Main', but couldn't be loaded.") }
         if UIKit.UIImage(named: "icon3") == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'icon3' is used in storyboard 'Main', but couldn't be loaded.") }
         if UIKit.UIImage(named: "资源 16") == nil { throw Rswift.ValidationError(description: "[R.swift] Image named '资源 16' is used in storyboard 'Main', but couldn't be loaded.") }
         if UIKit.UIImage(named: "bg1") == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'bg1' is used in storyboard 'Main', but couldn't be loaded.") }
+        if UIKit.UIImage(named: "资源 18") == nil { throw Rswift.ValidationError(description: "[R.swift] Image named '资源 18' is used in storyboard 'Main', but couldn't be loaded.") }
         if UIKit.UIImage(named: "checkBox1") == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'checkBox1' is used in storyboard 'Main', but couldn't be loaded.") }
+        if UIKit.UIImage(named: "comment-1") == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'comment-1' is used in storyboard 'Main', but couldn't be loaded.") }
         if UIKit.UIImage(named: "hand") == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'hand' is used in storyboard 'Main', but couldn't be loaded.") }
         if UIKit.UIImage(named: "default profile") == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'default profile' is used in storyboard 'Main', but couldn't be loaded.") }
         if UIKit.UIImage(named: "资源 15") == nil { throw Rswift.ValidationError(description: "[R.swift] Image named '资源 15' is used in storyboard 'Main', but couldn't be loaded.") }
@@ -1391,9 +1435,10 @@ struct _R: Rswift.Validatable {
         if UIKit.UIImage(named: "bluetouch") == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'bluetouch' is used in storyboard 'Main', but couldn't be loaded.") }
         if UIKit.UIImage(named: "back") == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'back' is used in storyboard 'Main', but couldn't be loaded.") }
         if UIKit.UIImage(named: "资源 13") == nil { throw Rswift.ValidationError(description: "[R.swift] Image named '资源 13' is used in storyboard 'Main', but couldn't be loaded.") }
+        if UIKit.UIImage(named: "unlike") == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'unlike' is used in storyboard 'Main', but couldn't be loaded.") }
         if UIKit.UIImage(named: "资源 12") == nil { throw Rswift.ValidationError(description: "[R.swift] Image named '资源 12' is used in storyboard 'Main', but couldn't be loaded.") }
-        if UIKit.UIImage(named: "资源 19") == nil { throw Rswift.ValidationError(description: "[R.swift] Image named '资源 19' is used in storyboard 'Main', but couldn't be loaded.") }
         if UIKit.UIImage(named: "资源 17") == nil { throw Rswift.ValidationError(description: "[R.swift] Image named '资源 17' is used in storyboard 'Main', but couldn't be loaded.") }
+        if UIKit.UIImage(named: "资源 19") == nil { throw Rswift.ValidationError(description: "[R.swift] Image named '资源 19' is used in storyboard 'Main', but couldn't be loaded.") }
         if UIKit.UIImage(named: "like") == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'like' is used in storyboard 'Main', but couldn't be loaded.") }
         if UIKit.UIImage(named: "资源 10") == nil { throw Rswift.ValidationError(description: "[R.swift] Image named '资源 10' is used in storyboard 'Main', but couldn't be loaded.") }
         if UIKit.UIImage(named: "comment") == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'comment' is used in storyboard 'Main', but couldn't be loaded.") }

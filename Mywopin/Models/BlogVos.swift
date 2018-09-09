@@ -19,3 +19,15 @@ struct BaseBlogPost: WolfMapper {
     func didInit() {
     }
 }
+
+
+
+struct BaseBlogComment: WolfMapper {
+    
+    var id: Double
+    var likes: [String]?
+    
+    func didInit() {
+    }
+}
+

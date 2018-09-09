@@ -75,6 +75,8 @@
 		C17D45F120F8A74300029CAE /* SystemSettingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C17D45F020F8A74300029CAE /* SystemSettingVC.swift */; };
 		C17D45F320F8A85A00029CAE /* ProfileEditVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C17D45F220F8A85A00029CAE /* ProfileEditVC.swift */; };
 		C17D45F520F8ADFB00029CAE /* ChangePhoneVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C17D45F420F8ADFB00029CAE /* ChangePhoneVC.swift */; };
+		C17FB86E21450ED7001F0030 /* PostDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C17FB86D21450ED7001F0030 /* PostDetailController.swift */; };
+		C17FB87021452BAE001F0030 /* BlogCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = C17FB86F21452BAE001F0030 /* BlogCells.swift */; };
 		C1803E0A2143D2FC0078D94C /* UnknownEditorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1803E092143D2FB0078D94C /* UnknownEditorViewController.swift */; };
 		C1803E0C2143D3310078D94C /* AttachmentDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1803E0B2143D3310078D94C /* AttachmentDetailsViewController.swift */; };
 		C1803E0F2143F6980078D94C /* MediaRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1803E0E2143F6980078D94C /* MediaRequest.swift */; };
@@ -241,6 +243,8 @@
 		C17D45F020F8A74300029CAE /* SystemSettingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemSettingVC.swift; sourceTree = "<group>"; };
 		C17D45F220F8A85A00029CAE /* ProfileEditVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileEditVC.swift; sourceTree = "<group>"; };
 		C17D45F420F8ADFB00029CAE /* ChangePhoneVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePhoneVC.swift; sourceTree = "<group>"; };
+		C17FB86D21450ED7001F0030 /* PostDetailController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDetailController.swift; sourceTree = "<group>"; };
+		C17FB86F21452BAE001F0030 /* BlogCells.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlogCells.swift; sourceTree = "<group>"; };
 		C1803E092143D2FB0078D94C /* UnknownEditorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnknownEditorViewController.swift; sourceTree = "<group>"; };
 		C1803E0B2143D3310078D94C /* AttachmentDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AttachmentDetailsViewController.swift; sourceTree = "<group>"; };
 		C1803E0E2143F6980078D94C /* MediaRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaRequest.swift; sourceTree = "<group>"; };
@@ -410,6 +414,7 @@
 			isa = PBXGroup;
 			children = (
 				C192AA5120C3D54E004EE98D /* InfosViewController.swift */,
+				C17FB86D21450ED7001F0030 /* PostDetailController.swift */,
 				C1F6E04320C6CE580031200D /* InfoDetailViewController.swift */,
 				C16E27392143BD1900E26D8A /* EditorViewController.swift */,
 				C135F934213F64D500B75820 /* PostNewViewController.swift */,
@@ -660,6 +665,7 @@
 				C16E052720DE36DF009ED462 /* BLEProgressView.swift */,
 				C15AEF8720F07EE9009F4A0E /* TGDropBoxView.swift */,
 				C192AAA920C4C8FA004EE98D /* Cells.swift */,
+				C17FB86F21452BAE001F0030 /* BlogCells.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1057,6 +1063,7 @@
 				C1008E0920C5669000E73F8F /* PostListViewController.swift in Sources */,
 				C11A0FFF20E9B4E1000979B3 /* DrinkHistory.swift in Sources */,
 				C192AA3820C23EA9004EE98D /* Tools.swift in Sources */,
+				C17FB87021452BAE001F0030 /* BlogCells.swift in Sources */,
 				C17862C320DBDD5E008F4042 /* WopinCommand.swift in Sources */,
 				C15D267D2132F59500C6B1BF /* CrowdfundingShopDetailVC.swift in Sources */,
 				C11A100120E9CC50000979B3 /* MyHealth.swift in Sources */,
@@ -1133,6 +1140,7 @@
 				C158F721213B7A220090EE1A /* DeliverPageViewController.swift in Sources */,
 				C1803E0F2143F6980078D94C /* MediaRequest.swift in Sources */,
 				C1F128292139150300BBD457 /* Toast.swift in Sources */,
+				C17FB86E21450ED7001F0030 /* PostDetailController.swift in Sources */,
 				C1406353210460C800AB8914 /* GoodsModel.swift in Sources */,
 				C192AA1120C23770004EE98D /* AppDelegate.swift in Sources */,
 				C1F6E04420C6CE580031200D /* InfoDetailViewController.swift in Sources */,

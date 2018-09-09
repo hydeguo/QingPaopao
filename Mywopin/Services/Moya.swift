@@ -43,6 +43,7 @@ enum MyAPI {
     case crowdfundingOrderTotalPeople(goodsId:Int)
     case addGeolocationParameters(device_id: String, time: String, lat: Double, long: Double, link: String)
     case getBlogPostData(id:Int)
+    case getBlogCommentData(id:Int)
 }
 
 
@@ -200,12 +201,14 @@ extension MyAPI: TargetType {
             return "/goods/crowdfundingOrderTotalPeople"
         case .getBlogPostData(let id):
             return "/blog/blogPostData/\(id)"
+        case .getBlogCommentData(let id):
+            return "/blog/blogCommentData/\(id)"
         }
     }
     
     var method: Moya.Method {
         switch self {
-            case  .getExchangeOrder ,.getExchangeGoods,.getScoresOrder,.getCrowdfundingOrder,.cupList,.getUserData,.getBlogPostData:
+            case  .getExchangeOrder ,.getExchangeGoods,.getScoresOrder,.getCrowdfundingOrder,.cupList,.getUserData,.getBlogPostData,.getBlogCommentData:
             return .get
     
             default:
