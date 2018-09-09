@@ -175,12 +175,7 @@ class WifiTableViewController: UITableViewController, QRCodeReaderViewController
     }
     
     func scanNearbyWifi(isPresent : Bool) {
-        
-        if (getWifiSsid() != wopinSSID) {
-            
-        }
         self.essids.removeAll()
-        
         self.removeSpinner(spinner: self.sv!)
         let alert = UIAlertController(title: nil, message: "请稍候...", preferredStyle: .alert)
         
@@ -213,7 +208,6 @@ class WifiTableViewController: UITableViewController, QRCodeReaderViewController
                 print("scanning wifi fail")
                 alert.dismiss(animated: false, completion: nil)
                 self.scanNearbyWifi(isPresent : true)
-                print(error ?? "")
             } else {
                 do {
                     let httpResponse = response as? HTTPURLResponse
@@ -227,20 +221,18 @@ class WifiTableViewController: UITableViewController, QRCodeReaderViewController
                         self.essids.append(r.essid)
                     }
                 } catch {
-                    alert.dismiss(animated: false, completion: nil)
-                    self.scanNearbyWifi(isPresent : true)
                     print(error)
                 }
-                
+                print("Scan Nearby Wifi Success!")
                 alert.dismiss(animated: false, completion: nil)
-                //if (isPresent) {
-                    let vc = R.storyboard.main.wifiScanListVC()
-                    vc?.wifiTableViewController = self
-                    vc?.essids = self.essids
-                    self.present(vc!, animated: true, completion: {
-                        self.removeSpinner(spinner: self.sv!)
-                    })
-                //}
+                
+                let vc = R.storyboard.main.wifiScanListVC()
+                vc?.wifiTableViewController = self
+                vc?.essids = self.essids
+                self.present(vc!, animated: true, completion: {
+                    self.removeSpinner(spinner: self.sv!)
+                })
+
             }
         })
     
@@ -259,7 +251,7 @@ class WifiTableViewController: UITableViewController, QRCodeReaderViewController
                 {
                     WifiController.shared.savedWifi.append(self.device_id!)
                 }
-                WifiController.shared.startAutoConnect()
+                WifiController.shared.reconnect()
                 _ = Wolf.request(type: MyAPI.addOrUpdateACup(type: DeviceTypeWifi, uuid: self.device_id!, name: self.device_id!, add: true), completion: { (user: User?, msg, code) in
                     self.tipsAlert?.dismiss(animated: false, completion: nil)
                     if(code == "0")
@@ -303,7 +295,7 @@ class WifiTableViewController: UITableViewController, QRCodeReaderViewController
                             WifiController.shared.savedWifi.append(self.device_id!)
                             UserDefaults.standard.set(WifiController.shared.savedWifi, forKey: "WiFi_list")
                         }
-                        WifiController.shared.startAutoConnect()
+                        WifiController.shared.reconnect()
                         _ = Wolf.request(type: MyAPI.addOrUpdateACup(type: DeviceTypeWifi, uuid: self.device_id!, name: self.device_id!, add: true), completion: { (user: User?, msg, code) in
                             
                             self.tipsAlert?.dismiss(animated: false, completion: nil)
@@ -379,17 +371,17 @@ class WifiTableViewController: UITableViewController, QRCodeReaderViewController
 
         //let session = URLSession.shared
         let configuration = URLSessionConfiguration.default
-        configuration.timeoutIntervalForRequest = 300
+        configuration.timeoutIntervalForRequest = 200
         let session = URLSession(configuration: configuration)
         let dataTask = session.dataTask(with: request, completionHandler: { (data, response, error) -> Void in
             if (error != nil) {
                 print("sendPasswordToCup Fail")
-                print(error ?? "")
-                if(self.retryPasswordToCup > 1){
-                    Log("retry sendPasswordToCup")
-                    self.retryPasswordToCup -= 1;
-                    self.sendPasswordToCup();
-                }
+//                print(error ?? "")
+//                if(self.retryPasswordToCup > 1){
+//                    Log("retry sendPasswordToCup")
+//                    self.retryPasswordToCup -= 1;
+//                    self.sendPasswordToCup();
+//                }
             } else {
                 let httpResponse = response as? HTTPURLResponse
                 print(httpResponse ?? "")
