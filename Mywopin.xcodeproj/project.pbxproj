@@ -111,6 +111,7 @@
 		C192AAAA20C4C8FA004EE98D /* Cells.swift in Sources */ = {isa = PBXBuildFile; fileRef = C192AAA920C4C8FA004EE98D /* Cells.swift */; };
 		C197D3FF20D74EA700E3FBEE /* RegisterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C197D3FE20D74EA700E3FBEE /* RegisterVC.swift */; };
 		C197D40120D74EC300E3FBEE /* ThirdPartLoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C197D40020D74EC300E3FBEE /* ThirdPartLoginVC.swift */; };
+		C1AB2BD22149210000CE6A2D /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1AB2BD12149210000CE6A2D /* TabBarController.swift */; };
 		C1B9744D20FA3FE000BC2EB9 /* ChangeDeviceNameVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1B9744C20FA3FDF00BC2EB9 /* ChangeDeviceNameVC.swift */; };
 		C1BA806D20D7679A007D2B48 /* SwiftRx(Extension).swift in Sources */ = {isa = PBXBuildFile; fileRef = C1BA806C20D7679A007D2B48 /* SwiftRx(Extension).swift */; };
 		C1BA807120D7756B007D2B48 /* LandingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1BA807020D7756B007D2B48 /* LandingVC.swift */; };
@@ -146,6 +147,7 @@
 		C1C4295220D6AA1D0071532F /* SinaWeiboConnector.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C1C4293C20D6AA1D0071532F /* SinaWeiboConnector.framework */; };
 		C1C4295320D6AA1D0071532F /* ShareSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C1C4293D20D6AA1D0071532F /* ShareSDK.framework */; };
 		C1C4295420D6AA1D0071532F /* MOBFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C1C4293F20D6AA1D0071532F /* MOBFoundation.framework */; };
+		C1D0AF732147A2A1005C682B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C1D0AF722147A2A1005C682B /* GoogleService-Info.plist */; };
 		C1D5B60220F3B54F004DCE83 /* ReturnOrderNumVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1D5B60120F3B54E004DCE83 /* ReturnOrderNumVC.swift */; };
 		C1D5B60520F46104004DCE83 /* ExchangeOrderDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1D5B60420F46104004DCE83 /* ExchangeOrderDetailVC.swift */; };
 		C1F128292139150300BBD457 /* Toast.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1F128282139150200BBD457 /* Toast.swift */; };
@@ -279,6 +281,7 @@
 		C192AAA920C4C8FA004EE98D /* Cells.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Cells.swift; sourceTree = "<group>"; };
 		C197D3FE20D74EA700E3FBEE /* RegisterVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterVC.swift; sourceTree = "<group>"; };
 		C197D40020D74EC300E3FBEE /* ThirdPartLoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThirdPartLoginVC.swift; sourceTree = "<group>"; };
+		C1AB2BD12149210000CE6A2D /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		C1B9744C20FA3FDF00BC2EB9 /* ChangeDeviceNameVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChangeDeviceNameVC.swift; sourceTree = "<group>"; };
 		C1BA806C20D7679A007D2B48 /* SwiftRx(Extension).swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SwiftRx(Extension).swift"; sourceTree = "<group>"; };
 		C1BA807020D7756B007D2B48 /* LandingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandingVC.swift; sourceTree = "<group>"; };
@@ -322,6 +325,7 @@
 		C1C4293C20D6AA1D0071532F /* SinaWeiboConnector.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SinaWeiboConnector.framework; sourceTree = "<group>"; };
 		C1C4293D20D6AA1D0071532F /* ShareSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ShareSDK.framework; sourceTree = "<group>"; };
 		C1C4293F20D6AA1D0071532F /* MOBFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = MOBFoundation.framework; sourceTree = "<group>"; };
+		C1D0AF722147A2A1005C682B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		C1D5B60120F3B54E004DCE83 /* ReturnOrderNumVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReturnOrderNumVC.swift; sourceTree = "<group>"; };
 		C1D5B60420F46104004DCE83 /* ExchangeOrderDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeOrderDetailVC.swift; sourceTree = "<group>"; };
 		C1F128282139150200BBD457 /* Toast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Toast.swift; sourceTree = "<group>"; };
@@ -486,6 +490,7 @@
 				C192AA1220C23770004EE98D /* DrinkViewController.swift */,
 				C192AA4F20C37FCF004EE98D /* ColorPicker.swift */,
 				C16980DE20E8D3D20034E954 /* CleanCupViewController.swift */,
+				C1AB2BD12149210000CE6A2D /* TabBarController.swift */,
 			);
 			path = MainPage;
 			sourceTree = "<group>";
@@ -594,6 +599,7 @@
 				C192AA1920C23771004EE98D /* Assets.xcassets */,
 				C192AA1B20C23771004EE98D /* LaunchScreen.storyboard */,
 				C192AA1E20C23771004EE98D /* Info.plist */,
+				C1D0AF722147A2A1005C682B /* GoogleService-Info.plist */,
 				C1C428CB20D651FE0071532F /* Mywopin-Bridging-Header.h */,
 				C1383A3420DF856D00F1EBE6 /* Localizable.strings */,
 			);
@@ -872,6 +878,7 @@
 				C192AA0A20C23770004EE98D /* Frameworks */,
 				C192AA0B20C23770004EE98D /* Resources */,
 				36B281009EEA4BE6A7C1F9F1 /* [CP] Embed Pods Frameworks */,
+				C1D0AF742147A38B005C682B /* Fabric */,
 			);
 			buildRules = (
 			);
@@ -956,6 +963,7 @@
 				C1383A3220DF856D00F1EBE6 /* Localizable.strings in Resources */,
 				C15AEF9220F0D4C6009F4A0E /* address.json in Resources */,
 				C192AAA220C3EF66004EE98D /* SourceHanSans-Light.otf in Resources */,
+				C1D0AF732147A2A1005C682B /* GoogleService-Info.plist in Resources */,
 				C192AAA120C3EF66004EE98D /* mui.ttf in Resources */,
 				C1C4294020D6AA1D0071532F /* WeiboSDK.bundle in Resources */,
 			);
@@ -977,6 +985,7 @@
 				"${BUILT_PRODUCTS_DIR}/CocoaMQTT/CocoaMQTT.framework",
 				"${BUILT_PRODUCTS_DIR}/DLLocalNotifications/DLLocalNotifications.framework",
 				"${BUILT_PRODUCTS_DIR}/Disk/Disk.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
 				"${BUILT_PRODUCTS_DIR}/Gridicons/Gridicons.framework",
 				"${BUILT_PRODUCTS_DIR}/IHKeyboardAvoiding/IHKeyboardAvoiding.framework",
 				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
@@ -990,6 +999,7 @@
 				"${BUILT_PRODUCTS_DIR}/SwiftyTimer/SwiftyTimer.framework",
 				"${BUILT_PRODUCTS_DIR}/WordPress-Aztec-iOS/Aztec.framework",
 				"${BUILT_PRODUCTS_DIR}/WordPress-Editor-iOS/WordPressEditor.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
@@ -999,6 +1009,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CocoaMQTT.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DLLocalNotifications.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Disk.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Gridicons.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IHKeyboardAvoiding.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
@@ -1012,6 +1023,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyTimer.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Aztec.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/WordPressEditor.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1050,6 +1062,20 @@
 			shellPath = /bin/sh;
 			shellScript = "\"$PODS_ROOT/R.swift/rswift\" generate \"$SRCROOT\"";
 		};
+		C1D0AF742147A38B005C682B /* Fabric */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = Fabric;
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Fabric/run\"  ";
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -1060,6 +1086,7 @@
 				C172312020FE249500BF6160 /* RKChartTitleView.swift in Sources */,
 				C158F729213BB0470090EE1A /* PostModel.swift in Sources */,
 				C192AAA820C431E8004EE98D /* MyProfileTableVC.swift in Sources */,
+				C1AB2BD22149210000CE6A2D /* TabBarController.swift in Sources */,
 				C1008E0920C5669000E73F8F /* PostListViewController.swift in Sources */,
 				C11A0FFF20E9B4E1000979B3 /* DrinkHistory.swift in Sources */,
 				C192AA3820C23EA9004EE98D /* Tools.swift in Sources */,

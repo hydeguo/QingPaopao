@@ -47,7 +47,7 @@ class AddressInfoVC: UITableViewController,AddressPickerViewDelegate ,UITextFiel
         
         navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
         
-        picker = AddressPickerView.addTo(superView: view)
+        picker = AddressPickerView.addTo(superView: view, offsetTop: (self.navigationController?.navigationBar.frame.size.height ?? 0) + UIApplication.shared.statusBarFrame.height)
         picker?.delegate = self
         
         self.tableView.tableFooterView = UIView(frame: CGRect.zero)
@@ -71,6 +71,7 @@ class AddressInfoVC: UITableViewController,AddressPickerViewDelegate ,UITextFiel
     }
     @IBAction func saveAction(sender: AnyObject) {
         
+        UIApplication.shared.keyWindow?.endEditing(true)
         if(nameLf.text?.count==0){
             _ = SweetAlert().showAlert("Sorry", subTitle: "请输入名字!", style: AlertStyle.error)
             return
@@ -96,7 +97,7 @@ class AddressInfoVC: UITableViewController,AddressPickerViewDelegate ,UITextFiel
             {
                 myClientVo = user
                 _ = SweetAlert().showAlert(Language.getString("保存成功"), subTitle: msg, style: AlertStyle.success)
-                return
+
             }
             else
             {

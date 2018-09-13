@@ -77,6 +77,7 @@ class ChangePassword: UIViewController  , UITextFieldDelegate{
     {
         if let phoneNum = userIDTF.text,let psw = passwordTF.text,let psw2 = passwordTF2.text,let v_code = verifyTF.text
         {
+            UIApplication.shared.keyWindow?.endEditing(true)
             guard (isPhoneNumber(phoneNumber: phoneNum))else {
                 _ = SweetAlert().showAlert("Sorry", subTitle: "请输入正确手机号码!", style: AlertStyle.error)
                 return
@@ -98,7 +99,6 @@ class ChangePassword: UIViewController  , UITextFieldDelegate{
                 if flag == true
                 {
                     _ = SweetAlert().showAlert("修改成功", subTitle: "", style: AlertStyle.success)
-                    
 //                    if UserDefaults.standard.dictionary(forKey: "userInformation") == nil {
 //                        login(phone: phoneNum, psw: psw, platform: 0) { (user) in
 //                            if user != nil

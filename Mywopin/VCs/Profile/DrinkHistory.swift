@@ -36,8 +36,8 @@ class DrinkHistory: UIViewController {
     var standard_month:Int = 0
     
     //MARK: Check if user is signed in or not
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         
         self.navigationController?.setNavigationBarHidden(false, animated: false)
         self.segmentedControlAction(sender: segmentedControl)

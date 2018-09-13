@@ -26,6 +26,10 @@ target 'Mywopin' do
     pod 'WordPress-Editor-iOS', '1.0.0'
     pod 'Gridicons'
     pod 'Alamofire'
+    
+    pod 'Firebase/Core'
+    pod 'Fabric', '~> 1.7.11'
+    pod 'Crashlytics'
 end
 
 

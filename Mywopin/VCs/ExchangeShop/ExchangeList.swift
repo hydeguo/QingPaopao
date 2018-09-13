@@ -19,6 +19,7 @@ class ExchangeList: UITableViewController {
     
 
     override func viewWillAppear(_ animated: Bool) {
+        self.navigationController?.setNavigationBarHidden(false, animated: false)
         if let selectionIndexPath = self.tableView.indexPathForSelectedRow {
             self.tableView.deselectRow(at: selectionIndexPath, animated: animated)
         }

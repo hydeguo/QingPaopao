@@ -25,6 +25,7 @@ var strDeviceToken : String = ""
 var ratio:CGFloat = 1.33333
 var light_blue = UIColor(red:238/255.0, green:250/255.0, blue:255/255.0, alpha: 1)
 var title_color = UIColor(red:41/255.0, green:47/255.0, blue:51/255.0, alpha: 1)
+var main_color = UIColor(red: 93/255.0, green: 218/255.0, blue: 255/255.0, alpha: 1.0)
 
 var cleanTime:TimeInterval = 300
 var startCleanTime:TimeInterval = 0

@@ -30,6 +30,7 @@ class ChangeDeviceNameVC: UIViewController,UITextFieldDelegate {
     
     @IBAction func clickCommitBtn()
     {
+        UIApplication.shared.keyWindow?.endEditing(true)
         guard cupData != nil else{
             return
         }

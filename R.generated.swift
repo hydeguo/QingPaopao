@@ -22,10 +22,12 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
   
-  /// This `R.file` struct is generated, and contains static references to 12 files.
+  /// This `R.file` struct is generated, and contains static references to 13 files.
   struct file {
     /// Resource file `BLEManagerAPIDoc.pdf`.
     static let bleManagerAPIDocPdf = Rswift.FileResource(bundle: R.hostingBundle, name: "BLEManagerAPIDoc", pathExtension: "pdf")
+    /// Resource file `GoogleService-Info.plist`.
+    static let googleServiceInfoPlist = Rswift.FileResource(bundle: R.hostingBundle, name: "GoogleService-Info", pathExtension: "plist")
     /// Resource file `Info.plist`.
     static let infoPlist = Rswift.FileResource(bundle: R.hostingBundle, name: "Info", pathExtension: "plist")
     /// Resource file `README.md`.
@@ -52,6 +54,12 @@ struct R: Rswift.Validatable {
     /// `bundle.url(forResource: "BLEManagerAPIDoc", withExtension: "pdf")`
     static func bleManagerAPIDocPdf(_: Void = ()) -> Foundation.URL? {
       let fileResource = R.file.bleManagerAPIDocPdf
+      return fileResource.bundle.url(forResource: fileResource)
+    }
+    
+    /// `bundle.url(forResource: "GoogleService-Info", withExtension: "plist")`
+    static func googleServiceInfoPlist(_: Void = ()) -> Foundation.URL? {
+      let fileResource = R.file.googleServiceInfoPlist
       return fileResource.bundle.url(forResource: fileResource)
     }
     
@@ -742,10 +750,10 @@ struct R: Rswift.Validatable {
     static let cell: Rswift.ReuseIdentifier<UIKit.UITableViewCell> = Rswift.ReuseIdentifier(identifier: "cell")
     /// Reuse identifier `comment`.
     static let comment: Rswift.ReuseIdentifier<CommentTableViewCell> = Rswift.ReuseIdentifier(identifier: "comment")
-    /// Reuse identifier `lebelCell`.
-    static let lebelCell: Rswift.ReuseIdentifier<UIKit.UITableViewCell> = Rswift.ReuseIdentifier(identifier: "lebelCell")
+    /// Reuse identifier `labelCell`.
+    static let labelCell: Rswift.ReuseIdentifier<BaseBlogCell> = Rswift.ReuseIdentifier(identifier: "labelCell")
     /// Reuse identifier `separateCell`.
-    static let separateCell: Rswift.ReuseIdentifier<UIKit.UITableViewCell> = Rswift.ReuseIdentifier(identifier: "separateCell")
+    static let separateCell: Rswift.ReuseIdentifier<BaseBlogCell> = Rswift.ReuseIdentifier(identifier: "separateCell")
     /// Reuse identifier `subComment`.
     static let subComment: Rswift.ReuseIdentifier<SubCommentTableViewCell> = Rswift.ReuseIdentifier(identifier: "subComment")
     /// Reuse identifier `webCell`.
@@ -786,16 +794,25 @@ struct R: Rswift.Validatable {
       fileprivate init() {}
     }
     
-    /// This struct is generated for `DrinkViewController`, and contains static references to 1 segues.
+    /// This struct is generated for `DrinkViewController`, and contains static references to 2 segues.
     struct drinkViewController {
-      /// Segue identifier `queue`.
-      static let queue: Rswift.StoryboardSegueIdentifier<UIKit.UIStoryboardSegue, DrinkViewController, CleanCupViewController> = Rswift.StoryboardSegueIdentifier(identifier: "queue")
+      /// Segue identifier `clean`.
+      static let clean: Rswift.StoryboardSegueIdentifier<UIKit.UIStoryboardSegue, DrinkViewController, CleanCupViewController> = Rswift.StoryboardSegueIdentifier(identifier: "clean")
+      /// Segue identifier `light`.
+      static let light: Rswift.StoryboardSegueIdentifier<UIKit.UIStoryboardSegue, DrinkViewController, ColorPicker> = Rswift.StoryboardSegueIdentifier(identifier: "light")
       
-      /// Optionally returns a typed version of segue `queue`.
+      /// Optionally returns a typed version of segue `clean`.
       /// Returns nil if either the segue identifier, the source, destination, or segue types don't match.
       /// For use inside `prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?)`.
-      static func queue(segue: UIKit.UIStoryboardSegue) -> Rswift.TypedStoryboardSegueInfo<UIKit.UIStoryboardSegue, DrinkViewController, CleanCupViewController>? {
-        return Rswift.TypedStoryboardSegueInfo(segueIdentifier: R.segue.drinkViewController.queue, segue: segue)
+      static func clean(segue: UIKit.UIStoryboardSegue) -> Rswift.TypedStoryboardSegueInfo<UIKit.UIStoryboardSegue, DrinkViewController, CleanCupViewController>? {
+        return Rswift.TypedStoryboardSegueInfo(segueIdentifier: R.segue.drinkViewController.clean, segue: segue)
+      }
+      
+      /// Optionally returns a typed version of segue `light`.
+      /// Returns nil if either the segue identifier, the source, destination, or segue types don't match.
+      /// For use inside `prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?)`.
+      static func light(segue: UIKit.UIStoryboardSegue) -> Rswift.TypedStoryboardSegueInfo<UIKit.UIStoryboardSegue, DrinkViewController, ColorPicker>? {
+        return Rswift.TypedStoryboardSegueInfo(segueIdentifier: R.segue.drinkViewController.light, segue: segue)
       }
       
       fileprivate init() {}
@@ -907,7 +924,7 @@ struct R: Rswift.Validatable {
   
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 28 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 29 localization keys.
     struct localizable {
       /// zh-Hans translation: 今天喝水统计
       /// 
@@ -993,6 +1010,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: zh-Hans
       static let 签到成功 = Rswift.StringResource(key: "签到成功", tableName: "Localizable", bundle: R.hostingBundle, locales: ["zh-Hans"], comment: nil)
+      /// zh-Hans translation: 绑定失败
+      /// 
+      /// Locales: zh-Hans
+      static let 绑定失败 = Rswift.StringResource(key: "绑定失败", tableName: "Localizable", bundle: R.hostingBundle, locales: ["zh-Hans"], comment: nil)
       /// zh-Hans translation: 绑定成功
       /// 
       /// Locales: zh-Hans
@@ -1167,6 +1188,13 @@ struct R: Rswift.Validatable {
       /// Locales: zh-Hans
       static func 签到成功(_: Void = ()) -> String {
         return NSLocalizedString("签到成功", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// zh-Hans translation: 绑定失败
+      /// 
+      /// Locales: zh-Hans
+      static func 绑定失败(_: Void = ()) -> String {
+        return NSLocalizedString("绑定失败", bundle: R.hostingBundle, comment: "")
       }
       
       /// zh-Hans translation: 绑定成功

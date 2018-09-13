@@ -222,6 +222,7 @@ class ExchangeShopDetailVC: UITableViewController ,UIWebViewDelegate{
         </body>\
         </html>
         """
+        detailWebView.isHidden = true
         detailWebView.delegate = self
         detailWebView.backgroundColor = UIColor.clear
         detailWebView.isOpaque = false
@@ -237,6 +238,7 @@ class ExchangeShopDetailVC: UITableViewController ,UIWebViewDelegate{
     
     func webViewDidFinishLoad(_ webView: UIWebView) {
         // 使webView自适应高度
+        detailWebView.isHidden = false
         webView.sizeToFit()
         let height = webView.bounds.size.height
         webView.frame = CGRect.init(x: 10, y: 0, width: screenWidth - 20, height: height)

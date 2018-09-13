@@ -132,6 +132,21 @@ class DrinkViewController: UIViewController, CLLocationManagerDelegate {
         getTodayDrinks()
         
     }
+
+    
+    override func shouldPerformSegue(withIdentifier identifier: String?, sender: Any?) -> Bool {
+        if identifier == "clean" || identifier == "light"{
+            #if targetEnvironment(simulator)
+            #else
+            if(Date().timeIntervalSince1970 - WifiController.shared.lastReceiveTime > 30 && BLEController.shared.connectedDevice?.state != .connected)
+            {
+                _ = SweetAlert().showAlert("提示", subTitle: "请链接设备", style: AlertStyle.none)
+                return false
+            }
+            #endif
+        }
+        return true
+    }
     
     private func startElectrolyUI()
     {
@@ -208,6 +223,15 @@ class DrinkViewController: UIViewController, CLLocationManagerDelegate {
     
     @IBAction func onClickElectroly()
     {
+        #if targetEnvironment(simulator)
+        #else
+        if(Date().timeIntervalSince1970 - WifiController.shared.lastReceiveTime > 30 && BLEController.shared.connectedDevice?.state != .connected)
+        {
+            _ = SweetAlert().showAlert("提示", subTitle: "请链接设备", style: AlertStyle.none)
+            return
+        }
+        #endif
+        
         if startElectrolyTime == 0
         {
             startElectroly()
@@ -232,13 +256,14 @@ class DrinkViewController: UIViewController, CLLocationManagerDelegate {
     
     @IBAction func onClickReturn()
     {
-        let vc =  R.storyboard.main.deviceList()
-//        self.show(vc!, sender: nil)
-        self.navigationController?.pushViewController(vc!, animated: true)
+//        let vc =  R.storyboard.main.deviceList()
+////        self.show(vc!, sender: nil)
+//        self.navigationController?.pushViewController(vc!, animated: true)
     }
     
     func startElectroly()
     {
+        
         startElectrolyTime = Date().timeIntervalSince1970
         electrolyTime = TimeInterval(sliderNum.value * 60)
         UserDefaults.standard.set(startElectrolyTime, forKey: "startElectrolyTime")

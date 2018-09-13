@@ -128,6 +128,7 @@ class ScoresShopDetailVC: UITableViewController ,UIWebViewDelegate{
     }
     override func viewWillAppear(_ animated: Bool) {
         
+        self.navigationController?.setNavigationBarHidden(false, animated: false)
         calculateWebHeight()
         
         createImages()

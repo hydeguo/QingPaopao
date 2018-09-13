@@ -58,7 +58,7 @@ open class LineChart: UIView {
         public var visible: Bool = true
         // #607d8b
         public var color: UIColor = UIColor(red: 96/255.0, green: 125/255.0, blue: 139/255.0, alpha: 1)
-        public var inset: CGFloat = 15
+        public var inset: CGFloat = 25
     }
     
     public struct Coordinate {

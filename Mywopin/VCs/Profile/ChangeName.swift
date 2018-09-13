@@ -35,11 +35,11 @@ class ChangeName: UITableViewController ,UITextFieldDelegate{
     @objc func save(_ sender: Any) {
         
         _ = Wolf.request(type: MyAPI.changeUserName( userName: nameTf.text!), completion: { (user: User?, msg, code) in
+            UIApplication.shared.keyWindow?.endEditing(true)
             if(code == "0")
             {
                 myClientVo?.userName = self.nameTf.text!
                 _ = SweetAlert().showAlert(Language.getString("保存成功"), subTitle: "", style: AlertStyle.success)
-                return
             }
             else
             {

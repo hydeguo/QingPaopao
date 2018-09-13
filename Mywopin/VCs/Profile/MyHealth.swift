@@ -32,13 +32,13 @@ class MyHealth: UITableViewController {
         }
         
         if let height = myClientVo?.profiles?.height {
-            heightLabel.text = String(height)
+            heightLabel.text = "\(height) cm"
         }
         if let weight = myClientVo?.profiles?.weight {
-            weightLabel.text = String(weight)
+            weightLabel.text = "\(weight) kg"
         }
         if let age = myClientVo?.profiles?.age {
-            ageLabel.text = String(age)
+            ageLabel.text = String(Int(age))
         }
         if let blood_lipid = myClientVo?.profiles?.blood_lipid_all {
             bloodLipid.text = String(blood_lipid)

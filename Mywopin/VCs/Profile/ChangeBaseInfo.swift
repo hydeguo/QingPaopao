@@ -51,12 +51,16 @@ class ChangeBaseInfo: UITableViewController,UITextFieldDelegate {
     
     @objc func save(_ sender: Any) {
 
-        _ = Wolf.request(type: MyAPI.updateBodyProfiles(key: [key1,key2,key3], value: [valueTf1?.text ?? "",valueTf2?.text ?? "",valueTf3?.text ?? ""]), completion: { (user: User?, msg, code) in
+        let  value_1  =  Double(valueTf1?.text ?? "0" )
+        let  value_2  =  Double(valueTf2?.text ?? "0" )
+        let  value_3  =  Double(valueTf3?.text ?? "0" )
+        
+        _ = Wolf.request(type: MyAPI.updateBodyProfiles(key: [key1,key2,key3], value: [value_1,value_2,value_3]), completion: { (user: User?, msg, code) in
+            UIApplication.shared.keyWindow?.endEditing(true)
             if(code == "0")
             {
                 myClientVo = user
                 _ = SweetAlert().showAlert(Language.getString("保存成功"), subTitle: "", style: AlertStyle.success)
-                return
             }
             else
             {
@@ -70,43 +74,43 @@ class ChangeBaseInfo: UITableViewController,UITextFieldDelegate {
 
 class UpdateHeight: ChangeBaseInfo {
     
-    override func viewDidAppear(_ animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         key1 = "height"
         if let value = myClientVo?.profiles?.height
         {
-            valueTf1?.text = String( value)
+            valueTf1?.text = "\(value)"
         }
     }
 }
 
 class UpdateWeight: ChangeBaseInfo {
     
-    override func viewDidAppear(_ animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         key1 = "weight"
         if let value = myClientVo?.profiles?.weight
         {
-            valueTf1?.text = String( value)
+            valueTf1?.text = "\(value)"
         }
     }
 
 }
 class UpdateAge: ChangeBaseInfo {
     
-    override func viewDidAppear(_ animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         key1 = "age"
         if let value = myClientVo?.profiles?.age
         {
-            valueTf1?.text = String( value)
+            valueTf1?.text = String( Int(value))
         }
     }
     
 }
 class UpdateBlood_sugar: ChangeBaseInfo {
     
-    override func viewDidAppear(_ animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         key1 = "blood_sugar_full"
         key2 = "blood_sugar_hugry"
@@ -123,11 +127,11 @@ class UpdateBlood_sugar: ChangeBaseInfo {
 }
 class UpdateBlood_lipid: ChangeBaseInfo {
     
-    override func viewDidAppear(_ animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         key1 = "blood_lipid_all"
         key2 = "blood_lipid"
-        key2 = "blood_lipid_TG"
+        key3 = "blood_lipid_TG"
         if let value = myClientVo?.profiles?.blood_lipid_all
         {
             valueTf1?.text = String( value)
@@ -145,7 +149,7 @@ class UpdateBlood_lipid: ChangeBaseInfo {
 }
 class UpdateBlood_pressure: ChangeBaseInfo {
     
-    override func viewDidAppear(_ animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         key1 = "blood_pressure"
         key2 = "blood_pressure_press"

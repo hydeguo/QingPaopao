@@ -122,8 +122,8 @@ class AddressPickerView: UIView {
     }
     
     //MARK: 初始化
-    class func addTo(superView: UIView) -> AddressPickerView {
-        let pickerView = AddressPickerView(frame: CGRect(x: 0, y: superView.frame.height - 249, width: superView.frame.width, height: 249))
+    class func addTo(superView: UIView, offsetTop:CGFloat) -> AddressPickerView {
+        let pickerView = AddressPickerView(frame: CGRect(x: 0, y: superView.frame.height - 249 - offsetTop, width: superView.frame.width, height: 249))
         superView.addSubview(pickerView)
         return pickerView
     }

@@ -78,6 +78,7 @@ public class WifiController : NSObject, CocoaMQTTDelegate
     var savedWifi : [String] = []
     var allOnlineWifiCup : [OnlineWifiCup] = []
     var mqtt : CocoaMQTT?
+    var lastReceiveTime:TimeInterval = 0
     
     private override init() {
         super.init()
@@ -196,6 +197,7 @@ public class WifiController : NSObject, CocoaMQTTDelegate
         print("didReceiveMessage " + message.topic + " " + message.string!)
         if (savedWifi.contains(message.topic)) {
             print("updating device info " + message.topic)
+            self.lastReceiveTime = Date().timeIntervalSince1970;
             let resAll = message.string!.split(separator: ";")
             for resOne in resAll
             {

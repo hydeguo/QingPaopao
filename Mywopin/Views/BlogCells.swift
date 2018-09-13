@@ -116,7 +116,9 @@ class CommentTableViewCell: UITableViewCell {
             {
                 if commentData.likes?.contains(myClientVo!._id) == true
                 {
-                    self.likeBtn?.isSelected = true
+                    DispatchQueue.main.async(execute: {
+                        self.likeBtn?.isSelected = true
+                    })
                 }
             }
         }) { (error) in
@@ -135,7 +137,9 @@ class SubCommentTableViewCell: UITableViewCell {
     }
     
 }
-
+class BaseBlogCell: UITableViewCell {
+   
+}
 class PostBtnCell: UITableViewCell {
     @IBOutlet weak var likeLabel: UILabel!
     @IBOutlet weak var commentLabel: UILabel!
@@ -160,7 +164,7 @@ class PostBtnCell: UITableViewCell {
         
     }
 }
-class WebViewCell: UITableViewCell {
+class WebViewCell: UITableViewCell ,UIWebViewDelegate{
     
     @IBOutlet weak var webView: UIWebView!
     
@@ -192,9 +196,27 @@ class WebViewCell: UITableViewCell {
             </body>\
             </html>
             """
-            Log(contentString)
-            webView.loadHTMLString(htmls, baseURL: nil)
+//            Log(contentString)
+            self.webView.delegate = self
+            self.webView.backgroundColor = UIColor.clear
+            self.webView.isOpaque = false
+            self.webView.dataDetectorTypes = UIDataDetectorTypes.init(rawValue: 0)
+            self.webView.scrollView.isScrollEnabled = false
+            self.webView.scrollView.showsVerticalScrollIndicator = false
+            self.webView.scrollView.showsHorizontalScrollIndicator = false
+            self.webView.isUserInteractionEnabled = false
+            
+            self.webView.loadHTMLString(htmls, baseURL: nil)
         }
         
+    }
+    
+    func webViewDidFinishLoad(_ webView: UIWebView) {
+        DispatchQueue.main.async(execute: {
+            webView.sizeToFit()
+            let height = webView.bounds.size.height
+            Log(height)
+            webView.frame = CGRect.init(x: 10, y: 0, width: SCREEN_WIDTH - 20, height: height)
+        })
     }
 }

@@ -68,6 +68,7 @@ class ChangePhoneVC: UIViewController  , UITextFieldDelegate{
     {
         if let phoneNum = phoneTF.text,let v_code = verifyTF.text
         {
+            UIApplication.shared.keyWindow?.endEditing(true)
             guard (isPhoneNumber(phoneNumber: phoneNum))else {
                 _ = SweetAlert().showAlert("Sorry", subTitle: "请输入正确手机号码!", style: AlertStyle.error)
                 return
@@ -84,8 +85,10 @@ class ChangePhoneVC: UIViewController  , UITextFieldDelegate{
                 {
                     myClientVo = user
                     _ = SweetAlert().showAlert(Language.getString("绑定成功"), subTitle: "", style: AlertStyle.success)
-                    
-                    return
+                }
+                else
+                {
+                    _ = SweetAlert().showAlert(Language.getString("绑定失败"), subTitle: msg, style: AlertStyle.warning)
                 }
             }, failure: nil)
         }

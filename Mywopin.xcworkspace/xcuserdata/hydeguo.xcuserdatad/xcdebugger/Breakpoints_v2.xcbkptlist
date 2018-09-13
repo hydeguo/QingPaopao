@@ -58,7 +58,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Mywopin/VCs/ScoresShop/ScoresShopList.swift"
-            timestampString = "557560962.5248719"
+            timestampString = "558494735.084687"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "33"
@@ -74,12 +74,204 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Mywopin/VCs/ScoresShop/ScoresShopList.swift"
-            timestampString = "557560962.524937"
+            timestampString = "558494735.0847549"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "92"
             endingLineNumber = "92"
             landmarkName = "collectionView(_:cellForItemAt:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Mywopin/Views/BlogCells.swift"
+            timestampString = "558235938.933984"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "215"
+            endingLineNumber = "215"
+            landmarkName = "webViewDidFinishLoad(_:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Mywopin.WebViewCell.webViewDidFinishLoad(__ObjC.UIWebView) -&gt; ()"
+                  moduleName = "Mywopin"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/hydeguo/Documents/git/swift/QingPaopao/Mywopin/Views/BlogCells.swift"
+                  timestampString = "558494735.470374"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "215"
+                  endingLineNumber = "215"
+                  offsetFromSymbolStart = "18">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 () -&gt; () in Mywopin.WebViewCell.webViewDidFinishLoad(__ObjC.UIWebView) -&gt; ()"
+                  moduleName = "Mywopin"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/hydeguo/Documents/git/swift/QingPaopao/Mywopin/Views/BlogCells.swift"
+                  timestampString = "558494735.473285"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "216"
+                  endingLineNumber = "216"
+                  offsetFromSymbolStart = "15">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Mywopin/VCs/Profile/ChangeBaseInfo.swift"
+            timestampString = "558494735.084848"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "58"
+            endingLineNumber = "58"
+            landmarkName = "save(_:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Mywopin.ChangeBaseInfo.save(Any) -&gt; ()"
+                  moduleName = "Mywopin"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/hydeguo/Documents/git/swift/QingPaopao/Mywopin/VCs/Profile/ChangeBaseInfo.swift"
+                  timestampString = "558431892.51694"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "58"
+                  endingLineNumber = "58"
+                  offsetFromSymbolStart = "1820">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Optional&lt;Mywopin.User&gt;, Swift.Optional&lt;Swift.String&gt;, Swift.Optional&lt;Swift.String&gt;) -&gt; () in Mywopin.ChangeBaseInfo.save(Any) -&gt; ()"
+                  moduleName = "Mywopin"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/hydeguo/Documents/git/swift/QingPaopao/Mywopin/VCs/Profile/ChangeBaseInfo.swift"
+                  timestampString = "558431892.519453"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "59"
+                  endingLineNumber = "59"
+                  offsetFromSymbolStart = "88">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Mywopin/VCs/Profile/ChangeName.swift"
+            timestampString = "558494735.0849119"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "37"
+            endingLineNumber = "37"
+            landmarkName = "save(_:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Mywopin.ChangeName.save(Any) -&gt; ()"
+                  moduleName = "Mywopin"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/hydeguo/Documents/git/swift/QingPaopao/Mywopin/VCs/Profile/ChangeName.swift"
+                  timestampString = "558412586.106344"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "37"
+                  endingLineNumber = "37"
+                  offsetFromSymbolStart = "24">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Optional&lt;Mywopin.User&gt;, Swift.Optional&lt;Swift.String&gt;, Swift.Optional&lt;Swift.String&gt;) -&gt; () in Mywopin.ChangeName.save(Any) -&gt; ()"
+                  moduleName = "Mywopin"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/hydeguo/Documents/git/swift/QingPaopao/Mywopin/VCs/Profile/ChangeName.swift"
+                  timestampString = "558412586.108496"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "38"
+                  endingLineNumber = "38"
+                  offsetFromSymbolStart = "68">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Mywopin/VCs/Profile/ChangeName.swift"
+            timestampString = "558494735.084963"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "46"
+            endingLineNumber = "46"
+            landmarkName = "save(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Mywopin/VCs/ScoresShop/ScoresShopList.swift"
+            timestampString = "558494735.0850101"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "29"
+            endingLineNumber = "29"
+            landmarkName = "viewWillAppear(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Mywopin/VCs/MainPage/DrinkViewController.swift"
+            timestampString = "558494735.085061"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "141"
+            endingLineNumber = "141"
+            landmarkName = "shouldPerformSegue(withIdentifier:sender:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

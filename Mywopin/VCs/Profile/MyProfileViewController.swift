@@ -96,15 +96,10 @@ class MyProfileViewController: UIViewController {
             if(code == "0")
             {
                 myClientVo = user
-                _ = SweetAlert().showAlert("", subTitle: Language.getString("签到成功"), style: AlertStyle.none)
+                _ = SweetAlert().showAlert("", subTitle: Language.getString("签到成功"), style: AlertStyle.success)
                 self.updateUI()
             }
-            else
-            {
-                _ = SweetAlert().showAlert("Sorry", subTitle: msg, style: AlertStyle.warning)
-            }
         }) { (error) in
-            _ = SweetAlert().showAlert("Sorry", subTitle: error?.errorDescription, style: AlertStyle.warning)
         }
     }
     

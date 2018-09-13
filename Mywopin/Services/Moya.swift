@@ -31,7 +31,7 @@ enum MyAPI {
     case getExchangeGoods
     case getScoresOrder
     case getCrowdfundingOrder
-    case updateBodyProfiles(key:[String] ,value:[String?])
+    case updateBodyProfiles(key:[String] ,value:[Double?])
     case drink(target:Int)
     case attendance
     case getTodayDrinkList
@@ -85,7 +85,7 @@ extension MyAPI: TargetType {
         case .getExchangeOrder,.getExchangeGoods,.getScoresOrder,.getCrowdfundingOrder:
             return .requestParameters(parameters:[:], encoding: URLEncoding.default)
         case .updateBodyProfiles(let key, let value):
-            var p:[String: String] = [ "key1" : key[0], "value1" : value[0]! ]
+            var p:[String: Any] = [ "key1" : key[0], "value1" : value[0]! ]
             if(key[1].count>0){
                 p["key2"] = key[1]
                 p["value2"] = value[1]

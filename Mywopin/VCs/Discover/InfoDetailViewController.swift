@@ -64,14 +64,14 @@ class InfoDetailViewController: UIViewController,UIWebViewDelegate{
             
             _identifier = postDesc.ID
             Log( postDesc.ID  )
-            WordPressWebServices.sharedInstance.postByIdentifier(postDesc.ID, completionHandler: { (postContent, error) -> Void in
-                if postContent != nil {
-                    self.postContent = postContent
-                    DispatchQueue.main.async(execute: { // access to UI in the main thread
-                        self.updateWebView()
-                    })
-                }
-            })
+//            WordPressWebServices.sharedInstance.postByIdentifier(postDesc.ID, completionHandler: { (postContent, error) -> Void in
+//                if postContent != nil {
+//                    self.postContent = postContent
+//                    DispatchQueue.main.async(execute: { // access to UI in the main thread
+//                        self.updateWebView()
+//                    })
+//                }
+//            })
             
         }
         

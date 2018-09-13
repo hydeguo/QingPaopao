@@ -27,8 +27,8 @@ class BindingThirdpartAccountVC: UITableViewController  {
         
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated);
         _ = Wolf.requestList(type: MyAPI.getThirdBinding(), completion: { (info: [ThirdpartLogin]?, msg, code) in
             if(code == "0")
             {

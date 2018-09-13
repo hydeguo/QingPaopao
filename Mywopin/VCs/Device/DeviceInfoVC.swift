@@ -188,8 +188,7 @@ class DeviceInfoVC: UITableViewController {
         let cmd = parseCupData(dataStr)
         if cmd.a == "1"
         {
-            powerLf.text = "\(cmd.b)%"
-        }
+            powerLf.text = "\(String(format: "%02d", Int(cmd.b, radix: 16)!))%"        }
     }
     
 //    func receiveDeviceBattery(_ battery: Int, device: CBPeripheral)
@@ -211,9 +210,23 @@ class DeviceInfoVC: UITableViewController {
     
     @IBAction func clickConnect()
     {
-        let device = BLEController.shared.bleManager.getDeviceByUUID(deviceInfo?.uuid)
-        if(device?.state == .disconnected){
-            BLEController.shared.bleManager.connect(toDevice: device)
+        if(deviceInfo?.type == DeviceTypeBLE)
+        {
+            let device = BLEController.shared.bleManager.getDeviceByUUID(deviceInfo?.uuid)
+            if(device?.state == .disconnected){
+                BLEController.shared.bleManager.connect(toDevice: device)
+            }else if(device?.state == .connected){
+                _ = SweetAlert().showAlert("提示", subTitle: "是否断开连接？" , style: AlertStyle.none, buttonTitle:"确定", buttonColor: main_color, otherButtonTitle:  "取消", otherButtonColor: main_color) { (isOtherButton) -> Void in
+                    if isOtherButton == true {
+                        // do not need to remove 
+//                        BLEController.shared.savedBLE = BLEController.shared.savedBLE.filter { $0 != device!.identifier.uuidString }
+//                        UserDefaults.standard.set(BLEController.shared.savedBLE, forKey: "BLE_list")
+                        BLEController.shared.bleManager.stopAutoConnect()
+                        BLEController.shared.bleManager.disconnectDevice(device)
+                        self.checkStatus()
+                    }
+                }
+            }
         }
     }
     

@@ -35,9 +35,9 @@ class DeviceListViewController: UITableViewController {
         super.viewWillAppear(animated)
         
         self.navigationController?.setNavigationBarHidden(false, animated: false)
-       
+        navigationController?.navigationBar.topItem?.title = Language.getString( "设备")
+        
         cups = cup_list
-        self.navigationItem.title = Language.getString("设备")
         self.tabBarController?.tabBar.isHidden = false
         self.updatePostList()
         self.tableView.reloadData()
@@ -119,9 +119,12 @@ class DeviceListViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let vc = self.storyboard?.instantiateViewController(withIdentifier: "deviceInfo") as! DeviceInfoVC
-        self.navigationController?.pushViewController(vc, animated: true)
-        vc.onSetData(info: cups[indexPath.row])
+        if cups.count > indexPath.row
+        {
+            let vc = self.storyboard?.instantiateViewController(withIdentifier: "deviceInfo") as! DeviceInfoVC
+            self.navigationController?.pushViewController(vc, animated: true)
+            vc.onSetData(info: cups[indexPath.row])
+        }
     }
     
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
