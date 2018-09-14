@@ -42,8 +42,17 @@ enum MyAPI {
     case crowdfundingOrderTotalMoney(goodsId:Int)
     case crowdfundingOrderTotalPeople(goodsId:Int)
     case addGeolocationParameters(device_id: String, time: String, lat: Double, long: Double, link: String)
-    case getBlogPostData(id:Int)
-    case getBlogCommentData(id:Int)
+    case getBlogPost(id:Int)
+    case getBlogPostList(page:Int,num:Int)
+    case getBlogPostComments(id:Int)
+    case collectBlogPost(id:Int)
+    case unCollectBlogPost(id:Int)
+    case likeBlogPost(id:Int)
+    case unLikeBlogPost(id:Int)
+    case likeBlogComment(id:Int)
+    case unLikeBlogComment(id:Int)
+    case newComment(postId:Int,content:String,parent:Int)
+    case newPost(title:String,content:String)
 }
 
 
@@ -111,6 +120,24 @@ extension MyAPI: TargetType {
             return .requestParameters(parameters: [ "goodsId" : goodsId], encoding: URLEncoding.default)
         case .crowdfundingOrderTotalPeople(let goodsId):
             return .requestParameters(parameters: [ "goodsId" : goodsId], encoding: URLEncoding.default)
+        case .getBlogPostList(let page,let num):
+            return .requestParameters(parameters: [ "page" : page,"num" : num], encoding: URLEncoding.default)
+        case .collectBlogPost(let id):
+            return .requestParameters(parameters: [ "postId" : id], encoding: URLEncoding.default)
+        case .unCollectBlogPost(let id):
+            return .requestParameters(parameters: [ "postId" : id], encoding: URLEncoding.default)
+        case .likeBlogPost(let id):
+            return .requestParameters(parameters: [ "postId" : id], encoding: URLEncoding.default)
+        case .unLikeBlogPost(let id):
+            return .requestParameters(parameters: [ "postId" : id], encoding: URLEncoding.default)
+        case .likeBlogComment(let id):
+            return .requestParameters(parameters: [ "id" : id], encoding: URLEncoding.default)
+        case .unLikeBlogComment(let id):
+            return .requestParameters(parameters: [ "id" : id], encoding: URLEncoding.default)
+        case .newPost(let title,let content):
+            return .requestParameters(parameters: [ "title" : title,"content" : content], encoding: URLEncoding.default)
+        case .newComment(let postId,let content,let parent):
+            return .requestParameters(parameters: [ "postId" : postId,"content" : content,"parent" : parent], encoding: URLEncoding.default)
         default:
             return .requestPlain
         }
@@ -199,16 +226,43 @@ extension MyAPI: TargetType {
             return "/goods/crowdfundingOrderTotalMoney"
         case .crowdfundingOrderTotalPeople:
             return "/goods/crowdfundingOrderTotalPeople"
-        case .getBlogPostData(let id):
-            return "/blog/blogPostData/\(id)"
-        case .getBlogCommentData(let id):
-            return "/blog/blogCommentData/\(id)"
+        case .getBlogPost(let id):
+            return "/blog/post/\(id)"
+        case .getBlogPostList:
+            return "/blog/posts"
+        case .getBlogPostComments(let id):
+            return "/blog/postComments/\(id)"
+        case .collectBlogPost:
+            return "/blog/collect"
+        case .unCollectBlogPost:
+            return "/blog/unCollect"
+        case .likeBlogPost:
+            return "/blog/like"
+        case .unLikeBlogPost:
+            return "/blog/unLike"
+        case .likeBlogComment:
+            return "/blog/likeComment"
+        case .unLikeBlogComment:
+            return "/blog/unLikeComment"
+        case .newComment:
+            return "/blog/newComment"
+        case .newPost:
+            return "/blog/newPost"
+            
         }
     }
     
     var method: Moya.Method {
         switch self {
-            case  .getExchangeOrder ,.getExchangeGoods,.getScoresOrder,.getCrowdfundingOrder,.cupList,.getUserData,.getBlogPostData,.getBlogCommentData:
+            case  .getExchangeOrder ,
+                  .getExchangeGoods,
+                  .getScoresOrder,
+                  .getCrowdfundingOrder,
+                  .cupList,
+                  .getUserData,
+                  .getBlogPost,
+                  .getBlogPostComments,
+                  .getBlogPostList:
             return .get
     
             default:

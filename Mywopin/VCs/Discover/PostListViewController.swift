@@ -13,8 +13,9 @@ import PKHUD
 
 class PostListViewController: UITableViewController {
     
+    static var updateFlag:Bool = false;
     var category = Dictionary<String, AnyObject>()
-    var posts = [PostItem]()
+    var posts = [BlogPostItem]()
     var cellHeight:CGFloat = 140
     
     override func awakeFromNib() {
@@ -28,12 +29,16 @@ class PostListViewController: UITableViewController {
         if let selectionIndexPath = self.tableView.indexPathForSelectedRow {
             self.tableView.deselectRow(at: selectionIndexPath, animated: animated)
         }
+        if PostListViewController.updateFlag == true{
+            PostListViewController.updateFlag = false;
+            self.updatePostList()
+        }
     }
     override func viewDidLoad() {
         super.viewDidLoad()
         
         do {
-            let retrievedMessage = try Disk.retrieve("PostList.json", from: .caches, as: [PostItem].self)
+            let retrievedMessage = try Disk.retrieve("PostList.json", from: .caches, as: [BlogPostItem].self)
             posts = retrievedMessage
         } catch _ as NSError {}
         
@@ -56,7 +61,7 @@ class PostListViewController: UITableViewController {
         if(posts.count==0){
             HUD.show(.progress)
         }
-        WordPressWebServices.sharedInstance.lastPosts(page:1, number: 20, completionHandler: { (posts, error) -> Void in
+        _ = Wolf.requestList(type: MyAPI.getBlogPostList(page: 1, num: 20), completion: { (posts: [BlogPostItem]?, msg, code) in
             if let _posts = posts {
                 self.posts = _posts
                 
@@ -64,13 +69,14 @@ class PostListViewController: UITableViewController {
                     try Disk.save(self.posts, to: .caches, as: "PostList.json")
                 } catch _ as NSError {}
                 
-                DispatchQueue.main.async(execute: {     // access to UI in the main thread only !
+                DispatchQueue.main.async(execute: {
                     HUD.hide()
                     self.refreshControl?.endRefreshing()
                     self.tableView.reloadData()
                 })
             }
-        })
+        }, failure: nil)
+        
     }
     
     
@@ -80,8 +86,7 @@ class PostListViewController: UITableViewController {
         if segue.identifier == "showDetail" {
             if let indexPath = self.tableView.indexPathForSelectedRow {
                 let post = posts[indexPath.row]
-//                let controller = (segue.destination as! UINavigationController).topViewController as! PostDetailController
-                let controller = (segue.destination as! UINavigationController).topViewController as! InfoDetailViewController
+                let controller = (segue.destination as! UINavigationController).topViewController as! PostDetailController
                 controller.detailItem = post
                 controller.navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem
                 controller.navigationItem.leftItemsSupplementBackButton = true

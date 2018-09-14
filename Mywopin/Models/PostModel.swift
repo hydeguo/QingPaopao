@@ -21,7 +21,7 @@ struct PostItem: Codable {
     var date:String?
     var featured_image:String?
     var author:Author?
-    var URL:Author?
+    var URL:String?
 }
 
 

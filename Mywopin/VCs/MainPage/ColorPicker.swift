@@ -67,7 +67,6 @@ class ColorPicker: UIViewController {
 //                self.iconLight.image = UIImage(named: "lightUI2")
                 ColorPicker.LAST_LED_ON = false
                 BLEController.shared.sendCommandToConnectedDevice(WopinCommand.COLOR_LED_OFF)
-                self.didSelect(color: ColorPicker.LAST_COLOR)
             }
         }).disposed(by: 👜)
         

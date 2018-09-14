@@ -9,23 +9,54 @@
 import Foundation
 
 
-struct BaseBlogPost: WolfMapper {
+struct BlogPostItem: WolfMapper {
     
-    var id: Double
-    var likes: [String]?
-    var comments: Double?
-    var collect: [String]?
+    var id:Int
+    var author: BlogAuthor?
+    var title: String?
+    var content:String?
+    var date:String?
+    var featured_image:String?
+    var URL:String?
+    var likes: Int
+    var stars: Int
+    var comments: Int
+    var myLike: Bool
+    var myStar: Bool
     
     func didInit() {
     }
 }
 
-
-
-struct BaseBlogComment: WolfMapper {
+struct BlogPostDetail: WolfMapper {
     
-    var id: Double
-    var likes: [String]?
+    var id:Int
+    var date:String
+    var title: String
+    var content:String?
+    var URL:String?
+    
+    func didInit() {
+    }
+}
+
+struct BlogAuthor:Codable {
+    var id:Int
+    var name: String?
+    var avatar_URL: String?
+}
+
+struct BlogComment: WolfMapper {
+    
+    var id:Int
+    var post:Int
+    var parent:Int
+    var date:String?
+    var content:String?
+    var author_name:String?
+    var avatar_URL: String?
+    var type:String?
+    var myLike: Bool
     
     func didInit() {
     }
