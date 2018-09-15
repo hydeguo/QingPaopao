@@ -762,7 +762,7 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
   
-  /// This `R.segue` struct is generated, and contains static references to 7 view controllers.
+  /// This `R.segue` struct is generated, and contains static references to 8 view controllers.
   struct segue {
     /// This struct is generated for `AddressListVC`, and contains static references to 1 segues.
     struct addressListVC {
@@ -828,6 +828,21 @@ struct R: Rswift.Validatable {
       /// For use inside `prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?)`.
       static func embedSegue(segue: UIKit.UIStoryboardSegue) -> Rswift.TypedStoryboardSegueInfo<UIKit.UIStoryboardSegue, InfosViewController, PostListViewController>? {
         return Rswift.TypedStoryboardSegueInfo(segueIdentifier: R.segue.infosViewController.embedSegue, segue: segue)
+      }
+      
+      fileprivate init() {}
+    }
+    
+    /// This struct is generated for `MyProfileViewController`, and contains static references to 1 segues.
+    struct myProfileViewController {
+      /// Segue identifier `history`.
+      static let history: Rswift.StoryboardSegueIdentifier<UIKit.UIStoryboardSegue, MyProfileViewController, PostListViewController> = Rswift.StoryboardSegueIdentifier(identifier: "history")
+      
+      /// Optionally returns a typed version of segue `history`.
+      /// Returns nil if either the segue identifier, the source, destination, or segue types don't match.
+      /// For use inside `prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?)`.
+      static func history(segue: UIKit.UIStoryboardSegue) -> Rswift.TypedStoryboardSegueInfo<UIKit.UIStoryboardSegue, MyProfileViewController, PostListViewController>? {
+        return Rswift.TypedStoryboardSegueInfo(segueIdentifier: R.segue.myProfileViewController.history, segue: segue)
       }
       
       fileprivate init() {}
@@ -1361,6 +1376,7 @@ struct _R: Rswift.Validatable {
       let name = "Main"
       let numerousShopPage = StoryboardViewControllerResource<CrowdfundingShopPage>(identifier: "NumerousShopPage")
       let orderListTopVC = StoryboardViewControllerResource<OrderListTopVC>(identifier: "OrderListTopVC")
+      let postListViewController = StoryboardViewControllerResource<PostListViewController>(identifier: "PostListViewController")
       let returnOrderNumVC = StoryboardViewControllerResource<ReturnOrderNumVC>(identifier: "ReturnOrderNumVC")
       let wifiScanListVC = StoryboardViewControllerResource<WifiScanListVC>(identifier: "wifiScanListVC")
       
@@ -1418,6 +1434,10 @@ struct _R: Rswift.Validatable {
       
       func orderListTopVC(_: Void = ()) -> OrderListTopVC? {
         return UIKit.UIStoryboard(resource: self).instantiateViewController(withResource: orderListTopVC)
+      }
+      
+      func postListViewController(_: Void = ()) -> PostListViewController? {
+        return UIKit.UIStoryboard(resource: self).instantiateViewController(withResource: postListViewController)
       }
       
       func returnOrderNumVC(_: Void = ()) -> ReturnOrderNumVC? {
@@ -1490,6 +1510,7 @@ struct _R: Rswift.Validatable {
         if UIKit.UIImage(named: "资源 11") == nil { throw Rswift.ValidationError(description: "[R.swift] Image named '资源 11' is used in storyboard 'Main', but couldn't be loaded.") }
         if UIKit.UIImage(named: "msgBtn") == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'msgBtn' is used in storyboard 'Main', but couldn't be loaded.") }
         if _R.storyboard.main().addDeviceView() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'addDeviceView' could not be loaded from storyboard 'Main' as 'AddDevice'.") }
+        if _R.storyboard.main().postListViewController() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'postListViewController' could not be loaded from storyboard 'Main' as 'PostListViewController'.") }
         if _R.storyboard.main().landingPage() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'landingPage' could not be loaded from storyboard 'Main' as 'LandingVC'.") }
         if _R.storyboard.main().addressInfoVC() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'addressInfoVC' could not be loaded from storyboard 'Main' as 'AddressInfoVC'.") }
         if _R.storyboard.main().orderListTopVC() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'orderListTopVC' could not be loaded from storyboard 'Main' as 'OrderListTopVC'.") }

@@ -43,7 +43,10 @@ enum MyAPI {
     case crowdfundingOrderTotalPeople(goodsId:Int)
     case addGeolocationParameters(device_id: String, time: String, lat: Double, long: Double, link: String)
     case getBlogPost(id:Int)
-    case getBlogPostList(page:Int,num:Int)
+    case getLastBlogPostList(page:Int,num:Int)
+    case getHotBlogPostList(page:Int,num:Int)
+    case getHistoryBlogPostList(page:Int,num:Int)
+    case searchBlogPostList(search:Int)
     case getBlogPostComments(id:Int)
     case collectBlogPost(id:Int)
     case unCollectBlogPost(id:Int)
@@ -120,8 +123,14 @@ extension MyAPI: TargetType {
             return .requestParameters(parameters: [ "goodsId" : goodsId], encoding: URLEncoding.default)
         case .crowdfundingOrderTotalPeople(let goodsId):
             return .requestParameters(parameters: [ "goodsId" : goodsId], encoding: URLEncoding.default)
-        case .getBlogPostList(let page,let num):
+        case .getLastBlogPostList(let page,let num):
             return .requestParameters(parameters: [ "page" : page,"num" : num], encoding: URLEncoding.default)
+        case .getHotBlogPostList(let page,let num):
+            return .requestParameters(parameters: [ "page" : page,"num" : num], encoding: URLEncoding.default)
+        case .getHistoryBlogPostList(let page,let num):
+            return .requestParameters(parameters: [ "page" : page,"num" : num], encoding: URLEncoding.default)
+        case .searchBlogPostList(let search):
+            return .requestParameters(parameters: [ "search" : search], encoding: URLEncoding.default)
         case .collectBlogPost(let id):
             return .requestParameters(parameters: [ "postId" : id], encoding: URLEncoding.default)
         case .unCollectBlogPost(let id):
@@ -228,8 +237,14 @@ extension MyAPI: TargetType {
             return "/goods/crowdfundingOrderTotalPeople"
         case .getBlogPost(let id):
             return "/blog/post/\(id)"
-        case .getBlogPostList:
+        case .getLastBlogPostList:
             return "/blog/posts"
+        case .getHotBlogPostList:
+            return "/blog/hotPosts"
+        case .getHistoryBlogPostList:
+            return "/blog/historyPosts"
+        case .searchBlogPostList:
+            return "/blog/searchPosts"
         case .getBlogPostComments(let id):
             return "/blog/postComments/\(id)"
         case .collectBlogPost:
@@ -262,7 +277,9 @@ extension MyAPI: TargetType {
                   .getUserData,
                   .getBlogPost,
                   .getBlogPostComments,
-                  .getBlogPostList:
+                  .getLastBlogPostList,
+                  .getHotBlogPostList,
+                  .getHistoryBlogPostList:
             return .get
     
             default:

@@ -9,16 +9,19 @@
 import Foundation
 import UIKit
 import IHKeyboardAvoiding
+import PKHUD
 
 
 
-class PostDetailController: UITableViewController,UIWebViewDelegate,UITextFieldDelegate{
+class PostDetailController: UIViewController, UITableViewDelegate, UITableViewDataSource,UIWebViewDelegate,UITextFieldDelegate{
     
     @IBOutlet var keyboardView:UIView?
     @IBOutlet var enterText:UITextField?
+    @IBOutlet var tableView:UITableView!
     
     let relayViewHeight:CGFloat = 50.0
     var webCell:WebViewCell?
+    var btnCell:PostBtnCell?
     
     var postContent:BlogPostDetail?
     var commentList:[BlogComment] = []
@@ -29,11 +32,13 @@ class PostDetailController: UITableViewController,UIWebViewDelegate,UITextFieldD
         }
     }
     var _identifier:Int = 0
-    var toCommentId:Int = -1
+    var toCommentId:Int = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
     
+        tableView.delegate = self
+        tableView.dataSource = self
         tableView.separatorInset = UIEdgeInsets.zero;
         tableView.layoutMargins = UIEdgeInsets.zero;
         self.tableView.tableFooterView = UIView(frame: CGRect.zero)
@@ -47,12 +52,16 @@ class PostDetailController: UITableViewController,UIWebViewDelegate,UITextFieldD
         
         KeyboardAvoiding.avoidingView = self.view//logoView
         
-        if let keyboardV = keyboardView
+        
+        var blog_history = [Int]()
+        if let _blog_history = UserDefaults.standard.array(forKey: "blog_history")
         {
-            keyboardV.frame = CGRect(x: 0, y: 0, width: view.width, height: relayViewHeight)
-            keyboardV.x = 0
-            keyboardV.y = view.height - relayViewHeight - (self.navigationController?.navigationBar.frame.size.height ?? 0)  - UIApplication.shared.statusBarFrame.height
-            self.view.addSubview(keyboardV)
+            blog_history = _blog_history as! [Int]
+        }
+        if let postId = detailItem?.id
+        {
+            blog_history.insert( postId , at: 0)
+            UserDefaults.standard.set(blog_history, forKey: "blog_history")
         }
     }
     
@@ -72,6 +81,35 @@ class PostDetailController: UITableViewController,UIWebViewDelegate,UITextFieldD
     
     @IBAction func onSend()
     {
+        UIApplication.shared.keyWindow?.endEditing(true)
+        if let content = enterText?.text, content.count > 0
+        {
+            
+            HUD.show(.progress)
+            _ = Wolf.request(type: MyAPI.newComment(postId: _identifier, content: content, parent: toCommentId), completion: { (postComment: BlogComment?, msg, code) in
+                HUD.hide()
+                if postComment != nil {
+                    DispatchQueue.main.async(execute: {
+                        if(self.toCommentId == 0 ){
+                            self.commentList.insert(postComment!, at: 0)
+                        }else{
+                            for i in 0 ..< self.commentList.count
+                            {
+                                if self.commentList[i].id == self.toCommentId
+                                {
+                                    self.commentList.insert(postComment!, at: i + 1)
+                                    self.toCommentId = 0
+                                    break
+                                }
+                            }
+                        }
+                        self.detailItem?.comments += 1
+                        self.btnCell?.commentLabel.text = String(self.detailItem?.comments ?? 0)
+                        self.tableView.reloadData()
+                    })
+                }
+            }) { (error) in}
+        }
         
     }
     
@@ -84,13 +122,13 @@ class PostDetailController: UITableViewController,UIWebViewDelegate,UITextFieldD
     {
         if let comment:BlogComment=(notice as NSNotification).userInfo!["comment"] as? BlogComment
         {
-          enterText?.text = "@\(comment.author_name ?? "" )"
+          enterText?.text = "@\(comment.author_name ?? "" ) "
             toCommentId = comment.id
         }
         else
         {
             enterText?.text = ""
-            toCommentId = -1
+            toCommentId = 0
         }
         self.enterText?.becomeFirstResponder()
     }
@@ -143,7 +181,7 @@ class PostDetailController: UITableViewController,UIWebViewDelegate,UITextFieldD
                         {
                             if self.commentList[i].id == _p
                             {
-                                self.commentList.insert(sc, at: i)
+                                self.commentList.insert(sc, at: i + 1)
                                 continue b
                             }
                         }
@@ -161,15 +199,15 @@ class PostDetailController: UITableViewController,UIWebViewDelegate,UITextFieldD
     
     
     
-    override func numberOfSections(in tableView: UITableView) -> Int {
+     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return commentList.count + 4
     }
     
-    override func  tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+     func  tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
 
         if indexPath.row == 0
         {
@@ -196,7 +234,7 @@ class PostDetailController: UITableViewController,UIWebViewDelegate,UITextFieldD
 
     }
     
-    override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         return CGFloat(relayViewHeight)
     }
 //
@@ -208,7 +246,7 @@ class PostDetailController: UITableViewController,UIWebViewDelegate,UITextFieldD
 //
 //    }
     
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         if indexPath.row == 0
         {
@@ -222,12 +260,16 @@ class PostDetailController: UITableViewController,UIWebViewDelegate,UITextFieldD
         }
         else if indexPath.row == 1
         {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "btnCell", for: indexPath) as! PostBtnCell
-            if let _data = detailItem
+            if btnCell == nil
             {
-                cell.configure(_data)
+                let cell = tableView.dequeueReusableCell(withIdentifier: "btnCell", for: indexPath) as! PostBtnCell
+                if let _data = detailItem
+                {
+                    cell.configure(_data)
+                }
+                self.btnCell = cell
             }
-            return cell
+            return btnCell!
         }
         else if indexPath.row == 2
         {

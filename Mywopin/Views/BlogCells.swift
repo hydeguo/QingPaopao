@@ -59,8 +59,35 @@ class PostTableViewCell: UITableViewCell {
         self.starLabel?.text = String(post.stars)
         self.commentLabel?.text = String(post.comments)
         
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(updatePostData), name: NSNotification.Name(rawValue: "updatePostData"), object: nil)
     }
     
+    @objc func updatePostData(_ notice:Notification){
+        
+        if  let star:Int = (notice as NSNotification).userInfo!["star"] as? Int,let id:Int = (notice as NSNotification).userInfo!["id"] as? Int,let starNum = self.starLabel?.text
+        {
+            if postIdentifier == id
+            {
+                DispatchQueue.main.async(execute: {
+                    self.starLabel?.text = String((Int(starNum) ?? 0) + star)
+                })
+            }
+        }
+        if  let like:Int = (notice as NSNotification).userInfo!["like"] as? Int,let id:Int = (notice as NSNotification).userInfo!["id"] as? Int,let likeNum = self.likeLabel?.text
+        {
+            if postIdentifier == id
+            {
+                DispatchQueue.main.async(execute: {
+                    self.likeLabel?.text = String((Int(likeNum) ?? 0 ) + like)
+                })
+            }
+        }
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
 }
 
 class CommentTableViewCell: UITableViewCell {
@@ -114,19 +141,19 @@ class CommentTableViewCell: UITableViewCell {
         }
         if likeBtn?.isSelected == true
         {
-            _ = Wolf.request(type: MyAPI.likeBlogComment(id: comment?.id ?? 0), completion: { (user: User?, msg, code) in
-                if user != nil {
-                    myClientVo = user;
-                    self.likeBtn?.isSelected = false
+            self.likeBtn?.isSelected = false
+            _ = Wolf.request(type: MyAPI.likeBlogComment(id: comment?.id ?? 0), completion: { (info: BaseReponse?, msg, code) in
+                 if code == "0" {
+                    
                 }
             }) { (error) in}
         }
         else
         {
-            _ = Wolf.request(type: MyAPI.unLikeBlogComment(id: comment?.id ?? 0), completion: { (user: User?, msg, code) in
-                if user != nil {
-                    myClientVo = user;
-                    self.likeBtn?.isSelected = true
+            self.likeBtn?.isSelected = true
+            _ = Wolf.request(type: MyAPI.unLikeBlogComment(id: comment?.id ?? 0), completion: { (info: BaseReponse?, msg, code) in
+                 if code == "0" {
+                    
                 }
             }) { (error) in}
         }
@@ -179,24 +206,24 @@ class PostBtnCell: UITableViewCell {
         if (postData == nil) {
             return
         }
-        PostListViewController.updateFlag = true
+        
         if starBtn.isSelected == true
         {
-            _ = Wolf.request(type: MyAPI.unCollectBlogPost(id: postData?.id ?? 0), completion: { (user: User?, msg, code) in
-                if user != nil {
-                    myClientVo = user;
-                    self.postData?.stars -= 1
-                    self.starBtn.isSelected = false
+            self.postData?.stars -= 1
+            self.starBtn.isSelected = false
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "updatePostData"), object: self, userInfo: ["star":-1,"id":postData?.id ?? 0])
+            _ = Wolf.request(type: MyAPI.unCollectBlogPost(id: postData?.id ?? 0), completion: { (info: BaseReponse?, msg, code) in
+                if code == "0" {
                 }
             }) { (error) in}
         }
         else
         {
-            _ = Wolf.request(type: MyAPI.collectBlogPost(id: postData?.id ?? 0), completion: { (user: User?, msg, code) in
-                if user != nil {
-                    myClientVo = user;
-                    self.postData?.stars += 1
-                    self.starBtn.isSelected = true
+            self.postData?.stars += 1
+            self.starBtn.isSelected = true
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "updatePostData"), object: self, userInfo: ["star":1,"id":postData?.id ?? 0])
+            _ = Wolf.request(type: MyAPI.collectBlogPost(id: postData?.id ?? 0), completion: { (info: BaseReponse?, msg, code) in
+                if code == "0" {
                 }
             }) { (error) in}
         }
@@ -207,23 +234,25 @@ class PostBtnCell: UITableViewCell {
         if (postData == nil) {
             return
         }
-        PostListViewController.updateFlag = true
+        
         if likeBtn.isSelected == true
         {
+            self.likeBtn.isSelected = false
+            self.postData?.likes -= 1
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "updatePostData"), object: self, userInfo: ["like":-1,"id":postData?.id ?? 0])
             _ = Wolf.request(type: MyAPI.unLikeBlogPost(id: postData?.id ?? 0), completion: { (res: BaseReponse?, msg, code) in
                 if code == "0" {
-                    self.likeBtn.isSelected = false
-                    self.postData?.likes -= 1
                     self.likeLabel.text = String(self.postData?.likes ?? 0 )
                 }
             }) { (error) in}
         }
         else
         {
+            self.likeBtn.isSelected = true
+            self.postData?.likes += 1
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "updatePostData"), object: self, userInfo: ["like":1,"id":postData?.id ?? 0])
             _ = Wolf.request(type: MyAPI.likeBlogPost(id: postData?.id ?? 0), completion: { (res: BaseReponse?, msg, code) in
                 if code == "0" {
-                    self.likeBtn.isSelected = true
-                    self.postData?.likes += 1
                     self.likeLabel.text = String(self.postData?.likes ?? 0 )
                 }
             }) { (error) in}
@@ -235,13 +264,24 @@ class PostBtnCell: UITableViewCell {
     }
     @IBAction func onShare(_ btn:UIButton)
     {
+        let shareParams: NSMutableDictionary = NSMutableDictionary()
+        shareParams.ssdkSetupShareParams(byText: "氢泡泡", images: postData?.featured_image ?? "", url: URL.init(string: postData?.URL ?? ""), title: postData?.title ?? "", type: SSDKContentType.auto)
+        
+        ShareSDK.showShareActionSheet(nil, items: nil, shareParams: shareParams) { (state, type, info, entity, error, end) in
+            
+            if state == SSDKResponseState.success {
+                Log("分享成功")
+            } else {
+                Log("分享失败")
+            }
+        }
         
     }
 }
 class WebViewCell: UITableViewCell ,UIWebViewDelegate{
     
     @IBOutlet  var webView: UIWebView!
-    var webHeight:CGFloat = 100
+    var webHeight:CGFloat = 600
     
     func configure(content:String?) {
         if let contentString = content {
@@ -270,7 +310,7 @@ class WebViewCell: UITableViewCell ,UIWebViewDelegate{
             </body>\
             </html>
             """
-            Log(contentString)
+//            Log(contentString)
             self.webView.delegate = self
             self.webView.backgroundColor = UIColor.clear
             self.webView.isOpaque = false
@@ -290,7 +330,6 @@ class WebViewCell: UITableViewCell ,UIWebViewDelegate{
             webView.sizeToFit()
             let height = webView.bounds.size.height
             self.webHeight = height
-            Log(height)
             webView.frame = CGRect.init(x: 10, y: 0, width: SCREEN_WIDTH - 20, height: height)
             
              NotificationCenter.default.post(name: NSNotification.Name(rawValue: "webLoaded"), object: self, userInfo: nil)

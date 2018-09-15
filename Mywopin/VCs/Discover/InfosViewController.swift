@@ -61,10 +61,9 @@ class InfosViewController: UIViewController {
         newPostBtn.isSelected = false
         btn.isSelected = true
         if(hotPostBtn == btn){
-            tabelListVC.changeType(type: 0)
+            tabelListVC.changeMode(mode: .hot)
         }else{
-            tabelListVC.changeType(type: 1)
-            
+            tabelListVC.changeMode(mode: .new)
         }
     }
 }
