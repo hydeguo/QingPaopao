@@ -149,7 +149,7 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
   
-  /// This `R.image` struct is generated, and contains static references to 80 images.
+  /// This `R.image` struct is generated, and contains static references to 81 images.
   struct image {
     /// Image `AMCP_color_wheel`.
     static let amcp_color_wheel = Rswift.ImageResource(bundle: R.hostingBundle, name: "AMCP_color_wheel")
@@ -251,6 +251,8 @@ struct R: Rswift.Validatable {
     static let qq1 = Rswift.ImageResource(bundle: R.hostingBundle, name: "qq-1")
     /// Image `qq`.
     static let qq = Rswift.ImageResource(bundle: R.hostingBundle, name: "qq")
+    /// Image `qrcode-1`.
+    static let qrcode1 = Rswift.ImageResource(bundle: R.hostingBundle, name: "qrcode-1")
     /// Image `sick2`.
     static let sick2 = Rswift.ImageResource(bundle: R.hostingBundle, name: "sick2")
     /// Image `sick`.
@@ -562,6 +564,11 @@ struct R: Rswift.Validatable {
       return UIKit.UIImage(resource: R.image.qq1, compatibleWith: traitCollection)
     }
     
+    /// `UIImage(named: "qrcode-1", bundle: ..., traitCollection: ...)`
+    static func qrcode1(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.qrcode1, compatibleWith: traitCollection)
+    }
+    
     /// `UIImage(named: "sick", bundle: ..., traitCollection: ...)`
     static func sick(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.sick, compatibleWith: traitCollection)
@@ -720,7 +727,7 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
   
-  /// This `R.reuseIdentifier` struct is generated, and contains static references to 19 reuse identifiers.
+  /// This `R.reuseIdentifier` struct is generated, and contains static references to 20 reuse identifiers.
   struct reuseIdentifier {
     /// Reuse identifier `AddDevice`.
     static let addDevice: Rswift.ReuseIdentifier<AddDeviceCell> = Rswift.ReuseIdentifier(identifier: "AddDevice")
@@ -738,14 +745,14 @@ struct R: Rswift.Validatable {
     static let exchangeOrderCell: Rswift.ReuseIdentifier<ExchangeOrderCell> = Rswift.ReuseIdentifier(identifier: "ExchangeOrderCell")
     /// Reuse identifier `FansCell`.
     static let fansCell: Rswift.ReuseIdentifier<FansCell> = Rswift.ReuseIdentifier(identifier: "FansCell")
-    /// Reuse identifier `LoadingCell`.
-    static let loadingCell: Rswift.ReuseIdentifier<UIKit.UIView> = Rswift.ReuseIdentifier(identifier: "LoadingCell")
     /// Reuse identifier `OldExchangeCell`.
     static let oldExchangeCell: Rswift.ReuseIdentifier<OldExchangeCell> = Rswift.ReuseIdentifier(identifier: "OldExchangeCell")
     /// Reuse identifier `Post`.
     static let post: Rswift.ReuseIdentifier<PostTableViewCell> = Rswift.ReuseIdentifier(identifier: "Post")
     /// Reuse identifier `ScoresShopCell`.
     static let scoresShopCell: Rswift.ReuseIdentifier<ScoresShopCell> = Rswift.ReuseIdentifier(identifier: "ScoresShopCell")
+    /// Reuse identifier `authorCell`.
+    static let authorCell: Rswift.ReuseIdentifier<AuthorBlogCell> = Rswift.ReuseIdentifier(identifier: "authorCell")
     /// Reuse identifier `btnCell`.
     static let btnCell: Rswift.ReuseIdentifier<PostBtnCell> = Rswift.ReuseIdentifier(identifier: "btnCell")
     /// Reuse identifier `cell`.
@@ -758,6 +765,8 @@ struct R: Rswift.Validatable {
     static let separateCell: Rswift.ReuseIdentifier<BaseBlogCell> = Rswift.ReuseIdentifier(identifier: "separateCell")
     /// Reuse identifier `subComment`.
     static let subComment: Rswift.ReuseIdentifier<SubCommentTableViewCell> = Rswift.ReuseIdentifier(identifier: "subComment")
+    /// Reuse identifier `titleCell`.
+    static let titleCell: Rswift.ReuseIdentifier<TitleBlogCell> = Rswift.ReuseIdentifier(identifier: "titleCell")
     /// Reuse identifier `webCell`.
     static let webCell: Rswift.ReuseIdentifier<WebViewCell> = Rswift.ReuseIdentifier(identifier: "webCell")
     
@@ -1629,6 +1638,7 @@ struct _R: Rswift.Validatable {
         if UIKit.UIImage(named: "lightBtn") == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'lightBtn' is used in storyboard 'Main', but couldn't be loaded.") }
         if UIKit.UIImage(named: "资源 22") == nil { throw Rswift.ValidationError(description: "[R.swift] Image named '资源 22' is used in storyboard 'Main', but couldn't be loaded.") }
         if UIKit.UIImage(named: "资源 11") == nil { throw Rswift.ValidationError(description: "[R.swift] Image named '资源 11' is used in storyboard 'Main', but couldn't be loaded.") }
+        if UIKit.UIImage(named: "qrcode-1") == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'qrcode-1' is used in storyboard 'Main', but couldn't be loaded.") }
         if UIKit.UIImage(named: "msgBtn") == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'msgBtn' is used in storyboard 'Main', but couldn't be loaded.") }
         if _R.storyboard.main().addDeviceView() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'addDeviceView' could not be loaded from storyboard 'Main' as 'AddDevice'.") }
         if _R.storyboard.main().postListViewController() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'postListViewController' could not be loaded from storyboard 'Main' as 'PostListViewController'.") }

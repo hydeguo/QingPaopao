@@ -102,6 +102,7 @@ public class BLEController:NSObject,BLEManagerDelegate
         
         if let device = device
         {
+            CleanCupViewController.doneCleanFlag =  false
             self.connectedDevice = device
             print("Device connected ! \(device.name ?? "")")
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: BLE_EVENT.BLE_connectDeviceSuccess.rawValue), object: self, userInfo: ["data":device])

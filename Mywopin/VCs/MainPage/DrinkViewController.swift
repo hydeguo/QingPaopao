@@ -143,6 +143,19 @@ class DrinkViewController: UIViewController, CLLocationManagerDelegate {
                 _ = SweetAlert().showAlert("提示", subTitle: "请链接设备", style: AlertStyle.none)
                 return false
             }
+            if identifier == "clean"
+            {
+                if  startElectrolyFlag == true
+                {
+                    _ = SweetAlert().showAlert("提示", subTitle: "正在电解中", style: AlertStyle.none)
+                    return false
+                }
+                else if CleanCupViewController.doneCleanFlag =  true && BLEController.shared.connectedDevice.state == .connected
+                {
+                    _ = SweetAlert().showAlert("提示", subTitle: "清洗已经完成", style: AlertStyle.none)
+                    return false
+                }
+            }
             #endif
         }
         return true
@@ -270,6 +283,19 @@ class DrinkViewController: UIViewController, CLLocationManagerDelegate {
         UserDefaults.standard.set(electrolyTime, forKey: "electrolyTime")
         BLEController.shared.setTimeOutEle(time: electrolyTime)
         WifiController.shared.setTimeOutEle(time: electrolyTime)
+    }
+    
+    func stopElectroly()
+    {
+        
+        startElectrolyFlag = false
+        startElectrolyTime = 0
+        electrolyTime = 0
+        UserDefaults.standard.set(electrolyTime, forKey: "electrolyTime")
+        UserDefaults.standard.set(startElectrolyTime, forKey: "startElectrolyTime")
+        BLEController.shared.stopTimeOutEle()
+        WifiController.shared.stopTimeOutEle()
+        
         let lastElectrolyTime = UserDefaults.standard.value(forKey: "lastElectrolyTime") as? Int ?? 0
         if Int(Date().timeIntervalSince1970) - Int(lastElectrolyTime) > 300
         {
@@ -285,18 +311,6 @@ class DrinkViewController: UIViewController, CLLocationManagerDelegate {
             }, failure: nil)
         }
         UserDefaults.standard.set(Int(startElectrolyTime), forKey: "lastElectrolyTime")
-    }
-    
-    func stopElectroly()
-    {
-        
-        startElectrolyFlag = false
-        startElectrolyTime = 0
-        electrolyTime = 0
-        UserDefaults.standard.set(electrolyTime, forKey: "electrolyTime")
-        UserDefaults.standard.set(startElectrolyTime, forKey: "startElectrolyTime")
-        BLEController.shared.stopTimeOutEle()
-        WifiController.shared.stopTimeOutEle()
     }
     
     func determineMyLocation() {

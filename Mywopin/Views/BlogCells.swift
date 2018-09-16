@@ -83,11 +83,24 @@ class PostTableViewCell: UITableViewCell {
                 })
             }
         }
+        if  let like:Int = (notice as NSNotification).userInfo!["comment"] as? Int,let id:Int = (notice as NSNotification).userInfo!["id"] as? Int,let commentNum = self.commentLabel?.text
+        {
+            if postIdentifier == id
+            {
+                DispatchQueue.main.async(execute: {
+                    self.likeLabel?.text = String((Int(commentNum) ?? 0 ) + like)
+                })
+            }
+        }
     }
     
     deinit {
         NotificationCenter.default.removeObserver(self)
     }
+}
+
+class LoadingTableViewCell: UITableViewCell {
+    
 }
 
 class CommentTableViewCell: UITableViewCell {
@@ -184,6 +197,83 @@ class SubCommentTableViewCell: UITableViewCell {
 }
 class BaseBlogCell: UITableViewCell {
    
+}
+
+class TitleBlogCell: UITableViewCell {
+    
+    @IBOutlet weak var title: UILabel?
+    
+    func configure (_ post:BlogPostItem) {
+        title?.text = post.title
+    }
+    
+}
+class AuthorBlogCell: UITableViewCell {
+    
+    @IBOutlet weak var dateLabel: UILabel?
+    @IBOutlet weak var authorLabel: UILabel?
+    @IBOutlet weak var readLabel: UILabel?
+    @IBOutlet weak var authorImageView: UIImageView?
+    @IBOutlet weak var likeBtn: UIButton?
+    var postData:BlogPostItem?
+    
+    func configure (_ post:BlogPostItem) {
+        
+        postData = post
+        if let dateStringFull = post.date {
+
+            let dateFormatterGet = DateFormatter()
+            dateFormatterGet.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
+            
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "yyyy-MM-dd hh:mm"
+            
+            let time = dateFormatterGet.date(from: dateStringFull)!//2017-08-28T08:24:37.783Z
+            let timeText = dateFormatter.string(from: time)
+            
+            self.dateLabel?.text = timeText
+        }
+        readLabel?.text = "阅读 \(post.read)";
+        authorLabel?.text = post.author?.name;
+        authorImageView?.image(fromUrl: post.author?.avatar_URL ?? "");
+        
+        
+        self.likeBtn?.isHidden = true
+        _ = Wolf.request(type: MyAPI.getFollowList(id: (postData?.author?.id)!), completion: { (res: BlogFollows?, msg, code) in
+            self.likeBtn?.isHidden = false
+            if (res != nil)  {
+                self.likeBtn?.isSelected = res!.follow.contains(myClientVo!._id)
+            }else{
+                self.likeBtn?.isSelected = false
+            }
+        }) { (error) in}
+    }
+    
+    @IBAction func onLike(_ btn:UIButton)
+    {
+   
+        if (postData == nil) {
+            return
+        }
+    
+        if likeBtn?.isSelected == true
+        {
+            self.likeBtn?.isSelected = false
+            _ = Wolf.request(type: MyAPI.unFollowAothur(id: postData?.author?.id ?? 0 ), completion: { (res: BaseReponse?, msg, code) in
+                if code == "0" {
+                }
+            }) { (error) in}
+        }
+        else
+        {
+            self.likeBtn?.isSelected = true
+            _ = Wolf.request(type: MyAPI.followAothur(id: postData?.author?.id ?? 0), completion: { (res: BaseReponse?, msg, code) in
+                if code == "0" {
+                }
+            }) { (error) in}
+        }
+    }
+    
 }
 class PostBtnCell: UITableViewCell {
     @IBOutlet weak var likeLabel: UILabel!

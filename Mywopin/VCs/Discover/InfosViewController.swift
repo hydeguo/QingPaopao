@@ -13,6 +13,7 @@ class InfosViewController: UIViewController {
 //    @IBOutlet var topView:UIView!
     @IBOutlet var hotPostBtn:UIButton!
     @IBOutlet var newPostBtn:UIButton!
+    @IBOutlet var myPostBtn:UIButton!
     var tabelListVC:PostListViewController!
     
     override func viewDidLoad() {
@@ -39,31 +40,35 @@ class InfosViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
-    @IBAction func postNew()
-    {
-        let controller: EditorViewController = EditorViewController(wordPressMode: true)
-        
-//        if let filename = filename {
-//            let sampleHTML = getSampleHTML(fromHTMLFileNamed: filename)
+    
+//    @IBAction func postNew()
+//    {
+//        let controller: EditorViewController = EditorViewController(wordPressMode: true)
 //
-//            controller = EditorDemoController(withSampleHTML: sampleHTML, wordPressMode: wordPressMode)
-//        } else {
-//            controller = EditorDemoController(wordPressMode: wordPressMode)
-//        }
-        
-        navigationController?.pushViewController(controller, animated: true)
-    }
+////        if let filename = filename {
+////            let sampleHTML = getSampleHTML(fromHTMLFileNamed: filename)
+////
+////            controller = EditorDemoController(withSampleHTML: sampleHTML, wordPressMode: wordPressMode)
+////        } else {
+////            controller = EditorDemoController(wordPressMode: wordPressMode)
+////        }
+//
+////        navigationController?.pushViewController(controller, animated: true)
+//    }
     
 
     @IBAction func selectType(_ btn:UIButton)
     {
         hotPostBtn.isSelected = false
         newPostBtn.isSelected = false
+        myPostBtn.isSelected = false
         btn.isSelected = true
         if(hotPostBtn == btn){
             tabelListVC.changeMode(mode: .hot)
-        }else{
+        }else if (newPostBtn == btn){
             tabelListVC.changeMode(mode: .new)
+        }else {
+            tabelListVC.changeMode(mode: .my)
         }
     }
 }

@@ -18,6 +18,7 @@ struct BlogPostItem: WolfMapper {
     var date:String?
     var featured_image:String?
     var URL:String?
+    var read: Int
     var likes: Int
     var stars: Int
     var comments: Int
@@ -35,6 +36,16 @@ struct BlogPostDetail: WolfMapper {
     var title: String
     var content:String?
     var URL:String?
+    
+    func didInit() {
+    }
+}
+
+
+struct BlogFollows: WolfMapper {
+    
+    var userId:String
+    var follow:[String]
     
     func didInit() {
     }

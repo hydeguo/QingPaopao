@@ -22,6 +22,7 @@ class PostDetailController: UIViewController, UITableViewDelegate, UITableViewDa
     let relayViewHeight:CGFloat = 50.0
     var webCell:WebViewCell?
     var btnCell:PostBtnCell?
+    var authorCell:AuthorBlogCell?
     
     var postContent:BlogPostDetail?
     var commentList:[BlogComment] = []
@@ -113,6 +114,7 @@ class PostDetailController: UIViewController, UITableViewDelegate, UITableViewDa
                         self.btnCell?.commentLabel.text = String(self.detailItem?.comments ?? 0)
                         self.tableView.reloadData()
                     })
+                    NotificationCenter.default.post(name: NSNotification.Name(rawValue: "updatePostData"), object: self, userInfo: ["comment":1,"id":self.detailItem?.id ?? 0])
                 }
             }) { (error) in}
         }
@@ -159,9 +161,9 @@ class PostDetailController: UIViewController, UITableViewDelegate, UITableViewDa
 //                }
 //            }) { (error) in}
             
-            if let titleString = self.detailItem?.title {
-                self.navigationItem.title = titleString//String(htmlEncodedString: titleString);
-            }
+//            if let titleString = self.detailItem?.title {
+                self.navigationItem.title = "探索"//titleString//String(htmlEncodedString: titleString);
+//            }
             
             _ = Wolf.requestList(type: MyAPI.getBlogPostComments(id: _identifier), completion: { (comments: [BlogComment]?, msg, code) in
                 if let _comments = comments {
@@ -210,25 +212,29 @@ class PostDetailController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
      func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return commentList.count + 4
+        return commentList.count + 6
     }
     
      func  tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
 
-        if indexPath.row == 0
+        if indexPath.row == 1
+        {
+            return 80
+        }
+        if indexPath.row == 2
         {
             return webCell?.webHeight ?? 100
         }
-        else if indexPath.row == 1
+        else if indexPath.row == 3
         {
 
             return 63
         }
-        else if indexPath.row == 2
+        else if indexPath.row == 4
         {
             return 8
         }
-        else if indexPath.row == 3
+        else if indexPath.row == 5
         {
             return 44
         }
@@ -256,6 +262,21 @@ class PostDetailController: UIViewController, UITableViewDelegate, UITableViewDa
         
         if indexPath.row == 0
         {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "titleCell", for: indexPath) as! TitleBlogCell
+            cell.configure(self.detailItem!)
+            return cell
+        }
+        else if indexPath.row == 1
+        {
+            if authorCell == nil{
+                let cell = tableView.dequeueReusableCell(withIdentifier: "authorCell", for: indexPath) as! AuthorBlogCell
+                cell.configure(self.detailItem!)
+                authorCell = cell
+            }
+            return authorCell!
+        }
+        else if indexPath.row == 2
+        {
             if  webCell == nil //&& self.postContent?.content != nil
             {
                 let cell = tableView.dequeueReusableCell(withIdentifier: "webCell", for: indexPath) as! WebViewCell
@@ -264,7 +285,7 @@ class PostDetailController: UIViewController, UITableViewDelegate, UITableViewDa
             }
             return webCell ?? tableView.dequeueReusableCell(withIdentifier: "separateCell", for: indexPath)
         }
-        else if indexPath.row == 1
+        else if indexPath.row == 3
         {
             if btnCell == nil
             {
@@ -277,19 +298,19 @@ class PostDetailController: UIViewController, UITableViewDelegate, UITableViewDa
             }
             return btnCell!
         }
-        else if indexPath.row == 2
+        else if indexPath.row == 4
         {
             let cell = tableView.dequeueReusableCell(withIdentifier: "separateCell", for: indexPath)
             return cell
         }
-        else if indexPath.row == 3
+        else if indexPath.row == 5
         {
             let cell = tableView.dequeueReusableCell(withIdentifier: "labelCell", for: indexPath)
             return cell
         }
         else
         {
-            let commentData = self.commentList[indexPath.row - 4]
+            let commentData = self.commentList[indexPath.row - 6]
             if commentData.parent != 0
             {
                 let cell = tableView.dequeueReusableCell(withIdentifier: "subComment", for: indexPath) as! SubCommentTableViewCell

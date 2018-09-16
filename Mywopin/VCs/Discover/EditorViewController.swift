@@ -225,6 +225,17 @@ class EditorViewController: UIViewController {
         button.addTarget(self, action: #selector(onSubmit(_:)), for: UIControlEvents.touchUpInside)
         button.frame = CGRect(x: 0, y: 0, width: 50, height: 50)//CGRectMake(0, 0, 53, 31)
         navigationItem.rightBarButtonItem = UIBarButtonItem(customView: button)
+        
+        let returnbutton: UIButton = UIButton(type: UIButtonType.custom)
+        returnbutton.setImage(UIImage(named: "back"), for: .normal)
+        returnbutton.addTarget(self, action: #selector(onReturn(_:)), for: UIControlEvents.touchUpInside)
+        returnbutton.frame = CGRect(x: 0, y: 0, width: 50, height: 50)//CGRectMake(0, 0, 53, 31)
+        navigationItem.leftBarButtonItem = UIBarButtonItem(customView: returnbutton)
+    }
+    @objc
+    func onReturn(_ sender: Any) {
+        
+        self.dismiss(animated: true, completion: nil)
     }
     @objc
     func onSubmit(_ sender: Any) {
@@ -239,6 +250,10 @@ class EditorViewController: UIViewController {
         
         let title = titleTextView.text;
         
+        if title?.count == 0 || content.count == 0 {
+            return
+        }
+        
         UIApplication.shared.keyWindow?.endEditing(true)
         HUD.show(.progress)
         _ = Wolf.request(type: MyAPI.newPost(title: title!, content: content), completion: { (post: BaseReponse?, msg, code) in
@@ -247,7 +262,8 @@ class EditorViewController: UIViewController {
                 PKHUD.sharedHUD.contentView = PKHUDSuccessView()
                 PKHUD.sharedHUD.show()
                 PKHUD.sharedHUD.hide(afterDelay: 1.0) { success in
-                    self.navigationController?.popViewController(animated: true)
+//                    self.navigationController?.popViewController(animated: true)
+                    self.dismiss(animated: true, completion: nil)
                 }
             }
         }) { (error) in}

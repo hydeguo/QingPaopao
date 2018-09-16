@@ -17,9 +17,13 @@ enum POST_MODE:String {
     case hot = "hot"
     case collect = "collect"
     case likes = "likes"
+    case my = "my"
 }
 
 class PostListViewController: UITableViewController {
+    
+    var numPrePage = 20
+    var curPage = 1
     
     var category = Dictionary<String, AnyObject>()
     var posts = [BlogPostItem]()
@@ -27,6 +31,8 @@ class PostListViewController: UITableViewController {
     
     var mode:POST_MODE = .hot
     
+    var loadingMore = false
+    var isEnd = false
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -53,18 +59,23 @@ class PostListViewController: UITableViewController {
             navigationController?.navigationBar.topItem?.title = Language.getString( "探索")
         }
         
+        
     }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setInitData()
         
         refreshControl = UIRefreshControl()
-        refreshControl!.addTarget(self, action: #selector(updatePostList),
+        refreshControl!.addTarget(self, action: #selector(topRefreshData),
                                   for: .valueChanged)
         refreshControl!.attributedTitle = NSAttributedString(string: "reloading...")
         tableView.addSubview(refreshControl!)
         
+        curPage = 1
+        isEnd = false
+        loadingMore = false
         self.updatePostList()
         
     }
@@ -98,6 +109,15 @@ class PostListViewController: UITableViewController {
                 let retrievedMessage = try Disk.retrieve("likesPostList.json", from: .caches, as: [BlogPostItem].self)
                 posts = retrievedMessage
             }
+            else if mode == .my
+            {
+                let retrievedMessage = try Disk.retrieve("myPostList.json", from: .caches, as: [BlogPostItem].self)
+                posts = retrievedMessage
+            }
+            
+            if posts.count != numPrePage{
+                self.isEnd = true
+            }
             
         } catch _ as NSError {}
     }
@@ -107,108 +127,154 @@ class PostListViewController: UITableViewController {
     {
         if self.mode != mode
         {
+            curPage = 1
+            loadingMore = false
+            isEnd = false
             self.mode = mode
+            self.refreshControl?.endRefreshing()
             setInitData()
             self.tableView.reloadData()
-            self.updatePostList()
+            if self.posts.count == 0{
+                self.updatePostList()
+            }
         }
     }
     
+    func onReceiveNewData(_ newPosts: [BlogPostItem])
+    {
+        if newPosts.count != numPrePage{
+            self.isEnd = true
+        }
+        if loadingMore == true{
+            self.posts.append(contentsOf:newPosts)
+            loadingMore = false
+        }else{
+            self.posts = newPosts
+        }
+        
+        DispatchQueue.main.async(execute: {
+            self.refreshControl?.endRefreshing()
+            self.tableView.reloadData()
+        })
+    }
+    
+    @objc func topRefreshData() {
+        
+        curPage = 1
+        loadingMore = false
+        isEnd = false
+        updatePostList()
+    }
     @objc func updatePostList() {
         if(posts.count==0){
             refreshControl?.beginRefreshing()
         }
+        if loadingMore == true
+        {
+            curPage = 1 + (posts.count / numPrePage)
+        }
+        
         if mode == .new
         {
-            _ = Wolf.requestList(type: MyAPI.getLastBlogPostList(page: 1, num: 20), completion: { (posts: [BlogPostItem]?, msg, code) in
+            _ = Wolf.requestList(type: MyAPI.getLastBlogPostList(page: curPage, num: numPrePage), completion: { (posts: [BlogPostItem]?, msg, code) in
                 if let _posts = posts {
-                    self.posts = _posts
                     
-                    do {
-                        try Disk.save(self.posts, to: .caches, as: "PostList.json")
-                    } catch _ as NSError {}
-                    
-                    DispatchQueue.main.async(execute: {
-                        self.refreshControl?.endRefreshing()
-                        self.tableView.reloadData()
-                    })
+                    if self.mode == .new
+                    {
+                        do {
+                            if self.curPage == 1 {try Disk.save(_posts, to: .caches, as: "PostList.json")}
+                        } catch _ as NSError {}
+                        self.onReceiveNewData(_posts)
+                    }
                 }
             }, failure: nil)
         }
         else if mode == .hot
         {
-            _ = Wolf.requestList(type: MyAPI.getHotBlogPostList(page: 1, num: 20), completion: { (posts: [BlogPostItem]?, msg, code) in
+            _ = Wolf.requestList(type: MyAPI.getHotBlogPostList(page: curPage, num: numPrePage), completion: { (posts: [BlogPostItem]?, msg, code) in
                 if let _posts = posts {
-                    self.posts = _posts
                     
-                    do {
-                        try Disk.save(self.posts, to: .caches, as: "hotPostList.json")
-                    } catch _ as NSError {}
                     
-                    DispatchQueue.main.async(execute: {
-                        HUD.hide()
-                        self.refreshControl?.endRefreshing()
-                        self.tableView.reloadData()
-                    })
+                    if self.mode == .hot
+                    {
+                        do {
+                            if self.curPage == 1 {try Disk.save(_posts, to: .caches, as: "hotPostList.json")}
+                        } catch _ as NSError {}
+                        self.onReceiveNewData(_posts)
+                    }
                 }
             }, failure: nil)
         }
         else if mode == .history
         {
-            _ = Wolf.requestList(type: MyAPI.getHistoryBlogPostList(page: 1, num: 20), completion: { (posts: [BlogPostItem]?, msg, code) in
+            _ = Wolf.requestList(type: MyAPI.getHistoryBlogPostList(page: curPage, num: numPrePage), completion: { (posts: [BlogPostItem]?, msg, code) in
                 if let _posts = posts {
-                    self.posts = _posts
                     
-                    do {
-                        try Disk.save(self.posts, to: .caches, as: "historyPostList.json")
-                    } catch _ as NSError {}
-                    
-                    DispatchQueue.main.async(execute: {
-                        HUD.hide()
-                        self.refreshControl?.endRefreshing()
-                        self.tableView.reloadData()
-                    })
+                    if self.mode == .history
+                    {
+                        do {
+                            if self.curPage == 1 {try Disk.save(_posts, to: .caches, as: "historyPostList.json")}
+                        } catch _ as NSError {}
+                        self.onReceiveNewData(_posts)
+                    }
                 }
             }, failure: nil)
         }
         else if mode == .collect
         {
-            _ = Wolf.requestList(type: MyAPI.getColletionPostList(page: 1, num: 20), completion: { (posts: [BlogPostItem]?, msg, code) in
+            _ = Wolf.requestList(type: MyAPI.getColletionPostList(page: curPage, num: numPrePage), completion: { (posts: [BlogPostItem]?, msg, code) in
                 if let _posts = posts {
-                    self.posts = _posts
                     
-                    do {
-                        try Disk.save(self.posts, to: .caches, as: "collectPostList.json")
-                    } catch _ as NSError {}
-                    
-                    DispatchQueue.main.async(execute: {
-                        HUD.hide()
-                        self.refreshControl?.endRefreshing()
-                        self.tableView.reloadData()
-                    })
+                    if self.mode == .collect
+                    {
+                        do {
+                            if self.curPage == 1 {try Disk.save(_posts, to: .caches, as: "collectPostList.json")}
+                        } catch _ as NSError {}
+                        self.onReceiveNewData(_posts)
+                    }
                 }
             }, failure: nil)
         }
         else if mode == .likes
         {
-            _ = Wolf.requestList(type: MyAPI.getLikedPostList(page: 1, num: 20), completion: { (posts: [BlogPostItem]?, msg, code) in
+            _ = Wolf.requestList(type: MyAPI.getLikedPostList(page: curPage, num: numPrePage), completion: { (posts: [BlogPostItem]?, msg, code) in
                 if let _posts = posts {
-                    self.posts = _posts
                     
-                    do {
-                        try Disk.save(self.posts, to: .caches, as: "likesPostList.json")
-                    } catch _ as NSError {}
+                    if self.mode == .likes
+                    {
+                        do {
+                            if self.curPage == 1 {try Disk.save(_posts, to: .caches, as: "likesPostList.json")}
+                        } catch _ as NSError {}
+                        self.onReceiveNewData(_posts)
+                    }
+                }
+            }, failure: nil)
+        }
+        else if mode == .my
+        {
+            _ = Wolf.requestList(type: MyAPI.getMyBlogPostList(page: curPage, num: numPrePage), completion: { (posts: [BlogPostItem]?, msg, code) in
+                if let _posts = posts {
                     
-                    DispatchQueue.main.async(execute: {
-                        HUD.hide()
-                        self.refreshControl?.endRefreshing()
-                        self.tableView.reloadData()
-                    })
+                    if self.mode == .my
+                    {
+                        do {
+                            if self.curPage == 1 {try Disk.save(_posts, to: .caches, as: "myPostList.json")}
+                        } catch _ as NSError {}
+                        self.onReceiveNewData(_posts)
+                    }
                 }
             }, failure: nil)
         }
     }
     
+    
+    func loadMore()
+    {
+        if(!loadingMore && !isEnd){
+            loadingMore = true
+            self.updatePostList()
+        }
+    }
     
     // MARK: - Segues
     
@@ -231,25 +297,64 @@ class PostListViewController: UITableViewController {
 //    override func  tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
 //        return 130
 //    }
+    
+    override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        let delete = UITableViewRowAction(style: .destructive, title: "Delete") { (action, indexPath) in
+            
+            let post  = self.posts.remove(at: indexPath.row);
+            do {
+                try Disk.save(self.posts, to: .caches, as: "myPostList.json")
+            } catch _ as NSError {}
+            _ = Wolf.request(type: MyAPI.deleteMyPost(id: post.id), completion: { (posts: BaseReponse?, msg, code) in
+            }, failure: nil)
+            
+            self.tableView.reloadData()
+        }
+        
+//        let share = UITableViewRowAction(style: .normal, title: "Disable") { (action, indexPath) in
+//            // share item at indexPath
+//        }
+//        share.backgroundColor = UIColor.blue
+        if mode == .my{
+            return [delete]
+        }else{
+            return []
+        }
+        
+    }
+    
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return posts.count
+        return isEnd || posts.count == 0 ?  posts.count : posts.count + 1
     }
     
     override func  tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return cellHeight
+        if indexPath.row == posts.count{
+            return 60
+        }else{
+            return cellHeight
+        }
     }
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Post", for: indexPath) as! PostTableViewCell
-        let post = posts[indexPath.row]
-        cell.configureWithPostDictionary(post);
         
-        return cell
+        if indexPath.row == posts.count{
+            
+            let cell = tableView.dequeueReusableCell(withIdentifier: "LoadingCell", for: indexPath) as! LoadingTableViewCell
+            loadMore()
+            return cell
+            
+        }else{
+            let cell = tableView.dequeueReusableCell(withIdentifier: "Post", for: indexPath) as! PostTableViewCell
+            let post = posts[indexPath.row]
+            cell.configureWithPostDictionary(post);
+            
+            return cell
+        }
     }
     
 }
