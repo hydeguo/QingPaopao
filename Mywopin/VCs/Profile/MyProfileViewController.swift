@@ -37,6 +37,24 @@ class MyProfileViewController: UIViewController {
         updateDrinkText()
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+
+        
+        if segue.identifier == "history"{
+            let controller = segue.destination as! PostListViewController
+            controller.mode = .history
+        }
+        if segue.identifier == "collectionPosts"{
+            let controller = segue.destination  as! PostListViewController
+            controller.mode = .collect
+        }
+        if segue.identifier == "likedPosts"{
+            let controller = segue.destination  as! PostListViewController
+            controller.mode = .likes
+        }
+        
+    }
+    
     func updateUI(){
         let name = myClientVo?.userName ?? String(stringInterpolationSegment: myClientVo?.phone)
         nameLabel.text = name

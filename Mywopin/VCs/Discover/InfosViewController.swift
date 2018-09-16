@@ -10,21 +10,21 @@ import UIKit
 
 class InfosViewController: UIViewController {
 
-    @IBOutlet var topView:UIView!
+//    @IBOutlet var topView:UIView!
     @IBOutlet var hotPostBtn:UIButton!
     @IBOutlet var newPostBtn:UIButton!
     var tabelListVC:PostListViewController!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        createGradientLayer(view: self.topView)
+//        createGradientLayer(view: self.topView)
         
         hotPostBtn.isSelected = true
     }
     
     override func viewWillAppear(_ animated: Bool) {
         
-        self.navigationController?.setNavigationBarHidden(true, animated: false)
+        self.navigationController?.setNavigationBarHidden(false, animated: false)
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

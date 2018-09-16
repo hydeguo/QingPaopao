@@ -15,7 +15,8 @@ enum POST_MODE:String {
     case history = "history"
     case new = "new"
     case hot = "hot"
-    
+    case collect = "collect"
+    case likes = "likes"
 }
 
 class PostListViewController: UITableViewController {
@@ -40,6 +41,17 @@ class PostListViewController: UITableViewController {
             self.tableView.deselectRow(at: selectionIndexPath, animated: animated)
         }
 
+        self.navigationController?.setNavigationBarHidden(false, animated: false)
+        switch mode {
+        case .history:
+            navigationController?.navigationBar.topItem?.title = Language.getString( "浏览历史")
+        case .likes:
+            navigationController?.navigationBar.topItem?.title = Language.getString( "关注话题")
+        case .collect:
+            navigationController?.navigationBar.topItem?.title = Language.getString( "我的收藏")
+        default:
+            navigationController?.navigationBar.topItem?.title = Language.getString( "探索")
+        }
         
     }
     override func viewDidLoad() {
@@ -74,6 +86,16 @@ class PostListViewController: UITableViewController {
             else if mode == .hot
             {
                 let retrievedMessage = try Disk.retrieve("hotPostList.json", from: .caches, as: [BlogPostItem].self)
+                posts = retrievedMessage
+            }
+            else if mode == .collect
+            {
+                let retrievedMessage = try Disk.retrieve("collectPostList.json", from: .caches, as: [BlogPostItem].self)
+                posts = retrievedMessage
+            }
+            else if mode == .likes
+            {
+                let retrievedMessage = try Disk.retrieve("likesPostList.json", from: .caches, as: [BlogPostItem].self)
                 posts = retrievedMessage
             }
             
@@ -149,8 +171,42 @@ class PostListViewController: UITableViewController {
                 }
             }, failure: nil)
         }
-        
-        
+        else if mode == .collect
+        {
+            _ = Wolf.requestList(type: MyAPI.getColletionPostList(page: 1, num: 20), completion: { (posts: [BlogPostItem]?, msg, code) in
+                if let _posts = posts {
+                    self.posts = _posts
+                    
+                    do {
+                        try Disk.save(self.posts, to: .caches, as: "collectPostList.json")
+                    } catch _ as NSError {}
+                    
+                    DispatchQueue.main.async(execute: {
+                        HUD.hide()
+                        self.refreshControl?.endRefreshing()
+                        self.tableView.reloadData()
+                    })
+                }
+            }, failure: nil)
+        }
+        else if mode == .likes
+        {
+            _ = Wolf.requestList(type: MyAPI.getLikedPostList(page: 1, num: 20), completion: { (posts: [BlogPostItem]?, msg, code) in
+                if let _posts = posts {
+                    self.posts = _posts
+                    
+                    do {
+                        try Disk.save(self.posts, to: .caches, as: "likesPostList.json")
+                    } catch _ as NSError {}
+                    
+                    DispatchQueue.main.async(execute: {
+                        HUD.hide()
+                        self.refreshControl?.endRefreshing()
+                        self.tableView.reloadData()
+                    })
+                }
+            }, failure: nil)
+        }
     }
     
     
@@ -166,16 +222,7 @@ class PostListViewController: UITableViewController {
                 controller.navigationItem.leftItemsSupplementBackButton = true
             }
         }
-        
-        if segue.identifier == "history"{
-            self.mode = .history
-        }
-        if segue.identifier == "collectionPosts"{
-            self.mode = .hot
-        }
-        if segue.identifier == "likedPosts"{
-            self.mode = .hot
-        }
+
         
     }
     

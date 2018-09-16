@@ -89,7 +89,13 @@ class PostDetailController: UIViewController, UITableViewDelegate, UITableViewDa
             _ = Wolf.request(type: MyAPI.newComment(postId: _identifier, content: content, parent: toCommentId), completion: { (postComment: BlogComment?, msg, code) in
                 HUD.hide()
                 if postComment != nil {
+                    PKHUD.sharedHUD.contentView = PKHUDSuccessView()
+                    PKHUD.sharedHUD.show()
+                    PKHUD.sharedHUD.hide(afterDelay: 1.0) { success in
+                        self.navigationController?.popViewController(animated: true)
+                    }
                     DispatchQueue.main.async(execute: {
+                        self.enterText?.text = "";
                         if(self.toCommentId == 0 ){
                             self.commentList.insert(postComment!, at: 0)
                         }else{

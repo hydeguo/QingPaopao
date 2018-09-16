@@ -142,7 +142,7 @@ class CommentTableViewCell: UITableViewCell {
         if likeBtn?.isSelected == true
         {
             self.likeBtn?.isSelected = false
-            _ = Wolf.request(type: MyAPI.likeBlogComment(id: comment?.id ?? 0), completion: { (info: BaseReponse?, msg, code) in
+            _ = Wolf.request(type: MyAPI.unLikeBlogComment(id: comment?.id ?? 0), completion: { (info: BaseReponse?, msg, code) in
                  if code == "0" {
                     
                 }
@@ -151,7 +151,7 @@ class CommentTableViewCell: UITableViewCell {
         else
         {
             self.likeBtn?.isSelected = true
-            _ = Wolf.request(type: MyAPI.unLikeBlogComment(id: comment?.id ?? 0), completion: { (info: BaseReponse?, msg, code) in
+            _ = Wolf.request(type: MyAPI.likeBlogComment(id: comment?.id ?? 0), completion: { (info: BaseReponse?, msg, code) in
                  if code == "0" {
                     
                 }
@@ -222,7 +222,7 @@ class PostBtnCell: UITableViewCell {
             self.postData?.stars += 1
             self.starBtn.isSelected = true
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: "updatePostData"), object: self, userInfo: ["star":1,"id":postData?.id ?? 0])
-            _ = Wolf.request(type: MyAPI.collectBlogPost(id: postData?.id ?? 0), completion: { (info: BaseReponse?, msg, code) in
+            _ = Wolf.request(type: MyAPI.doCollectBlogPost(id: postData?.id ?? 0), completion: { (info: BaseReponse?, msg, code) in
                 if code == "0" {
                 }
             }) { (error) in}
@@ -251,7 +251,7 @@ class PostBtnCell: UITableViewCell {
             self.likeBtn.isSelected = true
             self.postData?.likes += 1
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: "updatePostData"), object: self, userInfo: ["like":1,"id":postData?.id ?? 0])
-            _ = Wolf.request(type: MyAPI.likeBlogPost(id: postData?.id ?? 0), completion: { (res: BaseReponse?, msg, code) in
+            _ = Wolf.request(type: MyAPI.doLikeBlogPost(id: postData?.id ?? 0), completion: { (res: BaseReponse?, msg, code) in
                 if code == "0" {
                     self.likeLabel.text = String(self.postData?.likes ?? 0 )
                 }
@@ -281,7 +281,7 @@ class PostBtnCell: UITableViewCell {
 class WebViewCell: UITableViewCell ,UIWebViewDelegate{
     
     @IBOutlet  var webView: UIWebView!
-    var webHeight:CGFloat = 600
+    var webHeight:CGFloat = 100
     
     func configure(content:String?) {
         if let contentString = content {

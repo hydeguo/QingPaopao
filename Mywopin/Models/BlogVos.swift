@@ -62,3 +62,12 @@ struct BlogComment: WolfMapper {
     }
 }
 
+struct FansData: WolfMapper {
+    
+    var _id:String
+    var userName:String
+    var icon: String?
+    
+    func didInit() {
+    }
+}

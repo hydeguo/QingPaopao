@@ -64,14 +64,18 @@ class MyProfileTableVC: UITableViewController{
 //            //                controller.navigationItem.leftItemsSupplementBackButton = true
 //
 //        }
-//        if segue.identifier == "manage" {
-//            // if let indexPath = //tableView.indexPathForSelectedRow {
-//            let object = rArr[(sender as! UIButton).tag ]
-//            let controller = segue.destination  as! ManageController
-//
-//            controller.detailId = object.id
-//            controller.rs_title = object.restaurantName
-//        }
+        if segue.identifier == "showFans" {
+            let controller = segue.destination as! MyFansList
+            controller.mode = .fans
+        }
+        if segue.identifier == "showMyFollows" {
+            let controller = segue.destination as! MyFansList
+            controller.mode = .follow
+        }
+        if segue.identifier == "collectionPosts" {
+            let controller = segue.destination as! PostListViewController
+            controller.mode = .collect
+        }
         
     }
     

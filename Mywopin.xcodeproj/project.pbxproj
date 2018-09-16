@@ -20,6 +20,7 @@
 		C11A100120E9CC50000979B3 /* MyHealth.swift in Sources */ = {isa = PBXBuildFile; fileRef = C11A100020E9CC50000979B3 /* MyHealth.swift */; };
 		C11A100320EA0D2C000979B3 /* AddDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = C11A100220EA0D2C000979B3 /* AddDevice.swift */; };
 		C11A100620EA1E9E000979B3 /* DeviceListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C11A100520EA1E9E000979B3 /* DeviceListViewController.swift */; };
+		C12A8C27214D4A24009511DC /* MyFansList.swift in Sources */ = {isa = PBXBuildFile; fileRef = C12A8C26214D4A24009511DC /* MyFansList.swift */; };
 		C1315F6E20DB6740000DB991 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1315F6D20DB6740000DB991 /* User.swift */; };
 		C133C1F620F5AF6700771FE6 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C133C1F520F5AF6700771FE6 /* Login.storyboard */; };
 		C133C1F920F5B25800771FE6 /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = C133C1F820F5B25800771FE6 /* R.generated.swift */; };
@@ -181,6 +182,7 @@
 		C11A100020E9CC50000979B3 /* MyHealth.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyHealth.swift; sourceTree = "<group>"; };
 		C11A100220EA0D2C000979B3 /* AddDevice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddDevice.swift; sourceTree = "<group>"; };
 		C11A100520EA1E9E000979B3 /* DeviceListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceListViewController.swift; sourceTree = "<group>"; };
+		C12A8C26214D4A24009511DC /* MyFansList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyFansList.swift; sourceTree = "<group>"; };
 		C1315F6D20DB6740000DB991 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		C133C1F520F5AF6700771FE6 /* Login.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
 		C133C1F820F5B25800771FE6 /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = SOURCE_ROOT; };
@@ -536,6 +538,7 @@
 			children = (
 				C17862C920E277ED008F4042 /* ChangeName.swift */,
 				C1179A5B20C7E7B50049BE67 /* MyProfileViewController.swift */,
+				C192AAA720C431E8004EE98D /* MyProfileTableVC.swift */,
 				C17862CD20E2869F008F4042 /* BaseInfo.swift */,
 				C17862CB20E27C63008F4042 /* ChangeBaseInfo.swift */,
 				C17D45F220F8A85A00029CAE /* ProfileEditVC.swift */,
@@ -544,6 +547,7 @@
 				C15AEF9320F0F087009F4A0E /* AddressInfoVC.swift */,
 				C15AEF9520F1990D009F4A0E /* AddressListVC.swift */,
 				C17D45F020F8A74300029CAE /* SystemSettingVC.swift */,
+				C12A8C26214D4A24009511DC /* MyFansList.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -656,7 +660,6 @@
 				C11A100720EA3006000979B3 /* Discover */,
 				C11A100420EA0D35000979B3 /* Device */,
 				C16980DD20E8D3730034E954 /* MainPage */,
-				C192AAA720C431E8004EE98D /* MyProfileTableVC.swift */,
 				C1C428D220D670DE0071532F /* UserAgreementVC.swift */,
 			);
 			path = VCs;
@@ -1086,6 +1089,7 @@
 				C172312020FE249500BF6160 /* RKChartTitleView.swift in Sources */,
 				C158F729213BB0470090EE1A /* PostModel.swift in Sources */,
 				C192AAA820C431E8004EE98D /* MyProfileTableVC.swift in Sources */,
+				C12A8C27214D4A24009511DC /* MyFansList.swift in Sources */,
 				C1AB2BD22149210000CE6A2D /* TabBarController.swift in Sources */,
 				C1008E0920C5669000E73F8F /* PostListViewController.swift in Sources */,
 				C11A0FFF20E9B4E1000979B3 /* DrinkHistory.swift in Sources */,

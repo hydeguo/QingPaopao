@@ -45,12 +45,16 @@ enum MyAPI {
     case getBlogPost(id:Int)
     case getLastBlogPostList(page:Int,num:Int)
     case getHotBlogPostList(page:Int,num:Int)
+    case getColletionPostList(page:Int,num:Int)
+    case getLikedPostList(page:Int,num:Int)
     case getHistoryBlogPostList(page:Int,num:Int)
+    case getFansList
+    case getMyFollowList
     case searchBlogPostList(search:Int)
     case getBlogPostComments(id:Int)
-    case collectBlogPost(id:Int)
+    case doCollectBlogPost(id:Int)
     case unCollectBlogPost(id:Int)
-    case likeBlogPost(id:Int)
+    case doLikeBlogPost(id:Int)
     case unLikeBlogPost(id:Int)
     case likeBlogComment(id:Int)
     case unLikeBlogComment(id:Int)
@@ -131,11 +135,11 @@ extension MyAPI: TargetType {
             return .requestParameters(parameters: [ "page" : page,"num" : num], encoding: URLEncoding.default)
         case .searchBlogPostList(let search):
             return .requestParameters(parameters: [ "search" : search], encoding: URLEncoding.default)
-        case .collectBlogPost(let id):
+        case .doCollectBlogPost(let id):
             return .requestParameters(parameters: [ "postId" : id], encoding: URLEncoding.default)
         case .unCollectBlogPost(let id):
             return .requestParameters(parameters: [ "postId" : id], encoding: URLEncoding.default)
-        case .likeBlogPost(let id):
+        case .doLikeBlogPost(let id):
             return .requestParameters(parameters: [ "postId" : id], encoding: URLEncoding.default)
         case .unLikeBlogPost(let id):
             return .requestParameters(parameters: [ "postId" : id], encoding: URLEncoding.default)
@@ -243,15 +247,23 @@ extension MyAPI: TargetType {
             return "/blog/hotPosts"
         case .getHistoryBlogPostList:
             return "/blog/historyPosts"
+        case .getColletionPostList:
+            return "/blog/colletionPosts"
+        case .getLikedPostList:
+            return "/blog/likedPosts"
+        case .getFansList:
+            return "/blog/fansList"
+        case .getMyFollowList:
+            return "/blog/myFollowList"
         case .searchBlogPostList:
             return "/blog/searchPosts"
         case .getBlogPostComments(let id):
             return "/blog/postComments/\(id)"
-        case .collectBlogPost:
+        case .doCollectBlogPost:
             return "/blog/collect"
         case .unCollectBlogPost:
             return "/blog/unCollect"
-        case .likeBlogPost:
+        case .doLikeBlogPost:
             return "/blog/like"
         case .unLikeBlogPost:
             return "/blog/unLike"
@@ -279,7 +291,11 @@ extension MyAPI: TargetType {
                   .getBlogPostComments,
                   .getLastBlogPostList,
                   .getHotBlogPostList,
-                  .getHistoryBlogPostList:
+                  .getHistoryBlogPostList,
+                  .getColletionPostList,
+                  .getLikedPostList,
+                  .getFansList,
+                  .getMyFollowList:
             return .get
     
             default:

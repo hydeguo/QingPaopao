@@ -720,7 +720,7 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
   
-  /// This `R.reuseIdentifier` struct is generated, and contains static references to 18 reuse identifiers.
+  /// This `R.reuseIdentifier` struct is generated, and contains static references to 19 reuse identifiers.
   struct reuseIdentifier {
     /// Reuse identifier `AddDevice`.
     static let addDevice: Rswift.ReuseIdentifier<AddDeviceCell> = Rswift.ReuseIdentifier(identifier: "AddDevice")
@@ -736,6 +736,8 @@ struct R: Rswift.Validatable {
     static let device: Rswift.ReuseIdentifier<DeviceCell> = Rswift.ReuseIdentifier(identifier: "Device")
     /// Reuse identifier `ExchangeOrderCell`.
     static let exchangeOrderCell: Rswift.ReuseIdentifier<ExchangeOrderCell> = Rswift.ReuseIdentifier(identifier: "ExchangeOrderCell")
+    /// Reuse identifier `FansCell`.
+    static let fansCell: Rswift.ReuseIdentifier<FansCell> = Rswift.ReuseIdentifier(identifier: "FansCell")
     /// Reuse identifier `LoadingCell`.
     static let loadingCell: Rswift.ReuseIdentifier<UIKit.UIView> = Rswift.ReuseIdentifier(identifier: "LoadingCell")
     /// Reuse identifier `OldExchangeCell`.
@@ -762,7 +764,7 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
   
-  /// This `R.segue` struct is generated, and contains static references to 8 view controllers.
+  /// This `R.segue` struct is generated, and contains static references to 9 view controllers.
   struct segue {
     /// This struct is generated for `AddressListVC`, and contains static references to 1 segues.
     struct addressListVC {
@@ -833,16 +835,58 @@ struct R: Rswift.Validatable {
       fileprivate init() {}
     }
     
-    /// This struct is generated for `MyProfileViewController`, and contains static references to 1 segues.
+    /// This struct is generated for `MyProfileTableVC`, and contains static references to 3 segues.
+    struct myProfileTableVC {
+      /// Segue identifier `collectionPosts`.
+      static let collectionPosts: Rswift.StoryboardSegueIdentifier<UIKit.UIStoryboardSegue, MyProfileTableVC, PostListViewController> = Rswift.StoryboardSegueIdentifier(identifier: "collectionPosts")
+      /// Segue identifier `showFans`.
+      static let showFans: Rswift.StoryboardSegueIdentifier<UIKit.UIStoryboardSegue, MyProfileTableVC, MyFansList> = Rswift.StoryboardSegueIdentifier(identifier: "showFans")
+      /// Segue identifier `showMyFollows`.
+      static let showMyFollows: Rswift.StoryboardSegueIdentifier<UIKit.UIStoryboardSegue, MyProfileTableVC, MyFansList> = Rswift.StoryboardSegueIdentifier(identifier: "showMyFollows")
+      
+      /// Optionally returns a typed version of segue `collectionPosts`.
+      /// Returns nil if either the segue identifier, the source, destination, or segue types don't match.
+      /// For use inside `prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?)`.
+      static func collectionPosts(segue: UIKit.UIStoryboardSegue) -> Rswift.TypedStoryboardSegueInfo<UIKit.UIStoryboardSegue, MyProfileTableVC, PostListViewController>? {
+        return Rswift.TypedStoryboardSegueInfo(segueIdentifier: R.segue.myProfileTableVC.collectionPosts, segue: segue)
+      }
+      
+      /// Optionally returns a typed version of segue `showFans`.
+      /// Returns nil if either the segue identifier, the source, destination, or segue types don't match.
+      /// For use inside `prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?)`.
+      static func showFans(segue: UIKit.UIStoryboardSegue) -> Rswift.TypedStoryboardSegueInfo<UIKit.UIStoryboardSegue, MyProfileTableVC, MyFansList>? {
+        return Rswift.TypedStoryboardSegueInfo(segueIdentifier: R.segue.myProfileTableVC.showFans, segue: segue)
+      }
+      
+      /// Optionally returns a typed version of segue `showMyFollows`.
+      /// Returns nil if either the segue identifier, the source, destination, or segue types don't match.
+      /// For use inside `prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?)`.
+      static func showMyFollows(segue: UIKit.UIStoryboardSegue) -> Rswift.TypedStoryboardSegueInfo<UIKit.UIStoryboardSegue, MyProfileTableVC, MyFansList>? {
+        return Rswift.TypedStoryboardSegueInfo(segueIdentifier: R.segue.myProfileTableVC.showMyFollows, segue: segue)
+      }
+      
+      fileprivate init() {}
+    }
+    
+    /// This struct is generated for `MyProfileViewController`, and contains static references to 2 segues.
     struct myProfileViewController {
       /// Segue identifier `history`.
       static let history: Rswift.StoryboardSegueIdentifier<UIKit.UIStoryboardSegue, MyProfileViewController, PostListViewController> = Rswift.StoryboardSegueIdentifier(identifier: "history")
+      /// Segue identifier `likedPosts`.
+      static let likedPosts: Rswift.StoryboardSegueIdentifier<UIKit.UIStoryboardSegue, MyProfileViewController, PostListViewController> = Rswift.StoryboardSegueIdentifier(identifier: "likedPosts")
       
       /// Optionally returns a typed version of segue `history`.
       /// Returns nil if either the segue identifier, the source, destination, or segue types don't match.
       /// For use inside `prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?)`.
       static func history(segue: UIKit.UIStoryboardSegue) -> Rswift.TypedStoryboardSegueInfo<UIKit.UIStoryboardSegue, MyProfileViewController, PostListViewController>? {
         return Rswift.TypedStoryboardSegueInfo(segueIdentifier: R.segue.myProfileViewController.history, segue: segue)
+      }
+      
+      /// Optionally returns a typed version of segue `likedPosts`.
+      /// Returns nil if either the segue identifier, the source, destination, or segue types don't match.
+      /// For use inside `prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?)`.
+      static func likedPosts(segue: UIKit.UIStoryboardSegue) -> Rswift.TypedStoryboardSegueInfo<UIKit.UIStoryboardSegue, MyProfileViewController, PostListViewController>? {
+        return Rswift.TypedStoryboardSegueInfo(segueIdentifier: R.segue.myProfileViewController.likedPosts, segue: segue)
       }
       
       fileprivate init() {}
@@ -939,7 +983,7 @@ struct R: Rswift.Validatable {
   
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 29 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 36 localization keys.
     struct localizable {
       /// zh-Hans translation: 今天喝水统计
       /// 
@@ -961,6 +1005,14 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: zh-Hans
       static let 元 = Rswift.StringResource(key: "元", tableName: "Localizable", bundle: R.hostingBundle, locales: ["zh-Hans"], comment: nil)
+      /// zh-Hans translation: 关注话题
+      /// 
+      /// Locales: zh-Hans
+      static let 关注话题 = Rswift.StringResource(key: "关注话题", tableName: "Localizable", bundle: R.hostingBundle, locales: ["zh-Hans"], comment: nil)
+      /// zh-Hans translation: 发布成功
+      /// 
+      /// Locales: zh-Hans
+      static let 发布成功 = Rswift.StringResource(key: "发布成功", tableName: "Localizable", bundle: R.hostingBundle, locales: ["zh-Hans"], comment: nil)
       /// zh-Hans translation: 喝水量
       /// 
       /// Locales: zh-Hans
@@ -985,6 +1037,22 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: zh-Hans
       static let 总喝水量 = Rswift.StringResource(key: "总喝水量", tableName: "Localizable", bundle: R.hostingBundle, locales: ["zh-Hans"], comment: nil)
+      /// zh-Hans translation: 我的关注
+      /// 
+      /// Locales: zh-Hans
+      static let 我的关注 = Rswift.StringResource(key: "我的关注", tableName: "Localizable", bundle: R.hostingBundle, locales: ["zh-Hans"], comment: nil)
+      /// zh-Hans translation: 我的收藏
+      /// 
+      /// Locales: zh-Hans
+      static let 我的收藏 = Rswift.StringResource(key: "我的收藏", tableName: "Localizable", bundle: R.hostingBundle, locales: ["zh-Hans"], comment: nil)
+      /// zh-Hans translation: 我的粉丝
+      /// 
+      /// Locales: zh-Hans
+      static let 我的粉丝 = Rswift.StringResource(key: "我的粉丝", tableName: "Localizable", bundle: R.hostingBundle, locales: ["zh-Hans"], comment: nil)
+      /// zh-Hans translation: 探索
+      /// 
+      /// Locales: zh-Hans
+      static let 探索 = Rswift.StringResource(key: "探索", tableName: "Localizable", bundle: R.hostingBundle, locales: ["zh-Hans"], comment: nil)
       /// zh-Hans translation: 新增
       /// 
       /// Locales: zh-Hans
@@ -1009,6 +1077,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: zh-Hans
       static let 杯 = Rswift.StringResource(key: "杯", tableName: "Localizable", bundle: R.hostingBundle, locales: ["zh-Hans"], comment: nil)
+      /// zh-Hans translation: 浏览历史
+      /// 
+      /// Locales: zh-Hans
+      static let 浏览历史 = Rswift.StringResource(key: "浏览历史", tableName: "Localizable", bundle: R.hostingBundle, locales: ["zh-Hans"], comment: nil)
       /// zh-Hans translation: 灯光设置
       /// 
       /// Locales: zh-Hans
@@ -1093,6 +1165,20 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("元", bundle: R.hostingBundle, comment: "")
       }
       
+      /// zh-Hans translation: 关注话题
+      /// 
+      /// Locales: zh-Hans
+      static func 关注话题(_: Void = ()) -> String {
+        return NSLocalizedString("关注话题", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// zh-Hans translation: 发布成功
+      /// 
+      /// Locales: zh-Hans
+      static func 发布成功(_: Void = ()) -> String {
+        return NSLocalizedString("发布成功", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// zh-Hans translation: 喝水量
       /// 
       /// Locales: zh-Hans
@@ -1135,6 +1221,34 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("总喝水量", bundle: R.hostingBundle, comment: "")
       }
       
+      /// zh-Hans translation: 我的关注
+      /// 
+      /// Locales: zh-Hans
+      static func 我的关注(_: Void = ()) -> String {
+        return NSLocalizedString("我的关注", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// zh-Hans translation: 我的收藏
+      /// 
+      /// Locales: zh-Hans
+      static func 我的收藏(_: Void = ()) -> String {
+        return NSLocalizedString("我的收藏", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// zh-Hans translation: 我的粉丝
+      /// 
+      /// Locales: zh-Hans
+      static func 我的粉丝(_: Void = ()) -> String {
+        return NSLocalizedString("我的粉丝", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// zh-Hans translation: 探索
+      /// 
+      /// Locales: zh-Hans
+      static func 探索(_: Void = ()) -> String {
+        return NSLocalizedString("探索", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// zh-Hans translation: 新增
       /// 
       /// Locales: zh-Hans
@@ -1175,6 +1289,13 @@ struct R: Rswift.Validatable {
       /// Locales: zh-Hans
       static func 杯(_: Void = ()) -> String {
         return NSLocalizedString("杯", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// zh-Hans translation: 浏览历史
+      /// 
+      /// Locales: zh-Hans
+      static func 浏览历史(_: Void = ()) -> String {
+        return NSLocalizedString("浏览历史", bundle: R.hostingBundle, comment: "")
       }
       
       /// zh-Hans translation: 灯光设置

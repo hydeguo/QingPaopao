@@ -7,6 +7,7 @@ import MobileCoreServices
 import Photos
 import UIKit
 import WordPressEditor
+import PKHUD
 
 class EditorViewController: UIViewController {
 
@@ -236,6 +237,20 @@ class EditorViewController: UIViewController {
         }
         mediaUrlMap=[:]
         
+        let title = titleTextView.text;
+        
+        UIApplication.shared.keyWindow?.endEditing(true)
+        HUD.show(.progress)
+        _ = Wolf.request(type: MyAPI.newPost(title: title!, content: content), completion: { (post: BaseReponse?, msg, code) in
+            HUD.hide()
+            if code == "0" {
+                PKHUD.sharedHUD.contentView = PKHUDSuccessView()
+                PKHUD.sharedHUD.show()
+                PKHUD.sharedHUD.hide(afterDelay: 1.0) { success in
+                    self.navigationController?.popViewController(animated: true)
+                }
+            }
+        }) { (error) in}
         
     }
     override func viewDidAppear(_ animated: Bool) {
