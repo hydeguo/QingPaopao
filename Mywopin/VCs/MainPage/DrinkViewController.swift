@@ -279,8 +279,8 @@ class DrinkViewController: UIViewController, CLLocationManagerDelegate {
         
         startElectrolyTime = Date().timeIntervalSince1970
         electrolyTime = TimeInterval(sliderNum.value * 60)
-        UserDefaults.standard.set(startElectrolyTime, forKey: "startElectrolyTime")
-        UserDefaults.standard.set(electrolyTime, forKey: "electrolyTime")
+        UserDefaults.standard.set(startElectrolyTime, forKey: "\(idStr) startElectrolyTime")
+        UserDefaults.standard.set(electrolyTime, forKey: "\(idStr) electrolyTime")
         BLEController.shared.setTimeOutEle(time: electrolyTime)
         WifiController.shared.setTimeOutEle(time: electrolyTime)
     }
@@ -291,12 +291,12 @@ class DrinkViewController: UIViewController, CLLocationManagerDelegate {
         startElectrolyFlag = false
         startElectrolyTime = 0
         electrolyTime = 0
-        UserDefaults.standard.set(electrolyTime, forKey: "electrolyTime")
-        UserDefaults.standard.set(startElectrolyTime, forKey: "startElectrolyTime")
+        UserDefaults.standard.set(electrolyTime, forKey: "\(idStr) electrolyTime")
+        UserDefaults.standard.set(startElectrolyTime, forKey: "\(idStr) startElectrolyTime")
         BLEController.shared.stopTimeOutEle()
         WifiController.shared.stopTimeOutEle()
         
-        let lastElectrolyTime = UserDefaults.standard.value(forKey: "lastElectrolyTime") as? Int ?? 0
+        let lastElectrolyTime = UserDefaults.standard.value(forKey: "\(idStr) lastElectrolyTime") as? Int ?? 0
         if Int(Date().timeIntervalSince1970) - Int(lastElectrolyTime) > 300
         {
             determineMyLocation()
@@ -310,7 +310,7 @@ class DrinkViewController: UIViewController, CLLocationManagerDelegate {
                 }
             }, failure: nil)
         }
-        UserDefaults.standard.set(Int(startElectrolyTime), forKey: "lastElectrolyTime")
+        UserDefaults.standard.set(Int(startElectrolyTime), forKey: "\(idStr) lastElectrolyTime")
     }
     
     func determineMyLocation() {

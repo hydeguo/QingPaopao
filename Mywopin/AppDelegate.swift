@@ -35,31 +35,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //        }
 //        Language.share.setLanguage("en")
         
-        if let s_clean_time = UserDefaults.standard.value(forKey: "startCleanTime")
-        {
-            startCleanTime = s_clean_time as! TimeInterval
-        }
-        if let s_ElectrolyTime = UserDefaults.standard.value(forKey: "startElectrolyTime")
-        {
-            startElectrolyTime = s_ElectrolyTime as! TimeInterval
-        }
-        if let eleTime = UserDefaults.standard.value(forKey: "electrolyTime")
-        {
-            electrolyTime = eleTime as! TimeInterval
-        }
-        if let ble_list = UserDefaults.standard.array(forKey: "BLE_list")
-        {
-            BLEController.shared.savedBLE = ble_list as! [String]
-             BLEController.shared.startAutoConnect()
-        }
-        if let notice = UserDefaults.standard.value(forKey: "notice")
-        {
-            switchNotice = notice as! Bool
-        }
-        if let shake = UserDefaults.standard.value(forKey: "shake")
-        {
-            switchShake = shake as! Bool
-        }
+
         _ = WifiController.shared;  //init
         
         MOBPay.addObserver(PayManager.shared)

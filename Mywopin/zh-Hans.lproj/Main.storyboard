@@ -225,7 +225,7 @@
                                         </connections>
                                     </button>
                                     <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="25" translatesAutoresizingMaskIntoConstraints="NO" id="2cP-Rt-cwm">
-                                        <rect key="frame" x="-82" y="379" width="538" height="30"/>
+                                        <rect key="frame" x="-81" y="379" width="538" height="30"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                         <color key="tintColor" red="0.83473541542251417" green="0.83473541542251417" blue="0.83473541542251417" alpha="0.91569456335616439" colorSpace="custom" customColorSpace="sRGB"/>
                                         <connections>
