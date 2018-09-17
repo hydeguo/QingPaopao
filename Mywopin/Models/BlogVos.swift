@@ -52,7 +52,7 @@ struct BlogFollows: WolfMapper {
 }
 
 struct BlogAuthor:Codable {
-    var id:Int
+    var id:String
     var name: String?
     var avatar_URL: String?
 }

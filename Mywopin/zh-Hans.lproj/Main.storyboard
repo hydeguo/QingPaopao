@@ -224,8 +224,8 @@
                                             <segue destination="lkj-qD-mKh" kind="presentation" identifier="clean" modalPresentationStyle="overFullScreen" modalTransitionStyle="coverVertical" id="bQk-ux-13m"/>
                                         </connections>
                                     </button>
-                                    <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="20" translatesAutoresizingMaskIntoConstraints="NO" id="2cP-Rt-cwm">
-                                        <rect key="frame" x="-51" y="379" width="477" height="30"/>
+                                    <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="25" translatesAutoresizingMaskIntoConstraints="NO" id="2cP-Rt-cwm">
+                                        <rect key="frame" x="-82" y="379" width="538" height="30"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                         <color key="tintColor" red="0.83473541542251417" green="0.83473541542251417" blue="0.83473541542251417" alpha="0.91569456335616439" colorSpace="custom" customColorSpace="sRGB"/>
                                         <connections>
@@ -928,7 +928,7 @@
                                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                                 <state key="normal" image="资源 13"/>
                                                 <connections>
-                                                    <segue destination="7Sl-PQ-Dat" kind="show" identifier="likedPosts" id="92C-2m-PyM"/>
+                                                    <segue destination="7Sl-PQ-Dat" kind="show" identifier="followingPosts" id="92C-2m-PyM"/>
                                                 </connections>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="关注话题" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="8" translatesAutoresizingMaskIntoConstraints="NO" id="8Uc-HF-bCT">
@@ -1745,7 +1745,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="50" translatesAutoresizingMaskIntoConstraints="NO" id="kUh-mG-8JO">
-                                <rect key="frame" x="0.0" y="64" width="375" height="554"/>
+                                <rect key="frame" x="0.0" y="44" width="375" height="106"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="titleCell" rowHeight="43" id="HaL-Tu-WMj" customClass="TitleBlogCell" customModule="Mywopin" customModuleProvider="target">
@@ -2090,7 +2090,7 @@
                                 <sections/>
                             </tableView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RJX-FL-KuS">
-                                <rect key="frame" x="0.0" y="568" width="375" height="50"/>
+                                <rect key="frame" x="0.0" y="100" width="375" height="50"/>
                                 <subviews>
                                     <view alpha="0.89999997615814209" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YX0-1S-vTh">
                                         <rect key="frame" x="16" y="4" width="293" height="41"/>
@@ -7062,6 +7062,6 @@ HIFI音响</string>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="haE-qQ-S2q"/>
-        <segue reference="NYO-nJ-7hg"/>
+        <segue reference="92C-2m-PyM"/>
     </inferredMetricsTieBreakers>
 </document>

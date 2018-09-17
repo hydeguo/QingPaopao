@@ -48,15 +48,16 @@ enum MyAPI {
     case getColletionPostList(page:Int,num:Int)
     case getLikedPostList(page:Int,num:Int)
     case getHistoryBlogPostList(page:Int,num:Int)
+    case getFollowingBlogPostList(page:Int,num:Int)
     case getMyBlogPostList(page:Int,num:Int)
     case deleteMyPost(id:Int)
     case getFansList
     case getMyFollowList
     case searchBlogPostList(search:Int)
     case getBlogPostComments(id:Int)
-    case getFollowList(id:Int)
-    case followAothur(id:Int)
-    case unFollowAothur(id:Int)
+    case getFollowList(userId:String)
+    case followAothur(userId:String)
+    case unFollowAothur(userId:String)
     case doCollectBlogPost(id:Int)
     case unCollectBlogPost(id:Int)
     case doLikeBlogPost(id:Int)
@@ -138,16 +139,18 @@ extension MyAPI: TargetType {
             return .requestParameters(parameters: [ "page" : page,"num" : num], encoding: URLEncoding.default)
         case .getHistoryBlogPostList(let page,let num):
             return .requestParameters(parameters: [ "page" : page,"num" : num], encoding: URLEncoding.default)
+        case .getFollowingBlogPostList(let page,let num):
+            return .requestParameters(parameters: [ "page" : page,"num" : num], encoding: URLEncoding.default)
         case .getMyBlogPostList(let page,let num):
             return .requestParameters(parameters: [ "page" : page,"num" : num], encoding: URLEncoding.default)
         case .unCollectBlogPost(let id):
             return .requestParameters(parameters: [ "postId" : id], encoding: URLEncoding.default)
         case .searchBlogPostList(let search):
             return .requestParameters(parameters: [ "search" : search], encoding: URLEncoding.default)
-        case .followAothur(let id):
-            return .requestParameters(parameters: [ "userId" : id], encoding: URLEncoding.default)
-        case .unFollowAothur(let id):
-            return .requestParameters(parameters: [ "userId" : id], encoding: URLEncoding.default)
+        case .followAothur(let userId):
+            return .requestParameters(parameters: [ "userId" : userId], encoding: URLEncoding.default)
+        case .unFollowAothur(let userId):
+            return .requestParameters(parameters: [ "userId" : userId], encoding: URLEncoding.default)
         case .doCollectBlogPost(let id):
             return .requestParameters(parameters: [ "postId" : id], encoding: URLEncoding.default)
         case .deleteMyPost(let id):
@@ -260,6 +263,8 @@ extension MyAPI: TargetType {
             return "/blog/hotPosts"
         case .getHistoryBlogPostList:
             return "/blog/historyPosts"
+        case .getFollowingBlogPostList:
+            return "/blog/followPosts"
         case .getMyBlogPostList:
             return "/blog/myPosts"
         case .deleteMyPost:
@@ -276,8 +281,8 @@ extension MyAPI: TargetType {
             return "/blog/searchPosts"
         case .getBlogPostComments(let id):
             return "/blog/postComments/\(id)"
-        case .getFollowList(let id):
-            return "/blog/getFollows/\(id)"
+        case .getFollowList(let userId):
+            return "/blog/getFollows/\(userId)"
         case .followAothur:
             return "/blog/follow"
         case .unFollowAothur:
@@ -315,6 +320,7 @@ extension MyAPI: TargetType {
                   .getLastBlogPostList,
                   .getHotBlogPostList,
                   .getHistoryBlogPostList,
+                  .getFollowingBlogPostList,
                   .getMyBlogPostList,
                   .getFollowList,
                   .getColletionPostList,

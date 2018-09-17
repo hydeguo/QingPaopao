@@ -46,9 +46,9 @@ class DrinkViewController: UIViewController, CLLocationManagerDelegate {
             self.slider.value = $0
             self.timeLabel?.text =  "\(String(format: "%02d", m)) : \( String(format: "%02d", Int(($0 - Float(m)) * 60)))"
             self.sliderLabel5?.scale = $0 <= 5 ? 1.5 : 1;
-            self.sliderLabel10?.scale = $0 > 5 && $0 <= 10 ? 1.5 : 1;
-            self.sliderLabel15?.scale = $0 > 10 && $0 <= 15 ? 1.5 : 1;
-            self.sliderLabel20?.scale = $0 > 15 && $0 <= 20 ? 1.5 : 1;
+            self.sliderLabel10?.scale = $0 >= 5 && $0 < 10 ? 1.5 : 1;
+            self.sliderLabel15?.scale = $0 >= 10 && $0 < 15 ? 1.5 : 1;
+            self.sliderLabel20?.scale = $0 >= 15 && $0 < 20 ? 1.5 : 1;
         }).disposed(by: 👜)
       
 //        createGradientLayer(view: self.bgView!)
@@ -150,7 +150,7 @@ class DrinkViewController: UIViewController, CLLocationManagerDelegate {
                     _ = SweetAlert().showAlert("提示", subTitle: "正在电解中", style: AlertStyle.none)
                     return false
                 }
-                else if CleanCupViewController.doneCleanFlag =  true && BLEController.shared.connectedDevice.state == .connected
+                else if CleanCupViewController.doneCleanFlag ==  true && BLEController.shared.connectedDevice?.state == .connected
                 {
                     _ = SweetAlert().showAlert("提示", subTitle: "清洗已经完成", style: AlertStyle.none)
                     return false

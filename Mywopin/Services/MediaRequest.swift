@@ -10,7 +10,7 @@ import Foundation
 import Alamofire
 
 public func uploadImage(fileName:String ,imageData:Data, callback:@escaping (_ response : String?)->Void){
-    
+   
     let imageUrl = server_url + "/uploadImage"
     Alamofire.upload( multipartFormData: { multipartFormData in
         

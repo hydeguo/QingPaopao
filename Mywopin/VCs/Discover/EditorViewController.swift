@@ -1400,7 +1400,7 @@ private extension EditorViewController
         let progress = Progress(parent: nil, userInfo: [MediaProgressKey.mediaID: imageID])
         progress.totalUnitCount = 100
         
-        if let imageData = UIImageJPEGRepresentation(image, 0.3)
+        if let imageData = UIImageJPEGRepresentation(image, 0.1)
         {
             uploadImage(fileName: imageID+".jpg", imageData: imageData) { (url) in
                 if let _url = url

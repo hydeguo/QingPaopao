@@ -239,7 +239,7 @@ class AuthorBlogCell: UITableViewCell {
         
         
         self.likeBtn?.isHidden = true
-        _ = Wolf.request(type: MyAPI.getFollowList(id: (postData?.author?.id)!), completion: { (res: BlogFollows?, msg, code) in
+        _ = Wolf.request(type: MyAPI.getFollowList(userId: (postData?.author?.id)!), completion: { (res: BlogFollows?, msg, code) in
             self.likeBtn?.isHidden = false
             if (res != nil)  {
                 self.likeBtn?.isSelected = res!.follow.contains(myClientVo!._id)
@@ -252,25 +252,23 @@ class AuthorBlogCell: UITableViewCell {
     @IBAction func onLike(_ btn:UIButton)
     {
    
-        if (postData == nil) {
-            return
-        }
-    
-        if likeBtn?.isSelected == true
-        {
-            self.likeBtn?.isSelected = false
-            _ = Wolf.request(type: MyAPI.unFollowAothur(id: postData?.author?.id ?? 0 ), completion: { (res: BaseReponse?, msg, code) in
-                if code == "0" {
-                }
-            }) { (error) in}
-        }
-        else
-        {
-            self.likeBtn?.isSelected = true
-            _ = Wolf.request(type: MyAPI.followAothur(id: postData?.author?.id ?? 0), completion: { (res: BaseReponse?, msg, code) in
-                if code == "0" {
-                }
-            }) { (error) in}
+        if let _userId = postData?.author?.id {
+            if likeBtn?.isSelected == true
+            {
+                self.likeBtn?.isSelected = false
+                _ = Wolf.request(type: MyAPI.unFollowAothur(userId: _userId ), completion: { (res: BaseReponse?, msg, code) in
+                    if code == "0" {
+                    }
+                }) { (error) in}
+            }
+            else
+            {
+                self.likeBtn?.isSelected = true
+                _ = Wolf.request(type: MyAPI.followAothur(userId: _userId), completion: { (res: BaseReponse?, msg, code) in
+                    if code == "0" {
+                    }
+                }) { (error) in}
+            }
         }
     }
     

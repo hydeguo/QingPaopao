@@ -16,7 +16,8 @@ enum POST_MODE:String {
     case new = "new"
     case hot = "hot"
     case collect = "collect"
-    case likes = "likes"
+//    case likes = "likes"
+    case following = "following"
     case my = "my"
 }
 
@@ -51,7 +52,7 @@ class PostListViewController: UITableViewController {
         switch mode {
         case .history:
             navigationController?.navigationBar.topItem?.title = Language.getString( "浏览历史")
-        case .likes:
+        case .following:
             navigationController?.navigationBar.topItem?.title = Language.getString( "关注话题")
         case .collect:
             navigationController?.navigationBar.topItem?.title = Language.getString( "我的收藏")
@@ -104,9 +105,9 @@ class PostListViewController: UITableViewController {
                 let retrievedMessage = try Disk.retrieve("collectPostList.json", from: .caches, as: [BlogPostItem].self)
                 posts = retrievedMessage
             }
-            else if mode == .likes
+            else if mode == .following
             {
-                let retrievedMessage = try Disk.retrieve("likesPostList.json", from: .caches, as: [BlogPostItem].self)
+                let retrievedMessage = try Disk.retrieve("followingsPostList.json", from: .caches, as: [BlogPostItem].self)
                 posts = retrievedMessage
             }
             else if mode == .my
@@ -134,9 +135,21 @@ class PostListViewController: UITableViewController {
             self.refreshControl?.endRefreshing()
             setInitData()
             self.tableView.reloadData()
-            if self.posts.count == 0{
+            if checkRefreshTime(mode: self.mode){
                 self.updatePostList()
             }
+        }
+    }
+    
+    func checkRefreshTime(mode:POST_MODE)-> Bool
+    {
+        if let _time = UserDefaults.standard.value(forKey: "refreshTime-\(mode.rawValue)") as? TimeInterval
+        {
+            return Date().timeIntervalSince1970 - _time > 1800
+        }
+        else
+        {
+            return true
         }
     }
     
@@ -166,7 +179,7 @@ class PostListViewController: UITableViewController {
         updatePostList()
     }
     @objc func updatePostList() {
-        if(posts.count==0){
+        if(posts.count==0 || checkRefreshTime(mode: self.mode)){
             refreshControl?.beginRefreshing()
         }
         if loadingMore == true
@@ -182,7 +195,10 @@ class PostListViewController: UITableViewController {
                     if self.mode == .new
                     {
                         do {
-                            if self.curPage == 1 {try Disk.save(_posts, to: .caches, as: "PostList.json")}
+                            if self.curPage == 1 {
+                                UserDefaults.standard.set(Date().timeIntervalSince1970, forKey: "refreshTime-\(self.mode.rawValue)");
+                                try Disk.save(_posts, to: .caches, as: "PostList.json")
+                            }
                         } catch _ as NSError {}
                         self.onReceiveNewData(_posts)
                     }
@@ -198,7 +214,10 @@ class PostListViewController: UITableViewController {
                     if self.mode == .hot
                     {
                         do {
-                            if self.curPage == 1 {try Disk.save(_posts, to: .caches, as: "hotPostList.json")}
+                            if self.curPage == 1 {
+                                UserDefaults.standard.set(Date().timeIntervalSince1970, forKey: "refreshTime-\(self.mode.rawValue)");
+                                try Disk.save(_posts, to: .caches, as: "hotPostList.json")
+                            }
                         } catch _ as NSError {}
                         self.onReceiveNewData(_posts)
                     }
@@ -213,7 +232,10 @@ class PostListViewController: UITableViewController {
                     if self.mode == .history
                     {
                         do {
-                            if self.curPage == 1 {try Disk.save(_posts, to: .caches, as: "historyPostList.json")}
+                            if self.curPage == 1 {
+                                UserDefaults.standard.set(Date().timeIntervalSince1970, forKey: "refreshTime-\(self.mode.rawValue)");
+                                try Disk.save(_posts, to: .caches, as: "historyPostList.json")
+                            }
                         } catch _ as NSError {}
                         self.onReceiveNewData(_posts)
                     }
@@ -228,22 +250,28 @@ class PostListViewController: UITableViewController {
                     if self.mode == .collect
                     {
                         do {
-                            if self.curPage == 1 {try Disk.save(_posts, to: .caches, as: "collectPostList.json")}
+                            if self.curPage == 1 {
+                                UserDefaults.standard.set(Date().timeIntervalSince1970, forKey: "refreshTime-\(self.mode.rawValue)");
+                                try Disk.save(_posts, to: .caches, as: "collectPostList.json")
+                            }
                         } catch _ as NSError {}
                         self.onReceiveNewData(_posts)
                     }
                 }
             }, failure: nil)
         }
-        else if mode == .likes
+        else if mode == .following
         {
-            _ = Wolf.requestList(type: MyAPI.getLikedPostList(page: curPage, num: numPrePage), completion: { (posts: [BlogPostItem]?, msg, code) in
+            _ = Wolf.requestList(type: MyAPI.getFollowingBlogPostList(page: curPage, num: numPrePage), completion: { (posts: [BlogPostItem]?, msg, code) in
                 if let _posts = posts {
                     
-                    if self.mode == .likes
+                    if self.mode == .following
                     {
                         do {
-                            if self.curPage == 1 {try Disk.save(_posts, to: .caches, as: "likesPostList.json")}
+                            if self.curPage == 1 {
+                                UserDefaults.standard.set(Date().timeIntervalSince1970, forKey: "refreshTime-\(self.mode.rawValue)");
+                                try Disk.save(_posts, to: .caches, as: "followingPostList.json")
+                            }
                         } catch _ as NSError {}
                         self.onReceiveNewData(_posts)
                     }
@@ -258,7 +286,10 @@ class PostListViewController: UITableViewController {
                     if self.mode == .my
                     {
                         do {
-                            if self.curPage == 1 {try Disk.save(_posts, to: .caches, as: "myPostList.json")}
+                            if self.curPage == 1 {
+                                UserDefaults.standard.set(Date().timeIntervalSince1970, forKey: "refreshTime-\(self.mode.rawValue)");
+                                try Disk.save(_posts, to: .caches, as: "myPostList.json")
+                            }
                         } catch _ as NSError {}
                         self.onReceiveNewData(_posts)
                     }

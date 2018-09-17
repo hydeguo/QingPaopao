@@ -48,9 +48,9 @@ class MyProfileViewController: UIViewController {
             let controller = segue.destination  as! PostListViewController
             controller.mode = .collect
         }
-        if segue.identifier == "likedPosts"{
+        if segue.identifier == "followingPosts"{
             let controller = segue.destination  as! PostListViewController
-            controller.mode = .likes
+            controller.mode = .following
         }
         
     }

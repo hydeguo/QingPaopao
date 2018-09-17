@@ -879,23 +879,23 @@ struct R: Rswift.Validatable {
     
     /// This struct is generated for `MyProfileViewController`, and contains static references to 2 segues.
     struct myProfileViewController {
+      /// Segue identifier `followingPosts`.
+      static let followingPosts: Rswift.StoryboardSegueIdentifier<UIKit.UIStoryboardSegue, MyProfileViewController, PostListViewController> = Rswift.StoryboardSegueIdentifier(identifier: "followingPosts")
       /// Segue identifier `history`.
       static let history: Rswift.StoryboardSegueIdentifier<UIKit.UIStoryboardSegue, MyProfileViewController, PostListViewController> = Rswift.StoryboardSegueIdentifier(identifier: "history")
-      /// Segue identifier `likedPosts`.
-      static let likedPosts: Rswift.StoryboardSegueIdentifier<UIKit.UIStoryboardSegue, MyProfileViewController, PostListViewController> = Rswift.StoryboardSegueIdentifier(identifier: "likedPosts")
+      
+      /// Optionally returns a typed version of segue `followingPosts`.
+      /// Returns nil if either the segue identifier, the source, destination, or segue types don't match.
+      /// For use inside `prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?)`.
+      static func followingPosts(segue: UIKit.UIStoryboardSegue) -> Rswift.TypedStoryboardSegueInfo<UIKit.UIStoryboardSegue, MyProfileViewController, PostListViewController>? {
+        return Rswift.TypedStoryboardSegueInfo(segueIdentifier: R.segue.myProfileViewController.followingPosts, segue: segue)
+      }
       
       /// Optionally returns a typed version of segue `history`.
       /// Returns nil if either the segue identifier, the source, destination, or segue types don't match.
       /// For use inside `prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?)`.
       static func history(segue: UIKit.UIStoryboardSegue) -> Rswift.TypedStoryboardSegueInfo<UIKit.UIStoryboardSegue, MyProfileViewController, PostListViewController>? {
         return Rswift.TypedStoryboardSegueInfo(segueIdentifier: R.segue.myProfileViewController.history, segue: segue)
-      }
-      
-      /// Optionally returns a typed version of segue `likedPosts`.
-      /// Returns nil if either the segue identifier, the source, destination, or segue types don't match.
-      /// For use inside `prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?)`.
-      static func likedPosts(segue: UIKit.UIStoryboardSegue) -> Rswift.TypedStoryboardSegueInfo<UIKit.UIStoryboardSegue, MyProfileViewController, PostListViewController>? {
-        return Rswift.TypedStoryboardSegueInfo(segueIdentifier: R.segue.myProfileViewController.likedPosts, segue: segue)
       }
       
       fileprivate init() {}
