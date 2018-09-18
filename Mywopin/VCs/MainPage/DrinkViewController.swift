@@ -295,12 +295,16 @@ class DrinkViewController: UIViewController, CLLocationManagerDelegate {
         UserDefaults.standard.set(startElectrolyTime, forKey: "\(idStr) startElectrolyTime")
         BLEController.shared.stopTimeOutEle()
         WifiController.shared.stopTimeOutEle()
-        
+        #if targetEnvironment(simulator)
+        #else
+            let BLE_cupId = BLEController.shared.connectedDevice?.identifier.uuidString
+        #endif
         let lastElectrolyTime = UserDefaults.standard.value(forKey: "\(idStr) lastElectrolyTime") as? Int ?? 0
         if Int(Date().timeIntervalSince1970) - Int(lastElectrolyTime) > 300
         {
+            // wifi cup will send drink command bt itself
             determineMyLocation()
-            _ = Wolf.request(type: MyAPI.drink(target: targetOfDrink), completion: { (info: OneDrinks?, msg, code) in
+            _ = Wolf.request(type: MyAPI.drink(target: targetOfDrink, cupId: BLE_cupId ?? ""), completion: { (info: OneDrinks?, msg, code) in
                 if(code == "0")
                 {
                     let t_d =  myClientVo?.drinks ?? 0

@@ -32,7 +32,7 @@ enum MyAPI {
     case getScoresOrder
     case getCrowdfundingOrder
     case updateBodyProfiles(key:[String] ,value:[Double?])
-    case drink(target:Int)
+    case drink(target:Int,cupId:String)
     case attendance
     case getTodayDrinkList
     case getDrinkList
@@ -117,8 +117,8 @@ extension MyAPI: TargetType {
                 p["value3"] = value[2]
             }
             return .requestParameters(parameters: p, encoding: URLEncoding.default)
-        case .drink(let target):
-            return .requestParameters(parameters: ["target" : target], encoding: URLEncoding.default)
+        case .drink(let target, let cupId):
+            return .requestParameters(parameters: ["target" : target,"uuid" : cupId], encoding: URLEncoding.default)
         case .exchangeOrderUpdate(let orderId , let expressId ,let expressName):
             return .requestParameters(parameters: ["orderId" : orderId,"expressId" : expressId,"expressName" : expressName], encoding: URLEncoding.default)
         case .orderStatusUpdate(let orderId , let status):
