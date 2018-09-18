@@ -122,7 +122,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qn5-9A-rwf">
-                                        <rect key="frame" x="120" y="324" width="40" height="53"/>
+                                        <rect key="frame" x="136" y="324" width="40" height="53"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                         <string key="text">10
 ㆐</string>
@@ -131,7 +131,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kH0-ey-Z3h">
-                                        <rect key="frame" x="214" y="324" width="40" height="53"/>
+                                        <rect key="frame" x="199" y="324" width="40" height="53"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                         <string key="text">15
 ㆐</string>
@@ -140,7 +140,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KIU-Vq-tkQ">
-                                        <rect key="frame" x="308" y="324" width="40" height="53"/>
+                                        <rect key="frame" x="265" y="324" width="40" height="53"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                         <string key="text">20
 ㆐</string>
@@ -156,7 +156,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o68-zY-gCb">
-                                        <rect key="frame" x="27" y="324" width="40" height="53"/>
+                                        <rect key="frame" x="71" y="324" width="40" height="53"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                         <string key="text">5
 ㆐</string>
@@ -225,7 +225,7 @@
                                         </connections>
                                     </button>
                                     <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="25" translatesAutoresizingMaskIntoConstraints="NO" id="2cP-Rt-cwm">
-                                        <rect key="frame" x="-81" y="379" width="538" height="30"/>
+                                        <rect key="frame" x="-2" y="379" width="379" height="30"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                         <color key="tintColor" red="0.83473541542251417" green="0.83473541542251417" blue="0.83473541542251417" alpha="0.91569456335616439" colorSpace="custom" customColorSpace="sRGB"/>
                                         <connections>
@@ -1745,7 +1745,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="50" translatesAutoresizingMaskIntoConstraints="NO" id="kUh-mG-8JO">
-                                <rect key="frame" x="0.0" y="44" width="375" height="106"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="554"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="titleCell" rowHeight="43" id="HaL-Tu-WMj" customClass="TitleBlogCell" customModule="Mywopin" customModuleProvider="target">
@@ -2090,7 +2090,7 @@
                                 <sections/>
                             </tableView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RJX-FL-KuS">
-                                <rect key="frame" x="0.0" y="100" width="375" height="50"/>
+                                <rect key="frame" x="0.0" y="568" width="375" height="50"/>
                                 <subviews>
                                     <view alpha="0.89999997615814209" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YX0-1S-vTh">
                                         <rect key="frame" x="16" y="4" width="293" height="41"/>
@@ -2755,81 +2755,53 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LIO-zG-6lD">
                                         <rect key="frame" x="0.0" y="0.0" width="337.5" height="66.5"/>
                                         <subviews>
-                                            <imageView userInteractionEnabled="NO" tag="1" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="name" translatesAutoresizingMaskIntoConstraints="NO" id="T8P-7g-QfN">
+                                            <imageView userInteractionEnabled="NO" tag="1" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="name" translatesAutoresizingMaskIntoConstraints="NO" id="T8P-7g-QfN">
                                                 <rect key="frame" x="0.0" y="23.5" width="0.0" height="24"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" id="6bi-1D-Kay"/>
-                                                    <constraint firstAttribute="width" secondItem="T8P-7g-QfN" secondAttribute="height" multiplier="1:1" constant="-24" id="dgV-YA-w0l"/>
-                                                </constraints>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             </imageView>
-                                            <textField opaque="NO" clipsSubviews="YES" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入手机号" textAlignment="natural" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="f3N-Kp-hta">
+                                            <textField opaque="NO" clipsSubviews="YES" tag="2" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入手机号" textAlignment="natural" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="f3N-Kp-hta">
                                                 <rect key="frame" x="87" y="17.5" width="250.5" height="35"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="35" id="wdl-ig-jZp"/>
-                                                </constraints>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <nil key="textColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="words" keyboardAppearance="alert" textContentType="tel"/>
                                             </textField>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kog-UO-Q3g">
+                                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kog-UO-Q3g">
                                                 <rect key="frame" x="0.0" y="51.5" width="337.5" height="1"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="calibratedWhite"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="1" id="UpL-vm-DsS"/>
-                                                </constraints>
                                             </view>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="手机号" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LnW-u3-SmS">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="手机号" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LnW-u3-SmS">
                                                 <rect key="frame" x="20" y="22" width="56" height="21.5"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" constant="56" id="ryP-CQ-SGd"/>
-                                                </constraints>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>
-                                        <constraints>
-                                            <constraint firstItem="LnW-u3-SmS" firstAttribute="centerY" secondItem="LIO-zG-6lD" secondAttribute="centerY" id="08w-2X-u4k"/>
-                                            <constraint firstItem="f3N-Kp-hta" firstAttribute="trailing" secondItem="kog-UO-Q3g" secondAttribute="trailing" id="AWv-dn-BPu"/>
-                                            <constraint firstItem="kog-UO-Q3g" firstAttribute="centerX" secondItem="LIO-zG-6lD" secondAttribute="centerX" id="Dd0-TB-k54"/>
-                                            <constraint firstItem="LnW-u3-SmS" firstAttribute="leading" secondItem="T8P-7g-QfN" secondAttribute="trailing" constant="20" id="Q2M-OK-a9J"/>
-                                            <constraint firstAttribute="bottom" secondItem="kog-UO-Q3g" secondAttribute="bottom" constant="14" id="Q7R-d1-Aqt"/>
-                                            <constraint firstItem="f3N-Kp-hta" firstAttribute="leading" secondItem="T8P-7g-QfN" secondAttribute="trailing" constant="87" id="aTb-4o-Gb4"/>
-                                            <constraint firstItem="f3N-Kp-hta" firstAttribute="bottom" secondItem="kog-UO-Q3g" secondAttribute="bottom" id="bF9-Ao-UE8"/>
-                                            <constraint firstItem="f3N-Kp-hta" firstAttribute="centerY" secondItem="T8P-7g-QfN" secondAttribute="centerY" id="cQ5-XH-Ncw"/>
-                                            <constraint firstItem="kog-UO-Q3g" firstAttribute="width" secondItem="LIO-zG-6lD" secondAttribute="width" id="czT-V4-SmW"/>
-                                            <constraint firstItem="T8P-7g-QfN" firstAttribute="leading" secondItem="kog-UO-Q3g" secondAttribute="leading" id="fBr-3m-AhH"/>
-                                        </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Zho-ni-zuQ">
                                         <rect key="frame" x="0.0" y="66.5" width="337.5" height="67"/>
                                         <subviews>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="email" translatesAutoresizingMaskIntoConstraints="NO" id="NAy-hs-Dld">
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="email" translatesAutoresizingMaskIntoConstraints="NO" id="NAy-hs-Dld">
                                                 <rect key="frame" x="0.0" y="23" width="0.0" height="24"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" secondItem="NAy-hs-Dld" secondAttribute="height" multiplier="1:1" constant="-24" id="FKF-m7-s1j"/>
-                                                    <constraint firstAttribute="width" id="nXI-ZC-bz4"/>
-                                                </constraints>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             </imageView>
-                                            <textField opaque="NO" clipsSubviews="YES" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入短信验证码" textAlignment="natural" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="uSy-76-QrG">
+                                            <textField opaque="NO" clipsSubviews="YES" tag="3" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入短信验证码" textAlignment="natural" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="uSy-76-QrG">
                                                 <rect key="frame" x="91" y="18" width="130.5" height="35"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="35" id="KAe-kn-PgH"/>
-                                                </constraints>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <nil key="textColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                 <textInputTraits key="textInputTraits" keyboardType="emailAddress" keyboardAppearance="alert"/>
                                             </textField>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kGS-Vw-Acs">
+                                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kGS-Vw-Acs">
                                                 <rect key="frame" x="0.0" y="52" width="337.5" height="1"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="calibratedWhite"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="1" id="8zC-Ua-yxA"/>
-                                                </constraints>
                                             </view>
                                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rxt-qq-lO3">
-                                                <rect key="frame" x="229" y="19" width="100" height="30"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
+                                                <rect key="frame" x="229" y="18" width="100" height="30"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
                                                 <state key="normal" title="获取验证码">
                                                     <color key="titleColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </state>
@@ -2839,33 +2811,19 @@
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="60秒后重发" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jg2-Ze-KbF">
                                                 <rect key="frame" x="229" y="22" width="100" height="25"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                 <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="验证码" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="riA-0I-e8y">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="验证码" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="riA-0I-e8y">
                                                 <rect key="frame" x="20" y="23" width="56" height="21.5"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" constant="56" id="BFe-bt-r9H"/>
-                                                </constraints>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>
-                                        <constraints>
-                                            <constraint firstItem="riA-0I-e8y" firstAttribute="centerY" secondItem="Zho-ni-zuQ" secondAttribute="centerY" id="23r-hf-q0j"/>
-                                            <constraint firstItem="uSy-76-QrG" firstAttribute="leading" secondItem="NAy-hs-Dld" secondAttribute="trailing" constant="91" id="7ah-Z3-hnz"/>
-                                            <constraint firstItem="uSy-76-QrG" firstAttribute="centerY" secondItem="NAy-hs-Dld" secondAttribute="centerY" id="G40-Cc-aAv"/>
-                                            <constraint firstItem="NAy-hs-Dld" firstAttribute="leading" secondItem="kGS-Vw-Acs" secondAttribute="leading" id="M5i-7v-tVM"/>
-                                            <constraint firstAttribute="bottom" secondItem="kGS-Vw-Acs" secondAttribute="bottom" constant="14" id="UXC-AB-tfl"/>
-                                            <constraint firstItem="uSy-76-QrG" firstAttribute="bottom" secondItem="kGS-Vw-Acs" secondAttribute="bottom" id="ZrQ-tn-7JG"/>
-                                            <constraint firstItem="riA-0I-e8y" firstAttribute="leading" secondItem="NAy-hs-Dld" secondAttribute="trailing" constant="20" id="bxE-jv-yRs"/>
-                                            <constraint firstItem="kGS-Vw-Acs" firstAttribute="width" secondItem="Zho-ni-zuQ" secondAttribute="width" id="c8W-B4-304"/>
-                                            <constraint firstItem="kGS-Vw-Acs" firstAttribute="centerX" secondItem="Zho-ni-zuQ" secondAttribute="centerX" id="cAB-6j-pk0"/>
-                                            <constraint firstItem="uSy-76-QrG" firstAttribute="trailing" secondItem="kGS-Vw-Acs" secondAttribute="trailing" constant="-115.5" id="pqG-Cd-a3g"/>
-                                        </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="viE-sH-Dcq">
                                         <rect key="frame" x="0.0" y="133.5" width="337.5" height="66.5"/>
@@ -6134,14 +6092,38 @@ HIFI音响</string>
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="快递单号" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KWU-db-UZe">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="快递公司" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KWU-db-UZe">
                                                     <rect key="frame" x="22" y="17" width="70" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <textField opaque="NO" clipsSubviews="YES" tag="2" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入快递单号" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="sFB-Ve-cxc">
+                                                <textField opaque="NO" clipsSubviews="YES" tag="2" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入快递公司名称" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="sFB-Ve-cxc">
+                                                    <rect key="frame" x="108" y="12" width="265" height="35"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                                    <nil key="textColor"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                                    <textInputTraits key="textInputTraits" autocapitalizationType="words" keyboardAppearance="alert" textContentType="tel"/>
+                                                </textField>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="EPY-ai-ThD">
+                                        <rect key="frame" x="0.0" y="70" width="375" height="60"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="EPY-ai-ThD" id="pep-aZ-rsD">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="快递单号" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N7r-cj-m66">
+                                                    <rect key="frame" x="22" y="17" width="70" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <textField opaque="NO" clipsSubviews="YES" tag="2" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入快递单号" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="6Gw-v5-NQ9">
                                                     <rect key="frame" x="108" y="12" width="265" height="35"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                                     <nil key="textColor"/>
@@ -6156,7 +6138,7 @@ HIFI音响</string>
                             <tableViewSection headerTitle="    " id="ber-N1-s93">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="1CJ-2u-0k7">
-                                        <rect key="frame" x="0.0" y="80" width="375" height="60"/>
+                                        <rect key="frame" x="0.0" y="140" width="375" height="60"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="1CJ-2u-0k7" id="HPr-oO-ud1">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
@@ -6188,7 +6170,8 @@ HIFI音响</string>
                         </connections>
                     </tableView>
                     <connections>
-                        <outlet property="deliveryOrder" destination="sFB-Ve-cxc" id="i2c-ZR-2Us"/>
+                        <outlet property="deliveryExpressName" destination="sFB-Ve-cxc" id="hKE-VC-cf0"/>
+                        <outlet property="deliveryOrder" destination="6Gw-v5-NQ9" id="yza-Mk-u6P"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Mi3-kv-R8A" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -6762,8 +6745,8 @@ HIFI音响</string>
                                                     <rect key="frame" x="67" y="44" width="240" height="128"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="微信公众号：xxxy" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O91-gh-fPf">
-                                                    <rect key="frame" x="118" y="176" width="139" height="21"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="微信公众号：wopin2016" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O91-gh-fPf">
+                                                    <rect key="frame" x="94" y="173" width="188" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
@@ -6788,8 +6771,8 @@ HIFI音响</string>
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="59.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="400-000-133" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wEc-yB-awZ">
-                                                    <rect key="frame" x="253" y="17" width="106" height="21"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="020-37277399" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wEc-yB-awZ">
+                                                    <rect key="frame" x="241" y="17" width="118" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
@@ -6932,14 +6915,118 @@ HIFI音响</string>
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="698.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="广州蜗品，是一家专注于科技与健康产品调研、研发、生产、销售于一体的产业链服务企业。公司以创新与科技，服务健康生活为使命，致力于让更多人享受到科技带来的健康生活。是一家专注于市场健康科技产品调研与产品销售链服务业务为核心的公司。" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="11" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qsm-Ui-4Dr">
-                                                    <rect key="frame" x="23" y="0.0" width="328" height="190"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
+                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="T9T-3K-pYO">
+                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="699"/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <string key="text">氢POPO富氢水杯客户答疑
+问：杯子的使用方法
+答：
+1 开机，长按开机键3秒
+2电解时间，默认5分钟，电解完成以后自动关机；
+3强制关机，开机状态长按开关键3秒，关机；
+4 手机操控，扫描杯底二维码下载氢泡泡APP，在手机上打开APP，通过手机蓝牙连接杯子，可以操控杯子灯光、电解时间、提醒喝水等功能；
+5新杯子最好用60度左右的热水，电解3-5次，倒掉。以后的就可以正常使用了；
+6 喝水建议：用60度左右的水，早晨一杯水电解两次后喝掉，上午1～2杯电解1次，下午1-2杯电解1次，晚上睡觉前电解两次1杯，按照此种方式饮用10天，会有较好效果。电解后，最好在20分钟内喝完
+
+问：刚拆开的杯子里为什么会有水？
+答：杯子里的水是在工厂里组装时加的抑菌水，是为了湿润电解片和氢氧分离离子膜，激活并保持离子膜的活性，让用户在拿到杯子后就能有很好的制氢效果。在首次使用时，揭开硅胶塞后，倒掉即可。
+
+问：首次打开杯子如何操作？
+答：首次使用杯子，把杯中的硅胶塞拿去，倒掉火山口里的抑菌水，若没有电，则开始充电，充电时按钮显示红色，充满时按钮显示绿色；充满电后，到入60°左右的热水，电解倒掉，如此反复3-5次以后，就可以正常使用了。
+
+
+问：杯子能否使用热开水？
+答：杯子可以使用热水，但不建议使用热开水。若是用刚烧开的热水，制氢后尚需放凉才能饮用，而这个等待时间会让氢气流失。所以，用60°左右热水制氢最适宜，且制氢完20分钟内饮用效果最佳。
+
+
+问：如何开机关机？
+答：长按开关键3-5秒，即可开机关机。
+
+问：app在哪里可以连接到蓝牙？
+答：app界面中左下方有个蓝牙设置，点进去就可以连接蓝牙，记得先把手机蓝牙打开哦。
+
+问：如何设置制氢时间？
+答：不用app时，水杯开机后默认电解5分钟；用app操控时可以在0-20min任意调节。
+
+问：硅胶塞怎么使用呢？
+答：硅胶塞在使用时需要拿掉，当第一次打开杯子时，会看到中间有些水，这是为了湿润杜邦膜片。所以需要打开杯子，把这个硅胶塞拿去。若长期不使用时，要倒入一部分水后用硅胶塞盖住。保持杯子活性，防止灰尘落入。
+
+问：刚打开的杯子中为什么会有一股怪味？
+答：在包装塑封后，包装盒里的空气难以流动，导致塑封袋气味进入杯子，并不妨碍使用，用60°左右的热水水浸泡电解，并放在通风比较好的地方敞开杯子一段时间即可。
+
+问：水杯能否用饮水机除垢剂清洗？
+答：我们建议最好是用清水洗，可以用柠檬片泡一泡。因为除垢剂属于中强酸，会腐蚀杯子的电解片，不建议使用。
+
+问：为什么杯子制氢的气泡特别少？
+答：本产品采用的是美国杜邦离子膜，需要通过浸泡去增强它的通透性和导电性（即激活离子膜），浸泡时间越长，离子膜导电性和通透性就越强。产生氢气量就越多。多使用就会越来越好的。
+
+问：杯子用于电解什么水？
+答：氢POPO富氢水杯可用于电解可直饮饮用水。可直饮饮用水，即我们平时喝的水。包括烧开的自来水，纯净水，矿泉水。烧开的井水，山泉水等。
+
+问：用什么充电头？
+答：普通的USB充电头，5V=1A、5V=2A、都可以
+   闪冲充电头（5v=3A、5V=4A）的不行！
+ 
+问：怎么打开杯子后没有情景灯？
+答：开机以后，杯内灯和开关灯默认呼吸变换。在开机状态下，短按开关键1秒，可以关闭或开启杯内呼吸灯。
+有些消费者在开机时，按开关键时间过久，或者按压时手指抖动，造成智能系统认为使用者多短按了一次，关闭了杯内灯。若杯内灯不亮，请尝试短按开关键1秒。若想关闭，也短按开关键1秒。
+
+问：为什么刚买的杯子杯身有水珠？
+答：温馨提示：在发货之前工厂都会测试合格才发货，里面的硅胶塞原本是把抑菌水锁在出氢口的，因为氢气发生器的离子膜需要保持湿润。快递在粗暴的运输过程中震落了硅胶塞，导致出氢口的无菌水撒在了杯子里。所有产品都是全新的，请放心使用。
+
+问：杯子的使用寿命是多长？保修多长时间？
+答：杯子的使用寿命是三到五年，非人为损坏保修一年，人为损坏不保修.但可以免维修费，客户需承担来回运费及产品更换的零件价格。
+
+问：异味怎么处理？
+答：长期使用后，主机氢气生成部位可能有异味。此时，可向瓶内倒入60-80℃热水，泡上柠檬片，静置5分钟后把水倒掉，即可除去异味，再次使用。
+
+问：该怎么保管的好呢？
+答：每次使用完毕，请盖好杯盖，防止进入异物。携带产品时，请检查主机开关，必须保持关机状态。勿将产品放置在高温、高寒、腐蚀等恶劣环境。
+
+问：杯子多久清洗一次，用什么清洗
+答：建议每天清洗，用清水清洗即可，如有异味，可以用柠檬片浸泡数小时，倒掉。
+
+问：充电时杯子里需要有水吗？
+答：不需要，充电和杯子里有没有水是没有关系的
+
+问：制氢时杯盖为什么会喷小小的水珠出来
+答：气泡是排出杯子内部多余的气体，防止杯内气压太高时损伤杯子部件。冒出的水滴是因为杯口有水，排气时把水吹出来了。
+
+问：富氢水喝多会不会有副作用？
+答：富氢水即是加入氢气的水。氢气是无毒无害、符合食品安全国家标准，而水更是您平时喝的饮用水。所以，富氢水对身体没有任何副作用，请放心饮用。
+
+问：病人吃药期间还可以喝富氢水吗？
+答：可以的。可以使用富氢水送药，富氢水可以提高病人的免疫力，帮助调理身体不适，并且能够结合药疗更好更快的促进患者恢复。
+
+问：可以一边制氢一边充电吗？
+答：一边制氢一边充电会损耗电池寿命，当杯子按钮红灯闪烁时，请停止制氢工作，进行充电，直至按钮亮绿灯
+
+问：制氢好的水，放几个小时后喝，还有疗效吗？
+答：建议制氢后20分钟内饮用，此时效果最佳。氢分子运动的非常快，会随着时间流失，放置几个小时后的富氢水，含氢量大大降低，效果也就大大减弱了。
+
+问：富氢杯能在高温环境下放着吗？比如室外车内
+答：富氢杯是电子产品，不可以在高温坏境下暴晒。
+
+问：杯子超过保修期坏了怎么办
+答：超过保修期，需客户自己承担来回运费以及更换零件费用。
+
+问：杯子购买后什么情况可以退货
+答：我们产品到货7天内，没有拆开外包装，不影响二次销售的情况下可以退货。
+问：杯子可以用来制氢茶水吗
+答：可以的，但是必须把茶叶过滤干净。经常装茶水会有茶垢，建议每次使用后清洗杯子。
+
+问：冬天零下温度的寒冷环境长时间不用后再次使用没有气泡？
+答：建议使用80摄氏度左右的热水浸泡15min后再开机使用</string>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                </textView>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="bottom" secondItem="T9T-3K-pYO" secondAttribute="bottom" id="5Gl-ma-aXG"/>
+                                                <constraint firstItem="T9T-3K-pYO" firstAttribute="leading" secondItem="4i4-ZA-hTY" secondAttribute="leading" id="ipQ-gO-tKp"/>
+                                                <constraint firstAttribute="trailing" secondItem="T9T-3K-pYO" secondAttribute="trailing" id="mDw-Dr-2th"/>
+                                                <constraint firstItem="T9T-3K-pYO" firstAttribute="top" secondItem="4i4-ZA-hTY" secondAttribute="top" id="zOj-Yp-MTD"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </cells>
@@ -6953,7 +7040,7 @@ HIFI音响</string>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QjH-yI-skS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1689" y="3065"/>
+            <point key="canvasLocation" x="1688.8" y="3064.3178410794603"/>
         </scene>
         <!--系统使用介绍-->
         <scene sceneID="f8p-Mh-aO4">
@@ -6973,14 +7060,129 @@ HIFI音响</string>
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="698.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="广州蜗品，是一家专注于科技与健康产品调研、研发、生产、销售于一体的产业链服务企业。公司以创新与科技，服务健康生活为使命，致力于让更多人享受到科技带来的健康生活。是一家专注于市场健康科技产品调研与产品销售链服务业务为核心的公司。" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="11" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r0d-AT-XAi">
-                                                    <rect key="frame" x="23" y="0.0" width="328" height="190"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
+                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="TuG-hx-QfH">
+                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="699"/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <string key="text">富氢水及氢气常见问题与解释
+氢气的特性：
+氢气是宇宙中相对分子质量最小、扩散速度快、还原性强、活泼性及渗透性
+最强物质。——源自元素周期表
+氢气具有选择性抗氧化作用，能穿透细胞膜，直达线粒体（其他的维生素C、
+E无法达到这一点）。——太田成男
+氢气是生理学惰性气体，内源性抗氧化最佳物质（体内肠道菌群中的厌氧菌
+代谢产生大量氢气）。——太田成男
+氢气安全性极高，自从200年前运用于潜水医学，氢气的人体安全性之欧盟、
+日本、中国、美国均将氢气列为食品添加剂。——欧盟食品添加剂列表第3第5部分，日本食品添加剂列表第168号，中国国标，美国FDAGRAS认证
+
+
+1.氢气对人体安全吗？
+答：氢气是一种内源性气体，体内肠道菌群中的厌氧菌代谢产生大量氢气，人体呼出和排除的气体中就含有氢气。而且2014年国标正式确认氢气符合食品安全国家标准，可以作为食品添加剂。因此，氢气对于人体是非常安全的。——GB31633-2014
+
+2.氢气为什么能扩散到人体的全身？
+答：因为氢气是宇宙中相对分子质量最小、最轻的物质，具备超强的扩散速度及渗透性，“氢气”也就是“氢分子”，是宇宙中最小的分子，通过扩散作用进入皮肤、粘膜、骨骼、血脑屏障等人体任何器官、组织、细胞以及细胞内结构包括线粒体和细胞核。所以氢气很容易透过人体皮肤肌理扩散到全身组织细胞或通过肠道吸收，消除人体内有害氧自由基。——《氢分子医学》孙学军
+
+3.氢气的抗炎症作用体现在哪些方面？
+答：长期饮用或泡浴氢气水可以缓解体内慢性炎症，同时提高免疫力，增强抗病
+力，少感冒发热或减轻感冒发热症状。包括中耳炎、牙龈炎、慢性支气管炎、慢
+性盆腔炎、类风湿性关节炎等等。——匹兹堡大学等各个研究机构多项证明
+
+4.氢气对过敏体质有作用吗？
+答：所谓的过敏体质大都是因为环境和年龄原因导致的免疫功能紊乱的状态，过
+敏本质上是免疫系统的问题。长期饮用或泡浴氢气水可以大大缓解包括接触性皮
+炎、湿疹、荨麻疹、过敏性哮喘、过敏性鼻炎等等引起的过敏症状。——韩国延世大学、淳昌长寿研究所
+
+5.调节血压的具体效果如何？
+答：很多高血压患者饮用或泡浴氢气水 3个月，血压下降 20-30mmHg,坚持饮用
+一年以上，血压可以调至正常水平，部分患者逐渐停药，有些三联用药仍然无法
+控制血压的患者，饮用水素水半年，在用药不变的情况下，血压可逐渐调至正常
+范围。—— 第二军医大学研究、孙学军教授科学网博文等
+
+6.氢气对人体有什么好处？
+答：氢气的生物学价值非常广泛，基本原理是氢气通过选择性抗氧化作用清楚体
+内有害的恶性自由基，包括羟自由基和亚硝酸阴离子。选择性抗氧化作用具体表
+现为美容衰老、抗炎症、抗过敏、抗辐射、抗疲劳、抗细胞变异、抗细胞凋亡、
+代谢调节、免疫调节、组织修复。——孙学军教授
+
+7.氢气在抗衰老方面有明确的证据吗？
+答：来自日本的一项研究表明，百岁老人产氢能力非常强大，达到 59.4±62.6ppm，
+是普通健康人的三倍以上，即内源性氢气保护长寿老人的健康，缓解衰老。还有
+一个试验，证明氢气环境中线虫的寿命延长数倍。长期饮用水素水，全面提升健
+康水平，显著改善亚健康症状以及预防慢病的发生，少生病特别是慢性病必然可
+以让人更长寿。太田教授研究了十年的氢气也喝了十年的氢气水，看看十年前后
+的变化就不难理解氢气的抗衰作用之神奇。——日本富氢水（水素水）市场调查，太田成男教授
+
+8.健康人饮用富氢水会有哪些体会？
+答：首先，最明显、最快的体验是抗疲劳的效果；其次，饮用氢气水并结合着氢
+气水面膜可以明显改善肤质肤色，淡化老年斑、色斑等等各种皮肤问题；再次，
+免疫力明显提高，感冒、发热会明显减少，即使感冒，症状也会明显减轻；长期
+饮用可以预防多种疾病，包括各种慢性病；长年饮用可达到完美的抗衰老效果。——太田成男教授
+
+9.儿童饮用是否安全？
+答：完全可以放心饮用！目前空气污染导致很多儿童免疫力下降，饮用富氢水可
+以提高儿童的抗病能力，同时可以预防肥胖等现代儿童常见健康问题。
+
+10.氢气为什么只针对有害的氧自由基？
+答：因为氢气具有选择性抗氧化作用，人体每天从空气中吸入的氧气 60-70%在线粒
+体中与葡萄糖、脂质反应，产生能量而消耗,25-38%的氧气随着呼吸排出体外，而 2-5%的氧则转化为有害的氧自由基，所以氢气只选择性的针对人体内 2-5%有害的氧自由基。——太田成男教授
+
+11.为什么说氢气能从人体的细胞上解决问题而维生素 C、E等无法做到？
+答：这是因为氢气分子的穿透性及强，一般高密度的玻璃与塑料袋都能穿透，所以氢
+气很容易透过肌肤穿透到细胞膜，直达线粒体，而维生素 C、E无法穿透细胞膜。——氢分子物理化学性质
+
+12.使用多久才有明显的效果呢？
+答：这个是因人而异的，因为每个人的身体体质不一样，所以吸收能力不一样。
+例如：有些人感冒服用一粒感康就见效，而有些人需要服用一周才能见效。
+氢气水饮用、泡浴、水疗对人体的功效也是一样的道理。——日本富氢水（水素水）市场调查
+
+13.什么是富氢水，氢气能溶于水吗？
+答：富氢水即是溶解了氢气的水。我们常说的某种物质不溶于水是指其在水中的溶解量较低几乎可以不计，而学术上氢气通常只能微溶于水（但日常说不溶于水），一个大气压下氢气的饱和浓度为1.6ppm（1600ppb），溶解度比氧气稍低。——氢气溶解度表
+
+14.身体的氧化体现在哪些方面？
+答：氧化体现在人体健康的方方面面，包括皮肤问题、心脑血管问题、免疫性疾病、恶性肿瘤以及衰老等等，长期饮用富氢水可以改善肤色、肤质，淡化色斑、老年斑等等，在日本，时尚女性是富氢水最大的消费群体。——日本富氢水（水素水）市场调查，解放军沈阳军区总医院等
+
+15.除了饮用，富氢水还有其它用法吗？
+答：氢气可以直接渗透进皮肤。简单的办法是在饮用前后，用干面膜蘸取富氢水敷在脸上，长期使用起到非常好的抗氧化美容效果；慢性鼻炎的患者可以用富氢水冲洗鼻腔；干眼症和白内障的患者可以用富氢水洗眼睛。——中国人民解放军总医院眼科及视觉科学实验室
+
+ 16.代谢调节作用体现在哪些方面？可以减肥吗？
+答：饮用富氢水可以促进脂质代谢、调节血压、血糖，从而减轻高血压糖尿病并发症、缓解代谢综合征。实验证明，氢气通过促进肝脏FGF21因子分泌从而促进脂质代谢，起到减肥的功效。 很多使用者反馈，每天饮用3瓶富氢水，一个月减重3-5斤。——塞尔维亚运动生理学家Sergej M. Ostojic
+
+17.对其它代谢性疾病包括糖尿病、痛风的具体效果如何？
+答：对糖尿病并发症的改善比较快，一般饮用富氢水一个月，并发症即开始减轻甚至消失。三个月左右血糖开始下降，坚持饮用1年以上，可逐渐减药。对糖尿病引起的勃起功能障碍也有明确的疗效。痛风患者一般饮用三个月左右痛风不再发作，半年至一年血尿酸值恢复至正常水平。——日本Shimane University Faculty of Medicine，第三军医大学等
+
+18.目前国内外氢气研究情况如何？
+答：国内外发表的氢气论文已经有500篇，其中国内论文占四分之一。目前，已经被实验验证并发表论文的氢气有治疗或改善作用的疾病包括代谢综合征，二型糖尿病、类风湿性关节炎、肥胖症、动脉粥样硬化、宿醉、勃起功能障碍等等60多种。——引自孙学军教授科学网博文
+
+19.什么人群适合饮用富氢水？
+答：所有人都可以自由饮用，特别是压力大的白领、亚健康人群、运动员、爱美人士、孕妇以及有保健抗衰需求的人群。——日本富氢水（水素水）市场调查
+
+20.对运动员有哪些好处？
+答：剧烈运动会在体内产生大量氧自由基，导致“运动后氧化应激”，氢气可有效缓解氧化应激反应。最新研究表明富氢水可以对抗运动引起的血液酸化，帮助运动员增强持久力以及迅速恢复体力，运动员长期饮用可以提高比赛成绩。——塞尔维亚Stari DIF运动科学健康中心Ostojic SM和Stojanovic MD
+
+21.对孕妇有哪些好处？
+答：氢气的抗辐射作用可避免胎儿电离辐射伤害；抗细胞变异可保护胎儿正常发育；免疫调节可防止孕妇感冒发热；代谢调节可预防妊娠糖尿病、高血压；组织修复的效应可促进孕妇产后恢复。实际使用中还发现，饮用富氢水可以显著减轻妊娠反应。——同济大学
+
+22.如何饮用饮氢水才能达到保健的效果？
+答：健康人依据自身经济条件，可以每天8杯；亚健康、高血压等慢病人群每天1.5升以上，多喝效果更快更显著。——日本市场调查及长期医学临床调查
+
+23.一天之中什么时候饮用富氢水吸收最好？
+ 答：一般情况下，早晨起床，中饭晚饭前，运动前后，饮酒前等等情况下饮用效果最佳。——日本富氢水（水素水）市场调查
+
+24.还有一个比较外行的问题，为什么人不直接吸氢气，要喝这个水杯里的氢气？
+答：临床上是有氢气呼吸治疗仪直接吸氢气的，但是没有办法普及，第一是氢气如果是以高浓度气体形式存在是易燃易爆的，虽然规范使用仪器肯定不会出现危险，但消费者多奇葩的都有，从安全性上就无法普及这样的仪器，任何企业都担负不起这样的风险。第二是氢气浓度和氢气吸入量不好控制，一些用户想效果好点就拼命吸氢气等反而会适得其反。从安全、适量、易普及等方面考虑，日常多以富氢水最为安全、有效。——氢分子物理化学性质，日本富氢水（水素水）市场安全调查
+
+25.喝氢水多了会容易上厕所吗？
+答：会的。氢POPO电解产生的富氢水是小分子团水，拥有更强的渗透力溶解力，加速内环境排毒交换，所以大小便排泄会增加。而且富氢水本身富含氢分子，氢分子会发挥选择性针对性抗氧化抗衰老效果，消除体内有害的活性氧生成水排出体外。——氢分子物理化学性质
+</string>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                </textView>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstItem="TuG-hx-QfH" firstAttribute="leading" secondItem="nkZ-4A-90K" secondAttribute="leading" id="N37-zP-ztt"/>
+                                                <constraint firstAttribute="trailing" secondItem="TuG-hx-QfH" secondAttribute="trailing" id="VLx-jE-Igk"/>
+                                                <constraint firstItem="TuG-hx-QfH" firstAttribute="top" secondItem="nkZ-4A-90K" secondAttribute="top" id="tp0-7D-8ep"/>
+                                                <constraint firstAttribute="bottom" secondItem="TuG-hx-QfH" secondAttribute="bottom" id="u7Y-ag-l5L"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </cells>
@@ -6994,7 +7196,7 @@ HIFI音响</string>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Nhf-3H-PAL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2390" y="3094"/>
+            <point key="canvasLocation" x="2389.5999999999999" y="3093.1034482758623"/>
         </scene>
     </scenes>
     <resources>
@@ -7035,7 +7237,7 @@ HIFI音响</string>
         <image name="powerOn" width="40" height="40"/>
         <image name="profileIcon" width="44" height="44"/>
         <image name="qq-1" width="51" height="55"/>
-        <image name="qrcode-1" width="280" height="280"/>
+        <image name="qrcode-1" width="215" height="215"/>
         <image name="sina" width="53" height="46"/>
         <image name="star" width="18" height="17"/>
         <image name="unStar" width="18" height="17"/>

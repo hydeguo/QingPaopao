@@ -37,7 +37,7 @@ enum MyAPI {
     case getTodayDrinkList
     case getDrinkList
     case getUserData
-    case exchangeOrderUpdate(orderId:String,expressId:String)
+    case exchangeOrderUpdate(orderId:String,expressId:String,expressName:String)
     case orderStatusUpdate(orderId:String,status:Int)
     case crowdfundingOrderTotalMoney(goodsId:Int)
     case crowdfundingOrderTotalPeople(goodsId:Int)
@@ -119,8 +119,8 @@ extension MyAPI: TargetType {
             return .requestParameters(parameters: p, encoding: URLEncoding.default)
         case .drink(let target):
             return .requestParameters(parameters: ["target" : target], encoding: URLEncoding.default)
-        case .exchangeOrderUpdate(let orderId , let expressId):
-            return .requestParameters(parameters: ["orderId" : orderId,"expressId" : expressId], encoding: URLEncoding.default)
+        case .exchangeOrderUpdate(let orderId , let expressId ,let expressName):
+            return .requestParameters(parameters: ["orderId" : orderId,"expressId" : expressId,"expressName" : expressName], encoding: URLEncoding.default)
         case .orderStatusUpdate(let orderId , let status):
             return .requestParameters(parameters: ["orderId" : orderId,"status" : status], encoding: URLEncoding.default)
         case .addGeolocationParameters(let device_id, let time, let lat, let long, let link):

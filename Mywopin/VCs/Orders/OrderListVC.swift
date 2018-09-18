@@ -65,6 +65,7 @@ class OrderListVC: UITableViewController {
     }
     
     override func viewWillDisappear(_ animated: Bool) {
+        currentType = -1
         NotificationCenter.default.removeObserver(self)
     }
     

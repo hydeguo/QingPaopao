@@ -77,24 +77,33 @@ class BindingThirdpartAccountVC: UITableViewController  {
         HUD.show(.progress)
         //此方法无论是否授权过,都会进行授权
         ShareSDK.authorize(type, settings: nil, onStateChanged: { (state: SSDKResponseState, user: SSDKUser?, error: Error?) -> Void in
+            Log(state)
             switch state{
             case SSDKResponseState.success:
                 //注册并登录
                 if(user != nil)
                 {
                     _ = Wolf.request(type: MyAPI.thirdBinding(key: user!.credential.uid, type: String(type.rawValue)), completion: { (info: BaseReponse?, msg, code) in
+                        HUD.hide()
                         if(code == "0")
                         {
-                            HUD.hide()
                             sander.setTitle("已授权", for: .normal)
                             return
+                        }
+                        else
+                        {
+                            _ = SweetAlert().showAlert("Sorry", subTitle: msg, style: AlertStyle.warning)
                         }
                     }, failure: nil)
                 }
                 break
-            case SSDKResponseState.fail:    print("授权失败,错误描述:\(String(describing: error))")
-            case SSDKResponseState.cancel:  self.onCancel()
+            case SSDKResponseState.fail:
+                print("授权失败,错误描述:\(String(describing: error))")
+                self.onCancel()
+            case SSDKResponseState.cancel:
+                self.onCancel()
             default:
+                self.onCancel()
                 break
             }
         })

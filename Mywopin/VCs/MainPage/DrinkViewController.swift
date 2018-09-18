@@ -45,10 +45,10 @@ class DrinkViewController: UIViewController, CLLocationManagerDelegate {
             let m = Int($0)
             self.slider.value = $0
             self.timeLabel?.text =  "\(String(format: "%02d", m)) : \( String(format: "%02d", Int(($0 - Float(m)) * 60)))"
-            self.sliderLabel5?.scale = $0 <= 5 ? 1.5 : 1;
-            self.sliderLabel10?.scale = $0 >= 5 && $0 < 10 ? 1.5 : 1;
-            self.sliderLabel15?.scale = $0 >= 10 && $0 < 15 ? 1.5 : 1;
-            self.sliderLabel20?.scale = $0 >= 15 && $0 < 20 ? 1.5 : 1;
+            self.sliderLabel5?.scale = $0 <= 7.5 ? 1.5 : 1;
+            self.sliderLabel10?.scale = $0 > 7.5 && $0 <= 12.5 ? 1.5 : 1;
+            self.sliderLabel15?.scale = $0 > 12.5 && $0 <= 17.5 ? 1.5 : 1;
+            self.sliderLabel20?.scale = $0 > 17.5 ? 1.5 : 1;
         }).disposed(by: 👜)
       
 //        createGradientLayer(view: self.bgView!)
@@ -310,7 +310,7 @@ class DrinkViewController: UIViewController, CLLocationManagerDelegate {
                 }
             }, failure: nil)
         }
-        UserDefaults.standard.set(Int(startElectrolyTime), forKey: "\(idStr) lastElectrolyTime")
+        UserDefaults.standard.set(Int(Date().timeIntervalSince1970), forKey: "\(idStr) lastElectrolyTime")
     }
     
     func determineMyLocation() {
