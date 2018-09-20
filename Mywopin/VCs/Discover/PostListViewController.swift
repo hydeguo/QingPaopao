@@ -19,6 +19,7 @@ enum POST_MODE:String {
 //    case likes = "likes"
     case following = "following"
     case my = "my"
+    case search = "search"
 }
 
 class PostListViewController: UITableViewController {
@@ -31,6 +32,7 @@ class PostListViewController: UITableViewController {
     var cellHeight:CGFloat = 140
     
     var mode:POST_MODE = .hot
+    var searchText:String = ""
     
     var loadingMore = false
     var isEnd = false
@@ -126,7 +128,7 @@ class PostListViewController: UITableViewController {
     
     func changeMode(mode:POST_MODE)
     {
-        if self.mode != mode
+        if self.mode != mode || mode == .search
         {
             curPage = 1
             loadingMore = false
@@ -291,6 +293,17 @@ class PostListViewController: UITableViewController {
                                 try Disk.save(_posts, to: .caches, as: "myPostList.json")
                             }
                         } catch _ as NSError {}
+                        self.onReceiveNewData(_posts)
+                    }
+                }
+            }, failure: nil)
+        }
+        else if mode == .search
+        {
+            _ = Wolf.requestList(type: MyAPI.searchBlogPostList(search: searchText), completion: { (posts: [BlogPostItem]?, msg, code) in
+                if let _posts = posts {
+                    if self.mode == .search
+                    {
                         self.onReceiveNewData(_posts)
                     }
                 }

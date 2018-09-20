@@ -54,7 +54,7 @@ enum MyAPI {
     case deleteMyPost(id:Int)
     case getFansList
     case getMyFollowList
-    case searchBlogPostList(search:Int)
+    case searchBlogPostList(search:String)
     case getBlogPostComments(id:Int)
     case getFollowList(userId:String)
     case followAothur(userId:String)

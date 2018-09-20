@@ -8,10 +8,9 @@
 
 import UIKit
 
-class InfosViewController: UIViewController ,UISearchResultsUpdating{
-    func updateSearchResults(for searchController: UISearchController) {
-        
-    }
+class InfosViewController: UIViewController ,UISearchResultsUpdating,UISearchBarDelegate{
+    
+
     
 
 //    @IBOutlet var topView:UIView!
@@ -29,11 +28,22 @@ class InfosViewController: UIViewController ,UISearchResultsUpdating{
         
         hotPostBtn.isSelected = true
         
-//        searchController.searchResultsUpdater = self
-//        self.definesPresentationContext = true
-//        
-//        self.navigationItem.titleView = searchController.searchBar
-//        searchController.hidesNavigationBarDuringPresentation = false
+        searchController.searchBar.delegate = self
+        searchController.searchResultsUpdater = self
+        self.definesPresentationContext = true
+        
+        self.navigationItem.titleView = searchController.searchBar
+        searchController.hidesNavigationBarDuringPresentation = false
+    }
+    
+    func updateSearchResults(for searchController: UISearchController) {
+        
+    }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar){
+        selectType(nil)
+        tabelListVC.searchText = searchController.searchBar.text ?? ""
+        tabelListVC.changeMode(mode: .search)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -70,17 +80,17 @@ class InfosViewController: UIViewController ,UISearchResultsUpdating{
 //    }
     
 
-    @IBAction func selectType(_ btn:UIButton)
+    @IBAction func selectType(_ btn:UIButton?)
     {
         hotPostBtn.isSelected = false
         newPostBtn.isSelected = false
         myPostBtn.isSelected = false
-        btn.isSelected = true
+        btn?.isSelected = true
         if(hotPostBtn == btn){
             tabelListVC.changeMode(mode: .hot)
         }else if (newPostBtn == btn){
             tabelListVC.changeMode(mode: .new)
-        }else {
+        }else if (myPostBtn == btn){
             tabelListVC.changeMode(mode: .my)
         }
     }

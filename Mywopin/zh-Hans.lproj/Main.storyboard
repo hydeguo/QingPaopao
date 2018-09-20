@@ -82,11 +82,11 @@
             </objects>
             <point key="canvasLocation" x="749.60000000000002" y="-1020.5397301349326"/>
         </scene>
-        <!--Item-->
+        <!--喝水-->
         <scene sceneID="1Tf-dT-jdi">
             <objects>
                 <navigationController id="7at-T5-pDs" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="IUm-Qn-jg8"/>
+                    <tabBarItem key="tabBarItem" title="喝水" image="资源 20" id="IUm-Qn-jg8"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Fcy-Gm-M9L">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -552,6 +552,7 @@
                     <tabBarItem key="tabBarItem" title="探索" image="资源 22" id="cPa-gy-q4n">
                         <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="0.0"/>
                     </tabBarItem>
+                    <navigationItem key="navigationItem" id="x4h-5f-9m3"/>
                     <connections>
                         <outlet property="hotPostBtn" destination="8Uj-Mk-GEB" id="jBH-4M-86V"/>
                         <outlet property="myPostBtn" destination="9U2-L0-92U" id="AC6-JA-xSS"/>
@@ -560,7 +561,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Nw-L8-lE0" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="749.60000000000002" y="359.37031484257875"/>
+            <point key="canvasLocation" x="1306" y="357"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="yl2-sM-qoP">
@@ -577,7 +578,7 @@
                     </tabBar>
                     <connections>
                         <segue destination="7at-T5-pDs" kind="relationship" relationship="viewControllers" id="g84-Qw-x9E"/>
-                        <segue destination="8rJ-Kc-sve" kind="relationship" relationship="viewControllers" id="lzU-1b-eKA"/>
+                        <segue destination="Cea-3b-Efr" kind="relationship" relationship="viewControllers" id="kJG-Vu-9G7"/>
                         <segue destination="FFo-yo-9gr" kind="relationship" relationship="viewControllers" id="8u2-Rx-Kdi"/>
                         <segue destination="WZa-Yr-fUz" kind="relationship" relationship="viewControllers" id="aGJ-7y-IdE"/>
                     </connections>
@@ -1564,6 +1565,23 @@
             </objects>
             <point key="canvasLocation" x="749.60000000000002" y="2255.1724137931037"/>
         </scene>
+        <!--探索-->
+        <scene sceneID="rHj-G0-SDj">
+            <objects>
+                <navigationController id="Cea-3b-Efr" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="探索" image="资源 22" id="M25-1e-2fb"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="iHI-1Q-iOb">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="8rJ-Kc-sve" kind="relationship" relationship="rootViewController" id="0qG-ef-1kc"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xyH-8C-yCe" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="615" y="369"/>
+        </scene>
         <!--Master-->
         <scene sceneID="NtT-8m-bpH">
             <objects>
@@ -1711,7 +1729,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WEd-04-HuV" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1615.2" y="402.09895052473769"/>
+            <point key="canvasLocation" x="2004" y="357"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="kdF-ra-pIH">
@@ -1727,7 +1745,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6bC-bn-GFp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2454" y="348"/>
+            <point key="canvasLocation" x="2719" y="348"/>
         </scene>
         <!--Detail-->
         <scene sceneID="M4a-Tm-aIq">
@@ -2160,7 +2178,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fRu-SI-DwC" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3192.8000000000002" y="358.4707646176912"/>
+            <point key="canvasLocation" x="3407" y="357"/>
         </scene>
         <!--LandingVC-->
         <scene sceneID="Tj2-Q7-XMY">
@@ -5029,7 +5047,7 @@ DQ
                         </collectionViewFlowLayout>
                         <cells>
                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" misplaced="YES" reuseIdentifier="ScoresShopCell" id="2aw-6l-4OA" customClass="ScoresShopCell" customModule="Mywopin" customModuleProvider="target">
-                                <rect key="frame" x="85.5" y="0.0" width="204" height="223"/>
+                                <rect key="frame" x="86" y="0.0" width="204" height="223"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
                                     <rect key="frame" x="0.0" y="0.0" width="204" height="223"/>
@@ -5072,7 +5090,7 @@ HIFI音响</string>
                                 </connections>
                             </collectionViewCell>
                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" misplaced="YES" reuseIdentifier="LoadingCell" id="hWA-KZ-g3p">
-                                <rect key="frame" x="85.5" y="224" width="204" height="223"/>
+                                <rect key="frame" x="86" y="224" width="204" height="223"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
                                     <rect key="frame" x="0.0" y="0.0" width="204" height="223"/>
