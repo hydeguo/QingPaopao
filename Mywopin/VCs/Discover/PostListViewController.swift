@@ -330,7 +330,7 @@ class PostListViewController: UITableViewController {
 //    }
     
     override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
-        let delete = UITableViewRowAction(style: .destructive, title: "Delete") { (action, indexPath) in
+        let delete = UITableViewRowAction(style: .destructive, title: "删除") { (action, indexPath) in
             
             let post  = self.posts.remove(at: indexPath.row);
             do {

@@ -267,6 +267,58 @@ class OrderListVC: UITableViewController,PayRequestDelegate {
     //    override func  tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
     //        return 130
     //    }
+    
+    
+    override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        
+        
+        let delete = UITableViewRowAction(style: .destructive, title: "删除") { (action, indexPath) in
+            
+            var orderId = ""
+            if self.currentType == 0{
+                let order = self.scoresList[indexPath.row]
+                orderId = order.orderId
+                self.scoresList.remove(at: indexPath.row);
+            }
+            else if self.currentType == 1{
+                let order = self.exchangeList[indexPath.row]
+                orderId = order.orderId
+                self.exchangeList.remove(at: indexPath.row);
+            }
+            else
+            {
+                let order = self.crowdfundingList[indexPath.row]
+                orderId = order.orderId
+                self.crowdfundingList.remove(at: indexPath.row);
+            }
+            
+            _ = Wolf.request(type: MyAPI.deleteOrder(orderId: orderId), completion: { (posts: BaseReponse?, msg, code) in
+                
+                self.tableView.reloadData()
+            }, failure: nil)
+        }
+        var orderStatus = ""
+        if currentType == 0{
+            let order = scoresList[indexPath.row]
+            orderStatus = order.orderStatus ?? ""
+        }
+        else if currentType == 1{
+            let order = exchangeList[indexPath.row]
+            orderStatus = order.orderStatus ?? ""
+        }
+        else{
+            let order = crowdfundingList[indexPath.row]
+            orderStatus = order.orderStatus ?? ""
+        }
+        if orderStatus == orderStatusArr[0]{
+            return [delete]
+        }else{
+            return []
+        }
+        
+    }
+    
+    
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }

@@ -29,40 +29,31 @@ extension PaySDK {
     public func getWechatPaySign(totalAmount: Int, subject: String, payTitle: String,orderId:String) -> Void {
         if let signUrl = self.signUrl {
             
-            do {
-                let retrievedMessage = try Disk.retrieve("\(orderId).json", from: .caches, as: WoPinWeChatPayRes.self)
-                self.payDelegate?.wechatPaySign(data: retrievedMessage)
-            } catch _ as NSError {
-                
-                let requestURL = signUrl
-                let endpointUrl = URL(string: requestURL)
-                
-                let params = "amount=\(totalAmount)&subject=\(subject)&body=\(payTitle)&orderId=\(orderId)"
-                let postString = params
-                var request = URLRequest(url: endpointUrl!)
-                request.httpMethod = "POST"
-                request.httpBody = postString.data(using: .utf8)
-                request.addValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
-                
-                let task = URLSession.shared.dataTask(with: request, completionHandler: { (data, response, error) -> Void in
-                    if error != nil {
-                        self.payDelegate?.payRequestError(error: error?.localizedDescription ?? "error")
-                        return;
-                    }
-                    do {
-                        let item = try JSONDecoder().decode(WoPinWeChatPayRes.self, from: data!)
-                        self.payDelegate?.wechatPaySign(data: item)
-                        
-                        do {
-                            try Disk.save(item, to: .caches, as: "\(orderId).json")
-                        } catch _ as NSError {}
-                        
-                    } catch {
-                        print(error)
-                    }
-                })
-                task.resume()
-            }
+            let requestURL = signUrl
+            let endpointUrl = URL(string: requestURL)
+            
+            let params = "amount=\(totalAmount)&subject=\(subject)&body=\(payTitle)&orderId=\(orderId)"
+            let postString = params
+            var request = URLRequest(url: endpointUrl!)
+            request.httpMethod = "POST"
+            request.httpBody = postString.data(using: .utf8)
+            request.addValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
+            
+            let task = URLSession.shared.dataTask(with: request, completionHandler: { (data, response, error) -> Void in
+                if error != nil {
+                    self.payDelegate?.payRequestError(error: error?.localizedDescription ?? "error")
+                    return;
+                }
+                do {
+                    let item = try JSONDecoder().decode(WoPinWeChatPayRes.self, from: data!)
+                    self.payDelegate?.wechatPaySign(data: item)
+                    
+                } catch {
+                    print(error)
+                }
+            })
+            task.resume()
+            
             
         } else {
             self.payDelegate?.payRequestError(error: "签名地址不存在")
