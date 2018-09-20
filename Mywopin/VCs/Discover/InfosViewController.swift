@@ -8,7 +8,11 @@
 
 import UIKit
 
-class InfosViewController: UIViewController {
+class InfosViewController: UIViewController ,UISearchResultsUpdating{
+    func updateSearchResults(for searchController: UISearchController) {
+        
+    }
+    
 
 //    @IBOutlet var topView:UIView!
     @IBOutlet var hotPostBtn:UIButton!
@@ -16,11 +20,20 @@ class InfosViewController: UIViewController {
     @IBOutlet var myPostBtn:UIButton!
     var tabelListVC:PostListViewController!
     
+    
+    let searchController = UISearchController(searchResultsController: nil)
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 //        createGradientLayer(view: self.topView)
         
         hotPostBtn.isSelected = true
+        
+//        searchController.searchResultsUpdater = self
+//        self.definesPresentationContext = true
+//        
+//        self.navigationItem.titleView = searchController.searchBar
+//        searchController.hidesNavigationBarDuringPresentation = false
     }
     
     override func viewWillAppear(_ animated: Bool) {

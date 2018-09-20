@@ -35,10 +35,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //        }
 //        Language.share.setLanguage("en")
         
-
+        PaySDK.wxAppid = "wxf42ec50449767feb"
+        PaySDK.instance.signUrl = server_url+"/getWeChatPaySign"
+        
         _ = WifiController.shared;  //init
         
-        MOBPay.addObserver(PayManager.shared)
+        
         /**
          *  设置ShareSDK的appKey，如果尚未在ShareSDK官网注册过App，请移步到http://mob.com/login 登录后台进行应用注册，
          *  在将生成的AppKey传入到此方法中。我们Demo提供的appKey为内部测试使用，可能会修改配置信息，请不要使用。
@@ -236,5 +238,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
 
+    func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
+        return PaySDK.instance.handleOpenURL(url)
+    }
 }
 

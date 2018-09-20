@@ -10,7 +10,8 @@ import Foundation
 import PKHUD
 
 
-class CrowfoudingBuyVC: UIViewController {
+class CrowfoudingBuyVC: UIViewController,PayRequestDelegate {
+    
     
     @IBOutlet var bgImage:UIImageView!
     @IBOutlet var priceLf:UILabel!
@@ -75,12 +76,13 @@ class CrowfoudingBuyVC: UIViewController {
                 if(code == "0" ){
                     if let myOrder = order
                     {
-                        NotificationCenter.default.addObserver(self, selector: #selector(self.onPaymentReturn), name: NSNotification.Name(rawValue: PaymentEvent.paymentReturn.rawValue), object: nil)
                         
                         self.order = myOrder
                         let payPrice = self.selectedPrice
                         let address1Line = self.addressLf.text
-                        PayManager.shared.doPayment(orderId: myOrder.orderId, price: payPrice, channel: .weChat, itemDesc: self.titleLf.text!, address: address1Line!)
+                        
+                        PaySDK.instance.payDelegate = self
+                        PaySDK.instance.getWechatPaySign(totalAmount: (payPrice * 100), subject: address1Line!, payTitle: self.titleLf.text!,orderId:myOrder.orderId)
                     }
                 }
 //                if(code == "0" )
@@ -102,36 +104,39 @@ class CrowfoudingBuyVC: UIViewController {
         }
     }
     
-    @objc func onPaymentReturn(_ notice:Notification)
-    {
-        if let status:MPSPayStatus=(notice as NSNotification).userInfo!["status"] as? MPSPayStatus
-        {
+    
+    func wechatPaySign(data: WoPinWeChatPayRes) {
+        PaySDK.instance.wechatPayRequest(resData: data)
+    }
+    
+    func alipayPaySign(str: String) {
+        PaySDK.instance.alipayPayRequest(sign: str)
+    }
+    
+    func payRequestSuccess(data: Any) {
+        Log("success")
+         HUD.hide()
+        HUD.show(.progress)
+        _ = Wolf.request(type: MyAPI.orderStatusUpdate(orderId: order!.orderId, status: 1), completion: { (order: BaseReponse?, msg, code) in
             HUD.hide()
-            if status == .success
+            if(code == "0")
             {
-                HUD.show(.progress)
-                NotificationCenter.default.removeObserver(self)
-                _ = Wolf.request(type: MyAPI.orderStatusUpdate(orderId: order!.orderId, status: 1), completion: { (order: BaseReponse?, msg, code) in
-                    HUD.hide()
-                    if(code == "0")
-                    {
-                        _ = SweetAlert().showAlert(Language.getString("订单提交成功"), subTitle: "", style: AlertStyle.success,buttonTitle: "确定", action: { _ in
-                            self.closeAction();
-                        })
-                    }
-                    else
-                    {
-                        _ = SweetAlert().showAlert("Sorry", subTitle: msg, style: AlertStyle.warning)
-                    }
-                }) { (error) in
-                    _ = SweetAlert().showAlert("Sorry", subTitle: error?.errorDescription, style: AlertStyle.warning)
-                }
+                _ = SweetAlert().showAlert(Language.getString("订单提交成功"), subTitle: "", style: AlertStyle.success,buttonTitle: "确定", action: { _ in
+                    self.closeAction();
+                })
             }
-            else if(status == .cancel || status == .fail)
+            else
             {
-                NotificationCenter.default.removeObserver(self)
-                _ = SweetAlert().showAlert("付款未成功", subTitle: "可以到我的订单继续完成付款", style: AlertStyle.warning)
+                _ = SweetAlert().showAlert("Sorry", subTitle: msg, style: AlertStyle.warning)
             }
+        }) { (error) in
+            _ = SweetAlert().showAlert("Sorry", subTitle: error?.errorDescription, style: AlertStyle.warning)
         }
+    }
+    
+    func payRequestError(error: String) {
+        print("pay error")
+        HUD.hide()
+        _ = SweetAlert().showAlert("付款未成功", subTitle: "可以到我的订单继续完成付款", style: AlertStyle.warning)
     }
 }

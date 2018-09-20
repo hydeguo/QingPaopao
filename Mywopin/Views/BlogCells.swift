@@ -241,8 +241,8 @@ class AuthorBlogCell: UITableViewCell {
         self.likeBtn?.isHidden = true
         _ = Wolf.request(type: MyAPI.getFollowList(userId: (postData?.author?.id)!), completion: { (res: BlogFollows?, msg, code) in
             self.likeBtn?.isHidden = false
-            if (res != nil)  {
-                self.likeBtn?.isSelected = res!.follow.contains(myClientVo!._id)
+            if let _res = res,let userId = myClientVo?._id  {
+                self.likeBtn?.isSelected = _res.follow.contains(userId) == true
             }else{
                 self.likeBtn?.isSelected = false
             }

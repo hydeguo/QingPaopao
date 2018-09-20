@@ -101,7 +101,7 @@ public class Wolf {
         return provider.request(type, progress: progress, completion: { (event) in
             switch event {
             case let .success(response):
-                Log("type:\(type) |response:\(response)")
+//                Log("type:\(type) |response:\(response)")
                 WolfTransformModel.baseObjectFromJSON(response.data, completion)
             case let .failure(error):
                 debugPrint(error.localizedDescription)
