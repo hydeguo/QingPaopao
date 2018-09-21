@@ -24,6 +24,8 @@ enum POST_MODE:String {
 
 class PostListViewController: UITableViewController {
     
+    @IBOutlet var emptyView:UIView?
+    
     var numPrePage = 20
     var curPage = 1
     
@@ -182,12 +184,16 @@ class PostListViewController: UITableViewController {
     }
     @objc func updatePostList() {
         if(posts.count==0 || checkRefreshTime(mode: self.mode)){
+            refreshControl?.layoutIfNeeded()
             refreshControl?.beginRefreshing()
+            
         }
         if loadingMore == true
         {
             curPage = 1 + (posts.count / numPrePage)
         }
+        
+        self.tableView.backgroundView = nil
         
         if mode == .new
         {
@@ -305,6 +311,10 @@ class PostListViewController: UITableViewController {
                     if self.mode == .search
                     {
                         self.onReceiveNewData(_posts)
+                        if _posts.count == 0
+                        {
+                            self.tableView.backgroundView = self.emptyView
+                        }
                     }
                 }
             }, failure: nil)
