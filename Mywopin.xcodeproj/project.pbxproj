@@ -20,10 +20,10 @@
 		C11A100120E9CC50000979B3 /* MyHealth.swift in Sources */ = {isa = PBXBuildFile; fileRef = C11A100020E9CC50000979B3 /* MyHealth.swift */; };
 		C11A100320EA0D2C000979B3 /* AddDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = C11A100220EA0D2C000979B3 /* AddDevice.swift */; };
 		C11A100620EA1E9E000979B3 /* DeviceListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C11A100520EA1E9E000979B3 /* DeviceListViewController.swift */; };
+		C12A8C27214D4A24009511DC /* MyFansList.swift in Sources */ = {isa = PBXBuildFile; fileRef = C12A8C26214D4A24009511DC /* MyFansList.swift */; };
 		C1315F6E20DB6740000DB991 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1315F6D20DB6740000DB991 /* User.swift */; };
 		C133C1F620F5AF6700771FE6 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C133C1F520F5AF6700771FE6 /* Login.storyboard */; };
 		C133C1F920F5B25800771FE6 /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = C133C1F820F5B25800771FE6 /* R.generated.swift */; };
-		C135F935213F64D500B75820 /* PostNewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C135F934213F64D500B75820 /* PostNewViewController.swift */; };
 		C1383A3220DF856D00F1EBE6 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = C1383A3420DF856D00F1EBE6 /* Localizable.strings */; };
 		C1383A3C20DF865B00F1EBE6 /* Language.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1383A3B20DF865A00F1EBE6 /* Language.swift */; };
 		C1383A4220DF896200F1EBE6 /* iconfont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C1383A4120DF896200F1EBE6 /* iconfont.ttf */; };
@@ -55,6 +55,10 @@
 		C15D267D2132F59500C6B1BF /* CrowdfundingShopDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C15D267C2132F59500C6B1BF /* CrowdfundingShopDetailVC.swift */; };
 		C15D267F2132F64500C6B1BF /* CrowdfoudingBuyBtnVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C15D267E2132F64500C6B1BF /* CrowdfoudingBuyBtnVC.swift */; };
 		C15D26812132F6A800C6B1BF /* CrowfoudingBuyVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C15D26802132F6A800C6B1BF /* CrowfoudingBuyVC.swift */; };
+		C1662AF72150FA17008DA143 /* WechatPay.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1662AF32150FA16008DA143 /* WechatPay.swift */; };
+		C1662AF82150FA17008DA143 /* PaySDK.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1662AF42150FA16008DA143 /* PaySDK.swift */; };
+		C1662AF92150FA17008DA143 /* WechatAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1662AF52150FA16008DA143 /* WechatAuth.swift */; };
+		C1662AFA2150FA17008DA143 /* AlipayPay.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1662AF62150FA17008DA143 /* AlipayPay.swift */; };
 		C16980DF20E8D3D20034E954 /* CleanCupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C16980DE20E8D3D20034E954 /* CleanCupViewController.swift */; };
 		C16E04DD20DDBEAA009ED462 /* libBLEManager.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C16E04D620DDBEAA009ED462 /* libBLEManager.a */; };
 		C16E04DE20DDBEAA009ED462 /* BLEManagerAPIDoc.pdf in Resources */ = {isa = PBXBuildFile; fileRef = C16E04D720DDBEAA009ED462 /* BLEManagerAPIDoc.pdf */; };
@@ -152,7 +156,6 @@
 		C1D5B60520F46104004DCE83 /* ExchangeOrderDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1D5B60420F46104004DCE83 /* ExchangeOrderDetailVC.swift */; };
 		C1F128292139150300BBD457 /* Toast.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1F128282139150200BBD457 /* Toast.swift */; };
 		C1F1282B213A4A1E00BBD457 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C1F1282A213A4A1E00BBD457 /* CoreMotion.framework */; };
-		C1F1282D213A4C8000BBD457 /* PayManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1F1282C213A4C8000BBD457 /* PayManager.swift */; };
 		C1F226EE21295AFC0066C9EC /* ScoresShopList.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1F226ED21295AFC0066C9EC /* ScoresShopList.swift */; };
 		C1F226F021295DE20066C9EC /* ScoresShopDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1F226EF21295DE20066C9EC /* ScoresShopDetailVC.swift */; };
 		C1F226F221295EAB0066C9EC /* Shop.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C1F226F121295EAB0066C9EC /* Shop.storyboard */; };
@@ -181,10 +184,10 @@
 		C11A100020E9CC50000979B3 /* MyHealth.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyHealth.swift; sourceTree = "<group>"; };
 		C11A100220EA0D2C000979B3 /* AddDevice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddDevice.swift; sourceTree = "<group>"; };
 		C11A100520EA1E9E000979B3 /* DeviceListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceListViewController.swift; sourceTree = "<group>"; };
+		C12A8C26214D4A24009511DC /* MyFansList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyFansList.swift; sourceTree = "<group>"; };
 		C1315F6D20DB6740000DB991 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		C133C1F520F5AF6700771FE6 /* Login.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
 		C133C1F820F5B25800771FE6 /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = SOURCE_ROOT; };
-		C135F934213F64D500B75820 /* PostNewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostNewViewController.swift; sourceTree = "<group>"; };
 		C1383A3720DF85DA00F1EBE6 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		C1383A3820DF862300F1EBE6 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = "zh-Hans"; path = "zh-Hans.lproj/LaunchScreen.storyboard"; sourceTree = "<group>"; };
 		C1383A3920DF862F00F1EBE6 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = "zh-Hans"; path = "zh-Hans.lproj/Main.storyboard"; sourceTree = "<group>"; };
@@ -220,6 +223,10 @@
 		C15D267C2132F59500C6B1BF /* CrowdfundingShopDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrowdfundingShopDetailVC.swift; sourceTree = "<group>"; };
 		C15D267E2132F64500C6B1BF /* CrowdfoudingBuyBtnVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrowdfoudingBuyBtnVC.swift; sourceTree = "<group>"; };
 		C15D26802132F6A800C6B1BF /* CrowfoudingBuyVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrowfoudingBuyVC.swift; sourceTree = "<group>"; };
+		C1662AF32150FA16008DA143 /* WechatPay.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WechatPay.swift; sourceTree = "<group>"; };
+		C1662AF42150FA16008DA143 /* PaySDK.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaySDK.swift; sourceTree = "<group>"; };
+		C1662AF52150FA16008DA143 /* WechatAuth.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WechatAuth.swift; sourceTree = "<group>"; };
+		C1662AF62150FA17008DA143 /* AlipayPay.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlipayPay.swift; sourceTree = "<group>"; };
 		C16980DE20E8D3D20034E954 /* CleanCupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CleanCupViewController.swift; sourceTree = "<group>"; };
 		C16E04D620DDBEAA009ED462 /* libBLEManager.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libBLEManager.a; sourceTree = "<group>"; };
 		C16E04D720DDBEAA009ED462 /* BLEManagerAPIDoc.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = BLEManagerAPIDoc.pdf; sourceTree = "<group>"; };
@@ -330,7 +337,6 @@
 		C1D5B60420F46104004DCE83 /* ExchangeOrderDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeOrderDetailVC.swift; sourceTree = "<group>"; };
 		C1F128282139150200BBD457 /* Toast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Toast.swift; sourceTree = "<group>"; };
 		C1F1282A213A4A1E00BBD457 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
-		C1F1282C213A4C8000BBD457 /* PayManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayManager.swift; sourceTree = "<group>"; };
 		C1F226ED21295AFC0066C9EC /* ScoresShopList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoresShopList.swift; sourceTree = "<group>"; };
 		C1F226EF21295DE20066C9EC /* ScoresShopDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoresShopDetailVC.swift; sourceTree = "<group>"; };
 		C1F226F121295EAB0066C9EC /* Shop.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Shop.storyboard; sourceTree = "<group>"; };
@@ -421,7 +427,6 @@
 				C17FB86D21450ED7001F0030 /* PostDetailController.swift */,
 				C1F6E04320C6CE580031200D /* InfoDetailViewController.swift */,
 				C16E27392143BD1900E26D8A /* EditorViewController.swift */,
-				C135F934213F64D500B75820 /* PostNewViewController.swift */,
 				C1008E0820C5668F00E73F8F /* PostListViewController.swift */,
 			);
 			path = Discover;
@@ -484,6 +489,17 @@
 			path = CrowdfundingShop;
 			sourceTree = "<group>";
 		};
+		C1662AF22150F9F9008DA143 /* Payment */ = {
+			isa = PBXGroup;
+			children = (
+				C1662AF62150FA17008DA143 /* AlipayPay.swift */,
+				C1662AF42150FA16008DA143 /* PaySDK.swift */,
+				C1662AF52150FA16008DA143 /* WechatAuth.swift */,
+				C1662AF32150FA16008DA143 /* WechatPay.swift */,
+			);
+			path = Payment;
+			sourceTree = "<group>";
+		};
 		C16980DD20E8D3730034E954 /* MainPage */ = {
 			isa = PBXGroup;
 			children = (
@@ -515,7 +531,6 @@
 				C16E052A20DE4127009ED462 /* BLEController.swift */,
 				C15AEF3620EDAF4D009F4A0E /* NoticeController.swift */,
 				20327AD821115788006935FB /* WifiController.swift */,
-				C1F1282C213A4C8000BBD457 /* PayManager.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -536,6 +551,7 @@
 			children = (
 				C17862C920E277ED008F4042 /* ChangeName.swift */,
 				C1179A5B20C7E7B50049BE67 /* MyProfileViewController.swift */,
+				C192AAA720C431E8004EE98D /* MyProfileTableVC.swift */,
 				C17862CD20E2869F008F4042 /* BaseInfo.swift */,
 				C17862CB20E27C63008F4042 /* ChangeBaseInfo.swift */,
 				C17D45F220F8A85A00029CAE /* ProfileEditVC.swift */,
@@ -544,6 +560,7 @@
 				C15AEF9320F0F087009F4A0E /* AddressInfoVC.swift */,
 				C15AEF9520F1990D009F4A0E /* AddressListVC.swift */,
 				C17D45F020F8A74300029CAE /* SystemSettingVC.swift */,
+				C12A8C26214D4A24009511DC /* MyFansList.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -582,6 +599,7 @@
 				C140635B2105692C00AB8914 /* FlexiblePageControl */,
 				C133C1F820F5B25800771FE6 /* R.generated.swift */,
 				C192AA1020C23770004EE98D /* AppDelegate.swift */,
+				C1662AF22150F9F9008DA143 /* Payment */,
 				C15AEF5720EDCAA5009F4A0E /* Mywopin.entitlements */,
 				C16E04D520DDBEAA009ED462 /* BLE */,
 				C1C4291720D6AA1D0071532F /* Share */,
@@ -656,7 +674,6 @@
 				C11A100720EA3006000979B3 /* Discover */,
 				C11A100420EA0D35000979B3 /* Device */,
 				C16980DD20E8D3730034E954 /* MainPage */,
-				C192AAA720C431E8004EE98D /* MyProfileTableVC.swift */,
 				C1C428D220D670DE0071532F /* UserAgreementVC.swift */,
 			);
 			path = VCs;
@@ -1074,7 +1091,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Fabric/run\"  ";
+			shellScript = "\"${PODS_ROOT}/Fabric/run\"  \n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -1086,9 +1103,11 @@
 				C172312020FE249500BF6160 /* RKChartTitleView.swift in Sources */,
 				C158F729213BB0470090EE1A /* PostModel.swift in Sources */,
 				C192AAA820C431E8004EE98D /* MyProfileTableVC.swift in Sources */,
+				C12A8C27214D4A24009511DC /* MyFansList.swift in Sources */,
 				C1AB2BD22149210000CE6A2D /* TabBarController.swift in Sources */,
 				C1008E0920C5669000E73F8F /* PostListViewController.swift in Sources */,
 				C11A0FFF20E9B4E1000979B3 /* DrinkHistory.swift in Sources */,
+				C1662AF92150FA17008DA143 /* WechatAuth.swift in Sources */,
 				C192AA3820C23EA9004EE98D /* Tools.swift in Sources */,
 				C17FB87021452BAE001F0030 /* BlogCells.swift in Sources */,
 				C17862C320DBDD5E008F4042 /* WopinCommand.swift in Sources */,
@@ -1102,7 +1121,9 @@
 				C11A100320EA0D2C000979B3 /* AddDevice.swift in Sources */,
 				C192AA3520C23EA9004EE98D /* PopupController.swift in Sources */,
 				C192AA3620C23EA9004EE98D /* SweetAlert.swift in Sources */,
+				C1662AF72150FA17008DA143 /* WechatPay.swift in Sources */,
 				C140635F2105692D00AB8914 /* FlexiblePageControl.swift in Sources */,
+				C1662AF82150FA17008DA143 /* PaySDK.swift in Sources */,
 				C172311D20FE249500BF6160 /* RKPieChartItem.swift in Sources */,
 				C1BA806D20D7679A007D2B48 /* SwiftRx(Extension).swift in Sources */,
 				C1D5B60520F46104004DCE83 /* ExchangeOrderDetailVC.swift in Sources */,
@@ -1113,8 +1134,6 @@
 				C1BA807520D7980A007D2B48 /* WolfNetwork.swift in Sources */,
 				C16E273C2143C3BD00E26D8A /* OptionsTableView.swift in Sources */,
 				C192AA5020C37FCF004EE98D /* ColorPicker.swift in Sources */,
-				C1F1282D213A4C8000BBD457 /* PayManager.swift in Sources */,
-				C135F935213F64D500B75820 /* PostNewViewController.swift in Sources */,
 				C1C428CF20D65E490071532F /* LoginVC.swift in Sources */,
 				C15AEF9120F0D4C6009F4A0E /* AddressPickerView.swift in Sources */,
 				C15D2679213243E400C6B1BF /* CrowdfundingShopPage.swift in Sources */,
@@ -1127,6 +1146,7 @@
 				C1406364210A084500AB8914 /* WooCommand.swift in Sources */,
 				C172311E20FE249500BF6160 /* LineChart.swift in Sources */,
 				C15AEF9420F0F087009F4A0E /* AddressInfoVC.swift in Sources */,
+				C1662AFA2150FA17008DA143 /* AlipayPay.swift in Sources */,
 				C1BA807420D7980A007D2B48 /* WolfBaseModel.swift in Sources */,
 				C11160EC20EBC61C00921C37 /* DeviceInfoVC.swift in Sources */,
 				C192AA3020C23EA9004EE98D /* DatePickerViewController.swift in Sources */,
@@ -1378,6 +1398,7 @@
 					"$(PROJECT_DIR)/Mywopin/ShareSDK/Support/PlatformSDK/WeChatSDK",
 					"$(PROJECT_DIR)/Mywopin/ShareSDK/Support/PlatformSDK/APSocialSDK",
 					"$(PROJECT_DIR)/Mywopin/BLE",
+					"$(PROJECT_DIR)/Mywopin/WechtSDK1.8.2",
 				);
 				OTHER_LDFLAGS = (
 					"-ObjC",
@@ -1447,6 +1468,7 @@
 					"$(PROJECT_DIR)/Mywopin/ShareSDK/Support/PlatformSDK/WeChatSDK",
 					"$(PROJECT_DIR)/Mywopin/ShareSDK/Support/PlatformSDK/APSocialSDK",
 					"$(PROJECT_DIR)/Mywopin/BLE",
+					"$(PROJECT_DIR)/Mywopin/WechtSDK1.8.2",
 				);
 				OTHER_LDFLAGS = (
 					"-ObjC",

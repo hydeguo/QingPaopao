@@ -29,12 +29,30 @@ class MyProfileViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        
         self.navigationController?.setNavigationBarHidden(true, animated: false)
         
-       
         updateUI()
         
         updateDrinkText()
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+
+        
+        if segue.identifier == "history"{
+            let controller = segue.destination as! PostListViewController
+            controller.mode = .history
+        }
+        if segue.identifier == "collectionPosts"{
+            let controller = segue.destination  as! PostListViewController
+            controller.mode = .collect
+        }
+        if segue.identifier == "followingPosts"{
+            let controller = segue.destination  as! PostListViewController
+            controller.mode = .following
+        }
+        
     }
     
     func updateUI(){

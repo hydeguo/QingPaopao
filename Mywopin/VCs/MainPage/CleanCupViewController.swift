@@ -13,6 +13,7 @@ import RxCocoa
 
 class CleanCupViewController: UIViewController {
     
+    static var doneCleanFlag : Bool = false
     
     @IBOutlet var timeLabel:UILabel?
     @IBOutlet var knowBtn:UIButton?
@@ -58,20 +59,30 @@ class CleanCupViewController: UIViewController {
     private func updateTimeLabel()
     {
         let time = cleanTime - (Date().timeIntervalSince1970 - startCleanTime)
-        self.timeLabel?.text = "\(String(format: "%02d", Int(time / 60))):\(String(format: "%02d", Int(CGFloat(time).truncatingRemainder(dividingBy: 60))))"
+        if time < 0
+        {
+             _timer?.invalidate()
+            CleanCupViewController.doneCleanFlag =  true
+            self.timeLabel?.text = "清洗结束"
+        }
+        else
+        {
+            self.timeLabel?.text = "\(String(format: "%02d", Int(time / 60))):\(String(format: "%02d", Int(CGFloat(time).truncatingRemainder(dividingBy: 60))))"
+        }
+        
     }
     
     func startClean()
     {
         startCleanTime = Date().timeIntervalSince1970
-        UserDefaults.standard.set(startCleanTime, forKey: "startCleanTime")
+        UserDefaults.standard.set(startCleanTime, forKey: "\(idStr) startCleanTime")
         BLEController.shared.setTimeOutClean()
         WifiController.shared.sendCleanOnOffCommandToWopin(on: true)
     }
     @IBAction func stopClean()
     {
         startCleanTime = 0
-        UserDefaults.standard.set(startCleanTime, forKey: "startCleanTime")
+        UserDefaults.standard.set(startCleanTime, forKey: "\(idStr) startCleanTime")
         BLEController.shared.sendCommandToConnectedDevice(WopinCommand.CLEAN_OFF)
         WifiController.shared.sendCleanOnOffCommandToWopin(on: false)
         know()

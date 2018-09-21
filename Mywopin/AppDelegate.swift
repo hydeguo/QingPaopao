@@ -35,34 +35,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //        }
 //        Language.share.setLanguage("en")
         
-        if let s_clean_time = UserDefaults.standard.value(forKey: "startCleanTime")
-        {
-            startCleanTime = s_clean_time as! TimeInterval
-        }
-        if let s_ElectrolyTime = UserDefaults.standard.value(forKey: "startElectrolyTime")
-        {
-            startElectrolyTime = s_ElectrolyTime as! TimeInterval
-        }
-        if let eleTime = UserDefaults.standard.value(forKey: "electrolyTime")
-        {
-            electrolyTime = eleTime as! TimeInterval
-        }
-        if let ble_list = UserDefaults.standard.array(forKey: "BLE_list")
-        {
-            BLEController.shared.savedBLE = ble_list as! [String]
-             BLEController.shared.startAutoConnect()
-        }
-        if let notice = UserDefaults.standard.value(forKey: "notice")
-        {
-            switchNotice = notice as! Bool
-        }
-        if let shake = UserDefaults.standard.value(forKey: "shake")
-        {
-            switchShake = shake as! Bool
-        }
+        PaySDK.wxAppid = "wxf42ec50449767feb"
+        PaySDK.instance.signUrl = server_url+"/getWeChatPaySign"
+        
         _ = WifiController.shared;  //init
         
-        MOBPay.addObserver(PayManager.shared)
+        
         /**
          *  设置ShareSDK的appKey，如果尚未在ShareSDK官网注册过App，请移步到http://mob.com/login 登录后台进行应用注册，
          *  在将生成的AppKey传入到此方法中。我们Demo提供的appKey为内部测试使用，可能会修改配置信息，请不要使用。
@@ -260,5 +238,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
 
+    func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
+        return PaySDK.instance.handleOpenURL(url)
+    }
 }
 

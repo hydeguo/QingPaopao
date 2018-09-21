@@ -363,3 +363,19 @@ class ScoresShopCell: UICollectionViewCell {
         price.text = goods.price+"积分"
     }
 }
+
+
+class FansCell: UITableViewCell {
+    
+    @IBOutlet weak var imagePic:UIImageView!
+    @IBOutlet weak var nameLabel:UILabel!
+    
+    func configure(fans:FansData) -> Void {
+       
+        nameLabel.text = fans.userName
+        if let icon = fans.icon
+        {
+            imagePic.image(fromUrl:icon)
+        }
+    }
+}

@@ -213,7 +213,7 @@ class BLEViewController: UIViewController {
         if(!BLEController.shared.savedBLE.contains(device.identifier.uuidString))
         {
             BLEController.shared.savedBLE.append(device.identifier.uuidString)
-            UserDefaults.standard.set(BLEController.shared.savedBLE, forKey: "BLE_list")
+            UserDefaults.standard.set(BLEController.shared.savedBLE, forKey: "\(idStr) BLE_list")
         }
         
         _ = Wolf.request(type: MyAPI.addOrUpdateACup(type: "BLE", uuid: device.identifier.uuidString, name: device.name!, add: true), completion: { (user: User?, msg, code) in

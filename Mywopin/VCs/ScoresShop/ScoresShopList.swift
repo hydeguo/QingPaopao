@@ -44,7 +44,7 @@ class ScoresShopList:UICollectionViewController,UICollectionViewDelegateFlowLayo
         _ = Wolf.requestBaseList(type: WooAPI.getScoresGoods(), completion: { (goods: [WooGoodsItem]?, msg, code) in
             if(code == "0")
             {
-                Log(goods?.count)
+//                Log(goods?.count)
                 self.loading  = false
                 if let goodsItems = goods
                 {

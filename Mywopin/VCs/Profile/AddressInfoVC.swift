@@ -47,7 +47,8 @@ class AddressInfoVC: UITableViewController,AddressPickerViewDelegate ,UITextFiel
         
         navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
         
-        picker = AddressPickerView.addTo(superView: view, offsetTop: (self.navigationController?.navigationBar.frame.size.height ?? 0) + UIApplication.shared.statusBarFrame.height)
+        let offset_y:CGFloat = UIDevice.current.modelName  == "iPhone X" ? 20.0 : 0.0;
+        picker = AddressPickerView.addTo(superView: view, offsetTop: (self.navigationController?.navigationBar.frame.size.height ?? 0) + UIApplication.shared.statusBarFrame.height + offset_y)
         picker?.delegate = self
         
         self.tableView.tableFooterView = UIView(frame: CGRect.zero)

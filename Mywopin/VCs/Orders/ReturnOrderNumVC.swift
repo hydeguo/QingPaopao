@@ -11,6 +11,7 @@ import Foundation
 class ReturnOrderNumVC: UITableViewController {
 
     @IBOutlet var deliveryOrder:UITextField!
+    @IBOutlet var deliveryExpressName:UITextField!
     
     
     var order:ExchangeOrderItem?
@@ -20,6 +21,7 @@ class ReturnOrderNumVC: UITableViewController {
             return
         }
         deliveryOrder.text = order?.expressReturnId
+        deliveryExpressName.text = order?.expressReturnName ?? ""
     }
     
     @IBAction func onCommit()
@@ -27,11 +29,12 @@ class ReturnOrderNumVC: UITableViewController {
         if(order == nil){
             return
         }
-        _ = Wolf.request(type: MyAPI.exchangeOrderUpdate(orderId: order!.orderId, expressId: deliveryOrder.text!), completion: { (order: BaseReponse?, msg, code) in
+        _ = Wolf.request(type: MyAPI.exchangeOrderUpdate(orderId: order!.orderId, expressId: deliveryOrder.text!,expressName:deliveryExpressName.text!), completion: { (order: BaseReponse?, msg, code) in
             
             if(code == "0")
             {
                 self.order?.expressReturnId = self.deliveryOrder.text!;
+                self.order?.expressReturnName = self.deliveryExpressName.text!;
                 _ = SweetAlert().showAlert(Language.getString("保存成功"), subTitle: "", style: AlertStyle.success)
             }
             else

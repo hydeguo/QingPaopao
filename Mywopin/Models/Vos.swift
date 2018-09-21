@@ -135,7 +135,7 @@ struct AddressItem: Codable {
     var address1: String?
     var address2: String?
     var postCode: Double?
-    var tel: Double?
+    var tel: Int?
     var isDefault: Bool?
     
 }
@@ -166,6 +166,7 @@ struct ExchangeOrderItem: WolfMapper {
     var offerPrice: Int?
     var singlePrice: Int
     var expressReturnId: String?
+    var expressReturnName: String?
     var expressSendId: String?
     var orderStatus: String?
     var createDate: String?

@@ -7,6 +7,7 @@
 
 
 #import "BLEManager.h"
+#import "WXApi.h"
 
 //＝＝＝＝＝＝＝＝＝＝ShareSDK头文件＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝
 #import <ShareSDK/ShareSDK.h>
@@ -56,7 +57,7 @@
 //#import <ShareSDKUI/SSUIShareActionSheetCustomItem.h>
 
 
-#import <MOBPaySDK/MOBPay.h>
+//#import <MOBPaySDK/MOBPay.h>
 
 
 #endif

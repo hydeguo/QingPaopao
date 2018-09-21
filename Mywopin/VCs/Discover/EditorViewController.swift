@@ -7,6 +7,7 @@ import MobileCoreServices
 import Photos
 import UIKit
 import WordPressEditor
+import PKHUD
 
 class EditorViewController: UIViewController {
 
@@ -224,6 +225,17 @@ class EditorViewController: UIViewController {
         button.addTarget(self, action: #selector(onSubmit(_:)), for: UIControlEvents.touchUpInside)
         button.frame = CGRect(x: 0, y: 0, width: 50, height: 50)//CGRectMake(0, 0, 53, 31)
         navigationItem.rightBarButtonItem = UIBarButtonItem(customView: button)
+        
+        let returnbutton: UIButton = UIButton(type: UIButtonType.custom)
+        returnbutton.setImage(UIImage(named: "back"), for: .normal)
+        returnbutton.addTarget(self, action: #selector(onReturn(_:)), for: UIControlEvents.touchUpInside)
+        returnbutton.frame = CGRect(x: 0, y: 0, width: 50, height: 50)//CGRectMake(0, 0, 53, 31)
+        navigationItem.leftBarButtonItem = UIBarButtonItem(customView: returnbutton)
+    }
+    @objc
+    func onReturn(_ sender: Any) {
+        
+        self.dismiss(animated: true, completion: nil)
     }
     @objc
     func onSubmit(_ sender: Any) {
@@ -236,6 +248,25 @@ class EditorViewController: UIViewController {
         }
         mediaUrlMap=[:]
         
+        let title = titleTextView.text;
+        
+        if title?.count == 0 || content.count == 0 {
+            return
+        }
+        
+        UIApplication.shared.keyWindow?.endEditing(true)
+        HUD.show(.progress)
+        _ = Wolf.request(type: MyAPI.newPost(title: title!, content: content), completion: { (post: BaseReponse?, msg, code) in
+            HUD.hide()
+            if code == "0" {
+                PKHUD.sharedHUD.contentView = PKHUDSuccessView()
+                PKHUD.sharedHUD.show()
+                PKHUD.sharedHUD.hide(afterDelay: 1.0) { success in
+//                    self.navigationController?.popViewController(animated: true)
+                    self.dismiss(animated: true, completion: nil)
+                }
+            }
+        }) { (error) in}
         
     }
     override func viewDidAppear(_ animated: Bool) {
@@ -722,6 +753,10 @@ extension EditorViewController {
             if self?.presentedViewController != nil {
                 self?.dismiss(animated: true, completion: nil)
             }
+            
+            if Sys.isIphoneXDisplay() || Sys.isIphoneXMaxDisplay(){  // bug fix by hyde
+                self?.formatBar.y -= 58
+            }
 
             onSelect?(selected)
         }
@@ -990,7 +1025,7 @@ extension EditorViewController {
     @objc func showImagePicker() {
         let picker = UIImagePickerController()
         picker.sourceType = .photoLibrary
-        picker.mediaTypes = UIImagePickerController.availableMediaTypes(for: .photoLibrary) ?? []
+//        picker.mediaTypes = UIImagePickerController.availableMediaTypes(for: .photoLibrary) ?? []   // hide for no video
         picker.delegate = self
         picker.allowsEditing = false
         picker.navigationBar.isTranslucent = false
@@ -1369,7 +1404,7 @@ private extension EditorViewController
         let progress = Progress(parent: nil, userInfo: [MediaProgressKey.mediaID: imageID])
         progress.totalUnitCount = 100
         
-        if let imageData = UIImageJPEGRepresentation(image, 0.3)
+        if let imageData = UIImageJPEGRepresentation(image, 0.1)
         {
             uploadImage(fileName: imageID+".jpg", imageData: imageData) { (url) in
                 if let _url = url

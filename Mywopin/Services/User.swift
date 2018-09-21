@@ -30,6 +30,7 @@ func thirdPartyLogin( userID:String,platform:UInt,completion: @escaping (User?) 
         {
             //                    print(user?.userId)
             myClientVo = user
+            getLocalData()
             let userInfo = ["userId" : userID, "password" : "","platform":String(platform)]
             UserDefaults.standard.set(userInfo, forKey: "userInformation")
             completion(user)
@@ -57,6 +58,7 @@ func registerUser( phone: String, userName: String,password: String, v_code: Str
         {
             //                    print(user?.userId)
             myClientVo = user
+            getLocalData()
             let userInfo = ["userId" : phone, "password" : password,"platform":"0"]
             UserDefaults.standard.set(userInfo, forKey: "userInformation")
             completion(user)
@@ -82,6 +84,7 @@ func login( phone:String, psw:String,platform:UInt,completion: @escaping (User?)
         {
             //                    print(user?.userId)
             myClientVo = user
+            getLocalData()
             let userInfo = ["userId" : phone, "password" : psw,"platform":String(platform)]
             UserDefaults.standard.set(userInfo, forKey: "userInformation")
             completion(user)
@@ -145,6 +148,7 @@ func refreshUserData(completion: @escaping (Bool) -> Swift.Void) {
         if(code == "0")
         {
             myClientVo = user
+            getLocalData()
             completion(true)
         }
         else

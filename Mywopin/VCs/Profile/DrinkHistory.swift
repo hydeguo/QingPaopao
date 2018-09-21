@@ -215,6 +215,9 @@ class DrinkHistory: UIViewController {
             chartView1.isHidden = false
             chartView2.isHidden = true
             lineChart.clearAll();
+            if(data_week.count == 1 ){
+                data_week.append(0)
+            }
             lineChart.addLine(data_week)
         }
         else if(segmentedControl.selectedSegmentIndex == 2)
@@ -228,6 +231,9 @@ class DrinkHistory: UIViewController {
             chartView1.isHidden = true
             chartView2.isHidden = false
             lineChart2.clearAll();
+            if(data_month.count == 1 ){
+                data_month.append(0)
+            }
             lineChart2.addLine(data_month)
         }
     }

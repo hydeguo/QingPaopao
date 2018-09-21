@@ -51,10 +51,6 @@ class ProfileEditVC: UITableViewController {
         _ = Wolf.request(type: MyAPI.logout, completion: { (user: BaseReponse?, msg, code) in
             if(code == "0")
             {
-                UserDefaults.standard.removeObject(forKey: "userInformation")
-                UserDefaults.standard.removeObject(forKey: "electrolyTime")
-                UserDefaults.standard.removeObject(forKey: "startElectrolyTime")
-                UserDefaults.standard.removeObject(forKey: "startCleanTime")
                 self.dismiss(animated: true, completion: {});
                 self.navigationController?.popViewController(animated: true);
                 return

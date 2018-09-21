@@ -267,7 +267,7 @@ class CrowdfundingShopDetailVC: UITableViewController ,UIWebViewDelegate{
                 }
                 self.moneyGetLb.text = "\(totalPrice) 元"
                 let persent = Int(totalPrice * 100 / Int(self.data!.price)!)
-                self.per_slider.value = Float(persent/100)
+                self.per_slider.value = Float(CGFloat(persent)/100)
                 self.sliderLabel?.text = "\(persent)%"
             }
             else

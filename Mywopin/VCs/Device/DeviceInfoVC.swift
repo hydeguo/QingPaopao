@@ -231,7 +231,7 @@ class DeviceInfoVC: UITableViewController {
     @objc func noticeChanged(mySwitch: UISwitch) {
         let value = mySwitch.isOn
         switchNotice = value
-        UserDefaults.standard.set(switchNotice, forKey: "notice")
+        UserDefaults.standard.set(switchNotice, forKey: "\(idStr) notice")
         if(switchNotice){
             NoticeController().createLocalNotice()
         }else{
@@ -241,7 +241,7 @@ class DeviceInfoVC: UITableViewController {
     @objc func shakeChanged(mySwitch: UISwitch) {
         let value = mySwitch.isOn
         switchShake = value
-        UserDefaults.standard.set(switchShake, forKey: "shake")
+        UserDefaults.standard.set(switchShake, forKey: "\(idStr) shake")
     }
     @objc func lightingChanged(mySwitch: UISwitch) {
         let value = mySwitch.isOn
