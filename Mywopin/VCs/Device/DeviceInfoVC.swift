@@ -133,7 +133,6 @@ class DeviceInfoVC: UITableViewController {
         if device?.state == .connected
         {
             statusLf.setTitle(Language.getString("已连接"), for: .normal)
-            BLEController.shared.bleManager.readDeviceBattery(device)
         }
         else
         {
@@ -149,8 +148,6 @@ class DeviceInfoVC: UITableViewController {
             if info.type == DeviceTypeBLE
             {
                 let device = BLEController.shared.bleManager.getDeviceByUUID(info.uuid)
-                BLEController.shared.bleManager.readDeviceBattery(device)
-                
             }
             else
             {
