@@ -96,6 +96,19 @@ class Sys{
 
         return UIDevice.current.model.range(of: "Simulator" ) != nil
     }
+    
+    
+    class func isIphoneXDisplay()->Bool{
+        
+        return (UIScreen.main.bounds.height/UIScreen.main.bounds.width==(812.0/375.0)||UIScreen.main.bounds.height/UIScreen.main.bounds.width==(375.0/812.0))
+    }
+    
+    class func isIphoneXMaxDisplay()->Bool{
+     
+        return (UIScreen.main.bounds.height/UIScreen.main.bounds.width==(896.0/414.0)||UIScreen.main.bounds.height/UIScreen.main.bounds.width==(414.0/896.0))
+    }
+    
+    
 }
 
 func setTimeout(delay:TimeInterval, block:@escaping ()->Void) -> Timer {

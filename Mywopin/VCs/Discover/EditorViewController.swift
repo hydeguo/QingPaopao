@@ -753,6 +753,10 @@ extension EditorViewController {
             if self?.presentedViewController != nil {
                 self?.dismiss(animated: true, completion: nil)
             }
+            
+            if Sys.isIphoneXDisplay() || Sys.isIphoneXMaxDisplay(){  // bug fix by hyde
+                self?.formatBar.y -= 58
+            }
 
             onSelect?(selected)
         }
@@ -1021,7 +1025,7 @@ extension EditorViewController {
     @objc func showImagePicker() {
         let picker = UIImagePickerController()
         picker.sourceType = .photoLibrary
-        picker.mediaTypes = UIImagePickerController.availableMediaTypes(for: .photoLibrary) ?? []
+//        picker.mediaTypes = UIImagePickerController.availableMediaTypes(for: .photoLibrary) ?? []   // hide for no video
         picker.delegate = self
         picker.allowsEditing = false
         picker.navigationBar.isTranslucent = false

@@ -59,7 +59,7 @@ PODS:
     - MOBFoundation
   - mob_paysdk/PaySDK (1.0.0):
     - MOBFoundation
-  - MOBFoundation (3.1.8)
+  - MOBFoundation (3.1.9)
   - Moya/Core (11.0.2):
     - Alamofire (~> 4.1)
     - Result (~> 3.0)
@@ -77,13 +77,13 @@ PODS:
     - R.swift.Library (~> 4.0.0)
   - R.swift.Library (4.0.0)
   - Result (3.2.4)
-  - RxCocoa (4.3.0):
+  - RxCocoa (4.3.1):
     - RxSwift (~> 4.0)
-  - RxSwift (4.3.0)
+  - RxSwift (4.3.1)
   - SwiftyTimer (2.0.0)
-  - WordPress-Aztec-iOS (1.0.0)
-  - WordPress-Editor-iOS (1.0.0):
-    - WordPress-Aztec-iOS (= 1.0.0)
+  - WordPress-Aztec-iOS (1.0.2)
+  - WordPress-Editor-iOS (1.0.2):
+    - WordPress-Aztec-iOS (= 1.0.2)
 
 DEPENDENCIES:
   - Alamofire
@@ -103,8 +103,8 @@ DEPENDENCIES:
   - QRCodeReader.swift (~> 8.2.0)
   - R.swift
   - RxCocoa (~> 4.0)
-  - WordPress-Aztec-iOS (= 1.0.0)
-  - WordPress-Editor-iOS (= 1.0.0)
+  - WordPress-Aztec-iOS (= 1.0.2)
+  - WordPress-Editor-iOS (= 1.0.2)
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
@@ -159,7 +159,7 @@ SPEC CHECKSUMS:
   IHKeyboardAvoiding: e6a8f06434baf4c3b45825c3eedb35cea5d0d76b
   Kingfisher: 43c4b802d8b5256cf1f4379e9cd10b329be6d3e2
   mob_paysdk: 6ca4412389736281c0876726bca11617d14a38ae
-  MOBFoundation: 7f1e157be332576e4d45809a03bc733292c6ad8d
+  MOBFoundation: 11500153c10d83e4ac341f6ad6301b3998ce6db2
   Moya: a725035953bc1c0eb1be505ab903984501d82440
   nanopb: 5601e6bca2dbf1ed831b519092ec110f66982ca3
   PKHUD: 62ea46a1e88c4def1da784878d199bb54c841e3c
@@ -167,12 +167,12 @@ SPEC CHECKSUMS:
   R.swift: d6a5ec2f55a8441dc0ed9f1f8b37d7d11ae85c66
   R.swift.Library: c3af34921024333546e23b70e70d0b4e0cffca75
   Result: d2d07204ce72856f1fd9130bbe42c35a7b0fea10
-  RxCocoa: 71b9cce833fbcb89a8eec11816dd225830c2bd3c
-  RxSwift: a9717a34df3179fe63563f76e046ad345078dd3a
+  RxCocoa: 78763c7b07d02455598d9fc3c1ad091a28b73635
+  RxSwift: fe0fd770a43acdb7d0a53da411c9b892e69bb6e4
   SwiftyTimer: 2efd74b060d69ad4f1496baf5bbedbe132125fcf
-  WordPress-Aztec-iOS: cea2bedf9b807d862ad331a080c98292e355f144
-  WordPress-Editor-iOS: c997f66a110cdee3317ccaaa5e6b2a09a2e5444a
+  WordPress-Aztec-iOS: a736985cc6de6ffceb30a03e380d849b4956ae51
+  WordPress-Editor-iOS: 571e9a168881af4cbe6cc909af603c278a5f0fe3
 
-PODFILE CHECKSUM: 93be717233cd2dfe1c92b35021f1931758ccd9bf
+PODFILE CHECKSUM: fe7a2bccb3c0419d3b0f319872963b7e171e61de
 
 COCOAPODS: 1.5.3
