@@ -27,6 +27,12 @@ enum WIFI_EVENT:String {
     
 }
 
+enum WIFI_CUP_MODE:Int {
+    case IDLE = 0
+    case HYDRO = 1
+    case CLEAN = 2
+}
+
 struct WifiScanResult: Codable {
     let essid: String
     let bssid: String
@@ -79,6 +85,7 @@ public class WifiController : NSObject, CocoaMQTTDelegate
     var allOnlineWifiCup : [OnlineWifiCup] = []
     var mqtt : CocoaMQTT?
     var lastReceiveTime:TimeInterval = 0
+    var mode : WIFI_CUP_MODE = WIFI_CUP_MODE.IDLE
     
     private override init() {
         super.init()
@@ -233,10 +240,9 @@ public class WifiController : NSObject, CocoaMQTTDelegate
                 }
                 if (res.count > 4) {
                     if (res[2] == "H") {
-                        Log("\(message.topic) Hydro Timer: \(res[3])")
                     }
                     if (res[4] == "M") {
-                        Log("\(message.topic) Hydro Mode: \(res[5])")
+                        self.mode = WIFI_CUP_MODE(rawValue: Int(res[5])!) ?? WIFI_CUP_MODE.IDLE
                     }
                 }
             }
