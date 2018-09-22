@@ -58,13 +58,13 @@ class ColorPicker: UIViewController {
         powerFlag.asObservable().subscribe(onNext:{
             if $0{
                 self.iconLightBtn.isSelected = true
-//                self.iconLight.image = UIImage(named: "lightUI1")
+                self.iconLight.image = UIImage(named: "lightUI1")
                 ColorPicker.LAST_LED_ON = true
                 BLEController.shared.sendCommandToConnectedDevice(WopinCommand.COLOR_LED_ON)
                 self.didSelect(color: ColorPicker.LAST_COLOR)
             }else{
                 self.iconLightBtn.isSelected = false
-//                self.iconLight.image = UIImage(named: "lightUI2")
+                self.iconLight.image = UIImage(named: "lightUI2")
                 ColorPicker.LAST_LED_ON = false
                 BLEController.shared.sendCommandToConnectedDevice(WopinCommand.COLOR_LED_OFF)
             }
