@@ -13,17 +13,16 @@ extension PaySDK {
 
 extension PaySDK: WXApiDelegate {
     public func onResp(_ resp: BaseResp!) {
-        if type(of: resp) == SendAuthReq.self {
-            let authResp = resp as! SendAuthResp
+        if let authResp = resp as? SendAuthResp {
             if 0 == authResp.errCode && state == authResp.state {
-                self.authDelegate?.authRequestSuccess(code: authResp.code)
+//                self.authDelegate?.authRequestSuccess(code: authResp.code)
             } else {
-                self.authDelegate?.authRequestError(error: authResp.errStr)
+//                self.authDelegate?.authRequestError(error: authResp.errStr)
             }
         }
-        else //if (type(of: resp) == PayResp.self)
+        else if let payResp = resp as? PayResp
         {
-            let payResp = resp as! PayResp
+            
             if 0 == payResp.errCode {
                 payDelegate?.payRequestSuccess(data: payResp.returnKey)
             } else {
