@@ -147,7 +147,7 @@ class DeviceInfoVC: UITableViewController {
             deviceInfo = info
             if info.type == DeviceTypeBLE
             {
-               
+                let device = BLEController.shared.bleManager.getDeviceByUUID(info.uuid)
             }
             else
             {
