@@ -133,18 +133,20 @@ class DeviceListViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            print("Deleted \(cups[indexPath.row].uuid)")
-            _ = Wolf.request(type: MyAPI.deleteACup(uuid: cups[indexPath.row].uuid), completion: { (user: User?, msg, code) in
-                if(code == "0")
-                {
-                    self.cups.remove(at: indexPath.row)
-                    self.tableView.reloadData()
-                }
-                else
-                {
-                    _ = SweetAlert().showAlert("Sorry", subTitle: msg, style: AlertStyle.warning)
-                }
-            }, failure: nil)
+            if (cups.count > 0) {
+                print("Deleted \(cups[indexPath.row].uuid)")
+                _ = Wolf.request(type: MyAPI.deleteACup(uuid: cups[indexPath.row].uuid), completion: { (user: User?, msg, code) in
+                    if(code == "0")
+                    {
+                        self.cups.remove(at: indexPath.row)
+                        self.tableView.reloadData()
+                    }
+                    else
+                    {
+                        _ = SweetAlert().showAlert("Sorry", subTitle: msg, style: AlertStyle.warning)
+                    }
+                }, failure: nil)
+            }
         }
     }
 }
