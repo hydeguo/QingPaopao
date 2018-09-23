@@ -160,6 +160,13 @@ class DrinkViewController: UIViewController, CLLocationManagerDelegate {
                     _ = SweetAlert().showAlert("提示", subTitle: "清洗已经完成", style: AlertStyle.none)
                     return false
                 }
+                else if WifiController.shared.mode == WIFI_CUP_MODE.CLEAN
+                {
+                    if(WifiController.shared.mode == WIFI_CUP_MODE.CLEAN) {
+                        _ = SweetAlert().showAlert("提示", subTitle: "清洗已经完成，請倒掉水和重開水杯", style: AlertStyle.none)
+                        return false
+                    }
+                }
             }
             #endif
         }
@@ -298,6 +305,7 @@ class DrinkViewController: UIViewController, CLLocationManagerDelegate {
             return
         }
         #endif
+        
         
         if startElectrolyFlag == true
         {

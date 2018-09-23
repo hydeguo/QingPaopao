@@ -28,6 +28,12 @@ enum WIFI_EVENT:String {
     
 }
 
+enum WIFI_CUP_MODE:Int {
+    case IDLE = 0
+    case HYDRO = 1
+    case CLEAN = 2
+}
+
 struct WifiScanResult: Codable {
     let essid: String
     let bssid: String
@@ -80,6 +86,7 @@ public class WifiController : NSObject, CocoaMQTTDelegate
     var allOnlineWifiCup : [OnlineWifiCup] = []
     var mqtt : CocoaMQTT?
     var lastReceiveTime:TimeInterval = 0
+    var mode : WIFI_CUP_MODE = WIFI_CUP_MODE.IDLE
     
     private override init() {
         super.init()
@@ -129,6 +136,12 @@ public class WifiController : NSObject, CocoaMQTTDelegate
             } else {
                 mqtt?.publish(uuid + wopin_device_endfix, withString: "02000000")
             }
+        }
+    }
+    
+    func sendToggleLED() {
+        for uuid in savedWifi {
+            mqtt?.publish(uuid + wopin_device_endfix, withString: "040")
         }
     }
     
@@ -227,6 +240,7 @@ public class WifiController : NSObject, CocoaMQTTDelegate
                     }
                 }
                 if (res.count > 4) {
+<<<<<<< HEAD
 //                    if (res[2] == "H") {
 //                        Log("\(message.topic) Hydro Timer: \(res[3])")
 //                    }
@@ -234,6 +248,13 @@ public class WifiController : NSObject, CocoaMQTTDelegate
 //                        Log("\(message.topic) Hydro Mode: \(res[5])")
 //                    }
                     NotificationCenter.default.post(name: NSNotification.Name(rawValue: WIFI_EVENT.WIFI_STATUS.rawValue), object: self, userInfo: ["device":message.topic,"H":res[3] ,"M":res[5]])
+=======
+                    if (res[2] == "H") {
+                    }
+                    if (res[4] == "M") {
+                        self.mode = WIFI_CUP_MODE(rawValue: Int(res[5])!) ?? WIFI_CUP_MODE.IDLE
+                    }
+>>>>>>> 854e21d415280f00a09816dea79be3505cc81908
                 }
             }
         }
