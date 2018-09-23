@@ -2318,7 +2318,7 @@
                                                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nIF-cH-bSI">
                                                     <rect key="frame" x="285" y="13" width="74" height="30"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                                                    <state key="normal" title="已连接"/>
+                                                    <state key="normal" title="未连接"/>
                                                     <connections>
                                                         <action selector="clickConnect" destination="XbI-SK-4HI" eventType="touchUpInside" id="QLD-vp-M3o"/>
                                                     </connections>

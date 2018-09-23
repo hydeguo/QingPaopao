@@ -72,10 +72,16 @@ struct LocationData: Codable {
     }
 }
 
-struct OnlineWifiCup {
-    let uuid:String
+public class OnlineWifiCup: NSObject {
+    var uuid:String
     var power:String
-    var lastOnline:TimeInterval
+    var lastOnline:TimeInterval 
+    
+    init(uuid:String , power:String ,lastOnline:TimeInterval) {
+        self.uuid = uuid
+        self.power = power
+        self.lastOnline = lastOnline
+    }
 }
 
 public class WifiController : NSObject, CocoaMQTTDelegate
@@ -231,7 +237,7 @@ public class WifiController : NSObject, CocoaMQTTDelegate
                         {
                             allOnlineWifiCup.forEach { ( wifiCup) in
                                 if(wifiCup.uuid == message.topic){
-                                    var cupdata = wifiCup
+                                    let cupdata = wifiCup
                                     cupdata.lastOnline = Date().timeIntervalSince1970
                                 }
                             }
@@ -240,7 +246,7 @@ public class WifiController : NSObject, CocoaMQTTDelegate
                     }
                 }
                 if (res.count > 4) {
-<<<<<<< HEAD
+
 //                    if (res[2] == "H") {
 //                        Log("\(message.topic) Hydro Timer: \(res[3])")
 //                    }
@@ -248,13 +254,7 @@ public class WifiController : NSObject, CocoaMQTTDelegate
 //                        Log("\(message.topic) Hydro Mode: \(res[5])")
 //                    }
                     NotificationCenter.default.post(name: NSNotification.Name(rawValue: WIFI_EVENT.WIFI_STATUS.rawValue), object: self, userInfo: ["device":message.topic,"H":res[3] ,"M":res[5]])
-=======
-                    if (res[2] == "H") {
-                    }
-                    if (res[4] == "M") {
-                        self.mode = WIFI_CUP_MODE(rawValue: Int(res[5])!) ?? WIFI_CUP_MODE.IDLE
-                    }
->>>>>>> 854e21d415280f00a09816dea79be3505cc81908
+
                 }
             }
         }

@@ -307,7 +307,7 @@ class DrinkViewController: UIViewController, CLLocationManagerDelegate {
         #endif
         
         
-        if startElectrolyFlag == true
+        if startElectrolyFlag == false
         {
             startElectroly()
         }
