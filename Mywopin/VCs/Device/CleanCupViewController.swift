@@ -62,7 +62,7 @@ class CleanCupViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(onReceiveWifiStatusData), name: NSNotification.Name(rawValue: WIFI_EVENT.WIFI_STATUS.rawValue), object: nil)
         
         timeOutTimer = setInterval(interval: 1) {
-            if Date().timeIntervalSince1970 - self.nowDidplayLastCmdTime > 10 {
+            if Date().timeIntervalSince1970 - self.nowDidplayLastCmdTime > 20 {
                 self.timeLabel?.text = "数据同步中"
                 self.nowDidplayId = nil
             }
@@ -137,6 +137,7 @@ class CleanCupViewController: UIViewController {
         {
             if(startCleanFlag)
             {
+                self._showTime = Int(cmd.b, radix: 16)! * 60 + Int(cmd.c, radix: 16)!;
                 self.timeLabel?.text = "\(String(format: "%02d", Int(cmd.b, radix: 16)!)):\(String(format: "%02d", Int(cmd.c, radix: 16)!))"
                 
                 _timer?.invalidate()
@@ -165,6 +166,8 @@ class CleanCupViewController: UIViewController {
             
         }else if(M == "2") {
             startCleanFlag = true
+            
+            self._showTime = H;
             self.timeLabel?.text = "\(String(format: "%02d", Int(H / 60))):\(String(format: "%02d", Int(CGFloat(H).truncatingRemainder(dividingBy: 60))))"
             
             _timer?.invalidate()
@@ -188,6 +191,7 @@ class CleanCupViewController: UIViewController {
 
         if(_showTime<=0){
             _timer?.invalidate()
+            
         }else{
             self.timeLabel?.text = "\(String(format: "%02d", Int(_showTime / 60))):\(String(format: "%02d", Int(CGFloat(_showTime).truncatingRemainder(dividingBy: 60))))"
         }

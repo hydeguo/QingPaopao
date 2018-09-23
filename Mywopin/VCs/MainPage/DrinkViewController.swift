@@ -129,7 +129,7 @@ class DrinkViewController: UIViewController, CLLocationManagerDelegate {
         getTodayDrinks()
         
         timeOutTimer = setInterval(interval: 1, block: {
-            if Date().timeIntervalSince1970 - self.nowDidplayLastCmdTime > 10 {
+            if Date().timeIntervalSince1970 - self.nowDidplayLastCmdTime > 20 {
                 if self.startElectrolyFlag{
                     self.stopElectrolyUI()
                 }
@@ -287,7 +287,7 @@ class DrinkViewController: UIViewController, CLLocationManagerDelegate {
             self._showTime = H;
             self.timeLabel?.text = "\(String(format: "%02d", Int(H / 60))):\(String(format: "%02d", Int(CGFloat(H).truncatingRemainder(dividingBy: 60))))"
         }else if(M == "2") {
-        }else {
+        }else if(M == "0") {
             if(startElectrolyFlag){
                 stopElectroly()
             }
@@ -400,6 +400,7 @@ class DrinkViewController: UIViewController, CLLocationManagerDelegate {
         
         if(_showTime<=0){
             _timer?.invalidate()
+            stopElectrolyUI()
         }else{
             self.timeLabel?.text = "\(String(format: "%02d", Int(_showTime / 60))):\(String(format: "%02d", Int(CGFloat(_showTime).truncatingRemainder(dividingBy: 60))))"
         }
