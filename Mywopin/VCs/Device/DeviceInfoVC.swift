@@ -20,6 +20,7 @@ class DeviceInfoVC: UITableViewController {
     @IBOutlet var nameLf:UILabel!
     @IBOutlet var colorLf:UILabel!
     @IBOutlet var statusLf:UIButton!
+    @IBOutlet var timeLf:UILabel!
     
     @IBOutlet var noticeForDrink:UISwitch!
     @IBOutlet var shake:UISwitch!
@@ -52,7 +53,8 @@ class DeviceInfoVC: UITableViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(onReceiveDeviceDataSuccess), name: NSNotification.Name(rawValue: BLE_EVENT.BLE_receiveDeviceDataSuccess_1.rawValue), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(onConnectDeviceSuccess), name: NSNotification.Name(rawValue: BLE_EVENT.BLE_connectDeviceSuccess.rawValue), object: nil)
         
-         NotificationCenter.default.addObserver(self, selector: #selector(onReceiveWifiDeviceData), name: NSNotification.Name(rawValue: WIFI_EVENT.WIFI_POWER.rawValue), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(onReceiveWifiDeviceData), name: NSNotification.Name(rawValue: WIFI_EVENT.WIFI_POWER.rawValue), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(onReceiveWifiStatusData), name: NSNotification.Name(rawValue: WIFI_EVENT.WIFI_STATUS.rawValue), object: nil)
         
         
         self.nameLf.text =   deviceInfo?.name
@@ -103,9 +105,30 @@ class DeviceInfoVC: UITableViewController {
         let cupId:String=(notice as NSNotification).userInfo!["device"] as! String
         let cupPower:String=(notice as NSNotification).userInfo!["power"] as! String
         if(deviceInfo?.uuid == cupId){
-            statusLf.setTitle(Language.getString("已连接"), for: .normal)
+            if statusLf.titleLabel?.text != "电解中" && statusLf.titleLabel?.text == "清洗中"
+            {
+                statusLf.setTitle(Language.getString("已连接"), for: .normal)
+            }
             powerLf.text = "\(cupPower)%"
         }
+    }
+    @objc func onReceiveWifiStatusData(_ notice:Notification){
+        let cupId:String=(notice as NSNotification).userInfo!["device"] as! String
+        if(deviceInfo?.uuid == cupId){
+            let H:Int=(notice as NSNotification).userInfo!["H"] as? Int ?? 0
+            let M:String=(notice as NSNotification).userInfo!["M"] as? String ?? ""
+            if(M == "1"){
+                statusLf.setTitle(Language.getString("电解中"), for: .normal)
+                self.timeLf?.text = "\(String(format: "%02d", Int(H / 60))):\(String(format: "%02d", Int(CGFloat(H).truncatingRemainder(dividingBy: 60))))"
+            }else if(M == "2") {
+                statusLf.setTitle(Language.getString("清洗中"), for: .normal)
+                self.timeLf?.text = "\(String(format: "%02d", Int(H / 60))):\(String(format: "%02d", Int(CGFloat(H).truncatingRemainder(dividingBy: 60))))"
+            }else {
+                statusLf.setTitle(Language.getString("--"), for: .normal)
+                self.timeLf?.text = "--"
+            }
+        }
+        
     }
     
     @objc func dateUpdate(_ notice:Notification){

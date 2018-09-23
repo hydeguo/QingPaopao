@@ -24,6 +24,7 @@ let wopinMqttPassword = "wopinH2popo"
 enum WIFI_EVENT:String {
     
     case WIFI_POWER = "WIFI_POWER"
+    case WIFI_STATUS = "WIFI_STATUS"
     
 }
 
@@ -226,12 +227,13 @@ public class WifiController : NSObject, CocoaMQTTDelegate
                     }
                 }
                 if (res.count > 4) {
-                    if (res[2] == "H") {
-                        Log("\(message.topic) Hydro Timer: \(res[3])")
-                    }
-                    if (res[4] == "M") {
-                        Log("\(message.topic) Hydro Mode: \(res[5])")
-                    }
+//                    if (res[2] == "H") {
+//                        Log("\(message.topic) Hydro Timer: \(res[3])")
+//                    }
+//                    if (res[4] == "M") {
+//                        Log("\(message.topic) Hydro Mode: \(res[5])")
+//                    }
+                    NotificationCenter.default.post(name: NSNotification.Name(rawValue: WIFI_EVENT.WIFI_STATUS.rawValue), object: self, userInfo: ["device":message.topic,"H":res[3] ,"M":res[5]])
                 }
             }
         }

@@ -26,18 +26,22 @@ class DrinkViewController: UIViewController, CLLocationManagerDelegate {
     @IBOutlet var drinkCupLabel:UILabel!
     @IBOutlet var drinkCupTotalLabel:UILabel!
     
+    var nowDidplayId:String?
+    var nowDidplayLastCmdTime:TimeInterval = 0
     var locationManager:CLLocationManager!
     var startElectrolyFlag = false
     
-    var _timer:Timer?
     
     let sliderNum = Variable(Float(0))
     var 👜 = DisposeBag()
     
+    var timeOutTimer:Timer?
+    var _timer:Timer?
+    var _showTime:Int = 0
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        
         
         slider?.setThumbImage(UIImage(named:"slider"),for:.normal)
 
@@ -51,6 +55,8 @@ class DrinkViewController: UIViewController, CLLocationManagerDelegate {
             self.sliderLabel20?.scale = $0 > 17.5 ? 1.5 : 1;
         }).disposed(by: 👜)
       
+        sliderNum.value = 5
+
 //        createGradientLayer(view: self.bgView!)
         
         drinkCupLabel.layer.cornerRadius = drinkCupLabel.height/2;
@@ -61,6 +67,7 @@ class DrinkViewController: UIViewController, CLLocationManagerDelegate {
         drinkCupTotalLabel.layer.masksToBounds = true;
         drinkCupTotalLabel.layer.borderColor = UIColor.white.cgColor
         drinkCupTotalLabel.layer.borderWidth = 1;//边框宽度
+        
         
         #if targetEnvironment(simulator)
 //            onClickReturn()
@@ -116,21 +123,19 @@ class DrinkViewController: UIViewController, CLLocationManagerDelegate {
         
         NotificationCenter.default.addObserver(self, selector: #selector(onReceiveDeviceDataSuccess), name: NSNotification.Name(rawValue: BLE_EVENT.BLE_receiveDeviceDataSuccess_1.rawValue), object: nil)
         
-        if startElectrolyTime == 0 || Date().timeIntervalSince1970 - startElectrolyTime > electrolyTime
-        {
-            self.slider.isEnabled = true
-            sliderNum.value = 5
-        }
-        else
-        {
-            startElectrolyUI()
-            sliderNum.value = Float(electrolyTime / 60)
-            _timer = setInterval(interval: 1, block: {
-                self.updateTimeLabel();
-            })
-        }
+        NotificationCenter.default.addObserver(self, selector: #selector(onReceiveWifiStatusData), name: NSNotification.Name(rawValue: WIFI_EVENT.WIFI_STATUS.rawValue), object: nil)
+        
+
         getTodayDrinks()
         
+        timeOutTimer = setInterval(interval: 1, block: {
+            if Date().timeIntervalSince1970 - self.nowDidplayLastCmdTime > 10 {
+                if self.startElectrolyFlag{
+                    self.stopElectrolyUI()
+                }
+                self.nowDidplayId = nil
+            }
+        })
     }
 
     
@@ -167,6 +172,19 @@ class DrinkViewController: UIViewController, CLLocationManagerDelegate {
         actionBtn?.setTitle(Language.getString("停止电解"), for: .normal)
         self.slider.isEnabled = false
         startElectrolyFlag = true
+        _timer?.invalidate()
+        _timer = setInterval(interval: 1, block: {
+            self.updateTimeLabel()
+        })
+    }
+    private func stopElectrolyUI()
+    {
+        _timer?.invalidate()
+        sliderNum.value = sliderNum.value
+        actionBtn?.backgroundColor = UIColor.colorFromRGB(0x49BBFF)
+        actionBtn?.setTitle(Language.getString("开始电解"), for: .normal)
+        self.slider.isEnabled = true
+        startElectrolyFlag = false
     }
     
     func updateDrinkText()
@@ -179,14 +197,22 @@ class DrinkViewController: UIViewController, CLLocationManagerDelegate {
     }
     
     override func viewWillDisappear(_ animated: Bool) {
-        _timer?.invalidate()
         NotificationCenter.default.removeObserver(self)
+        timeOutTimer?.invalidate()
     }
     
     @objc func onReceiveDeviceDataSuccess(_ notice:Notification)
     {
-        if let _:CBPeripheral=(notice as NSNotification).userInfo!["device"] as? CBPeripheral,let data:Data=(notice as NSNotification).userInfo!["data"] as? Data
+        if let bleCip:CBPeripheral=(notice as NSNotification).userInfo!["device"] as? CBPeripheral,let data:Data=(notice as NSNotification).userInfo!["data"] as? Data
         {
+            if self.nowDidplayId != nil && self.nowDidplayId != bleCip.identifier.uuidString && Date().timeIntervalSince1970 - self.nowDidplayLastCmdTime < 20
+            {
+                return
+            }
+            
+            self.nowDidplayId = bleCip.identifier.uuidString
+            self.nowDidplayLastCmdTime = Date().timeIntervalSince1970
+            
             let bytes = [UInt8] (data as Data)
             var hexString = ""
             for byte in bytes {
@@ -214,8 +240,6 @@ class DrinkViewController: UIViewController, CLLocationManagerDelegate {
             {
                 if(!startElectrolyFlag){
                     startElectrolyUI()
-                }else{
-                    _timer?.invalidate()
                 }
             }
             else if (cmd.b == "02")
@@ -223,14 +247,44 @@ class DrinkViewController: UIViewController, CLLocationManagerDelegate {
                 if(startElectrolyFlag){
                     stopElectroly()
                 }
+                self.nowDidplayId = nil
             }
         }
         else if cmd.a == "5"
         {
             if(startElectrolyFlag)
             {
+                self._showTime = Int(cmd.b, radix: 16)! * 60 + Int(cmd.c, radix: 16)!;
                 self.timeLabel?.text = "\(String(format: "%02d", Int(cmd.b, radix: 16)!)):\(String(format: "%02d", Int(cmd.c, radix: 16)!))"
             }
+        }
+    }
+    
+    @objc func onReceiveWifiStatusData(_ notice:Notification)
+    {
+        let cupId:String=(notice as NSNotification).userInfo!["device"] as! String
+        if self.nowDidplayId != nil && self.nowDidplayId != cupId && Date().timeIntervalSince1970 - self.nowDidplayLastCmdTime < 20
+        {
+            return
+        }
+        
+        self.nowDidplayId = cupId
+        self.nowDidplayLastCmdTime = Date().timeIntervalSince1970
+        
+        let H:Int=(notice as NSNotification).userInfo!["H"] as? Int ?? 0
+        let M:String=(notice as NSNotification).userInfo!["M"] as? String ?? ""
+        if(M == "1"){
+            if(!startElectrolyFlag){
+                startElectrolyUI()
+            }
+            self._showTime = H;
+            self.timeLabel?.text = "\(String(format: "%02d", Int(H / 60))):\(String(format: "%02d", Int(CGFloat(H).truncatingRemainder(dividingBy: 60))))"
+        }else if(M == "2") {
+        }else {
+            if(startElectrolyFlag){
+                stopElectroly()
+            }
+            self.nowDidplayId = nil
         }
     }
     
@@ -245,25 +299,13 @@ class DrinkViewController: UIViewController, CLLocationManagerDelegate {
         }
         #endif
         
-        if startElectrolyTime == 0
+        if startElectrolyFlag == true
         {
             startElectroly()
-            actionBtn?.backgroundColor = UIColor.lightGray
-            actionBtn?.setTitle(Language.getString("停止电解"), for: .normal)
-            self.slider.isEnabled = false
-            _timer?.invalidate()
-            _timer = setInterval(interval: 1, block: {
-                self.updateTimeLabel();
-            })
         }
         else
         {
             stopElectroly()
-            sliderNum.value = sliderNum.value
-            actionBtn?.backgroundColor = UIColor.colorFromRGB(0x49BBFF)
-            actionBtn?.setTitle(Language.getString("开始电解"), for: .normal)
-            self.slider.isEnabled = true
-            _timer?.invalidate()
         }
     }
     
@@ -276,11 +318,8 @@ class DrinkViewController: UIViewController, CLLocationManagerDelegate {
     
     func startElectroly()
     {
-        
-        startElectrolyTime = Date().timeIntervalSince1970
-        electrolyTime = TimeInterval(sliderNum.value * 60)
-        UserDefaults.standard.set(startElectrolyTime, forKey: "\(idStr) startElectrolyTime")
-        UserDefaults.standard.set(electrolyTime, forKey: "\(idStr) electrolyTime")
+        startElectrolyUI()
+        let electrolyTime = TimeInterval(sliderNum.value * 60)
         BLEController.shared.setTimeOutEle(time: electrolyTime)
         WifiController.shared.setTimeOutEle(time: electrolyTime)
     }
@@ -288,11 +327,7 @@ class DrinkViewController: UIViewController, CLLocationManagerDelegate {
     func stopElectroly()
     {
         
-        startElectrolyFlag = false
-        startElectrolyTime = 0
-        electrolyTime = 0
-        UserDefaults.standard.set(electrolyTime, forKey: "\(idStr) electrolyTime")
-        UserDefaults.standard.set(startElectrolyTime, forKey: "\(idStr) startElectrolyTime")
+        stopElectrolyUI()
         BLEController.shared.stopTimeOutEle()
         WifiController.shared.stopTimeOutEle()
         
@@ -302,7 +337,7 @@ class DrinkViewController: UIViewController, CLLocationManagerDelegate {
             BLE_cupId = BLEController.shared.connectedDevice?.identifier.uuidString ?? ""
         #endif
         let lastElectrolyTime = UserDefaults.standard.value(forKey: "\(idStr) lastElectrolyTime") as? Int ?? 0
-        if Int(Date().timeIntervalSince1970) - Int(lastElectrolyTime) > 300
+        if Int(Date().timeIntervalSince1970) - Int(lastElectrolyTime) > 300 && BLE_cupId.count > 0
         {
             // wifi cup will send drink command bt itself
             determineMyLocation()
@@ -353,12 +388,12 @@ class DrinkViewController: UIViewController, CLLocationManagerDelegate {
     
     private func updateTimeLabel()
     {
-        let time = electrolyTime - (Date().timeIntervalSince1970 - startElectrolyTime)
+        _showTime -= 1;
         
-        if(time<=0){
-            stopElectroly()
+        if(_showTime<=0){
+            _timer?.invalidate()
         }else{
-            self.timeLabel?.text = "\(String(format: "%02d", Int(time / 60))):\(String(format: "%02d", Int(CGFloat(time).truncatingRemainder(dividingBy: 60))))"
+            self.timeLabel?.text = "\(String(format: "%02d", Int(_showTime / 60))):\(String(format: "%02d", Int(CGFloat(_showTime).truncatingRemainder(dividingBy: 60))))"
         }
     }
 

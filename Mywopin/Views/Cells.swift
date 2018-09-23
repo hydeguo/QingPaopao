@@ -84,7 +84,11 @@ class DeviceCell: UITableViewCell {
         }
         else
         {
-            
+            WifiController.shared.allOnlineWifiCup.forEach { (wifiCup) in
+                if(data.uuid == wifiCup.uuid){
+                    powerView.isSelected = (Date().timeIntervalSince1970 - wifiCup.lastOnline < 20)
+                }
+            }
         }
         
         #endif
