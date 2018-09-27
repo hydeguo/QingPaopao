@@ -75,7 +75,7 @@ class ColorPicker: UIViewController {
     @IBAction func clickPowerBtn()
     {
         powerFlag.value = !powerFlag.value
-        WifiController.shared.sendToggleLED()
+        WifiController.shared.sendToggleLED(on: powerFlag.value)
     }
     
     @objc func onChangeColor(sender:UISlider){

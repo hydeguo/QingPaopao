@@ -145,9 +145,13 @@ public class WifiController : NSObject, CocoaMQTTDelegate
         }
     }
     
-    func sendToggleLED() {
+    func sendToggleLED(on: Bool) {
         for uuid in savedWifi {
-            mqtt?.publish(uuid + wopin_device_endfix, withString: "040")
+            if (on) {
+                mqtt?.publish(uuid + wopin_device_endfix, withString: "041")
+            } else {
+                mqtt?.publish(uuid + wopin_device_endfix, withString: "040")
+            }
         }
     }
     
