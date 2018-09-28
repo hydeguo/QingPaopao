@@ -20,6 +20,7 @@ enum MyAPI {
     case changeUserName(userName: String)
     case changeIcon(icon: String)
     case addOrUpdateACup(type:String,uuid:String,name: String,add:Bool)
+    case updateCupColor(uuid:String,color: Int)
     case deleteACup(uuid:String)
     case cupList
     case addOrUpdateAddress(addressId:String,userName:String,address1: String,address2: String,tel:Int,isDefault: Bool)
@@ -97,6 +98,8 @@ extension MyAPI: TargetType {
             return .requestParameters(parameters: [ "icon" : icon], encoding: URLEncoding.default)
         case .addOrUpdateACup(let type, let uuid, let name,let add):
             return .requestParameters(parameters: [ "type" : type, "uuid" : uuid, "name" : name, "add" : add], encoding: URLEncoding.default)
+        case .updateCupColor(let uuid, let color):
+            return .requestParameters(parameters: [ "uuid" : uuid, "color" : color], encoding: URLEncoding.default)
         case .deleteACup(let uuid):
             return .requestParameters(parameters: [  "uuid" : uuid], encoding: URLEncoding.default)
         case .addOrUpdateAddress(let addressId, let userName, let address1, let address2,let tel, let isDefault):
@@ -218,6 +221,8 @@ extension MyAPI: TargetType {
             return "/users/cupList"
         case .addOrUpdateAddress:
             return "/users/addOrUpdateAddress"
+        case .updateCupColor:
+            return "/users/updateCupColor"
         case .setDefaultAddress:
             return "/users/setDefaultAddress"
         case .getExchangeOrder:
@@ -308,6 +313,7 @@ extension MyAPI: TargetType {
             return "/blog/newComment"
         case .newPost:
             return "/blog/newPost"
+            
         }
     }
     

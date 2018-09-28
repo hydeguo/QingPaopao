@@ -258,7 +258,7 @@ class WifiTableViewController: UITableViewController, QRCodeReaderViewController
                     {
                         myClientVo = user
                         let detail_info_vc = R.storyboard.main.deviceInfo()
-                        detail_info_vc?.onSetData(info: CupItem(type: DeviceTypeWifi, name: self.device_id!, uuid: self.device_id!, firstRegisterTime: "", registerTime: "", userId: myClientVo?._id, produceScores: 0))
+                        detail_info_vc?.onSetData(info: CupItem(type: DeviceTypeWifi, name: self.device_id!, uuid: self.device_id!, color :0, firstRegisterTime: "", registerTime: "", userId: myClientVo?._id, produceScores: 0))
                         self.show(detail_info_vc!, sender: nil)
                     }
                     else
@@ -303,7 +303,7 @@ class WifiTableViewController: UITableViewController, QRCodeReaderViewController
                             {
                                 myClientVo = user
                                 let detail_info_vc = R.storyboard.main.deviceInfo()
-                                detail_info_vc?.onSetData(info: CupItem(type: DeviceTypeWifi, name: self.device_id!, uuid: self.device_id!, firstRegisterTime: "", registerTime: "", userId: myClientVo?._id, produceScores: 0))
+                                detail_info_vc?.onSetData(info: CupItem(type: DeviceTypeWifi, name: self.device_id!, uuid: self.device_id!, color :0, firstRegisterTime: "", registerTime: "", userId: myClientVo?._id, produceScores: 0))
                                 self.show(detail_info_vc!, sender: nil)
                             }
                             else

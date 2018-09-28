@@ -152,7 +152,7 @@ class DrinkViewController: UIViewController, CLLocationManagerDelegate {
         if identifier == "clean" || identifier == "light"{
             #if targetEnvironment(simulator)
             #else
-            guard (currentCup?.type == "BLE" && BLEController.shared.connectedDevice?.state != .connected && BLEController.shared.connectedDevice?.identifier.uuidString == currentCup?.uuid ) || (currentCup?.type == "WIFI" && Date().timeIntervalSince1970 - (WifiController.shared.getWifiCup(uuid: currentCup!.uuid)?.lastOnline ?? 0) < 30)
+            guard (currentCup?.type == DeviceTypeBLE && BLEController.shared.connectedDevice?.state != .connected && BLEController.shared.connectedDevice?.identifier.uuidString == currentCup?.uuid ) || (currentCup?.type == DeviceTypeWifi && Date().timeIntervalSince1970 - (WifiController.shared.getWifiCup(uuid: currentCup!.uuid)?.lastOnline ?? 0) < 30)
                 else {
                     _ = SweetAlert().showAlert("提示", subTitle: "请链接设备", style: AlertStyle.none)
                     return false
@@ -164,12 +164,12 @@ class DrinkViewController: UIViewController, CLLocationManagerDelegate {
                     _ = SweetAlert().showAlert("提示", subTitle: "正在电解中", style: AlertStyle.none)
                     return false
                 }
-                else if currentCup?.type == "BLE" && BLEController.shared.cleanFlag ==  true && BLEController.shared.connectedDevice?.state == .connected
+                else if currentCup?.type == DeviceTypeBLE && BLEController.shared.cleanFlag ==  true && BLEController.shared.connectedDevice?.state == .connected
                 {
                     _ = SweetAlert().showAlert("提示", subTitle: "清洗已经完成，請倒掉水和重開水杯", style: AlertStyle.none)
                     return false
                 }
-                else if currentCup?.type == "WIFI" && WifiController.shared.getWifiCup(uuid: currentCup!.uuid)?.cleanFlag == true
+                else if currentCup?.type == DeviceTypeWifi && WifiController.shared.getWifiCup(uuid: currentCup!.uuid)?.cleanFlag == true
                 {
                     _ = SweetAlert().showAlert("提示", subTitle: "清洗已经完成，請倒掉水和重開水杯", style: AlertStyle.none)
                     return false
@@ -177,7 +177,7 @@ class DrinkViewController: UIViewController, CLLocationManagerDelegate {
                 if let _cur = currentCup
                 {
                     var cupPower = 0
-                    if _cur.type == "BLE" {
+                    if _cur.type == DeviceTypeBLE {
                         cupPower = bleCupPower
                     }else{
                         WifiController.shared.allOnlineWifiCup.forEach { ( wifiCup) in
@@ -209,7 +209,7 @@ class DrinkViewController: UIViewController, CLLocationManagerDelegate {
             alertController.addAction(oneAction)
         }
         
-        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { (_) in }
+        let cancelAction = UIAlertAction(title: "取消", style: .cancel) { (_) in }
         alertController.addAction(cancelAction)
         
         self.present(alertController, animated: true) {
@@ -368,18 +368,18 @@ class DrinkViewController: UIViewController, CLLocationManagerDelegate {
         #if targetEnvironment(simulator)
         #else
 
-        guard (currentCup?.type == "BLE" && BLEController.shared.connectedDevice?.state != .connected && BLEController.shared.connectedDevice?.identifier.uuidString == currentCup?.uuid ) || (currentCup?.type == "WIFI" && Date().timeIntervalSince1970 - (WifiController.shared.getWifiCup(uuid: currentCup!.uuid)?.lastOnline ?? 0) < 30)
+        guard (currentCup?.type == DeviceTypeBLE && BLEController.shared.connectedDevice?.state != .connected && BLEController.shared.connectedDevice?.identifier.uuidString == currentCup?.uuid ) || (currentCup?.type == DeviceTypeWifi && Date().timeIntervalSince1970 - (WifiController.shared.getWifiCup(uuid: currentCup!.uuid)?.lastOnline ?? 0) < 30)
         else {
             _ = SweetAlert().showAlert("提示", subTitle: "请链接设备", style: AlertStyle.none)
             return
         }
         
-        if currentCup?.type == "BLE" && BLEController.shared.cleanFlag ==  true && BLEController.shared.connectedDevice?.state == .connected
+        if currentCup?.type == DeviceTypeBLE && BLEController.shared.cleanFlag ==  true && BLEController.shared.connectedDevice?.state == .connected
         {
             _ = SweetAlert().showAlert("提示", subTitle: "清洗已经完成，請倒掉水和重開水杯", style: AlertStyle.none)
             return
         }
-        else if currentCup?.type == "WIFI" && WifiController.shared.getWifiCup(uuid: currentCup!.uuid)?.cleanFlag == true
+        else if currentCup?.type == DeviceTypeWifi && WifiController.shared.getWifiCup(uuid: currentCup!.uuid)?.cleanFlag == true
         {
             _ = SweetAlert().showAlert("提示", subTitle: "清洗已经完成，請倒掉水和重開水杯", style: AlertStyle.none)
             return 

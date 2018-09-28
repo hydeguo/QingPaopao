@@ -17,7 +17,7 @@ class PostDetailController: UIViewController, UITableViewDelegate, UITableViewDa
     
     @IBOutlet var keyboardView:UIView?
     @IBOutlet var enterText:UITextField?
-    @IBOutlet var tableView:UITableView!
+    @IBOutlet var tableView:UITableView?
     
     let relayViewHeight:CGFloat = 50.0
     var webCell:WebViewCell?
@@ -38,13 +38,13 @@ class PostDetailController: UIViewController, UITableViewDelegate, UITableViewDa
     override func viewDidLoad() {
         super.viewDidLoad()
     
-        tableView.delegate = self
-        tableView.dataSource = self
-        tableView.separatorInset = UIEdgeInsets.zero;
-        tableView.layoutMargins = UIEdgeInsets.zero;
-        self.tableView.tableFooterView = UIView(frame: CGRect.zero)
-        self.tableView.estimatedRowHeight = 200
-        self.tableView.rowHeight = UITableViewAutomaticDimension
+        tableView?.delegate = self
+        tableView?.dataSource = self
+        tableView?.separatorInset = UIEdgeInsets.zero;
+        tableView?.layoutMargins = UIEdgeInsets.zero;
+        self.tableView?.tableFooterView = UIView(frame: CGRect.zero)
+        self.tableView?.estimatedRowHeight = 200
+        self.tableView?.rowHeight = UITableViewAutomaticDimension
         
         let returnButton = UIBarButtonItem(image: R.image.back(), style: .plain, target: self, action: #selector(onReturn))
         self.navigationController!.topViewController!.navigationItem.leftBarButtonItem =  returnButton
@@ -112,7 +112,7 @@ class PostDetailController: UIViewController, UITableViewDelegate, UITableViewDa
                         }
                         self.detailItem?.comments += 1
                         self.btnCell?.commentLabel.text = String(self.detailItem?.comments ?? 0)
-                        self.tableView.reloadData()
+                        self.tableView?.reloadData()
                     })
                     NotificationCenter.default.post(name: NSNotification.Name(rawValue: "updatePostData"), object: self, userInfo: ["comment":1,"id":self.detailItem?.id ?? 0])
                 }
@@ -123,7 +123,7 @@ class PostDetailController: UIViewController, UITableViewDelegate, UITableViewDa
     
     @objc func onWebLoaded()
     {
-        self.tableView.reloadData();
+        self.tableView?.reloadData();
     }
     
     @objc func replyToComment(_ notice:Notification)
@@ -195,7 +195,7 @@ class PostDetailController: UIViewController, UITableViewDelegate, UITableViewDa
                         }
                     }
                     DispatchQueue.main.async(execute: {
-                        self.tableView.reloadData()
+                        self.tableView?.reloadData()
                     })
                 }
             }) { (error) in}

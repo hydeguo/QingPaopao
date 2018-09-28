@@ -149,7 +149,7 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
   
-  /// This `R.image` struct is generated, and contains static references to 81 images.
+  /// This `R.image` struct is generated, and contains static references to 82 images.
   struct image {
     /// Image `AMCP_color_wheel`.
     static let amcp_color_wheel = Rswift.ImageResource(bundle: R.hostingBundle, name: "AMCP_color_wheel")
@@ -195,6 +195,8 @@ struct R: Rswift.Validatable {
     static let cup = Rswift.ImageResource(bundle: R.hostingBundle, name: "cup")
     /// Image `default profile`.
     static let defaultProfile = Rswift.ImageResource(bundle: R.hostingBundle, name: "default profile")
+    /// Image `device`.
+    static let device = Rswift.ImageResource(bundle: R.hostingBundle, name: "device")
     /// Image `drinkIcon1`.
     static let drinkIcon1 = Rswift.ImageResource(bundle: R.hostingBundle, name: "drinkIcon1")
     /// Image `empty`.
@@ -422,6 +424,11 @@ struct R: Rswift.Validatable {
     /// `UIImage(named: "default profile", bundle: ..., traitCollection: ...)`
     static func defaultProfile(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.defaultProfile, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "device", bundle: ..., traitCollection: ...)`
+    static func device(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.device, compatibleWith: traitCollection)
     }
     
     /// `UIImage(named: "drinkIcon1", bundle: ..., traitCollection: ...)`
@@ -1629,6 +1636,7 @@ struct _R: Rswift.Validatable {
         if UIKit.UIImage(named: "lightPowerBtn") == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'lightPowerBtn' is used in storyboard 'Main', but couldn't be loaded.") }
         if UIKit.UIImage(named: "name") == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'name' is used in storyboard 'Main', but couldn't be loaded.") }
         if UIKit.UIImage(named: "资源 23") == nil { throw Rswift.ValidationError(description: "[R.swift] Image named '资源 23' is used in storyboard 'Main', but couldn't be loaded.") }
+        if UIKit.UIImage(named: "device") == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'device' is used in storyboard 'Main', but couldn't be loaded.") }
         if UIKit.UIImage(named: "资源 2") == nil { throw Rswift.ValidationError(description: "[R.swift] Image named '资源 2' is used in storyboard 'Main', but couldn't be loaded.") }
         if UIKit.UIImage(named: "BG1-1") == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'BG1-1' is used in storyboard 'Main', but couldn't be loaded.") }
         if UIKit.UIImage(named: "drinkIcon1") == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'drinkIcon1' is used in storyboard 'Main', but couldn't be loaded.") }

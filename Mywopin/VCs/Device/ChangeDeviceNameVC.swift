@@ -42,6 +42,7 @@ class ChangeDeviceNameVC: UIViewController,UITextFieldDelegate {
             if(code == "0")
             {
                 myClientVo = user
+                NotificationCenter.default.post(name: Notification.Name(rawValue: "DeviceInfoChange"), object: self,userInfo:["data":self.cupData as Any])
                 self.onReturn()
             }
             else
@@ -67,7 +68,6 @@ class ChangeDeviceNameVC: UIViewController,UITextFieldDelegate {
     
     @IBAction func onReturn()
     {
-        NotificationCenter.default.post(name: Notification.Name(rawValue: "DeviceInfoChange"), object: self,userInfo:["data":cupData as Any])
         self.dismiss(animated: true, completion: nil)
     }
     

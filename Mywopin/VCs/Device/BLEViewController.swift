@@ -216,12 +216,12 @@ class BLEViewController: UIViewController {
             UserDefaults.standard.set(BLEController.shared.savedBLE, forKey: "\(idStr) BLE_list")
         }
         
-        _ = Wolf.request(type: MyAPI.addOrUpdateACup(type: "BLE", uuid: device.identifier.uuidString, name: device.name!, add: true), completion: { (user: User?, msg, code) in
+        _ = Wolf.request(type: MyAPI.addOrUpdateACup(type: DeviceTypeBLE, uuid: device.identifier.uuidString, name: device.name!, add: true), completion: { (user: User?, msg, code) in
             if(code == "0")
             {
                 myClientVo = user
                 let detail_info_vc = R.storyboard.main.deviceInfo()
-                detail_info_vc?.onSetData(info: CupItem(type: DeviceTypeBLE, name: device?.name, uuid: device.identifier.uuidString, firstRegisterTime: "", registerTime: "", userId: myClientVo?._id, produceScores: 0))
+                detail_info_vc?.onSetData(info: CupItem(type: DeviceTypeBLE, name: device?.name, uuid: device.identifier.uuidString,  color :0,firstRegisterTime: "", registerTime: "", userId: myClientVo?._id, produceScores: 0))
                 self.show(detail_info_vc!, sender: nil)
             }
             else

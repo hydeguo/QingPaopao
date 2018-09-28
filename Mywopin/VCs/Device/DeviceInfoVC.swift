@@ -27,6 +27,8 @@ class DeviceInfoVC: UITableViewController {
     @IBOutlet var lighting:UISwitch!
     var deviceInfo:CupItem?
     
+    var colorArr = ["--","红","黄","蓝","绿","金"]
+    
     override func viewDidLoad() {
         
         noticeForDrink.addTarget(self, action: #selector(noticeChanged), for: UIControlEvents.valueChanged)
@@ -49,7 +51,7 @@ class DeviceInfoVC: UITableViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        NotificationCenter.default.addObserver(self, selector: #selector(dateUpdate), name: NSNotification.Name(rawValue: "DeviceInfoChange"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(dataUpdate), name: NSNotification.Name(rawValue: "DeviceInfoChange"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(onReceiveDeviceDataSuccess), name: NSNotification.Name(rawValue: BLE_EVENT.BLE_receiveDeviceDataSuccess_1.rawValue), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(onConnectDeviceSuccess), name: NSNotification.Name(rawValue: BLE_EVENT.BLE_connectDeviceSuccess.rawValue), object: nil)
         
@@ -58,8 +60,9 @@ class DeviceInfoVC: UITableViewController {
         
         
         self.nameLf.text =   deviceInfo?.name
+        self.colorLf.text =   colorArr[deviceInfo?.color ?? 0 ]
 
-        if deviceInfo?.type == "WIFI"
+        if deviceInfo?.type == DeviceTypeWifi
         {
             WifiController.shared.allOnlineWifiCup.forEach { (wifiCup) in
                 if(deviceInfo?.uuid == wifiCup.uuid){
@@ -131,11 +134,10 @@ class DeviceInfoVC: UITableViewController {
         
     }
     
-    @objc func dateUpdate(_ notice:Notification){
+    @objc func dataUpdate(_ notice:Notification){
         
         let cup:CupItem=(notice as NSNotification).userInfo!["data"] as! CupItem
         self.nameLf.text =   cup.name
-        
     }
     
     @objc func onReceiveDeviceDataSuccess(_ notice:Notification)
@@ -170,7 +172,7 @@ class DeviceInfoVC: UITableViewController {
             deviceInfo = info
             if info.type == DeviceTypeBLE
             {
-                let device = BLEController.shared.bleManager.getDeviceByUUID(info.uuid)
+//                let device = BLEController.shared.bleManager.getDeviceByUUID(info.uuid)
             }
             else
             {
@@ -208,7 +210,8 @@ class DeviceInfoVC: UITableViewController {
         let cmd = parseCupData(dataStr)
         if cmd.a == "1"
         {
-            powerLf.text = "\(String(format: "%02d", Int(cmd.b, radix: 16)!))%"        }
+            powerLf.text = "\(String(format: "%02d", Int(cmd.b, radix: 16)!))%"
+        }
     }
     
 //    func receiveDeviceBattery(_ battery: Int, device: CBPeripheral)
@@ -226,6 +229,7 @@ class DeviceInfoVC: UITableViewController {
             destinationVC.setData(cupData: self.deviceInfo!)
 
         }
+       
     }
     
     @IBAction func clickConnect()
@@ -249,7 +253,31 @@ class DeviceInfoVC: UITableViewController {
             }
         }
     }
-    
+    @IBAction func clickColor()
+    {
+        let alertController = UIAlertController(title: "杯子颜色", message: "请选取你杯子的颜色", preferredStyle: .alert)
+        
+        for i in 1..<colorArr.count {
+            let oneAction = UIAlertAction(title: colorArr[i], style: .default) { (option) in
+                
+                self.colorLf.text =  self.colorArr[i]
+                _ = Wolf.request(type: MyAPI.updateCupColor( uuid: self.deviceInfo!.uuid, color: i), completion: { (user: BaseReponse?, msg, code) in
+                    if(code == "0")
+                    {
+                    
+                    }
+                }, failure: nil)
+            }
+            alertController.addAction(oneAction)
+        }
+        
+        let cancelAction = UIAlertAction(title: "取消", style: .cancel) { (_) in }
+        alertController.addAction(cancelAction)
+        
+        self.present(alertController, animated: true) {
+            // ...
+        }
+    }
     
     @objc func noticeChanged(mySwitch: UISwitch) {
         let value = mySwitch.isOn

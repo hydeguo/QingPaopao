@@ -208,7 +208,7 @@ public class WifiController : NSObject, CocoaMQTTDelegate
                     self.savedWifi = []
                     for cup in cupsItems
                     {
-                        if cup.type == "WIFI"
+                        if cup.type == DeviceTypeWifi
                         {
                             self.savedWifi.append(cup.uuid)
                         }

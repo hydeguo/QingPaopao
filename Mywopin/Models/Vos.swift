@@ -123,6 +123,7 @@ struct CupItem: WolfMapper {
     var type: String?
     var name: String?
     var uuid: String
+    var color: Int?
     var firstRegisterTime: String?
     var registerTime: String?
     var userId: String?
