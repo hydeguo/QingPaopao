@@ -417,6 +417,7 @@
 				20327ADA21116227006935FB /* WifiTableViewController.swift */,
 				20327AE02111943D006935FB /* WifiScanListVC.swift */,
 				C16980DE20E8D3D20034E954 /* CleanCupViewController.swift */,
+				C192AA4F20C37FCF004EE98D /* ColorPicker.swift */,
 			);
 			path = Device;
 			sourceTree = "<group>";
@@ -505,7 +506,6 @@
 			isa = PBXGroup;
 			children = (
 				C192AA1220C23770004EE98D /* DrinkViewController.swift */,
-				C192AA4F20C37FCF004EE98D /* ColorPicker.swift */,
 				C1AB2BD12149210000CE6A2D /* TabBarController.swift */,
 			);
 			path = MainPage;

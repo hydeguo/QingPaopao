@@ -25,6 +25,7 @@ public class BLEController:NSObject,BLEManagerDelegate
 {
     static let shared:BLEController = BLEController()
     
+    var cleanFlag:Bool  = false
     var _timer:Timer?
     var _timer_ele:Timer?
     var savedBLE:[String] = []
@@ -102,7 +103,7 @@ public class BLEController:NSObject,BLEManagerDelegate
         
         if let device = device
         {
-            CleanCupViewController.doneCleanFlag =  false
+            cleanFlag =  false
             self.connectedDevice = device
             print("Device connected ! \(device.name ?? "")")
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: BLE_EVENT.BLE_connectDeviceSuccess.rawValue), object: self, userInfo: ["data":device])
@@ -115,6 +116,7 @@ public class BLEController:NSObject,BLEManagerDelegate
     
     public func didDisconnectDevice(_ device: CBPeripheral!, error: Error!) {
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: BLE_EVENT.BLE_didDisconnectDevice.rawValue), object: self, userInfo: ["data":device])
+        cleanFlag = false
     }
     
     public func receiveDeviceBattery(_ battery: Int, device: CBPeripheral!) {

@@ -13,7 +13,6 @@ import RxCocoa
 
 class CleanCupViewController: UIViewController {
     
-    static var doneCleanFlag : Bool = false
     
     @IBOutlet var timeLabel:UILabel?
     @IBOutlet var knowBtn:UIButton?
@@ -126,7 +125,7 @@ class CleanCupViewController: UIViewController {
             }
             else if (cmd.b == "04")
             {
-                CleanCupViewController.doneCleanFlag =  true
+                BLEController.shared.cleanFlag =  true
                 self.timeLabel?.text = "清洗结束"
                 self.nowDidplayId = nil
                 startCleanFlag = false

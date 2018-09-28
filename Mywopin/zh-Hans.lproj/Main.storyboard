@@ -265,6 +265,16 @@
                                             <segue destination="S29-aU-c6I" kind="show" id="3jG-i9-B3j"/>
                                         </connections>
                                     </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zLT-yt-AHf">
+                                        <rect key="frame" x="112" y="201" width="150" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="--">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="changeCup" destination="9pv-A4-QxB" eventType="touchUpInside" id="gpm-Kl-B7C"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
@@ -281,6 +291,7 @@
                     <connections>
                         <outlet property="actionBtn" destination="ySo-Mh-SA2" id="Exz-Sh-WC8"/>
                         <outlet property="bgView" destination="wyC-Uf-3rH" id="zta-ce-Keg"/>
+                        <outlet property="changeCupBtn" destination="zLT-yt-AHf" id="lZ0-8L-16Z"/>
                         <outlet property="drinkCupLabel" destination="5yf-Cg-jVG" id="lbv-tc-Vgx"/>
                         <outlet property="drinkCupTotalLabel" destination="vFH-Kb-Igb" id="Hbk-9Y-SbU"/>
                         <outlet property="slider" destination="2cP-Rt-cwm" id="HhE-vM-MQT"/>
@@ -2348,7 +2359,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="--" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W9k-6a-UQA">
-                                                    <rect key="frame" x="280" y="18" width="70" height="21"/>
+                                                    <rect key="frame" x="280" y="17" width="70" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>

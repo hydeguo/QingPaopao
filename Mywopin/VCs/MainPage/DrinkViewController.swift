@@ -17,6 +17,7 @@ class DrinkViewController: UIViewController, CLLocationManagerDelegate {
     @IBOutlet var slider:UISlider!
     
     @IBOutlet var actionBtn:UIButton?
+    @IBOutlet var changeCupBtn:UIButton?
     @IBOutlet var timeLabel:UILabel?
     @IBOutlet var sliderLabel5:UILabel?
     @IBOutlet var sliderLabel10:UILabel?
@@ -26,8 +27,12 @@ class DrinkViewController: UIViewController, CLLocationManagerDelegate {
     @IBOutlet var drinkCupLabel:UILabel!
     @IBOutlet var drinkCupTotalLabel:UILabel!
     
-    var nowDidplayId:String?
-    var nowDidplayLastCmdTime:TimeInterval = 0
+    var currentCup:CupItem?{
+        didSet  {
+            changeCupBtn?.setTitle(currentCup?.name ?? "--", for: .normal)
+        }
+    }
+    var bleCupPower:Int = 0
     var locationManager:CLLocationManager!
     var startElectrolyFlag = false
     
@@ -68,6 +73,7 @@ class DrinkViewController: UIViewController, CLLocationManagerDelegate {
         drinkCupTotalLabel.layer.borderColor = UIColor.white.cgColor
         drinkCupTotalLabel.layer.borderWidth = 1;//边框宽度
         
+        initCupList()
         
         #if targetEnvironment(simulator)
 //            onClickReturn()
@@ -129,11 +135,14 @@ class DrinkViewController: UIViewController, CLLocationManagerDelegate {
         getTodayDrinks()
         
         timeOutTimer = setInterval(interval: 1, block: {
-            if Date().timeIntervalSince1970 - self.nowDidplayLastCmdTime > 20 {
-                if self.startElectrolyFlag{
-                    self.stopElectrolyUI()
+           
+            if let curCup = self.currentCup{
+                if Date().timeIntervalSince1970 - (WifiController.shared.getWifiCup(uuid: curCup.uuid)?.lastOnline ?? 0) > 20
+                {
+                    if self.startElectrolyFlag{
+                        self.stopElectrolyUI()
+                    }
                 }
-                self.nowDidplayId = nil
             }
         })
     }
@@ -143,10 +152,10 @@ class DrinkViewController: UIViewController, CLLocationManagerDelegate {
         if identifier == "clean" || identifier == "light"{
             #if targetEnvironment(simulator)
             #else
-            if(Date().timeIntervalSince1970 - WifiController.shared.lastReceiveTime > 30 && BLEController.shared.connectedDevice?.state != .connected)
-            {
-                _ = SweetAlert().showAlert("提示", subTitle: "请链接设备", style: AlertStyle.none)
-                return false
+            guard (currentCup?.type == "BLE" && BLEController.shared.connectedDevice?.state != .connected && BLEController.shared.connectedDevice?.identifier.uuidString == currentCup?.uuid ) || (currentCup?.type == "WIFI" && Date().timeIntervalSince1970 - (WifiController.shared.getWifiCup(uuid: currentCup!.uuid)?.lastOnline ?? 0) < 30)
+                else {
+                    _ = SweetAlert().showAlert("提示", subTitle: "请链接设备", style: AlertStyle.none)
+                    return false
             }
             if identifier == "clean"
             {
@@ -155,15 +164,30 @@ class DrinkViewController: UIViewController, CLLocationManagerDelegate {
                     _ = SweetAlert().showAlert("提示", subTitle: "正在电解中", style: AlertStyle.none)
                     return false
                 }
-                else if CleanCupViewController.doneCleanFlag ==  true && BLEController.shared.connectedDevice?.state == .connected
+                else if currentCup?.type == "BLE" && BLEController.shared.cleanFlag ==  true && BLEController.shared.connectedDevice?.state == .connected
                 {
-                    _ = SweetAlert().showAlert("提示", subTitle: "清洗已经完成", style: AlertStyle.none)
+                    _ = SweetAlert().showAlert("提示", subTitle: "清洗已经完成，請倒掉水和重開水杯", style: AlertStyle.none)
                     return false
                 }
-                else if WifiController.shared.mode == WIFI_CUP_MODE.CLEAN
+                else if currentCup?.type == "WIFI" && WifiController.shared.getWifiCup(uuid: currentCup!.uuid)?.cleanFlag == true
                 {
-                    if(WifiController.shared.mode == WIFI_CUP_MODE.CLEAN) {
-                        _ = SweetAlert().showAlert("提示", subTitle: "清洗已经完成，請倒掉水和重開水杯", style: AlertStyle.none)
+                    _ = SweetAlert().showAlert("提示", subTitle: "清洗已经完成，請倒掉水和重開水杯", style: AlertStyle.none)
+                    return false
+                }
+                if let _cur = currentCup
+                {
+                    var cupPower = 0
+                    if _cur.type == "BLE" {
+                        cupPower = bleCupPower
+                    }else{
+                        WifiController.shared.allOnlineWifiCup.forEach { ( wifiCup) in
+                            if(wifiCup.uuid == _cur.uuid){
+                                cupPower = Int(wifiCup.power) ?? 0
+                            }
+                        }
+                    }
+                    if  cupPower <= 20{
+                        _ = SweetAlert().showAlert("提示", subTitle: "电量低于20%，不能清洗", style: AlertStyle.none)
                         return false
                     }
                 }
@@ -171,6 +195,39 @@ class DrinkViewController: UIViewController, CLLocationManagerDelegate {
             #endif
         }
         return true
+    }
+    
+    @IBAction func changeCup()
+    {
+        let alertController = UIAlertController(title: "选择杯子", message: "选择您想进行操作的杯子", preferredStyle: .alert)
+        
+        
+        for cup in cup_list {
+            let oneAction = UIAlertAction(title: cup.name, style: .default) { (option) in
+                self.currentCup = cup
+            }
+            alertController.addAction(oneAction)
+        }
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { (_) in }
+        alertController.addAction(cancelAction)
+        
+        self.present(alertController, animated: true) {
+            // ...
+        }
+    }
+    
+    private func initCupList(){
+        
+        _ = Wolf.requestList(type: MyAPI.cupList, completion: { (cups: [CupItem]?, msg, code) in
+            if(code == "0")
+            {
+                if let cupsItems = cups
+                {
+                    cup_list = cupsItems
+                }
+            }
+        }, failure: nil)
     }
     
     private func startElectrolyUI()
@@ -212,13 +269,16 @@ class DrinkViewController: UIViewController, CLLocationManagerDelegate {
     {
         if let bleCip:CBPeripheral=(notice as NSNotification).userInfo!["device"] as? CBPeripheral,let data:Data=(notice as NSNotification).userInfo!["data"] as? Data
         {
-            if self.nowDidplayId != nil && self.nowDidplayId != bleCip.identifier.uuidString && Date().timeIntervalSince1970 - self.nowDidplayLastCmdTime < 20
+            if self.currentCup != nil && self.currentCup?.uuid != bleCip.identifier.uuidString
             {
                 return
             }
             
-            self.nowDidplayId = bleCip.identifier.uuidString
-            self.nowDidplayLastCmdTime = Date().timeIntervalSince1970
+            for cup in cup_list {
+                if cup.uuid == bleCip.identifier.uuidString{
+                    self.currentCup = cup
+                }
+            }
             
             let bytes = [UInt8] (data as Data)
             var hexString = ""
@@ -241,6 +301,10 @@ class DrinkViewController: UIViewController, CLLocationManagerDelegate {
     private func onCupDataCommand(_ dataStr:String)
     {
         let cmd = parseCupData(dataStr)
+        if cmd.a == "1"
+        {
+            bleCupPower = Int(cmd.b, radix: 16) ?? 0
+        }
         if cmd.a == "3"
         {
             if(cmd.b == "01")
@@ -254,7 +318,7 @@ class DrinkViewController: UIViewController, CLLocationManagerDelegate {
                 if(startElectrolyFlag){
                     stopElectroly()
                 }
-                self.nowDidplayId = nil
+                self.currentCup = nil
             }
         }
         else if cmd.a == "5"
@@ -270,13 +334,16 @@ class DrinkViewController: UIViewController, CLLocationManagerDelegate {
     @objc func onReceiveWifiStatusData(_ notice:Notification)
     {
         let cupId:String=(notice as NSNotification).userInfo!["device"] as! String
-        if self.nowDidplayId != nil && self.nowDidplayId != cupId && Date().timeIntervalSince1970 - self.nowDidplayLastCmdTime < 20
+        if self.currentCup != nil && self.currentCup?.uuid != cupId && Date().timeIntervalSince1970 - (WifiController.shared.getWifiCup(uuid: self.currentCup!.uuid)?.lastOnline ?? 0) < 20
         {
             return
         }
         
-        self.nowDidplayId = cupId
-        self.nowDidplayLastCmdTime = Date().timeIntervalSince1970
+        for cup in cup_list {
+            if cup.uuid == cupId{
+                self.currentCup = cup
+            }
+        }
         
         let H:Int=(notice as NSNotification).userInfo!["H"] as? Int ?? 0
         let M:String=(notice as NSNotification).userInfo!["M"] as? String ?? ""
@@ -287,11 +354,12 @@ class DrinkViewController: UIViewController, CLLocationManagerDelegate {
             self._showTime = H;
             self.timeLabel?.text = "\(String(format: "%02d", Int(H / 60))):\(String(format: "%02d", Int(CGFloat(H).truncatingRemainder(dividingBy: 60))))"
         }else if(M == "2") {
+            
         }else if(M == "0") {
             if(startElectrolyFlag){
                 stopElectroly()
             }
-            self.nowDidplayId = nil
+            self.currentCup = nil
         }
     }
     
@@ -299,11 +367,24 @@ class DrinkViewController: UIViewController, CLLocationManagerDelegate {
     {
         #if targetEnvironment(simulator)
         #else
-        if(Date().timeIntervalSince1970 - WifiController.shared.lastReceiveTime > 30 && BLEController.shared.connectedDevice?.state != .connected)
-        {
+
+        guard (currentCup?.type == "BLE" && BLEController.shared.connectedDevice?.state != .connected && BLEController.shared.connectedDevice?.identifier.uuidString == currentCup?.uuid ) || (currentCup?.type == "WIFI" && Date().timeIntervalSince1970 - (WifiController.shared.getWifiCup(uuid: currentCup!.uuid)?.lastOnline ?? 0) < 30)
+        else {
             _ = SweetAlert().showAlert("提示", subTitle: "请链接设备", style: AlertStyle.none)
             return
         }
+        
+        if currentCup?.type == "BLE" && BLEController.shared.cleanFlag ==  true && BLEController.shared.connectedDevice?.state == .connected
+        {
+            _ = SweetAlert().showAlert("提示", subTitle: "清洗已经完成，請倒掉水和重開水杯", style: AlertStyle.none)
+            return
+        }
+        else if currentCup?.type == "WIFI" && WifiController.shared.getWifiCup(uuid: currentCup!.uuid)?.cleanFlag == true
+        {
+            _ = SweetAlert().showAlert("提示", subTitle: "清洗已经完成，請倒掉水和重開水杯", style: AlertStyle.none)
+            return 
+        }
+        
         #endif
         
         
@@ -313,7 +394,7 @@ class DrinkViewController: UIViewController, CLLocationManagerDelegate {
         }
         else
         {
-            stopElectroly()
+            stopElectroly(clicked:true)
         }
     }
     
@@ -332,34 +413,14 @@ class DrinkViewController: UIViewController, CLLocationManagerDelegate {
         WifiController.shared.setTimeOutEle(time: electrolyTime)
     }
     
-    func stopElectroly()
+    func stopElectroly(clicked:Bool = false)
     {
         
         stopElectrolyUI()
         BLEController.shared.stopTimeOutEle()
         WifiController.shared.stopTimeOutEle()
         
-        var BLE_cupId = ""
-        #if targetEnvironment(simulator)
-        #else
-            BLE_cupId = BLEController.shared.connectedDevice?.identifier.uuidString ?? ""
-        #endif
-        let lastElectrolyTime = UserDefaults.standard.value(forKey: "\(idStr) lastElectrolyTime") as? Int ?? 0
-        if Int(Date().timeIntervalSince1970) - Int(lastElectrolyTime) > 300 && BLE_cupId.count > 0
-        {
-            // wifi cup will send drink command bt itself
-            determineMyLocation()
-            _ = Wolf.request(type: MyAPI.drink(target: targetOfDrink, cupId: BLE_cupId ), completion: { (info: OneDrinks?, msg, code) in
-                if(code == "0")
-                {
-                    let t_d =  myClientVo?.drinks ?? 0
-                    myClientVo?.drinks = t_d + (info != nil ? info!.count! : 0);
-                    self.getTodayDrinks()
-                    refreshUserData(completion: {_ in })
-                }
-            }, failure: nil)
-        }
-        UserDefaults.standard.set(Int(Date().timeIntervalSince1970), forKey: "\(idStr) lastElectrolyTime")
+        
     }
     
     func determineMyLocation() {
@@ -401,8 +462,37 @@ class DrinkViewController: UIViewController, CLLocationManagerDelegate {
         if(_showTime<=0){
             _timer?.invalidate()
             stopElectrolyUI()
+            #if targetEnvironment(simulator)
+            #else
+  
+            let BLE_cupId = BLEController.shared.connectedDevice?.identifier.uuidString ?? ""
+            let lastElectrolyTime = UserDefaults.standard.value(forKey: "\(idStr) lastElectrolyTime") as? Int ?? 0
+            if Int(Date().timeIntervalSince1970) - Int(lastElectrolyTime) > 300 && BLE_cupId.count > 0
+            {
+                // wifi cup will send drink command bt itself
+                determineMyLocation()
+                _ = Wolf.request(type: MyAPI.drink(target: targetOfDrink, cupId: BLE_cupId ), completion: { (info: OneDrinks?, msg, code) in
+                    if(code == "0")
+                    {
+                        let t_d =  myClientVo?.drinks ?? 0
+                        myClientVo?.drinks = t_d + (info != nil ? info!.count! : 0);
+                        self.getTodayDrinks()
+                        refreshUserData(completion: {_ in })
+                    }
+                }, failure: nil)
+            }
+            UserDefaults.standard.set(Int(Date().timeIntervalSince1970), forKey: "\(idStr) lastElectrolyTime")
+            
+            #endif
         }else{
-            self.timeLabel?.text = "\(String(format: "%02d", Int(_showTime / 60))):\(String(format: "%02d", Int(CGFloat(_showTime).truncatingRemainder(dividingBy: 60))))"
+            
+            #if targetEnvironment(simulator)
+            #else
+            if BLEController.shared.connectedDevice?.identifier.uuidString != currentCup?.uuid
+            {
+                self.timeLabel?.text = "\(String(format: "%02d", Int(_showTime / 60))):\(String(format: "%02d", Int(CGFloat(_showTime).truncatingRemainder(dividingBy: 60))))"
+            }
+            #endif
         }
     }
 

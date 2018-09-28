@@ -75,7 +75,8 @@ struct LocationData: Codable {
 public class OnlineWifiCup: NSObject {
     var uuid:String
     var power:String
-    var lastOnline:TimeInterval 
+    var lastOnline:TimeInterval
+    var cleanFlag:Bool = false
     
     init(uuid:String , power:String ,lastOnline:TimeInterval) {
         self.uuid = uuid
@@ -91,8 +92,9 @@ public class WifiController : NSObject, CocoaMQTTDelegate
     var savedWifi : [String] = []
     var allOnlineWifiCup : [OnlineWifiCup] = []
     var mqtt : CocoaMQTT?
-    var lastReceiveTime:TimeInterval = 0
-    var mode : WIFI_CUP_MODE = WIFI_CUP_MODE.IDLE
+//    var lastReceiveTime:TimeInterval = 0
+//    var mode : WIFI_CUP_MODE = WIFI_CUP_MODE.IDLE
+    var selectedId:String?
     
     private override init() {
         super.init()
@@ -105,6 +107,16 @@ public class WifiController : NSObject, CocoaMQTTDelegate
             self.mqtt!.delegate = self
             self.mqtt?.connect()
         }
+    }
+    
+    func getWifiCup(uuid:String)->OnlineWifiCup?
+    {
+        for cup in allOnlineWifiCup {
+            if cup.uuid == uuid{
+                return cup
+            }
+        }
+        return nil
     }
     
     func startAutoConnect()
@@ -136,7 +148,7 @@ public class WifiController : NSObject, CocoaMQTTDelegate
     }
     
     func sendHydroOnOffCommandToWopin(on : Bool, timeString: String) {
-        for uuid in savedWifi {
+        if let uuid  = selectedId {
             if (on) {
                 mqtt?.publish(uuid + wopin_device_endfix, withString: "021" + timeString)
             } else {
@@ -146,7 +158,7 @@ public class WifiController : NSObject, CocoaMQTTDelegate
     }
     
     func sendToggleLED(on: Bool) {
-        for uuid in savedWifi {
+        if let  uuid = selectedId {
             if (on) {
                 mqtt?.publish(uuid + wopin_device_endfix, withString: "041")
             } else {
@@ -157,13 +169,13 @@ public class WifiController : NSObject, CocoaMQTTDelegate
     
     func sendRGBCommandToWopin(r: Int, g: Int, b: Int) {
         let code = wopinWifiLEDCommand(r: r, g: g, b: b)
-        for uuid in savedWifi {
+        if let  uuid = selectedId {
             mqtt?.publish(uuid + wopin_device_endfix, withString: code)
         }
     }
     
     func sendCleanOnOffCommandToWopin(on: Bool) {
-        for uuid in savedWifi {
+        if let  uuid = selectedId {
             if (on) {
                 mqtt?.publish(uuid + wopin_device_endfix, withString: "031")
             } else {
@@ -221,7 +233,7 @@ public class WifiController : NSObject, CocoaMQTTDelegate
         print("didReceiveMessage " + message.topic + " " + message.string!)
         if (savedWifi.contains(message.topic)) {
             print("updating device info " + message.topic)
-            self.lastReceiveTime = Date().timeIntervalSince1970;
+
             let resAll = message.string!.split(separator: ";")
             for resOne in resAll
             {
@@ -242,6 +254,10 @@ public class WifiController : NSObject, CocoaMQTTDelegate
                             allOnlineWifiCup.forEach { ( wifiCup) in
                                 if(wifiCup.uuid == message.topic){
                                     let cupdata = wifiCup
+                                    if  Date().timeIntervalSince1970 - cupdata.lastOnline > 30
+                                    {
+                                        cupdata.cleanFlag = false
+                                    }
                                     cupdata.lastOnline = Date().timeIntervalSince1970
                                 }
                             }

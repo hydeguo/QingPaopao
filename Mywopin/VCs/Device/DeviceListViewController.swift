@@ -18,6 +18,8 @@ class DeviceListViewController: UITableViewController {
     var cups = [CupItem]()
     var cellHeight:CGFloat = 100
     
+    var timer:Timer?
+    
 //    override func awakeFromNib() {
 //        super.awakeFromNib()
 //        if UIDevice.current.userInterfaceIdiom == .pad {
@@ -41,6 +43,14 @@ class DeviceListViewController: UITableViewController {
         self.tabBarController?.tabBar.isHidden = false
         self.updatePostList()
         self.tableView.reloadData()
+        
+        timer = setInterval(interval: 1, block: {
+            self.tableView.reloadData()
+        })
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        timer?.invalidate()
     }
     
     func updatePostList() {

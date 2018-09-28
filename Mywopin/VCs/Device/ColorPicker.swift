@@ -23,7 +23,7 @@ class ColorPicker: UIViewController {
     
     var colorPicker: ChromaColorPicker!
     var powerFlag:Variable = Variable(LAST_LED_ON)
-    
+    var _timer:Timer?
     
     var 👜 = DisposeBag()
     
@@ -119,14 +119,21 @@ class ColorPicker: UIViewController {
 
     
     private func didSelect(color: UIColor?) {
+       
         if let c = color
         {
             //        print(color.redValue)
-            let command = wopinLEDCommand(r: Int(c.redValue), g: Int(c.greenValue), b: Int(c.blueValue))
-            BLEController.shared.sendCommandToConnectedDevice(command)
-            WifiController.shared.sendRGBCommandToWopin(r: Int(c.redValue) , g: Int(c.greenValue), b: Int(c.blueValue))
-            ColorPicker.LAST_COLOR = color
-            
+            ColorPicker.LAST_COLOR = c
+            if(_timer == nil)
+            {
+                _timer = setTimeout(delay: 0.5, block: {
+                    let _color = ColorPicker.LAST_COLOR ?? UIColor.clear;
+                    let command = wopinLEDCommand(r: Int(_color.redValue), g: Int(_color.greenValue), b: Int(_color.blueValue))
+                    BLEController.shared.sendCommandToConnectedDevice(command)
+                    WifiController.shared.sendRGBCommandToWopin(r: Int(_color.redValue) , g: Int(_color.greenValue), b: Int(_color.blueValue))
+                    self._timer = nil
+                })
+            }
         }
     }
     
