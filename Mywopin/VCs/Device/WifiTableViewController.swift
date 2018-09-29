@@ -201,7 +201,7 @@ class WifiTableViewController: UITableViewController, QRCodeReaderViewController
         request.httpBody = postString.data(using: .utf8)
         print("Scanning wifi...")
         let configuration = URLSessionConfiguration.default
-        configuration.timeoutIntervalForRequest = 30
+        configuration.timeoutIntervalForRequest = 15
         let session = URLSession(configuration: configuration)
         let dataTask = session.dataTask(with: request, completionHandler: { (data, response, error) -> Void in
             if (error != nil) {

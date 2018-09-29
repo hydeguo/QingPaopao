@@ -285,7 +285,7 @@ public class WifiController : NSObject, CocoaMQTTDelegate
     }
     
     public func mqtt(_ mqtt: CocoaMQTT, didUnsubscribeTopic topic: String) {
-        print("didUnsubscribeTopic")
+        print("didUnsubscribeTopic" + topic)
     }
     
     public func mqttDidPing(_ mqtt: CocoaMQTT) {
@@ -296,5 +296,6 @@ public class WifiController : NSObject, CocoaMQTTDelegate
     
     public func mqttDidDisconnect(_ mqtt: CocoaMQTT, withError err: Error?) {
         print("mqttDidDisconnect")
+        WifiController.shared.reconnect()
     }
 }
