@@ -69,8 +69,9 @@ class DeviceCell: UITableViewCell {
         
         powerView.isSelected = false
         
-//        if(data.type)
-//        self.featuredImageView!.image = nil;
+        let colorIndex = data.color ?? 1
+        self.featuredImageView!.image = UIImage(named: "cup\(colorIndex)");
+        
         #if targetEnvironment(simulator)
         #else
         if data.type == DeviceTypeBLE

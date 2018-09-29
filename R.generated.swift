@@ -149,7 +149,7 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
   
-  /// This `R.image` struct is generated, and contains static references to 82 images.
+  /// This `R.image` struct is generated, and contains static references to 87 images.
   struct image {
     /// Image `AMCP_color_wheel`.
     static let amcp_color_wheel = Rswift.ImageResource(bundle: R.hostingBundle, name: "AMCP_color_wheel")
@@ -191,6 +191,16 @@ struct R: Rswift.Validatable {
     static let comment1 = Rswift.ImageResource(bundle: R.hostingBundle, name: "comment-1")
     /// Image `comment`.
     static let comment = Rswift.ImageResource(bundle: R.hostingBundle, name: "comment")
+    /// Image `cup1`.
+    static let cup1 = Rswift.ImageResource(bundle: R.hostingBundle, name: "cup1")
+    /// Image `cup2`.
+    static let cup2 = Rswift.ImageResource(bundle: R.hostingBundle, name: "cup2")
+    /// Image `cup3`.
+    static let cup3 = Rswift.ImageResource(bundle: R.hostingBundle, name: "cup3")
+    /// Image `cup4`.
+    static let cup4 = Rswift.ImageResource(bundle: R.hostingBundle, name: "cup4")
+    /// Image `cup5`.
+    static let cup5 = Rswift.ImageResource(bundle: R.hostingBundle, name: "cup5")
     /// Image `cup`.
     static let cup = Rswift.ImageResource(bundle: R.hostingBundle, name: "cup")
     /// Image `default profile`.
@@ -419,6 +429,31 @@ struct R: Rswift.Validatable {
     /// `UIImage(named: "cup", bundle: ..., traitCollection: ...)`
     static func cup(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.cup, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "cup1", bundle: ..., traitCollection: ...)`
+    static func cup1(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.cup1, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "cup2", bundle: ..., traitCollection: ...)`
+    static func cup2(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.cup2, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "cup3", bundle: ..., traitCollection: ...)`
+    static func cup3(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.cup3, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "cup4", bundle: ..., traitCollection: ...)`
+    static func cup4(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.cup4, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "cup5", bundle: ..., traitCollection: ...)`
+    static func cup5(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.cup5, compatibleWith: traitCollection)
     }
     
     /// `UIImage(named: "default profile", bundle: ..., traitCollection: ...)`

@@ -26,7 +26,7 @@ class DeviceInfoVC: UITableViewController {
     @IBOutlet var lighting:UISwitch!
     var deviceInfo:CupItem?
     
-    var colorArr = ["--","红","黄","蓝","绿","金"]
+    var colorArr = ["--","金色","玫瑰金","绿色","红色","绿色"]
     
     override func viewDidLoad() {
         

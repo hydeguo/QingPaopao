@@ -4958,22 +4958,16 @@ DQ
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                             <color key="backgroundColor" white="0.89762369789999996" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </imageView>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cup" translatesAutoresizingMaskIntoConstraints="NO" id="tVV-EJ-zEV">
-                                            <rect key="frame" x="21" y="20" width="60" height="60"/>
-                                            <constraints>
-                                                <constraint firstAttribute="width" constant="60" id="6hi-mc-mwF"/>
-                                                <constraint firstAttribute="height" constant="60" id="Ez2-rX-sHv"/>
-                                            </constraints>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="cup" translatesAutoresizingMaskIntoConstraints="NO" id="tVV-EJ-zEV">
+                                            <rect key="frame" x="7" y="1" width="90" height="90"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                             <userDefinedRuntimeAttributes>
                                                 <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
                                             </userDefinedRuntimeAttributes>
                                         </imageView>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="jCN-h3-Ytf">
-                                            <rect key="frame" x="101" y="30" width="180" height="40"/>
-                                            <constraints>
-                                                <constraint firstAttribute="width" constant="180" id="Rc1-38-Pvt"/>
-                                                <constraint firstAttribute="height" constant="40" id="lvB-Sw-ZGs"/>
-                                            </constraints>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="jCN-h3-Ytf">
+                                            <rect key="frame" x="101" y="30" width="192" height="40"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                             <color key="textColor" red="0.0" green="0.63137254899999995" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                             <nil key="highlightedColor"/>
@@ -4988,12 +4982,6 @@ DQ
                                             <state key="selected" image="powerOn"/>
                                         </button>
                                     </subviews>
-                                    <constraints>
-                                        <constraint firstItem="tVV-EJ-zEV" firstAttribute="centerY" secondItem="UO0-3B-5ES" secondAttribute="centerY" id="6BD-Ac-mdd"/>
-                                        <constraint firstItem="jCN-h3-Ytf" firstAttribute="leading" secondItem="tVV-EJ-zEV" secondAttribute="trailing" constant="20" id="FEI-mt-FHq"/>
-                                        <constraint firstItem="tVV-EJ-zEV" firstAttribute="leading" secondItem="UO0-3B-5ES" secondAttribute="leadingMargin" constant="5" id="RWq-K0-aL8"/>
-                                        <constraint firstItem="jCN-h3-Ytf" firstAttribute="centerY" secondItem="UO0-3B-5ES" secondAttribute="centerY" id="VtM-Ks-byg"/>
-                                    </constraints>
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="featuredImageView" destination="tVV-EJ-zEV" id="C0V-B2-zIC"/>
@@ -5047,7 +5035,7 @@ DQ
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GFh-RQ-t5R" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-95" y="-640"/>
+            <point key="canvasLocation" x="-95.200000000000003" y="-640.02998500749629"/>
         </scene>
         <!--Table View Controller-->
         <scene sceneID="DzO-cv-jeA">
