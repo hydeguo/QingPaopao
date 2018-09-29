@@ -25,8 +25,8 @@ public class WolfModel {
             do {
                 return try JSONDecoder.init().decode(T.self, from: data)
             } catch {
-                // 此问题一般表示model属性的类型不匹配, 比如 age: String?, 可能服务器的参数为Int
-                debugPrint("key的类型不匹配" + error.localizedDescription)
+                // 此问题一般表示model属性的类型不匹配, 比如 age: String?, 可能服务器的参数为Int"
+                debugPrint("key的类型不匹配 \(error.localizedDescription) : \(String(data: data, encoding: String.Encoding(rawValue: String.Encoding.utf8.rawValue)) ?? "")"  )
                 return nil
             }
         } else {
@@ -41,7 +41,7 @@ public class WolfModel {
                 return try JSONDecoder.init().decode([T].self, from: data)
             } catch {
                 // 此问题一般表示model属性的类型不匹配, 比如 age: String?, 可能服务器的参数为Int
-                debugPrint("key的类型不匹配" + error.localizedDescription)
+                debugPrint("key的类型不匹配 \(error.localizedDescription) : \(String(data: data, encoding: String.Encoding(rawValue: String.Encoding.utf8.rawValue)) ?? "")"  )
                 return nil
             }
         } else {
@@ -122,7 +122,7 @@ public class Wolf {
         let provider = self.createProvider(type)
         return provider.request(type, progress: progress, completion: { (event) in
             switch event {
-            case let .success(response):
+             case let .success(response):
 //                Log("type:\(type) |response:\(String(data: response.data, encoding: String.Encoding(rawValue: String.Encoding.utf8.rawValue)))")
                 WolfTransformModel.listFromJSON(response.data, completion)
              case let .failure(error):
