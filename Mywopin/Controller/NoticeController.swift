@@ -8,7 +8,6 @@
 
 import Foundation
 import AudioToolbox
-import DLLocalNotifications
 import UserNotifications
 
 class NoticeController

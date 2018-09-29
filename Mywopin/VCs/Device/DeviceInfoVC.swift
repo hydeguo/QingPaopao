@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import DLLocalNotifications
 import UserNotifications
 #if targetEnvironment(simulator)
 class DeviceInfoVC: UITableViewController{
@@ -48,6 +47,8 @@ class DeviceInfoVC: UITableViewController {
         if(switchNotice){
             NoticeController().createLocalNotice()
         }
+        
+        requestNotice()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -299,5 +300,19 @@ class DeviceInfoVC: UITableViewController {
         switchShine = value
     }
     
+    func requestNotice() {
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge]) {
+            granted, error in
+            if granted {
+//                DispatchQueue.main.async(execute: {
+//                    UIApplication.shared.registerForRemoteNotifications()
+//                })
+            } else {
+//                if let error = error {
+//                    UIAlertController.showConfirmAlert(message: error.localizedDescription, in: self)
+//                }
+            }
+        }
+    }
 }
 #endif

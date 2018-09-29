@@ -12,7 +12,6 @@ target 'Mywopin' do
     pod 'IHKeyboardAvoiding', '~> 4.0'
 #    pod 'Hero'
     pod 'ChromaColorPicker'
-    pod 'DLLocalNotifications'
     pod 'PKHUD'
     pod 'CocoaMQTT'
     pod 'QRCodeReader.swift', '~> 8.2.0'
