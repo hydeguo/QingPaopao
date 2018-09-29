@@ -144,11 +144,13 @@ class MyFansList: UITableViewController {
     // MARK: - Segues
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "showDetail" {
+        if segue.identifier == "showSomeOnesPost" {
             if let indexPath = self.tableView.indexPathForSelectedRow {
-//                let post = posts[indexPath.row]
-//                let controller = (segue.destination as! UINavigationController).topViewController as! PostDetailController
-//                controller.detailItem = post
+                let user = fansList[indexPath.row]
+                let controller = segue.destination  as! PostListViewController
+                controller.getByUserId = user._id
+                controller.mode = .someOne
+                controller.navigationController?.navigationBar.topItem?.title = Language.getString( "话题列表")
 //                controller.navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem
 //                controller.navigationItem.leftItemsSupplementBackButton = true
             }

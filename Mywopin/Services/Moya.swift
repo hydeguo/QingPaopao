@@ -52,6 +52,7 @@ enum MyAPI {
     case getHistoryBlogPostList(page:Int,num:Int)
     case getFollowingBlogPostList(page:Int,num:Int)
     case getMyBlogPostList(page:Int,num:Int)
+    case getOthersBlogPostList(userId:String,page:Int,num:Int)
     case deleteMyPost(id:Int)
     case getFansList
     case getMyFollowList
@@ -149,6 +150,8 @@ extension MyAPI: TargetType {
             return .requestParameters(parameters: [ "page" : page,"num" : num], encoding: URLEncoding.default)
         case .getMyBlogPostList(let page,let num):
             return .requestParameters(parameters: [ "page" : page,"num" : num], encoding: URLEncoding.default)
+        case .getOthersBlogPostList(let userId,let page,let num):
+            return .requestParameters(parameters: [ "userId" : userId,"page" : page,"num" : num], encoding: URLEncoding.default)
         case .unCollectBlogPost(let id):
             return .requestParameters(parameters: [ "postId" : id], encoding: URLEncoding.default)
         case .searchBlogPostList(let search):
@@ -275,7 +278,7 @@ extension MyAPI: TargetType {
             return "/blog/historyPosts"
         case .getFollowingBlogPostList:
             return "/blog/followPosts"
-        case .getMyBlogPostList:
+        case .getMyBlogPostList,.getOthersBlogPostList:
             return "/blog/myPosts"
         case .deleteMyPost:
             return "/blog/deletePost"
@@ -332,6 +335,7 @@ extension MyAPI: TargetType {
                   .getHistoryBlogPostList,
                   .getFollowingBlogPostList,
                   .getMyBlogPostList,
+                  .getOthersBlogPostList,
                   .getFollowList,
                   .getColletionPostList,
                   .getLikedPostList,

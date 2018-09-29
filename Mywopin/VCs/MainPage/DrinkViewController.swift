@@ -29,6 +29,7 @@ class DrinkViewController: UIViewController, CLLocationManagerDelegate {
     
     var currentCup:CupItem?{
         didSet  {
+            WifiController.shared.selectedId = currentCup?.type == DeviceTypeWifi ? currentCup?.uuid : nil;
             changeCupBtn?.setTitle(currentCup?.name ?? "--", for: .normal)
         }
     }
@@ -136,7 +137,7 @@ class DrinkViewController: UIViewController, CLLocationManagerDelegate {
         
         timeOutTimer = setInterval(interval: 1, block: {
            
-            if let curCup = self.currentCup{
+            if let curCup = self.currentCup , curCup.type == DeviceTypeWifi{
                 if Date().timeIntervalSince1970 - (WifiController.shared.getWifiCup(uuid: curCup.uuid)?.lastOnline ?? 0) > 20
                 {
                     if self.startElectrolyFlag{
@@ -152,7 +153,7 @@ class DrinkViewController: UIViewController, CLLocationManagerDelegate {
         if identifier == "clean" || identifier == "light"{
             #if targetEnvironment(simulator)
             #else
-            guard (currentCup?.type == DeviceTypeBLE && BLEController.shared.connectedDevice?.state != .connected && BLEController.shared.connectedDevice?.identifier.uuidString == currentCup?.uuid ) || (currentCup?.type == DeviceTypeWifi && Date().timeIntervalSince1970 - (WifiController.shared.getWifiCup(uuid: currentCup!.uuid)?.lastOnline ?? 0) < 30)
+            guard (currentCup?.type == DeviceTypeBLE && BLEController.shared.connectedDevice?.state == .connected && BLEController.shared.connectedDevice?.identifier.uuidString == currentCup?.uuid ) || (currentCup?.type == DeviceTypeWifi && Date().timeIntervalSince1970 - (WifiController.shared.getWifiCup(uuid: currentCup!.uuid)?.lastOnline ?? 0) < 30)
                 else {
                     _ = SweetAlert().showAlert("提示", subTitle: "请链接设备", style: AlertStyle.none)
                     return false
@@ -318,7 +319,6 @@ class DrinkViewController: UIViewController, CLLocationManagerDelegate {
                 if(startElectrolyFlag){
                     stopElectroly()
                 }
-                self.currentCup = nil
             }
         }
         else if cmd.a == "5"
@@ -359,7 +359,6 @@ class DrinkViewController: UIViewController, CLLocationManagerDelegate {
             if(startElectrolyFlag){
                 stopElectroly()
             }
-            self.currentCup = nil
         }
     }
     
@@ -368,7 +367,7 @@ class DrinkViewController: UIViewController, CLLocationManagerDelegate {
         #if targetEnvironment(simulator)
         #else
 
-        guard (currentCup?.type == DeviceTypeBLE && BLEController.shared.connectedDevice?.state != .connected && BLEController.shared.connectedDevice?.identifier.uuidString == currentCup?.uuid ) || (currentCup?.type == DeviceTypeWifi && Date().timeIntervalSince1970 - (WifiController.shared.getWifiCup(uuid: currentCup!.uuid)?.lastOnline ?? 0) < 30)
+        guard (currentCup?.type == DeviceTypeBLE && BLEController.shared.connectedDevice?.state == .connected && BLEController.shared.connectedDevice?.identifier.uuidString == currentCup?.uuid ) || (currentCup?.type == DeviceTypeWifi && Date().timeIntervalSince1970 - (WifiController.shared.getWifiCup(uuid: currentCup!.uuid)?.lastOnline ?? 0) < 30)
         else {
             _ = SweetAlert().showAlert("提示", subTitle: "请链接设备", style: AlertStyle.none)
             return

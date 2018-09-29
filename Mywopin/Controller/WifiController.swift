@@ -99,7 +99,7 @@ public class WifiController : NSObject, CocoaMQTTDelegate
     private override init() {
         super.init()
         DispatchQueue.main.async {
-            let clientID = "iOS"   // ToDo: Use unique iPhone device id here ?
+            let clientID = UIDevice.current.identifierForVendor!.uuidString
             self.mqtt = CocoaMQTT(clientID: clientID, host: wopinMqttServer, port: UInt16(wopinMqttServerPort))
             self.mqtt!.username = wopinMqttUsername
             self.mqtt!.password = wopinMqttPassword

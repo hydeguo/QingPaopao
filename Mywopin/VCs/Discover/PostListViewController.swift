@@ -19,6 +19,7 @@ enum POST_MODE:String {
 //    case likes = "likes"
     case following = "following"
     case my = "my"
+    case someOne = "someOne"
     case search = "search"
 }
 
@@ -35,6 +36,8 @@ class PostListViewController: UITableViewController {
     
     var mode:POST_MODE = .hot
     var searchText:String = ""
+    
+    var getByUserId:String?
     
     var loadingMore = false
     var isEnd = false
@@ -53,6 +56,16 @@ class PostListViewController: UITableViewController {
         }
 
         self.navigationController?.setNavigationBarHidden(false, animated: false)
+        self.navigationController?.navigationBar.topItem?.title = ""
+        updateTitle()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        updateTitle()
+    }
+    
+    private func updateTitle()
+    {
         switch mode {
         case .history:
             navigationController?.navigationBar.topItem?.title = Language.getString( "浏览历史")
@@ -60,11 +73,11 @@ class PostListViewController: UITableViewController {
             navigationController?.navigationBar.topItem?.title = Language.getString( "关注话题")
         case .collect:
             navigationController?.navigationBar.topItem?.title = Language.getString( "我的收藏")
+        case .someOne:
+            navigationController?.navigationBar.topItem?.title = Language.getString( "话题列表")
         default:
             navigationController?.navigationBar.topItem?.title = Language.getString( "探索")
         }
-        
-        
     }
     
     override func viewDidLoad() {
@@ -89,6 +102,7 @@ class PostListViewController: UITableViewController {
     {
         posts.removeAll()
         do {
+        
             if mode == .new
             {
                 let retrievedMessage = try Disk.retrieve("PostList.json", from: .caches, as: [BlogPostItem].self)
@@ -120,7 +134,7 @@ class PostListViewController: UITableViewController {
                 posts = retrievedMessage
             }
             
-            if posts.count != numPrePage{
+            if posts.count != 0 && posts.count != numPrePage{
                 self.isEnd = true
             }
             
@@ -299,6 +313,18 @@ class PostListViewController: UITableViewController {
                                 try Disk.save(_posts, to: .caches, as: "myPostList.json")
                             }
                         } catch _ as NSError {}
+                        self.onReceiveNewData(_posts)
+                    }
+                }
+            }, failure: nil)
+        }
+        else if mode == .someOne
+        {
+            _ = Wolf.requestList(type: MyAPI.getOthersBlogPostList(userId: getByUserId ?? "",page: curPage, num: numPrePage), completion: { (posts: [BlogPostItem]?, msg, code) in
+                if let _posts = posts {
+                    
+                    if self.mode == .someOne
+                    {
                         self.onReceiveNewData(_posts)
                     }
                 }
