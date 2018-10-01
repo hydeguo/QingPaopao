@@ -12,6 +12,7 @@ import UIKit
 class ExchangeBuyBtnVC: UIViewController {
     
     @IBOutlet var goodsDetail:UIView!
+    @IBOutlet var btn:UIButton!
     var data : WooGoodsItem?
     var detailPage:ExchangeShopDetailVC!
     
@@ -24,16 +25,30 @@ class ExchangeBuyBtnVC: UIViewController {
         detailPage.data = data
         
         let returnButton = UIBarButtonItem(image: R.image.back(), style: .plain, target: self, action: #selector(onReturn))
-    self.navigationController!.topViewController!.navigationItem.leftBarButtonItem =  returnButton
+        self.navigationController!.topViewController!.navigationItem.leftBarButtonItem =  returnButton
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        NotificationCenter.default.removeObserver(self)
     }
     
     override func viewWillAppear(_ animated: Bool) {
-       
+        NotificationCenter.default.addObserver(self, selector: #selector(onActionEvent), name: NSNotification.Name(rawValue: "exchangeTimeOut"), object: nil)
     }
     
     override func viewDidAppear(_ animated: Bool) {
 //        self.view.height = 100
 //        self.view.isUserInteractionEnabled = false
+    }
+    
+    @objc func onActionEvent(_ notice:Notification)
+    {
+        if ((notice as NSNotification).userInfo!["data"] as? Bool) == false
+        {
+            btn.isEnabled = false
+            btn.backgroundColor = UIColor.lightGray
+        }
+
     }
     
     @objc func onReturn()

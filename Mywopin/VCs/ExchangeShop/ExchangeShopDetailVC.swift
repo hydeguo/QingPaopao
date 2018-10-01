@@ -20,6 +20,7 @@ class ExchangeShopDetailVC: UITableViewController ,UIWebViewDelegate{
     @IBOutlet var subTitleLb:UILabel!
     @IBOutlet var priceLb:UILabel!
     @IBOutlet var stockNumLb:UILabel!
+    @IBOutlet var dateLb:UILabel!
     
     
     @IBOutlet var pageC:UIImageView!
@@ -36,6 +37,8 @@ class ExchangeShopDetailVC: UITableViewController ,UIWebViewDelegate{
     let detailWebViewSection = 2
     var data:WooGoodsItem?
     var oldGoods:WooGoodsItem?
+    
+    var activeFlag:Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -62,6 +65,41 @@ class ExchangeShopDetailVC: UITableViewController ,UIWebViewDelegate{
         titleLb.text = data!.name
         subTitleLb.text = _subTitle.filterHTML()
         priceLb.text = "¥"+data!.price
+        
+        
+        if let date_from =  data?.date_on_sale_from , let date_to = data?.date_on_sale_to
+        {
+            let dateFormatterGet = DateFormatter()
+            dateFormatterGet.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
+            
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "yyyy-MM-dd"
+            
+            let time_from = dateFormatterGet.date(from: date_from)!//2017-08-28T08:24:37
+            let time2 = dateFormatterGet.date(from: date_to)!//2017-08-28T08:24:37
+            let calendar = Calendar.current
+            let date1 = calendar.startOfDay(for: Date())
+            let date2 = calendar.startOfDay(for: time2)
+            
+            if time_from > Date()
+            {
+                dateLb.text = "\(dateFormatter.string(from: time_from)) 开始"
+                activeFlag = false
+            }
+            else if Date() > time2
+            {
+                dateLb.text = "活动已结束"
+                activeFlag = false
+            }
+            else
+            {
+                let components = calendar.dateComponents([.day], from: date1, to: date2).day!
+                dateLb.text = "剩余：\(components)天"
+                activeFlag = true
+            }
+            
+        }
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "exchangeTimeOut"), object: self, userInfo: ["data":activeFlag])
         
         
         numberOfPage = data!.images.count
