@@ -74,6 +74,11 @@ class DrinkViewController: UIViewController, CLLocationManagerDelegate {
         drinkCupTotalLabel.layer.borderColor = UIColor.white.cgColor
         drinkCupTotalLabel.layer.borderWidth = 1;//边框宽度
         
+        changeCupBtn?.layer.cornerRadius = drinkCupTotalLabel.height/2;
+        changeCupBtn?.layer.masksToBounds = true;
+        changeCupBtn?.layer.borderColor = UIColor.white.cgColor
+        changeCupBtn?.layer.borderWidth = 1;//边框宽度
+        
         initCupList()
         
         #if targetEnvironment(simulator)
