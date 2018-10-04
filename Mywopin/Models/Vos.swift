@@ -171,7 +171,13 @@ struct ExchangeOrderItem: WolfMapper {
     var expressSendId: String?
     var orderStatus: String?
     var createDate: String?
-    
+    var infoUserName: String?
+    var infoSex: String?
+    var infoPhone: String?
+    var infoCupModel: String?
+    var infoCupColor: String?
+    var infoBuyTime: String?
+    var infoUsage: String?
 }
 struct ExchangeGoodsItem: WolfMapper {
     func didInit() {
