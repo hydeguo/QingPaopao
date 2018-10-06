@@ -6407,9 +6407,15 @@ HIFI音响</string>
                         </connections>
                     </tableView>
                     <connections>
-                        <outlet property="deliveryExpressName" destination="sFB-Ve-cxc" id="hKE-VC-cf0"/>
+                        <outlet property="deliveryExpressName" destination="Cws-DH-oVi" id="uLY-Y6-cMe"/>
                         <outlet property="deliveryOrder" destination="6Gw-v5-NQ9" id="yza-Mk-u6P"/>
-                        <outlet property="infoUserName" destination="sFB-Ve-cxc" id="oBg-Yx-Z08"/>
+                        <outlet property="infoBuyTimeTF" destination="1PW-h3-tZU" id="Raf-Ne-Mpm"/>
+                        <outlet property="infoCupColorTF" destination="PVX-zr-60K" id="deh-x8-hqU"/>
+                        <outlet property="infoCupModelTF" destination="vbB-ST-tdN" id="dm0-XP-qac"/>
+                        <outlet property="infoPhoneTF" destination="udb-SU-YLk" id="IeR-pd-cFk"/>
+                        <outlet property="infoSexTF" destination="gqM-4Q-xAg" id="9UW-WP-GPW"/>
+                        <outlet property="infoUsageTF" destination="7xD-2U-vP0" id="VOa-FJ-ZIh"/>
+                        <outlet property="infoUserNameTF" destination="sFB-Ve-cxc" id="xm4-mj-Yao"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Mi3-kv-R8A" userLabel="First Responder" sceneMemberID="firstResponder"/>

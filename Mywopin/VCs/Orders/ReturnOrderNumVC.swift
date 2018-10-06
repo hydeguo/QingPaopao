@@ -8,7 +8,7 @@
 
 import Foundation
 
-class ReturnOrderNumVC: UITableViewController {
+class ReturnOrderNumVC: UITableViewController ,UITextFieldDelegate{
 
     @IBOutlet var deliveryOrder:UITextField!
     @IBOutlet var deliveryExpressName:UITextField!
@@ -38,8 +38,23 @@ class ReturnOrderNumVC: UITableViewController {
         infoCupColorTF.text = order?.infoCupColor ?? ""
         infoBuyTimeTF.text = order?.infoBuyTime ?? ""
         infoUsageTF.text = order?.infoUsage ?? ""
+        
+        
+        deliveryOrder.delegate = self
+        deliveryExpressName.delegate = self
+        infoUserNameTF.delegate = self
+        infoSexTF.delegate = self
+        infoPhoneTF.delegate = self
+        infoCupModelTF.delegate = self
+        infoCupColorTF.delegate = self
+        infoBuyTimeTF.delegate = self
+        infoUsageTF.delegate = self
     }
     
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
     @IBAction func onCommit()
     {
         if(order == nil){
