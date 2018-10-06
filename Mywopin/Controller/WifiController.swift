@@ -76,7 +76,8 @@ public class OnlineWifiCup: NSObject {
     var uuid:String
     var power:String
     var lastOnline:TimeInterval
-    var cleanFlag:Bool = false
+    var startCleanFlag:Bool = false
+    var doneCleanFlag:Bool = false
     
     init(uuid:String , power:String ,lastOnline:TimeInterval) {
         self.uuid = uuid
@@ -113,6 +114,16 @@ public class WifiController : NSObject, CocoaMQTTDelegate
     {
         for cup in allOnlineWifiCup {
             if cup.uuid == uuid{
+                return cup
+            }
+        }
+        return nil
+    }
+    
+    func getCurrentWifiCup()->OnlineWifiCup?
+    {
+        for cup in allOnlineWifiCup {
+            if cup.uuid == selectedId{
                 return cup
             }
         }
@@ -256,7 +267,8 @@ public class WifiController : NSObject, CocoaMQTTDelegate
                                     let cupdata = wifiCup
                                     if  Date().timeIntervalSince1970 - cupdata.lastOnline > 30
                                     {
-                                        cupdata.cleanFlag = false
+                                        cupdata.startCleanFlag = false
+                                        cupdata.doneCleanFlag = false
                                     }
                                     cupdata.lastOnline = Date().timeIntervalSince1970
                                 }

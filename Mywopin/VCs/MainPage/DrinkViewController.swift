@@ -175,7 +175,7 @@ class DrinkViewController: UIViewController, CLLocationManagerDelegate {
                     _ = SweetAlert().showAlert("提示", subTitle: "清洗已经完成，請倒掉水和重開水杯", style: AlertStyle.none)
                     return false
                 }
-                else if currentCup?.type == DeviceTypeWifi && WifiController.shared.getWifiCup(uuid: currentCup!.uuid)?.cleanFlag == true
+                else if currentCup?.type == DeviceTypeWifi && WifiController.shared.getWifiCup(uuid: currentCup!.uuid)?.doneCleanFlag == true
                 {
                     _ = SweetAlert().showAlert("提示", subTitle: "清洗已经完成，請倒掉水和重開水杯", style: AlertStyle.none)
                     return false
@@ -383,7 +383,7 @@ class DrinkViewController: UIViewController, CLLocationManagerDelegate {
             _ = SweetAlert().showAlert("提示", subTitle: "清洗已经完成，請倒掉水和重開水杯", style: AlertStyle.none)
             return
         }
-        else if currentCup?.type == DeviceTypeWifi && WifiController.shared.getWifiCup(uuid: currentCup!.uuid)?.cleanFlag == true
+        else if currentCup?.type == DeviceTypeWifi && WifiController.shared.getWifiCup(uuid: currentCup!.uuid)?.doneCleanFlag == true
         {
             _ = SweetAlert().showAlert("提示", subTitle: "清洗已经完成，請倒掉水和重開水杯", style: AlertStyle.none)
             return 

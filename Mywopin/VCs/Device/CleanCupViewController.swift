@@ -74,12 +74,16 @@ class CleanCupViewController: UIViewController {
     {
 
         BLEController.shared.setTimeOutClean()
-        WifiController.shared.sendCleanOnOffCommandToWopin(on: true)
+        if WifiController.shared.getCurrentWifiCup()?.startCleanFlag == false{
+            WifiController.shared.sendCleanOnOffCommandToWopin(on: true)
+            WifiController.shared.getCurrentWifiCup()?.startCleanFlag = true
+        }
     }
     @IBAction func stopClean()
     {
         BLEController.shared.sendCommandToConnectedDevice(WopinCommand.CLEAN_OFF)
         WifiController.shared.sendCleanOnOffCommandToWopin(on: false)
+        WifiController.shared.getCurrentWifiCup()?.doneCleanFlag = true
         know()
     }
     
@@ -179,6 +183,7 @@ class CleanCupViewController: UIViewController {
             _timer?.invalidate()
             if startCleanFlag{
                 self.timeLabel?.text = "清洗结束"
+                WifiController.shared.getCurrentWifiCup()?.doneCleanFlag = true
                 startCleanFlag = false
             }
         }

@@ -61,12 +61,14 @@ class ColorPicker: UIViewController {
                 self.iconLight.image = UIImage(named: "lightUI1")
                 ColorPicker.LAST_LED_ON = true
                 BLEController.shared.sendCommandToConnectedDevice(WopinCommand.COLOR_LED_ON)
+                WifiController.shared.sendToggleLED(on: true)
                 self.didSelect(color: ColorPicker.LAST_COLOR)
             }else{
                 self.iconLightBtn.isSelected = false
                 self.iconLight.image = UIImage(named: "lightUI2")
                 ColorPicker.LAST_LED_ON = false
                 BLEController.shared.sendCommandToConnectedDevice(WopinCommand.COLOR_LED_OFF)
+                WifiController.shared.sendToggleLED(on: false)
             }
         }).disposed(by: 👜)
         
@@ -75,7 +77,6 @@ class ColorPicker: UIViewController {
     @IBAction func clickPowerBtn()
     {
         powerFlag.value = !powerFlag.value
-        WifiController.shared.sendToggleLED(on: powerFlag.value)
     }
     
     @objc func onChangeColor(sender:UISlider){
