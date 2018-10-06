@@ -65,7 +65,7 @@ class ExchangeShopDetailVC: UITableViewController ,UIWebViewDelegate{
         titleLb.text = data!.name
         subTitleLb.text = _subTitle.filterHTML()
         priceLb.text = "¥"+data!.price
-        
+        stockNumLb.text = "库存：\(data!.stock_quantity ?? 0)"
         
         if let date_from =  data?.date_on_sale_from , let date_to = data?.date_on_sale_to
         {
@@ -96,6 +96,11 @@ class ExchangeShopDetailVC: UITableViewController ,UIWebViewDelegate{
                 let components = calendar.dateComponents([.day], from: date1, to: date2).day!
                 dateLb.text = "剩余：\(components)天"
                 activeFlag = true
+            }
+            
+            if (data!.stock_quantity ?? 0) <= 0
+            {
+                activeFlag = false
             }
             
         }

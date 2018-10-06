@@ -11,8 +11,8 @@ let wooSiteURL = "https://wifi.h2popo.com"
 let wooConsumerKey = "ck_ba448661d94412faeaf3b8ab899b9294a967865c"
 let wooConsumerSecret = "cs_45a5c655c2b07589e93a0466674af4afd4ef4abe"
 
-let wooConsumerWriteKey = "ck_7db681ac326401f87ec0a9ce564e45e2ef678f06"
-let wooConsumerWriteSecret = "cs_322de70d9956c27899eee79e97dedb6a403e8781"
+let wooConsumerWriteKey = ""
+let wooConsumerWriteSecret = ""
 
 var fb_token = ""
 var myClientVo:User?

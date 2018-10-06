@@ -62,7 +62,7 @@ class ExchangeOrderDetailVC: UITableViewController ,PayRequestDelegate{
             address1Line1.text = "收件人：\(orderData.address!.userName) \(orderData.address!.tel!)"
             address1Line2.text = "\(orderData.address!.address1!)\(orderData.address!.address2!)"
             
-            payBtn.isHidden =  orderData.orderStatus != orderStatusArr[0]
+            payBtn.isHidden =  true//orderData.orderStatus != orderStatusArr[0]
             expressBtn.isHidden =  orderData.orderStatus != orderStatusArr[2]
             
             

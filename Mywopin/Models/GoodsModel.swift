@@ -20,6 +20,7 @@ struct WooGoodsItem: WolfMapper {
     var short_description:String
     var price:String
     var regular_price:String
+    var stock_quantity:Int?
     var date_on_sale_from:String?
     var date_on_sale_to:String?
     var sale_price:String

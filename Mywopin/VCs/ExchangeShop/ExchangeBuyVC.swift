@@ -65,21 +65,32 @@ class ExchangeBuyVC: UIViewController ,PayRequestDelegate{
     
     @IBAction func buyAction()
     {
+        
+        
         if let _selectedAddress = selectedAddress ?? getDefaultAddress()
         {
             HUD.show(.progress)
             _ = Wolf.request(type: MyAPI.payMentExchange(addressId: _selectedAddress.addressId, title: goods?.name ?? "", image: goods?.images.first?.src ?? "", goodsId: goods!.id, num: Int(numEditer.numLf.text!)!, offerPrice: Int(oldGoods!.price)!, singlePrice: Int(goods!.price)!), completion: { (order: ExchangeOrderItem?, msg, code) in
                 
+                HUD.hide()
                 if(code == "0" ){
                     if let myOrder = order
                     {
-                       
-                        self.order = myOrder
-                        let payPrice = Int(self.goods!.price)! * Int(self.numEditer.numLf.text!)! - Int(self.oldGoods!.price)!
-                        let address1Line = self.addressLf.text
+                        if let stockNum = self.goods?.stock_quantity , stockNum > 0
+                        {
+                            self.goods?.stock_quantity = stockNum - 1
+                        }
                         
-                        PaySDK.instance.payDelegate = self
-                        PaySDK.instance.getWechatPaySign(totalAmount: payPrice * 100, subject: address1Line!, payTitle: self.goods!.name,orderId:myOrder.orderId)
+                        self.order = myOrder
+//                        let payPrice = Int(self.goods!.price)! * Int(self.numEditer.numLf.text!)! - Int(self.oldGoods!.price)!
+//                        let address1Line = self.addressLf.text
+//                        PaySDK.instance.payDelegate = self
+//                        PaySDK.instance.getWechatPaySign(totalAmount: payPrice * 100, subject: address1Line!, payTitle: self.goods!.name,orderId:myOrder.orderId)
+                        
+                        _ = SweetAlert().showAlert(Language.getString("订单提交成功"), subTitle: "可在订单详情，填写回寄水杯的具体信息", style: AlertStyle.success,buttonTitle: "确定", action: { _ in
+                            self.closeAction();
+                        })
+                        
                     }
                 }
                 
