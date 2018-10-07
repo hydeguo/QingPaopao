@@ -243,50 +243,52 @@ public class WifiController : NSObject, CocoaMQTTDelegate
     public func mqtt(_ mqtt: CocoaMQTT, didReceiveMessage message: CocoaMQTTMessage, id: UInt16 ) {
         
         if (savedWifi.contains(message.topic)) {
-            print("updating device info " + message.topic + " " + (message.string ?? ""))
-
-            let resAll = message.string!.split(separator: ";")
-            for resOne in resAll
+            
+            if let msg = message.string
             {
-                let res = resOne.split(separator: ":")
-                if (res.count > 2)
+                print("updating device info " + message.topic + " " + msg)
+                let resAll = msg.split(separator: ";")
+                for resOne in resAll
                 {
-                    if (res[0] == "P") {   //Power information
-                        Log("\(message.topic) Power: \(res[1])")
-                        let power = String(res[1])
-                        if(!allOnlineWifiCup.contains(where: { (wifiCup) -> Bool in
-                            return wifiCup.uuid == message.topic
-                        }))
-                        {
-                            allOnlineWifiCup.append(OnlineWifiCup(uuid: message.topic, power: power, lastOnline: Date().timeIntervalSince1970))
-                        }
-                        else
-                        {
-                            allOnlineWifiCup.forEach { ( wifiCup) in
-                                if(wifiCup.uuid == message.topic){
-                                    let cupdata = wifiCup
-                                    if  Date().timeIntervalSince1970 - cupdata.lastOnline > 30
-                                    {
-                                        cupdata.startCleanFlag = false
-                                        cupdata.doneCleanFlag = false
+                    let res = resOne.split(separator: ":")
+                    if (res.count > 2)
+                    {
+                        if (res[0] == "P") {   //Power information
+                            Log("\(message.topic) Power: \(res[1])")
+                            let power = String(res[1])
+                            if(!allOnlineWifiCup.contains(where: { (wifiCup) -> Bool in
+                                return wifiCup.uuid == message.topic
+                            }))
+                            {
+                                allOnlineWifiCup.append(OnlineWifiCup(uuid: message.topic, power: power, lastOnline: Date().timeIntervalSince1970))
+                            }
+                            else
+                            {
+                                allOnlineWifiCup.forEach { ( wifiCup) in
+                                    if(wifiCup.uuid == message.topic){
+                                        let cupdata = wifiCup
+                                        if  Date().timeIntervalSince1970 - cupdata.lastOnline > 30
+                                        {
+                                            cupdata.startCleanFlag = false
+                                            cupdata.doneCleanFlag = false
+                                        }
+                                        cupdata.lastOnline = Date().timeIntervalSince1970
                                     }
-                                    cupdata.lastOnline = Date().timeIntervalSince1970
                                 }
                             }
+                            NotificationCenter.default.post(name: NSNotification.Name(rawValue: WIFI_EVENT.WIFI_POWER.rawValue), object: self, userInfo: ["power":power ,"device":message.topic])
                         }
-                        NotificationCenter.default.post(name: NSNotification.Name(rawValue: WIFI_EVENT.WIFI_POWER.rawValue), object: self, userInfo: ["power":power ,"device":message.topic])
                     }
-                }
-                if (res.count > 4) {
-
-                    if (res[2] == "H") {
-                        Log("\(message.topic) Hydro Timer: \(res[3])")
+                    if (res.count > 4) {
+                        
+                        if (res[2] == "H") {
+                            Log("\(message.topic) Hydro Timer: \(res[3])")
+                        }
+                        if (res[4] == "M") {
+                            Log("\(message.topic) Hydro Mode: \(res[5])")
+                        }
+                        NotificationCenter.default.post(name: NSNotification.Name(rawValue: WIFI_EVENT.WIFI_STATUS.rawValue), object: self, userInfo: ["device":message.topic,"H":Int(res[3]) ?? 0 ,"M":String(res[5])])
                     }
-                    if (res[4] == "M") {
-                        Log("\(message.topic) Hydro Mode: \(res[5])")
-                    }
-                    NotificationCenter.default.post(name: NSNotification.Name(rawValue: WIFI_EVENT.WIFI_STATUS.rawValue), object: self, userInfo: ["device":message.topic,"H":Int(res[3]) ?? 0 ,"M":String(res[5])])
-
                 }
             }
         }

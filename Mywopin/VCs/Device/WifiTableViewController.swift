@@ -247,27 +247,31 @@ class WifiTableViewController: UITableViewController, QRCodeReaderViewController
             //Wopin AP will be disconnected after the wifi configurtion
             DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
                 print("Uploading to server")
-                if(self.device_id != nil && !WifiController.shared.savedWifi.contains(self.device_id!))
+                
+                if let _device_id = self.device_id
                 {
-                    WifiController.shared.savedWifi.append(self.device_id!)
-                }
-                WifiController.shared.reconnect()
-                _ = Wolf.request(type: MyAPI.addOrUpdateACup(type: DeviceTypeWifi, uuid: self.device_id!, name: self.device_id!, add: true), completion: { (user: User?, msg, code) in
-                    self.tipsAlert?.dismiss(animated: false, completion: nil)
-                    if(code == "0")
+                    if( !WifiController.shared.savedWifi.contains(_device_id))
                     {
-                        myClientVo = user
-                        let detail_info_vc = R.storyboard.main.deviceInfo()
-                        detail_info_vc?.onSetData(info: CupItem(type: DeviceTypeWifi, name: self.device_id!, uuid: self.device_id!, color :0, firstRegisterTime: "", registerTime: "", userId: myClientVo?._id, produceScores: 0))
-                        self.show(detail_info_vc!, sender: nil)
+                        WifiController.shared.savedWifi.append(_device_id)
                     }
-                    else
-                    {
-                        _ = SweetAlert().showAlert("Sorry", subTitle: msg, style: AlertStyle.warning)
+                    WifiController.shared.reconnect()
+                    _ = Wolf.request(type: MyAPI.addOrUpdateACup(type: DeviceTypeWifi, uuid: _device_id, name: _device_id, add: true), completion: { (user: User?, msg, code) in
+                        self.tipsAlert?.dismiss(animated: false, completion: nil)
+                        if(code == "0")
+                        {
+                            myClientVo = user
+                            let detail_info_vc = R.storyboard.main.deviceInfo()
+                            detail_info_vc?.onSetData(info: CupItem(type: DeviceTypeWifi, name: _device_id, uuid: _device_id, color :0, firstRegisterTime: "", registerTime: "", userId: myClientVo?._id, produceScores: 0))
+                            self.show(detail_info_vc!, sender: nil)
+                        }
+                        else
+                        {
+                            _ = SweetAlert().showAlert("Sorry", subTitle: msg, style: AlertStyle.warning)
+                        }
+                    }) { (error) in
+                        self.tipsAlert?.dismiss(animated: false, completion: nil)
+                        _ = SweetAlert().showAlert("Sorry", subTitle: error?.errorDescription, style: AlertStyle.warning)
                     }
-                }) { (error) in
-                    self.tipsAlert?.dismiss(animated: false, completion: nil)
-                    _ = SweetAlert().showAlert("Sorry", subTitle: error?.errorDescription, style: AlertStyle.warning)
                 }
             }
         }
@@ -290,29 +294,32 @@ class WifiTableViewController: UITableViewController, QRCodeReaderViewController
                     DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
                         print("Uploading to server")
                         
-                        if(self.device_id != nil && !WifiController.shared.savedWifi.contains(self.device_id!))
+                        if let _device_id = self.device_id
                         {
-                            WifiController.shared.savedWifi.append(self.device_id!)
-                            UserDefaults.standard.set(WifiController.shared.savedWifi, forKey: "WiFi_list")
-                        }
-                        WifiController.shared.reconnect()
-                        _ = Wolf.request(type: MyAPI.addOrUpdateACup(type: DeviceTypeWifi, uuid: self.device_id!, name: self.device_id!, add: true), completion: { (user: User?, msg, code) in
-                            
-                            self.tipsAlert?.dismiss(animated: false, completion: nil)
-                            if(code == "0")
+                            if(!WifiController.shared.savedWifi.contains(_device_id))
                             {
-                                myClientVo = user
-                                let detail_info_vc = R.storyboard.main.deviceInfo()
-                                detail_info_vc?.onSetData(info: CupItem(type: DeviceTypeWifi, name: self.device_id!, uuid: self.device_id!, color :0, firstRegisterTime: "", registerTime: "", userId: myClientVo?._id, produceScores: 0))
-                                self.show(detail_info_vc!, sender: nil)
+                                WifiController.shared.savedWifi.append(_device_id)
+                                UserDefaults.standard.set(WifiController.shared.savedWifi, forKey: "WiFi_list")
                             }
-                            else
-                            {
-                                _ = SweetAlert().showAlert("Sorry", subTitle: msg, style: AlertStyle.warning)
+                            WifiController.shared.reconnect()
+                            _ = Wolf.request(type: MyAPI.addOrUpdateACup(type: DeviceTypeWifi, uuid: _device_id, name: _device_id, add: true), completion: { (user: User?, msg, code) in
+                                
+                                self.tipsAlert?.dismiss(animated: false, completion: nil)
+                                if(code == "0")
+                                {
+                                    myClientVo = user
+                                    let detail_info_vc = R.storyboard.main.deviceInfo()
+                                    detail_info_vc?.onSetData(info: CupItem(type: DeviceTypeWifi, name: _device_id, uuid: _device_id, color :0, firstRegisterTime: "", registerTime: "", userId: myClientVo?._id, produceScores: 0))
+                                    self.show(detail_info_vc!, sender: nil)
+                                }
+                                else
+                                {
+                                    _ = SweetAlert().showAlert("Sorry", subTitle: msg, style: AlertStyle.warning)
+                                }
+                            }) { (error) in
+                                self.tipsAlert?.dismiss(animated: false, completion: nil)
+                                _ = SweetAlert().showAlert("Sorry", subTitle: error?.errorDescription, style: AlertStyle.warning)
                             }
-                        }) { (error) in
-                            self.tipsAlert?.dismiss(animated: false, completion: nil)
-                            _ = SweetAlert().showAlert("Sorry", subTitle: error?.errorDescription, style: AlertStyle.warning)
                         }
                     }
                 }
