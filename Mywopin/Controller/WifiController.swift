@@ -241,9 +241,9 @@ public class WifiController : NSObject, CocoaMQTTDelegate
     }
     
     public func mqtt(_ mqtt: CocoaMQTT, didReceiveMessage message: CocoaMQTTMessage, id: UInt16 ) {
-        print("didReceiveMessage " + message.topic + " " + message.string!)
+        
         if (savedWifi.contains(message.topic)) {
-            print("updating device info " + message.topic)
+            print("updating device info " + message.topic + " " + (message.string ?? ""))
 
             let resAll = message.string!.split(separator: ";")
             for resOne in resAll

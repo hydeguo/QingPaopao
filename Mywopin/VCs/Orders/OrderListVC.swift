@@ -348,7 +348,7 @@ class OrderListVC: UITableViewController,PayRequestDelegate {
             let cell = tableView.dequeueReusableCell(withIdentifier: "CreditsOrderCell", for: indexPath) as! CreditsOrderCell
             let order = scoresList[indexPath.row]
             cell.configure(order: order)
-            cell.deliverBtn.tag = indexPath.row
+            cell.deliverBtn?.tag = indexPath.row
             
             return cell
         }

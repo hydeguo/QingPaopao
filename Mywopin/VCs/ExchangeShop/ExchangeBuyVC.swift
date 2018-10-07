@@ -87,7 +87,7 @@ class ExchangeBuyVC: UIViewController ,PayRequestDelegate{
 //                        PaySDK.instance.payDelegate = self
 //                        PaySDK.instance.getWechatPaySign(totalAmount: payPrice * 100, subject: address1Line!, payTitle: self.goods!.name,orderId:myOrder.orderId)
                         
-                        _ = SweetAlert().showAlert(Language.getString("订单提交成功"), subTitle: "可在订单详情，填写回寄水杯的具体信息", style: AlertStyle.success,buttonTitle: "确定", action: { _ in
+                        _ = SweetAlert().showAlert(Language.getString("订单提交成功"), subTitle: "请寄回旧商品后，在订单详情里填写回寄水杯的具体信息", style: AlertStyle.success,buttonTitle: "确定", action: { _ in
                             self.closeAction();
                         })
                         

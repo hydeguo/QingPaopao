@@ -246,7 +246,7 @@ class CreditsOrderCell: UITableViewCell {
     @IBOutlet weak var status: UILabel!
     @IBOutlet weak var price: UILabel!
     @IBOutlet weak var num: UILabel!
-    @IBOutlet weak var deliverBtn: UIButton!
+    @IBOutlet weak var deliverBtn: UIButton?
     var addFunc:(()->Void)?
     var orderItem:ScoresOrderItem?
     
@@ -258,11 +258,11 @@ class CreditsOrderCell: UITableViewCell {
     func configure(order:ScoresOrderItem) -> Void {
         
         orderItem = order
-        deliverBtn.layer.cornerRadius = 5;
-        deliverBtn.layer.masksToBounds = true;
-        deliverBtn.layer.borderColor = UIColor.darkGray.cgColor
-        deliverBtn.layer.borderWidth = 1;
-        deliverBtn.isHidden = order.orderStatus != orderStatusArr[2]
+        deliverBtn?.layer.cornerRadius = 5;
+        deliverBtn?.layer.masksToBounds = true;
+        deliverBtn?.layer.borderColor = UIColor.darkGray.cgColor
+        deliverBtn?.layer.borderWidth = 1;
+        deliverBtn?.isHidden = order.orderStatus != orderStatusArr[2]
         
        let payPrice = order.singlePrice //* order.num
         
