@@ -123,7 +123,7 @@ class WifiTableViewController: UITableViewController, QRCodeReaderViewController
                 else {
                     if (self.getWifiSsid() == wopinSSID) {
 //                        self.showSuccess(msg: "")
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 1) { //delay task
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 5) { //delay task
                             self.scanNearbyWifi(isPresent: true)
                         }
                     } else {

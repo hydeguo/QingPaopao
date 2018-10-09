@@ -391,6 +391,7 @@ class DrinkViewController: UIViewController, CLLocationManagerDelegate {
         
         #endif
         
+        determineMyLocation()
         
         if startElectrolyFlag == false
         {
@@ -448,9 +449,10 @@ class DrinkViewController: UIViewController, CLLocationManagerDelegate {
         let lat = userLocation.coordinate.latitude
         let long = userLocation.coordinate.longitude
         let geoLink = "https://www.latlong.net/c/?lat=\(lat)&long=\(long)"
-        _ = Wolf.request(type: MyAPI.addGeolocationParameters(device_id: "test", time: currentTimeZoneDate(), lat: lat, long: long, link: geoLink), completion: { (order: BaseReponse?, msg, code) in
+        let time = currentTimeZoneDate()
+        _ = Wolf.request(type: MyAPI.addGeolocationParameters(device_id: (self.currentCup?.uuid)!, time: currentTimeZoneDate(), lat: lat, long: long, link: geoLink), completion: { (order: BaseReponse?, msg, code) in
         }) { (error) in
-            // _ = SweetAlert().showAlert("Sorry", subTitle: error?.errorDescription, style: AlertStyle.warning)
+             _ = SweetAlert().showAlert("Sorry", subTitle: error?.errorDescription, style: AlertStyle.warning)
         }
     }
     
