@@ -210,10 +210,18 @@ class WifiTableViewController: UITableViewController, QRCodeReaderViewController
                 self.scanNearbyWifi(isPresent : true)
             } else {
                 do {
-                    let httpResponse = response as? HTTPURLResponse
-                    print(httpResponse ?? "")
-                    let httpResponseData = String(data: data!, encoding: .utf8)
-                    var jsonString = String((httpResponseData?.dropLast())!)
+//                    let httpResponse = response as? HTTPURLResponse
+                    var jsonString = ""
+                    if let httpResponseData = String(data: data!, encoding: .utf8)
+                    {
+                        Log(httpResponseData)
+                        jsonString = String((httpResponseData.dropLast() ))
+                    }
+                    else if let httpResponseData2 = String(data: data!, encoding: .ascii)
+                    {
+                        Log(httpResponseData2)
+                        jsonString = String((httpResponseData2.dropLast() ))
+                    }
                     jsonString = "[" + jsonString + "]"
                     let ra = try JSONDecoder().decode([WifiScanResult].self, from: jsonString.data(using: .utf8)!)
                     for r in ra {
@@ -240,40 +248,38 @@ class WifiTableViewController: UITableViewController, QRCodeReaderViewController
     }
     
     func updateDeviceSetting() {
-        if (self.getWifiSsid() != wopinSSID && self.device_id != nil)
+        
+        if let _device_id = self.device_id
         {
-            print("updateDeviceSetting")
-            timer?.invalidate()
-            //Wopin AP will be disconnected after the wifi configurtion
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                print("Uploading to server")
-                
-                if let _device_id = self.device_id
-                {
-                    if( !WifiController.shared.savedWifi.contains(_device_id))
-                    {
-                        WifiController.shared.savedWifi.append(_device_id)
-                    }
-                    WifiController.shared.reconnect()
-                    _ = Wolf.request(type: MyAPI.addOrUpdateACup(type: DeviceTypeWifi, uuid: _device_id, name: _device_id, add: true), completion: { (user: User?, msg, code) in
-                        self.tipsAlert?.dismiss(animated: false, completion: nil)
-                        if(code == "0")
-                        {
-                            myClientVo = user
-                            let detail_info_vc = R.storyboard.main.deviceInfo()
-                            detail_info_vc?.onSetData(info: CupItem(type: DeviceTypeWifi, name: _device_id, uuid: _device_id, color :0, firstRegisterTime: "", registerTime: "", userId: myClientVo?._id, produceScores: 0))
-                            self.show(detail_info_vc!, sender: nil)
-                        }
-                        else
-                        {
-                            _ = SweetAlert().showAlert("Sorry", subTitle: msg, style: AlertStyle.warning)
-                        }
-                    }) { (error) in
-                        self.tipsAlert?.dismiss(animated: false, completion: nil)
-                        _ = SweetAlert().showAlert("Sorry", subTitle: error?.errorDescription, style: AlertStyle.warning)
-                    }
-                }
+            if(!WifiController.shared.savedWifi.contains(_device_id))
+            {
+                WifiController.shared.savedWifi.append(_device_id)
+                UserDefaults.standard.set(WifiController.shared.savedWifi, forKey: "WiFi_list")
             }
+            WifiController.shared.reconnect()
+            _ = Wolf.request(type: MyAPI.addOrUpdateACup(type: DeviceTypeWifi, uuid: _device_id, name: _device_id, add: true), completion: { (user: User?, msg, code) in
+                
+                self.tipsAlert?.dismiss(animated: false, completion: nil)
+                if(code == "0")
+                {
+                    myClientVo = user
+                    let detail_info_vc = R.storyboard.main.deviceInfo()
+                    detail_info_vc?.onSetData(info: CupItem(type: DeviceTypeWifi, name: _device_id, uuid: _device_id, color :0, firstRegisterTime: "", registerTime: "", userId: myClientVo?._id, produceScores: 0))
+                    self.show(detail_info_vc!, sender: nil)
+                }
+                else
+                {
+                    _ = SweetAlert().showAlert("Sorry", subTitle: msg, style: AlertStyle.warning)
+                }
+            }) { (error) in
+                self.tipsAlert?.dismiss(animated: false, completion: nil)
+                _ = SweetAlert().showAlert("Sorry", subTitle: error?.errorDescription, style: AlertStyle.warning)
+            }
+        }
+        else
+        {
+            self.tipsAlert?.dismiss(animated: false, completion: nil)
+            self.showSuccess(msg: "连接异常，请重试", OkAction: nil)
         }
     }
     
@@ -293,34 +299,7 @@ class WifiTableViewController: UITableViewController, QRCodeReaderViewController
                     //Wopin AP will be disconnected after the wifi configurtion
                     DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
                         print("Uploading to server")
-                        
-                        if let _device_id = self.device_id
-                        {
-                            if(!WifiController.shared.savedWifi.contains(_device_id))
-                            {
-                                WifiController.shared.savedWifi.append(_device_id)
-                                UserDefaults.standard.set(WifiController.shared.savedWifi, forKey: "WiFi_list")
-                            }
-                            WifiController.shared.reconnect()
-                            _ = Wolf.request(type: MyAPI.addOrUpdateACup(type: DeviceTypeWifi, uuid: _device_id, name: _device_id, add: true), completion: { (user: User?, msg, code) in
-                                
-                                self.tipsAlert?.dismiss(animated: false, completion: nil)
-                                if(code == "0")
-                                {
-                                    myClientVo = user
-                                    let detail_info_vc = R.storyboard.main.deviceInfo()
-                                    detail_info_vc?.onSetData(info: CupItem(type: DeviceTypeWifi, name: _device_id, uuid: _device_id, color :0, firstRegisterTime: "", registerTime: "", userId: myClientVo?._id, produceScores: 0))
-                                    self.show(detail_info_vc!, sender: nil)
-                                }
-                                else
-                                {
-                                    _ = SweetAlert().showAlert("Sorry", subTitle: msg, style: AlertStyle.warning)
-                                }
-                            }) { (error) in
-                                self.tipsAlert?.dismiss(animated: false, completion: nil)
-                                _ = SweetAlert().showAlert("Sorry", subTitle: error?.errorDescription, style: AlertStyle.warning)
-                            }
-                        }
+                        self.updateDeviceSetting()
                     }
                 }
             }
@@ -345,10 +324,16 @@ class WifiTableViewController: UITableViewController, QRCodeReaderViewController
         }
 
         timer = setTimeout(delay: 30, block: {
-            print("Current connected ssid : \(self.getWifiSsid())")
-            self.tipsAlert?.dismiss(animated: false, completion: nil)
-            self.updateDeviceSetting()
-            //self.showSuccess(msg: "切换网络超时", OkAction: nil)
+            print("Current connected ssid : \(self.getWifiSsid() ?? ""      )")
+            if (self.getWifiSsid() != self.wopinSSID)
+            {
+                self.updateDeviceSetting()
+            }
+            else
+            {
+                self.tipsAlert?.dismiss(animated: false, completion: nil)
+                self.showSuccess(msg: "杯子连接网络超时，请确定wifi密码后重试", OkAction: nil)
+            }
         })
         
         retryPasswordToCup = 2
@@ -398,7 +383,7 @@ class WifiTableViewController: UITableViewController, QRCodeReaderViewController
                     self.removeSpinner(spinner: self.sv!)
                     if (ra.status == "Connecting")
                     {
-                        print("Connecting \(ra.deviceId)")
+                        print(" sendPasswordToCup Connecting \(ra.deviceId)")
                         self.device_id = ra.deviceId
                         DispatchQueue.main.async() {
                             
