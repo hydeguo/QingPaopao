@@ -1567,8 +1567,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "194"
             endingLineNumber = "194"
-            landmarkName = "CleanCupViewController"
-            landmarkType = "3">
+            landmarkName = "updateTimeLabel()"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy

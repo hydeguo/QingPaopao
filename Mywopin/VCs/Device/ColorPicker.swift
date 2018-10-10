@@ -62,7 +62,7 @@ class ColorPicker: UIViewController {
                 ColorPicker.LAST_LED_ON = true
                 BLEController.shared.sendCommandToConnectedDevice(WopinCommand.COLOR_LED_ON)
                 WifiController.shared.sendToggleLED(on: true)
-                self.didSelect(color: ColorPicker.LAST_COLOR)
+//                self.didSelect(color: ColorPicker.LAST_COLOR)
             }else{
                 self.iconLightBtn.isSelected = false
                 self.iconLight.image = UIImage(named: "lightUI2")
@@ -128,6 +128,9 @@ class ColorPicker: UIViewController {
             if(_timer == nil)
             {
                 _timer = setTimeout(delay: 0.5, block: {
+                    if ColorPicker.LAST_LED_ON == false {
+                        self.powerFlag.value = true
+                    }
                     let _color = ColorPicker.LAST_COLOR ?? UIColor.clear;
                     let command = wopinLEDCommand(r: Int(_color.redValue), g: Int(_color.greenValue), b: Int(_color.blueValue))
                     BLEController.shared.sendCommandToConnectedDevice(command)
