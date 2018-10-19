@@ -381,10 +381,11 @@ class WifiTableViewController: UITableViewController, QRCodeReaderViewController
                 do {
                     let ra = try JSONDecoder().decode(WifiResponse.self, from: (httpResponseData?.data(using: .utf8)!)!)
                     self.removeSpinner(spinner: self.sv!)
+                    self.device_id = ra.deviceId
+                    
                     if (ra.status == "Connecting")
                     {
                         print(" sendPasswordToCup Connecting \(ra.deviceId)")
-                        self.device_id = ra.deviceId
                         DispatchQueue.main.async() {
                             
                             self.tipsAlert = UIAlertController(title: nil, message: "设备连接网络中...", preferredStyle: .alert)

@@ -448,11 +448,16 @@ class DrinkViewController: UIViewController, CLLocationManagerDelegate {
         print("user longitude = \(userLocation.coordinate.longitude)")
         let lat = userLocation.coordinate.latitude
         let long = userLocation.coordinate.longitude
-        let geoLink = "https://www.latlong.net/c/?lat=\(lat)&long=\(long)"
-        _ = Wolf.request(type: MyAPI.addGeolocationParameters(device_id: (self.currentCup?.uuid)!, time: currentTimeZoneDate(), lat: lat, long: long, link: geoLink), completion: { (order: BaseReponse?, msg, code) in
-        }) { (error) in
-             //_ = SweetAlert().showAlert("Sorry", subTitle: error?.errorDescription, style: AlertStyle.warning)
+        
+        if let _cup_id = self.currentCup?.uuid
+        {
+            let geoLink = "https://www.latlong.net/c/?lat=\(lat)&long=\(long)"
+            _ = Wolf.request(type: MyAPI.addGeolocationParameters(device_id: _cup_id, time: currentTimeZoneDate(), lat: lat, long: long, link: geoLink), completion: { (order: BaseReponse?, msg, code) in
+            }) { (error) in
+                //_ = SweetAlert().showAlert("Sorry", subTitle: error?.errorDescription, style: AlertStyle.warning)
+            }
         }
+        
     }
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error)
