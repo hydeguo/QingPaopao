@@ -43,7 +43,6 @@ class WifiTableViewController: UITableViewController, QRCodeReaderViewController
     override func viewDidLoad() {
         super.viewDidLoad()
         scanQRcode(UIButton())
-        
     }
     
     private func displaySpinner(onView : UIView) -> UIView {
@@ -228,6 +227,7 @@ class WifiTableViewController: UITableViewController, QRCodeReaderViewController
                         print(r.essid);
                         self.essids.append(r.essid)
                     }
+                    self.essids.append("手动输入")
                 } catch {
                     print(error)
                 }

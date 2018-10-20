@@ -73,6 +73,10 @@ public class BLEController:NSObject,BLEManagerDelegate
     }
     
     
+    func isCleaning() -> Bool{
+        return _timer?.isValid == true
+    }
+    
     func setTimeOutClean()
     {
         sendCommandToConnectedDevice(WopinCommand.CLEAN_ON)
@@ -104,6 +108,7 @@ public class BLEController:NSObject,BLEManagerDelegate
         if let device = device
         {
             cleanFlag =  false
+            self._timer?.invalidate()
             self.connectedDevice = device
             print("Device connected ! \(device.name ?? "")")
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: BLE_EVENT.BLE_connectDeviceSuccess.rawValue), object: self, userInfo: ["data":device])

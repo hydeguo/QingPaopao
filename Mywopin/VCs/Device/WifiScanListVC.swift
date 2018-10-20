@@ -31,7 +31,8 @@ class WifiScanListVC: UIViewController, UITableViewDataSource, UITableViewDelega
         let indexPath = tableView.indexPathForSelectedRow
         let currentCell = tableView.cellForRow(at: indexPath!) 
         print(currentCell?.textLabel!.text ?? "")
-        wifiTableViewController?.selectedSSID.text = currentCell?.textLabel!.text
+        let ssidStr = indexPath?.row == essids.count - 1 ? "" : currentCell?.textLabel!.text
+        wifiTableViewController?.selectedSSID.text = ssidStr
         self.dismiss(animated: true, completion: nil)
     }
     
