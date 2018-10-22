@@ -287,6 +287,16 @@ public class WifiController : NSObject, CocoaMQTTDelegate
                         if (res[4] == "M") {
                             Log("\(message.topic) Hydro Mode: \(res[5])")
                         }
+                        if(String(res[5]) == "1"){
+                            // cup has been restart and  start auto  Hydro
+                            allOnlineWifiCup.forEach { ( cupdata) in
+                                if(cupdata.uuid == message.topic){
+                                    cupdata.startCleanFlag = false
+                                    cupdata.doneCleanFlag = false
+                                    cupdata.lastOnline = Date().timeIntervalSince1970
+                                }
+                            }
+                        }
                         NotificationCenter.default.post(name: NSNotification.Name(rawValue: WIFI_EVENT.WIFI_STATUS.rawValue), object: self, userInfo: ["device":message.topic,"H":Int(res[3]) ?? 0 ,"M":String(res[5])])
                     }
                 }

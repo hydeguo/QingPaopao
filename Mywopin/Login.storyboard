@@ -1,13 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
-        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
-        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -43,7 +41,7 @@
                                         <rect key="frame" x="0.0" y="0.0" width="337.5" height="80"/>
                                         <subviews>
                                             <imageView userInteractionEnabled="NO" tag="1" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="name" translatesAutoresizingMaskIntoConstraints="NO" id="AID-Yt-Nlb">
-                                                <rect key="frame" x="0.0" y="37" width="0.0" height="24"/>
+                                                <rect key="frame" x="0.0" y="36.5" width="0.0" height="24"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="AID-Yt-Nlb" secondAttribute="height" multiplier="1:1" constant="-24" id="LN2-EY-2fV"/>
                                                     <constraint firstAttribute="width" id="ZhU-4z-woP"/>
@@ -56,7 +54,7 @@
                                                 </constraints>
                                                 <nil key="textColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                                <textInputTraits key="textInputTraits" autocapitalizationType="words" keyboardAppearance="alert" textContentType="tel"/>
+                                                <textInputTraits key="textInputTraits" autocapitalizationType="words" keyboardType="phonePad" keyboardAppearance="alert" textContentType="tel"/>
                                             </textField>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yXR-xp-iRu">
                                                 <rect key="frame" x="0.0" y="65" width="337.5" height="1"/>
@@ -81,20 +79,20 @@
                                         <rect key="frame" x="0.0" y="80" width="337.5" height="80"/>
                                         <subviews>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="email" translatesAutoresizingMaskIntoConstraints="NO" id="ojP-7L-8g2">
-                                                <rect key="frame" x="0.0" y="36" width="0.0" height="24"/>
+                                                <rect key="frame" x="0.0" y="36.5" width="0.0" height="24"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="ojP-7L-8g2" secondAttribute="height" multiplier="1:1" constant="-24" id="aXg-sB-Fpq"/>
                                                     <constraint firstAttribute="width" id="ePY-Wn-ALi"/>
                                                 </constraints>
                                             </imageView>
                                             <textField opaque="NO" clipsSubviews="YES" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入短信验证码" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="KkZ-3n-seg">
-                                                <rect key="frame" x="8" y="31" width="213.5" height="35"/>
+                                                <rect key="frame" x="8" y="31" width="214" height="35"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="35" id="7hg-kw-Tgv"/>
                                                 </constraints>
                                                 <nil key="textColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                                <textInputTraits key="textInputTraits" keyboardType="emailAddress" keyboardAppearance="alert"/>
+                                                <textInputTraits key="textInputTraits" keyboardType="numberPad" keyboardAppearance="alert"/>
                                             </textField>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dIh-tD-SYv">
                                                 <rect key="frame" x="0.0" y="65" width="337.5" height="1"/>
@@ -136,14 +134,14 @@
                                         <rect key="frame" x="0.0" y="160" width="337.5" height="80"/>
                                         <subviews>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="password" translatesAutoresizingMaskIntoConstraints="NO" id="0TK-UJ-Rvn">
-                                                <rect key="frame" x="0.0" y="37" width="0.0" height="24"/>
+                                                <rect key="frame" x="0.0" y="36.5" width="0.0" height="24"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" id="cZ5-be-Ze2"/>
                                                     <constraint firstAttribute="width" secondItem="0TK-UJ-Rvn" secondAttribute="height" multiplier="1:1" constant="-24" id="xnm-K5-Jfl"/>
                                                 </constraints>
                                             </imageView>
                                             <textField opaque="NO" clipsSubviews="YES" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入密码" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="prq-jq-tJr">
-                                                <rect key="frame" x="8" y="31.5" width="329.5" height="35"/>
+                                                <rect key="frame" x="8" y="31" width="329.5" height="35"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="35" id="Gcb-3D-wNq"/>
                                                 </constraints>
@@ -411,7 +409,7 @@
                                         <rect key="frame" x="0.0" y="0.0" width="337.5" height="89"/>
                                         <subviews>
                                             <imageView userInteractionEnabled="NO" tag="1" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="name" translatesAutoresizingMaskIntoConstraints="NO" id="PlB-Us-jTR">
-                                                <rect key="frame" x="0.0" y="46" width="0.0" height="24"/>
+                                                <rect key="frame" x="0.0" y="45.5" width="0.0" height="24"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" id="D5S-hy-8Gc"/>
                                                     <constraint firstAttribute="width" secondItem="PlB-Us-jTR" secondAttribute="height" multiplier="1:1" constant="-24" id="t0Z-yl-BPH"/>
@@ -424,7 +422,7 @@
                                                 </constraints>
                                                 <nil key="textColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                                <textInputTraits key="textInputTraits" autocapitalizationType="words" keyboardAppearance="alert" textContentType="tel"/>
+                                                <textInputTraits key="textInputTraits" autocapitalizationType="words" keyboardType="phonePad" keyboardAppearance="alert" textContentType="tel"/>
                                             </textField>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WsI-A5-Q0Z">
                                                 <rect key="frame" x="0.0" y="74" width="337.5" height="1"/>
@@ -449,7 +447,7 @@
                                         <rect key="frame" x="0.0" y="89" width="337.5" height="89"/>
                                         <subviews>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="password" translatesAutoresizingMaskIntoConstraints="NO" id="oZx-VO-NXx">
-                                                <rect key="frame" x="0.0" y="46" width="0.0" height="24"/>
+                                                <rect key="frame" x="0.0" y="45.5" width="0.0" height="24"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" id="ZRr-GK-dlp"/>
                                                     <constraint firstAttribute="width" secondItem="oZx-VO-NXx" secondAttribute="height" multiplier="1:1" constant="-24" id="h2p-CL-Mqa"/>
@@ -565,7 +563,7 @@
                                         <rect key="frame" x="0.0" y="0.0" width="337.5" height="80"/>
                                         <subviews>
                                             <imageView userInteractionEnabled="NO" tag="1" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="name" translatesAutoresizingMaskIntoConstraints="NO" id="JSu-E0-5pt">
-                                                <rect key="frame" x="0.0" y="37" width="0.0" height="24"/>
+                                                <rect key="frame" x="0.0" y="36.5" width="0.0" height="24"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="JSu-E0-5pt" secondAttribute="height" multiplier="1:1" constant="-24" id="AET-xE-rw8"/>
                                                     <constraint firstAttribute="width" id="Mt6-TB-NUp"/>
@@ -578,7 +576,7 @@
                                                 </constraints>
                                                 <nil key="textColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                                <textInputTraits key="textInputTraits" autocapitalizationType="words" keyboardAppearance="alert" textContentType="tel"/>
+                                                <textInputTraits key="textInputTraits" autocapitalizationType="words" keyboardType="phonePad" keyboardAppearance="alert" textContentType="tel"/>
                                             </textField>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iJg-PO-pqD">
                                                 <rect key="frame" x="0.0" y="65" width="337.5" height="1"/>
@@ -603,20 +601,20 @@
                                         <rect key="frame" x="0.0" y="80" width="337.5" height="80"/>
                                         <subviews>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="email" translatesAutoresizingMaskIntoConstraints="NO" id="cxr-oI-ewl">
-                                                <rect key="frame" x="0.0" y="36" width="0.0" height="24"/>
+                                                <rect key="frame" x="0.0" y="36.5" width="0.0" height="24"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="cxr-oI-ewl" secondAttribute="height" multiplier="1:1" constant="-24" id="6zo-on-sJI"/>
                                                     <constraint firstAttribute="width" id="G2R-MV-uha"/>
                                                 </constraints>
                                             </imageView>
                                             <textField opaque="NO" clipsSubviews="YES" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入短信验证码" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Lzh-7o-feW">
-                                                <rect key="frame" x="8" y="31" width="213.5" height="35"/>
+                                                <rect key="frame" x="8" y="31" width="214" height="35"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="35" id="87E-Jy-tI5"/>
                                                 </constraints>
                                                 <nil key="textColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                                <textInputTraits key="textInputTraits" keyboardType="emailAddress" keyboardAppearance="alert"/>
+                                                <textInputTraits key="textInputTraits" keyboardType="numberPad" keyboardAppearance="alert"/>
                                             </textField>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vnd-Vt-m03">
                                                 <rect key="frame" x="0.0" y="65" width="337.5" height="1"/>
@@ -658,14 +656,14 @@
                                         <rect key="frame" x="0.0" y="160" width="337.5" height="80"/>
                                         <subviews>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="password" translatesAutoresizingMaskIntoConstraints="NO" id="HUp-u1-0Yj">
-                                                <rect key="frame" x="0.0" y="37" width="0.0" height="24"/>
+                                                <rect key="frame" x="0.0" y="36.5" width="0.0" height="24"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" id="s03-0s-ChZ"/>
                                                     <constraint firstAttribute="width" secondItem="HUp-u1-0Yj" secondAttribute="height" multiplier="1:1" constant="-24" id="saM-xG-pXi"/>
                                                 </constraints>
                                             </imageView>
                                             <textField opaque="NO" clipsSubviews="YES" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入密码" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gBO-Rc-AM7">
-                                                <rect key="frame" x="8" y="31.5" width="329.5" height="35"/>
+                                                <rect key="frame" x="8" y="31" width="329.5" height="35"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="35" id="FuI-hm-uu5"/>
                                                 </constraints>
@@ -696,14 +694,14 @@
                                         <rect key="frame" x="0.0" y="240" width="337.5" height="80"/>
                                         <subviews>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="password" translatesAutoresizingMaskIntoConstraints="NO" id="bOj-0s-Or9">
-                                                <rect key="frame" x="0.0" y="37" width="0.0" height="24"/>
+                                                <rect key="frame" x="0.0" y="36.5" width="0.0" height="24"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" id="2sh-vM-Osm"/>
                                                     <constraint firstAttribute="width" secondItem="bOj-0s-Or9" secondAttribute="height" multiplier="1:1" constant="-24" id="V0V-UC-wxN"/>
                                                 </constraints>
                                             </imageView>
                                             <textField opaque="NO" clipsSubviews="YES" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请再次输入密码" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Eic-Dp-hbN">
-                                                <rect key="frame" x="8" y="31.5" width="329.5" height="35"/>
+                                                <rect key="frame" x="8" y="31" width="329.5" height="35"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="35" id="ohf-gc-e2I"/>
                                                 </constraints>
@@ -796,7 +794,7 @@
                                         <rect key="frame" x="0.0" y="0.0" width="337.5" height="80"/>
                                         <subviews>
                                             <imageView userInteractionEnabled="NO" tag="1" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="name" translatesAutoresizingMaskIntoConstraints="NO" id="Kcb-fG-BAT">
-                                                <rect key="frame" x="0.0" y="37" width="0.0" height="24"/>
+                                                <rect key="frame" x="0.0" y="36.5" width="0.0" height="24"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="Kcb-fG-BAT" secondAttribute="height" multiplier="1:1" constant="-24" id="1RS-P5-JNZ"/>
                                                     <constraint firstAttribute="width" id="ZGG-Iv-bhT"/>
@@ -809,7 +807,7 @@
                                                 </constraints>
                                                 <nil key="textColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                                <textInputTraits key="textInputTraits" autocapitalizationType="words" keyboardAppearance="alert" textContentType="tel"/>
+                                                <textInputTraits key="textInputTraits" autocapitalizationType="words" keyboardType="phonePad" keyboardAppearance="alert" textContentType="tel"/>
                                             </textField>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="z4O-ao-HZk">
                                                 <rect key="frame" x="0.0" y="65" width="337.5" height="1"/>
@@ -834,20 +832,20 @@
                                         <rect key="frame" x="0.0" y="80" width="337.5" height="80"/>
                                         <subviews>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="email" translatesAutoresizingMaskIntoConstraints="NO" id="RtQ-zY-1Zy">
-                                                <rect key="frame" x="0.0" y="36" width="0.0" height="24"/>
+                                                <rect key="frame" x="0.0" y="36.5" width="0.0" height="24"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="RtQ-zY-1Zy" secondAttribute="height" multiplier="1:1" constant="-24" id="LQX-cf-To2"/>
                                                     <constraint firstAttribute="width" id="bLA-Ox-Rbe"/>
                                                 </constraints>
                                             </imageView>
                                             <textField opaque="NO" clipsSubviews="YES" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入短信验证码" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="qK9-YX-AZU">
-                                                <rect key="frame" x="8" y="31" width="213.5" height="35"/>
+                                                <rect key="frame" x="8" y="31" width="214" height="35"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="35" id="TKC-wM-KCT"/>
                                                 </constraints>
                                                 <nil key="textColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                                <textInputTraits key="textInputTraits" keyboardType="emailAddress" keyboardAppearance="alert"/>
+                                                <textInputTraits key="textInputTraits" keyboardType="numberPad" keyboardAppearance="alert"/>
                                             </textField>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gjZ-8m-1bz">
                                                 <rect key="frame" x="0.0" y="65" width="337.5" height="1"/>
@@ -889,14 +887,14 @@
                                         <rect key="frame" x="0.0" y="160" width="337.5" height="80"/>
                                         <subviews>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="password" translatesAutoresizingMaskIntoConstraints="NO" id="qKD-IQ-6KH">
-                                                <rect key="frame" x="0.0" y="37" width="0.0" height="24"/>
+                                                <rect key="frame" x="0.0" y="36.5" width="0.0" height="24"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" id="GcC-ox-aXQ"/>
                                                     <constraint firstAttribute="width" secondItem="qKD-IQ-6KH" secondAttribute="height" multiplier="1:1" constant="-24" id="un9-C4-eKg"/>
                                                 </constraints>
                                             </imageView>
                                             <textField opaque="NO" clipsSubviews="YES" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入密码" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="UAS-mP-ucm">
-                                                <rect key="frame" x="8" y="31.5" width="329.5" height="35"/>
+                                                <rect key="frame" x="8" y="31" width="329.5" height="35"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="35" id="yU7-9j-8HQ"/>
                                                 </constraints>
@@ -927,14 +925,14 @@
                                         <rect key="frame" x="0.0" y="240" width="337.5" height="80"/>
                                         <subviews>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="password" translatesAutoresizingMaskIntoConstraints="NO" id="sOG-zC-xBu">
-                                                <rect key="frame" x="0.0" y="37" width="0.0" height="24"/>
+                                                <rect key="frame" x="0.0" y="36.5" width="0.0" height="24"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="sOG-zC-xBu" secondAttribute="height" multiplier="1:1" constant="-24" id="Uto-hy-mgs"/>
                                                     <constraint firstAttribute="width" id="cwF-ql-3eF"/>
                                                 </constraints>
                                             </imageView>
                                             <textField opaque="NO" clipsSubviews="YES" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请再次输入密码" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Col-t7-qkq">
-                                                <rect key="frame" x="8" y="31.5" width="329.5" height="35"/>
+                                                <rect key="frame" x="8" y="31" width="329.5" height="35"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="35" id="DJw-pv-DOg"/>
                                                 </constraints>
@@ -1025,6 +1023,6 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="e09-UC-81V"/>
-        <segue reference="z0l-dN-Ba5"/>
+        <segue reference="33c-Ig-xDA"/>
     </inferredMetricsTieBreakers>
 </document>

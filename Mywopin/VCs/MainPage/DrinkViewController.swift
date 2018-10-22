@@ -388,6 +388,11 @@ class DrinkViewController: UIViewController, CLLocationManagerDelegate {
             _ = SweetAlert().showAlert("提示", subTitle: "清洗已经完成，請倒掉水和重開水杯", style: AlertStyle.none)
             return 
         }
+        else if currentCup?.type == DeviceTypeWifi && WifiController.shared.getWifiCup(uuid: currentCup!.uuid)?.startCleanFlag == true
+        {
+            _ = SweetAlert().showAlert("提示", subTitle: "水杯清洗中", style: AlertStyle.none)
+            return
+        }
         
         #endif
         
