@@ -62,9 +62,11 @@ class DeviceCell: UITableViewCell {
     
     var postIdentifier:Int = 0
     var imageRequestedForIdentifier:Int = 0
+    var cupData:CupItem?
     
     func configureWithData (_ data:CupItem) {
         
+        self.cupData = data
         self.titleLabel!.text = data.name//String(htmlEncodedString: title!)
         
         powerView.isSelected = false
@@ -72,28 +74,37 @@ class DeviceCell: UITableViewCell {
         let colorIndex = data.color ?? 1
         self.featuredImageView!.image = UIImage(named: "cup\(colorIndex)");
         
+       checkOnline()
+        
+    }
+    
+    func checkOnline()
+    {
         #if targetEnvironment(simulator)
         #else
-        if data.type == DeviceTypeBLE
+        if let data = cupData
         {
-            let device = BLEController.shared.bleManager.getDeviceByUUID(data.uuid)
-            if device?.state == .connected
+            if data.type == DeviceTypeBLE
             {
-                powerView.isSelected = true
+                let device = BLEController.shared.bleManager.getDeviceByUUID(data.uuid)
+                if device?.state == .connected
+                {
+                    powerView.isSelected = true
+                }
+                
             }
-            
-        }
-        else
-        {
-            WifiController.shared.allOnlineWifiCup.forEach { (wifiCup) in
-                if(data.uuid == wifiCup.uuid){
-                    powerView.isSelected = (Date().timeIntervalSince1970 - wifiCup.lastOnline < 20)
+            else
+            {
+                WifiController.shared.allOnlineWifiCup.forEach { (wifiCup) in
+                    if(data.uuid == wifiCup.uuid){
+                        powerView.isSelected = (Date().timeIntervalSince1970 - wifiCup.lastOnline < 20)
+                    }
                 }
             }
         }
         
-        #endif
         
+        #endif
     }
     
 }

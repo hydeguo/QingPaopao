@@ -49,7 +49,7 @@ struct User: WolfMapper {
     var userName: String?
     var userPwd: String?
     var icon: String?
-    var phone: Double?
+    var phone: Int64?
     var scores: Double?
     var lastAttendance: String?
     var drinks: Double?

@@ -996,6 +996,7 @@
                         <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="0.0"/>
                     </tabBarItem>
                     <connections>
+                        <outlet property="btn" destination="8iS-gL-sdw" id="c6e-SK-cvI"/>
                         <outlet property="goodsDetail" destination="YvX-WC-yzB" id="F9r-W6-BZZ"/>
                     </connections>
                 </viewController>
@@ -1537,6 +1538,6 @@
         <image name="btnBg" width="213" height="52"/>
         <image name="closeBtn" width="19" height="19"/>
         <image name="cup" width="233" height="475"/>
-        <image name="资源 21" width="21" height="21"/>
+        <image name="资源 21" width="21.5" height="21"/>
     </resources>
 </document>

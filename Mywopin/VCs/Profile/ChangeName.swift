@@ -30,9 +30,15 @@ class ChangeName: UITableViewController ,UITextFieldDelegate{
         
         let rightBtn = UIBarButtonItem(title: "保存", style: .plain, target: self, action: #selector(save(_:)))
         navigationItem.rightBarButtonItem = rightBtn
+        
     }
     
     @objc func save(_ sender: Any) {
+        
+        if (nameTf.text?.count == 0){
+            _ = SweetAlert().showAlert(Language.getString("名字不能为空"), subTitle: "", style: AlertStyle.success)
+            return
+        }
         
         _ = Wolf.request(type: MyAPI.changeUserName( userName: nameTf.text!), completion: { (user: User?, msg, code) in
             UIApplication.shared.keyWindow?.endEditing(true)

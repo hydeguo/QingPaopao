@@ -73,6 +73,10 @@ class ChangePhoneVC: UIViewController  , UITextFieldDelegate{
                 _ = SweetAlert().showAlert("Sorry", subTitle: "请输入正确手机号码!", style: AlertStyle.error)
                 return
             }
+            guard (phoneNum != String(myClientVo?.phone ?? 0 ) )else {
+                _ = SweetAlert().showAlert("Sorry", subTitle: "新手机号码与当前号码相同!", style: AlertStyle.warning)
+                return
+            }
            
             guard v_code.count>0 else {
                 _ = SweetAlert().showAlert("Sorry", subTitle: "请输入验证码!", style: AlertStyle.error)
@@ -100,6 +104,10 @@ class ChangePhoneVC: UIViewController  , UITextFieldDelegate{
         {
             guard (isPhoneNumber(phoneNumber: phoneNum))else {
                 _ = SweetAlert().showAlert("Sorry", subTitle: "请输入正确手机号码!", style: AlertStyle.error)
+                return
+            }
+            guard (phoneNum != String(myClientVo?.phone ?? 0 ) )else {
+                _ = SweetAlert().showAlert("Sorry", subTitle: "新手机号码与当前号码相同!", style: AlertStyle.warning)
                 return
             }
             getCode(phone: phoneNum) { (flag) in

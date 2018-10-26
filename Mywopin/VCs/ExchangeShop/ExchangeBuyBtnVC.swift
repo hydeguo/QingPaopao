@@ -12,7 +12,7 @@ import UIKit
 class ExchangeBuyBtnVC: UIViewController {
     
     @IBOutlet var goodsDetail:UIView!
-    @IBOutlet var btn:UIButton!
+    @IBOutlet var btn:UIButton?
     var data : WooGoodsItem?
     var detailPage:ExchangeShopDetailVC!
     
@@ -45,8 +45,8 @@ class ExchangeBuyBtnVC: UIViewController {
     {
         if ((notice as NSNotification).userInfo!["data"] as? Bool) == false
         {
-            btn.isEnabled = false
-            btn.backgroundColor = UIColor.lightGray
+            btn?.isEnabled = false
+            btn?.backgroundColor = UIColor.lightGray
         }
 
     }

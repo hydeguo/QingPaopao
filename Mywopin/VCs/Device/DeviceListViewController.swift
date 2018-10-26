@@ -45,8 +45,15 @@ class DeviceListViewController: UITableViewController {
         self.tableView.reloadData()
         
         timer = setInterval(interval: 1, block: {
-            self.tableView.reloadData()
+            self.checkCupStatus()
         })
+    }
+    
+    func checkCupStatus()
+    {
+        for i in 0..<cups.count {
+            (self.tableView.cellForRow(at: IndexPath(item: i, section: 0)) as? DeviceCell)?.checkOnline()
+        }
     }
     
     override func viewWillDisappear(_ animated: Bool) {

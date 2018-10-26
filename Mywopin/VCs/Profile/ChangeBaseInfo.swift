@@ -46,7 +46,9 @@ class ChangeBaseInfo: UITableViewController,UITextFieldDelegate {
         self.tableView.tableFooterView=UIView(frame: CGRect.zero)
         
         let rightBtn = UIBarButtonItem(title: "保存", style: .plain, target: self, action: #selector(save(_:)))
+    
         navigationItem.rightBarButtonItem = rightBtn
+        
     }
     
     @objc func save(_ sender: Any) {

@@ -53,6 +53,8 @@ class CrowdfundingShopDetailVC: UITableViewController ,UIWebViewDelegate{
     let detailWebViewSection = 2
     var data:WooGoodsItem?
     
+    var activeFlag:Bool = false
+    
     var priceBtns = [UIButton]()
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -103,19 +105,44 @@ class CrowdfundingShopDetailVC: UITableViewController ,UIWebViewDelegate{
         
         //-------------------------------------
         
-        if data!.date_on_sale_to != nil && data!.date_on_sale_to!.count > 0
+        if let date_from =  data?.date_on_sale_from , let date_to = data?.date_on_sale_to
         {
             let dateFormatterGet = DateFormatter()
             dateFormatterGet.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
             
-            let time2 = dateFormatterGet.date(from: data!.date_on_sale_to!)!//2017-08-28T08:24:37
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "yyyy-MM-dd"
+            
+            let time_from = dateFormatterGet.date(from: date_from)!//2017-08-28T08:24:37
+            let time2 = dateFormatterGet.date(from: date_to)!//2017-08-28T08:24:37
             let calendar = Calendar.current
             let date1 = calendar.startOfDay(for: Date())
             let date2 = calendar.startOfDay(for: time2)
             
-            let components = calendar.dateComponents([.day], from: date1, to: date2).day!
-            remainDayLb.text = "\(components)天"
+            if time_from > Date()
+            {
+                remainDayLb.text = "\(dateFormatter.string(from: time_from)) 开始"
+                activeFlag = false
+            }
+            else if Date() > time2
+            {
+                remainDayLb.text = "活动已结束"
+                activeFlag = false
+            }
+            else
+            {
+                let components = calendar.dateComponents([.day], from: date1, to: date2).day!
+                remainDayLb.text = "\(components)天"
+                activeFlag = true
+            }
+            
+            if (data!.stock_quantity ?? 0) <= 0
+            {
+                activeFlag = false
+            }
+            
         }
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "crowdfundingTimeOut"), object: self, userInfo: ["data":activeFlag])
         
 //        let timeText = dateFormatter.string(from: time)
         

@@ -31,10 +31,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UINavigationBar.appearance().titleTextAttributes = attrs
         
         // remove return button title
-        let attributes = [NSAttributedStringKey.font:  UIFont(name: "Helvetica-Bold", size: 0.1)!, NSAttributedStringKey.foregroundColor: UIColor.clear]
-        UIBarButtonItem.appearance().setTitleTextAttributes(attributes, for: .normal)
-        UIBarButtonItem.appearance().setTitleTextAttributes(attributes, for: .highlighted)
-        
+//        let attributes = [NSAttributedStringKey.font:  UIFont(name: "Helvetica-Bold", size: 0.1)!, NSAttributedStringKey.foregroundColor: UIColor.clear]
+//        UIBarButtonItem.appearance().setTitleTextAttributes(attributes, for: .normal)
+//        UIBarButtonItem.appearance().setTitleTextAttributes(attributes, for: .highlighted)
         
         Language.share.setLanguage("zh-Hans")
         

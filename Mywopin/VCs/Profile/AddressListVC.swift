@@ -27,6 +27,7 @@ class AddressListVC: UITableViewController {
         self.navigationController!.topViewController!.navigationItem.leftBarButtonItem =  returnButton
         
         let addButton =  UIBarButtonItem(title: Language.getString("新增") , style: .plain, target: self, action:  #selector(onAddNew))
+       
         self.navigationController!.topViewController!.navigationItem.rightBarButtonItem =  addButton
     }
     
@@ -92,6 +93,33 @@ class AddressListVC: UITableViewController {
         
     }
     
+    @IBAction func onDelAddress(_ btn:UIButton)
+    {
+        
+        if let address = myClientVo?.addressList![btn.tag]
+        {
+            _ = SweetAlert().showAlert("提示", subTitle: "确定删除该地址？" , style: AlertStyle.none, buttonTitle:"确定", buttonColor: main_color, otherButtonTitle:  "取消", otherButtonColor: main_color) { (isOtherButton) -> Void in
+                if isOtherButton == true {
+                    _ = Wolf.request(type: MyAPI.delAddress(addressId: address.addressId), completion: { (res: BaseReponse?, msg, code) in
+                        if(code == "0")
+                        {
+                            myClientVo?.addressList?.remove(at: btn.tag)
+                            self.tableView.reloadData()
+                            return
+                        }
+                        else
+                        {
+                            _ = SweetAlert().showAlert("Sorry", subTitle: msg, style: AlertStyle.warning)
+                        }
+                    }) { (error) in
+                        _ = SweetAlert().showAlert("Sorry", subTitle: error?.errorDescription, style: AlertStyle.warning)
+                    }
+                }
+            }
+        }
+        
+    }
+    
     // MARK: - Table View
     //    override func  tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
     //        return 130
@@ -118,6 +146,7 @@ class AddressListVC: UITableViewController {
             cell.defaultBtn.isSelected = address.isDefault == true
         }
         cell.editBtn.tag = indexPath.row
+        cell.deleteBtn.tag = indexPath.row
         cell.defaultBtn.tag = indexPath.row
         
         return cell

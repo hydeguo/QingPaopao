@@ -120,7 +120,9 @@ class DrinkViewController: UIViewController, CLLocationManagerDelegate {
     @IBAction func sliderValueChanged(_ sender: UISlider) {
         let currentValue = (sender.value)
         sliderNum.value = currentValue
-        
+        if(startElectrolyFlag){
+            startElectroly()
+        }
     }
     
     override func didReceiveMemoryWarning() {
@@ -240,7 +242,7 @@ class DrinkViewController: UIViewController, CLLocationManagerDelegate {
     {
         actionBtn?.backgroundColor = UIColor.lightGray
         actionBtn?.setTitle(Language.getString("停止电解"), for: .normal)
-        self.slider.isEnabled = false
+//        self.slider.isEnabled = false
         startElectrolyFlag = true
         _timer?.invalidate()
         _timer = setInterval(interval: 1, block: {
@@ -253,7 +255,7 @@ class DrinkViewController: UIViewController, CLLocationManagerDelegate {
         sliderNum.value = sliderNum.value
         actionBtn?.backgroundColor = UIColor.colorFromRGB(0x49BBFF)
         actionBtn?.setTitle(Language.getString("开始电解"), for: .normal)
-        self.slider.isEnabled = true
+//        self.slider.isEnabled = true
         startElectrolyFlag = false
     }
     

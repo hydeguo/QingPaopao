@@ -54,11 +54,12 @@ class ScoresShopDetailVC: UITableViewController ,UIWebViewDelegate{
             return
         }
         
-        var _subTitle = data!.short_description
+//        var _subTitle = data!.short_description
         titleLb.text = data!.name
-        subTitleLb.text = _subTitle.filterHTML()
-        priceLb.text = "¥"+data!.price
+        subTitleLb.text = "市场参考价：\(data?.attributes[0].name ?? "")元"
+        priceLb.text = data!.price+"积分"
         
+        stockNumLb.text = "剩余：\(data!.stock_quantity ?? 0)"
         
         numberOfPage = data!.images.count
         scrollSize = SCREEN_WIDTH
@@ -158,6 +159,7 @@ class ScoresShopDetailVC: UITableViewController ,UIWebViewDelegate{
         </style> \n\
         </head> \n\
         <body>\
+        商品详情\n\
         \(data!.description)
         <script type='text/javascript'>\
         var $img = document.getElementsByTagName('img');\n\
@@ -187,7 +189,8 @@ class ScoresShopDetailVC: UITableViewController ,UIWebViewDelegate{
         // 使webView自适应高度
         webView.sizeToFit()
         let height = webView.bounds.size.height
-        webView.frame = CGRect.init(x: 10, y: 0, width: screenWidth - 20, height: height)
+        webView.frame = CGRect.init(x: 10, y: 0, width: screenWidth - 20, height: height )
+
         if !heightDict.keys.contains(webView.tag) {
             heightDict.updateValue(height, forKey: webView.tag)
             

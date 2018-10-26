@@ -113,6 +113,7 @@ func getCode( phone:String,completion: @escaping (Bool) -> Swift.Void)
         }
         else
         {
+            _ = SweetAlert().showAlert("Sorry", subTitle: msg, style: AlertStyle.warning)
             completion(false)
         }
     }) { (error) in
