@@ -1576,6 +1576,7 @@ struct _R: Rswift.Validatable {
       let orderListTopVC = StoryboardViewControllerResource<OrderListTopVC>(identifier: "OrderListTopVC")
       let postListViewController = StoryboardViewControllerResource<PostListViewController>(identifier: "PostListViewController")
       let returnOrderNumVC = StoryboardViewControllerResource<ReturnOrderNumVC>(identifier: "ReturnOrderNumVC")
+      let scoresShop = StoryboardViewControllerResource<ScoresShopList>(identifier: "ScoresShop")
       let wifiScanListVC = StoryboardViewControllerResource<WifiScanListVC>(identifier: "wifiScanListVC")
       
       func addDeviceView(_: Void = ()) -> AddDevice? {
@@ -1640,6 +1641,10 @@ struct _R: Rswift.Validatable {
       
       func returnOrderNumVC(_: Void = ()) -> ReturnOrderNumVC? {
         return UIKit.UIStoryboard(resource: self).instantiateViewController(withResource: returnOrderNumVC)
+      }
+      
+      func scoresShop(_: Void = ()) -> ScoresShopList? {
+        return UIKit.UIStoryboard(resource: self).instantiateViewController(withResource: scoresShop)
       }
       
       func wifiScanListVC(_: Void = ()) -> WifiScanListVC? {
@@ -1712,6 +1717,7 @@ struct _R: Rswift.Validatable {
         if _R.storyboard.main().addDeviceView() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'addDeviceView' could not be loaded from storyboard 'Main' as 'AddDevice'.") }
         if _R.storyboard.main().postListViewController() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'postListViewController' could not be loaded from storyboard 'Main' as 'PostListViewController'.") }
         if _R.storyboard.main().landingPage() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'landingPage' could not be loaded from storyboard 'Main' as 'LandingVC'.") }
+        if _R.storyboard.main().scoresShop() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'scoresShop' could not be loaded from storyboard 'Main' as 'ScoresShopList'.") }
         if _R.storyboard.main().addressInfoVC() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'addressInfoVC' could not be loaded from storyboard 'Main' as 'AddressInfoVC'.") }
         if _R.storyboard.main().orderListTopVC() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'orderListTopVC' could not be loaded from storyboard 'Main' as 'OrderListTopVC'.") }
         if _R.storyboard.main().deviceInfo() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'deviceInfo' could not be loaded from storyboard 'Main' as 'DeviceInfoVC'.") }

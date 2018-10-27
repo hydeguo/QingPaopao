@@ -145,17 +145,39 @@ class DeviceListViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        return true
+        return indexPath.section != 1
     }
     
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            if (cups.count > 0) {
-                print("Deleted \(cups[indexPath.row].uuid)")
-                _ = Wolf.request(type: MyAPI.deleteACup(uuid: cups[indexPath.row].uuid), completion: { (user: User?, msg, code) in
+//    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+//        if editingStyle == .delete {
+//            if (self.cups.count > 0) {
+//                print("Deleted \(self.cups[indexPath.row].uuid)")
+//                _ = Wolf.request(type: MyAPI.deleteACup(uuid: self.cups[indexPath.row].uuid), completion: { (user: User?, msg, code) in
+//                    if(code == "0")
+//                    {
+//                        self.cups.remove(at: indexPath.row)
+//                        cup_list = self.cups
+//                        self.tableView.reloadData()
+//                    }
+//                    else
+//                    {
+//                        _ = SweetAlert().showAlert("Sorry", subTitle: msg, style: AlertStyle.warning)
+//                    }
+//                }, failure: nil)
+//            }
+//        }
+//    }
+    
+    override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        
+        let deleteAction = UIContextualAction.init(style: UIContextualAction.Style.destructive, title: "Delete", handler: { (action, view, completion) in
+            if (self.cups.count > 0) {
+                print("Deleted \(self.cups[indexPath.row].uuid)")
+                _ = Wolf.request(type: MyAPI.deleteACup(uuid: self.cups[indexPath.row].uuid), completion: { (user: User?, msg, code) in
                     if(code == "0")
                     {
                         self.cups.remove(at: indexPath.row)
+                        cup_list = self.cups
                         self.tableView.reloadData()
                     }
                     else
@@ -164,7 +186,14 @@ class DeviceListViewController: UITableViewController {
                     }
                 }, failure: nil)
             }
-        }
+            completion(true)
+        })
+        
+        
+        let config = UISwipeActionsConfiguration(actions: [deleteAction])
+        
+        config.performsFirstActionWithFullSwipe = false
+        return config
     }
 }
 

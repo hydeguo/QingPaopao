@@ -17,7 +17,7 @@ class WifiTableViewController: UITableViewController {}
 #else
 import QRCodeReader
 
-class WifiTableViewController: UITableViewController, QRCodeReaderViewControllerDelegate {
+class WifiTableViewController: UITableViewController, QRCodeReaderViewControllerDelegate,UITextFieldDelegate {
     
     let inetReachability = InternetReachability()!
     var essids = [String]()
@@ -42,6 +42,8 @@ class WifiTableViewController: UITableViewController, QRCodeReaderViewController
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        selectedSSID.delegate = self
+        wifiPasswordTextField.delegate = self
         scanQRcode(UIButton())
     }
     

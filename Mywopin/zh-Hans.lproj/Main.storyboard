@@ -665,6 +665,9 @@
                                         <state key="normal" title="积分商城" image="icon1">
                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
+                                        <connections>
+                                            <segue destination="L2b-Bt-aa5" kind="show" id="soR-pe-ncz"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -5084,12 +5087,12 @@ DQ
             </objects>
             <point key="canvasLocation" x="-790" y="-1299"/>
         </scene>
-        <!--Scores Shop List-->
+        <!--积分商城-->
         <scene sceneID="dUi-nS-FQW">
             <objects>
-                <collectionViewController id="L2b-Bt-aa5" customClass="ScoresShopList" customModule="Mywopin" customModuleProvider="target" sceneMemberID="viewController">
+                <collectionViewController storyboardIdentifier="ScoresShop" title="积分商城" id="L2b-Bt-aa5" customClass="ScoresShopList" customModule="Mywopin" customModuleProvider="target" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="gCl-Tf-Myt">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="260"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.88088911800000003" green="0.88088911800000003" blue="0.88088911800000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="1" minimumInteritemSpacing="0.0" id="slv-bX-ruy">
@@ -5099,7 +5102,7 @@ DQ
                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         </collectionViewFlowLayout>
                         <cells>
-                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" misplaced="YES" reuseIdentifier="ScoresShopCell" id="2aw-6l-4OA" customClass="ScoresShopCell" customModule="Mywopin" customModuleProvider="target">
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ScoresShopCell" id="2aw-6l-4OA" customClass="ScoresShopCell" customModule="Mywopin" customModuleProvider="target">
                                 <rect key="frame" x="85.5" y="0.0" width="204" height="223"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
@@ -5142,7 +5145,7 @@ HIFI音响</string>
                                     <outlet property="titleLabel" destination="bKk-Sb-lIW" id="AF7-49-wbq"/>
                                 </connections>
                             </collectionViewCell>
-                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" misplaced="YES" reuseIdentifier="LoadingCell" id="hWA-KZ-g3p">
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="LoadingCell" id="hWA-KZ-g3p">
                                 <rect key="frame" x="85.5" y="224" width="204" height="223"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
@@ -5177,7 +5180,7 @@ HIFI音响</string>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JOR-Xq-04y" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4397.6000000000004" y="-787.10644677661173"/>
+            <point key="canvasLocation" x="4492" y="-931"/>
         </scene>
         <!--Exchange List-->
         <scene sceneID="AXz-m4-YJd">
@@ -7512,6 +7515,7 @@ E无法达到这一点）。——太田成男
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="haE-qQ-S2q"/>
+        <segue reference="soR-pe-ncz"/>
         <segue reference="oLJ-Nx-YET"/>
     </inferredMetricsTieBreakers>
 </document>
