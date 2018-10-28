@@ -1049,7 +1049,7 @@ struct R: Rswift.Validatable {
   
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 37 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 41 localization keys.
     struct localizable {
       /// zh-Hans translation: 今天喝水统计
       /// 
@@ -1079,6 +1079,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: zh-Hans
       static let 发布成功 = Rswift.StringResource(key: "发布成功", tableName: "Localizable", bundle: R.hostingBundle, locales: ["zh-Hans"], comment: nil)
+      /// zh-Hans translation: 取消
+      /// 
+      /// Locales: zh-Hans
+      static let cancel = Rswift.StringResource(key: "Cancel", tableName: "Localizable", bundle: R.hostingBundle, locales: ["zh-Hans"], comment: nil)
       /// zh-Hans translation: 名字不能为空
       /// 
       /// Locales: zh-Hans
@@ -1119,6 +1123,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: zh-Hans
       static let 我的粉丝 = Rswift.StringResource(key: "我的粉丝", tableName: "Localizable", bundle: R.hostingBundle, locales: ["zh-Hans"], comment: nil)
+      /// zh-Hans translation: 拍照
+      /// 
+      /// Locales: zh-Hans
+      static let camera = Rswift.StringResource(key: "Camera", tableName: "Localizable", bundle: R.hostingBundle, locales: ["zh-Hans"], comment: nil)
       /// zh-Hans translation: 探索
       /// 
       /// Locales: zh-Hans
@@ -1155,6 +1163,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: zh-Hans
       static let 灯光设置 = Rswift.StringResource(key: "灯光设置", tableName: "Localizable", bundle: R.hostingBundle, locales: ["zh-Hans"], comment: nil)
+      /// zh-Hans translation: 相册
+      /// 
+      /// Locales: zh-Hans
+      static let gallery = Rswift.StringResource(key: "Gallery", tableName: "Localizable", bundle: R.hostingBundle, locales: ["zh-Hans"], comment: nil)
       /// zh-Hans translation: 积分
       /// 
       /// Locales: zh-Hans
@@ -1199,6 +1211,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: zh-Hans
       static let 达标天数 = Rswift.StringResource(key: "达标天数", tableName: "Localizable", bundle: R.hostingBundle, locales: ["zh-Hans"], comment: nil)
+      /// zh-Hans translation: 选择图片来源
+      /// 
+      /// Locales: zh-Hans
+      static let selectTheSource = Rswift.StringResource(key: "Select the source", tableName: "Localizable", bundle: R.hostingBundle, locales: ["zh-Hans"], comment: nil)
       
       /// zh-Hans translation: 今天喝水统计
       /// 
@@ -1247,6 +1263,13 @@ struct R: Rswift.Validatable {
       /// Locales: zh-Hans
       static func 发布成功(_: Void = ()) -> String {
         return NSLocalizedString("发布成功", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// zh-Hans translation: 取消
+      /// 
+      /// Locales: zh-Hans
+      static func cancel(_: Void = ()) -> String {
+        return NSLocalizedString("Cancel", bundle: R.hostingBundle, comment: "")
       }
       
       /// zh-Hans translation: 名字不能为空
@@ -1319,6 +1342,13 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("我的粉丝", bundle: R.hostingBundle, comment: "")
       }
       
+      /// zh-Hans translation: 拍照
+      /// 
+      /// Locales: zh-Hans
+      static func camera(_: Void = ()) -> String {
+        return NSLocalizedString("Camera", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// zh-Hans translation: 探索
       /// 
       /// Locales: zh-Hans
@@ -1380,6 +1410,13 @@ struct R: Rswift.Validatable {
       /// Locales: zh-Hans
       static func 灯光设置(_: Void = ()) -> String {
         return NSLocalizedString("灯光设置", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// zh-Hans translation: 相册
+      /// 
+      /// Locales: zh-Hans
+      static func gallery(_: Void = ()) -> String {
+        return NSLocalizedString("Gallery", bundle: R.hostingBundle, comment: "")
       }
       
       /// zh-Hans translation: 积分
@@ -1457,6 +1494,13 @@ struct R: Rswift.Validatable {
       /// Locales: zh-Hans
       static func 达标天数(_: Void = ()) -> String {
         return NSLocalizedString("达标天数", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// zh-Hans translation: 选择图片来源
+      /// 
+      /// Locales: zh-Hans
+      static func selectTheSource(_: Void = ()) -> String {
+        return NSLocalizedString("Select the source", bundle: R.hostingBundle, comment: "")
       }
       
       fileprivate init() {}

@@ -65,30 +65,14 @@ class PostTableViewCell: UITableViewCell {
     
     @objc func updatePostData(_ notice:Notification){
         
-        if  let star:Int = (notice as NSNotification).userInfo!["star"] as? Int,let id:Int = (notice as NSNotification).userInfo!["id"] as? Int,let starNum = self.starLabel?.text
+        if  let blogData:BlogPostItem = (notice as NSNotification).userInfo?["data"] as? BlogPostItem
         {
-            if postIdentifier == id
+            if postIdentifier == blogData.id
             {
                 DispatchQueue.main.async(execute: {
-                    self.starLabel?.text = String((Int(starNum) ?? 0) + star)
-                })
-            }
-        }
-        if  let like:Int = (notice as NSNotification).userInfo!["like"] as? Int,let id:Int = (notice as NSNotification).userInfo!["id"] as? Int,let likeNum = self.likeLabel?.text
-        {
-            if postIdentifier == id
-            {
-                DispatchQueue.main.async(execute: {
-                    self.likeLabel?.text = String((Int(likeNum) ?? 0 ) + like)
-                })
-            }
-        }
-        if  let like:Int = (notice as NSNotification).userInfo!["comment"] as? Int,let id:Int = (notice as NSNotification).userInfo!["id"] as? Int,let commentNum = self.commentLabel?.text
-        {
-            if postIdentifier == id
-            {
-                DispatchQueue.main.async(execute: {
-                    self.likeLabel?.text = String((Int(commentNum) ?? 0 ) + like)
+                    self.starLabel?.text = String(Int(blogData.stars) )
+                    self.likeLabel?.text = String(Int(blogData.likes) )
+                    self.commentLabel?.text = String(blogData.comments)
                 })
             }
         }
@@ -298,8 +282,9 @@ class PostBtnCell: UITableViewCell {
         if starBtn.isSelected == true
         {
             self.postData?.stars -= 1
+            self.postData?.myStar = false
             self.starBtn.isSelected = false
-            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "updatePostData"), object: self, userInfo: ["star":-1,"id":postData?.id ?? 0])
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "updatePostData"), object: self, userInfo: ["data":postData as Any])
             _ = Wolf.request(type: MyAPI.unCollectBlogPost(id: postData?.id ?? 0), completion: { (info: BaseReponse?, msg, code) in
                 if code == "0" {
                 }
@@ -308,8 +293,9 @@ class PostBtnCell: UITableViewCell {
         else
         {
             self.postData?.stars += 1
+            self.postData?.myStar = true
             self.starBtn.isSelected = true
-            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "updatePostData"), object: self, userInfo: ["star":1,"id":postData?.id ?? 0])
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "updatePostData"), object: self, userInfo: ["data":postData as Any])
             _ = Wolf.request(type: MyAPI.doCollectBlogPost(id: postData?.id ?? 0), completion: { (info: BaseReponse?, msg, code) in
                 if code == "0" {
                 }
@@ -326,8 +312,9 @@ class PostBtnCell: UITableViewCell {
         if likeBtn.isSelected == true
         {
             self.likeBtn.isSelected = false
+            self.postData?.myLike = false
             self.postData?.likes -= 1
-            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "updatePostData"), object: self, userInfo: ["like":-1,"id":postData?.id ?? 0])
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "updatePostData"), object: self, userInfo: ["data":postData as Any])
             _ = Wolf.request(type: MyAPI.unLikeBlogPost(id: postData?.id ?? 0), completion: { (res: BaseReponse?, msg, code) in
                 if code == "0" {
                     self.likeLabel.text = String(self.postData?.likes ?? 0 )
@@ -337,8 +324,9 @@ class PostBtnCell: UITableViewCell {
         else
         {
             self.likeBtn.isSelected = true
+            self.postData?.myLike = true
             self.postData?.likes += 1
-            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "updatePostData"), object: self, userInfo: ["like":1,"id":postData?.id ?? 0])
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "updatePostData"), object: self, userInfo: ["data":postData as Any])
             _ = Wolf.request(type: MyAPI.doLikeBlogPost(id: postData?.id ?? 0), completion: { (res: BaseReponse?, msg, code) in
                 if code == "0" {
                     self.likeLabel.text = String(self.postData?.likes ?? 0 )

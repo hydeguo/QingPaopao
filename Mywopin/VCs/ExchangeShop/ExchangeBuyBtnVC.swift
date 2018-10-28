@@ -68,6 +68,7 @@ class ExchangeBuyBtnVC: UIViewController {
             vc?.modalPresentationStyle = .custom
             vc?.oldGoods = exchagneGoods
             vc?.goods = detailPage.data
+            vc?._parent = self
             self.present(vc!, animated: true, completion: { vc?.bgImage.backgroundColor = UIColor(red:0/255.0, green:0/255.0, blue:0/255.0, alpha: 0.5)})
         }
         else

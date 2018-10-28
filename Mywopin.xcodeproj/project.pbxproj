@@ -119,6 +119,7 @@
 		C192AAA520C3FBBB004EE98D /* BLEViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C192AAA420C3FBBB004EE98D /* BLEViewController.swift */; };
 		C192AAA820C431E8004EE98D /* MyProfileTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C192AAA720C431E8004EE98D /* MyProfileTableVC.swift */; };
 		C192AAAA20C4C8FA004EE98D /* Cells.swift in Sources */ = {isa = PBXBuildFile; fileRef = C192AAA920C4C8FA004EE98D /* Cells.swift */; };
+		C195073621855E76008F88CF /* AvatarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C195073521855E76008F88CF /* AvatarViewController.swift */; };
 		C197D3FF20D74EA700E3FBEE /* RegisterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C197D3FE20D74EA700E3FBEE /* RegisterVC.swift */; };
 		C197D40120D74EC300E3FBEE /* ThirdPartLoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C197D40020D74EC300E3FBEE /* ThirdPartLoginVC.swift */; };
 		C1AB2BD22149210000CE6A2D /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1AB2BD12149210000CE6A2D /* TabBarController.swift */; };
@@ -332,6 +333,7 @@
 		C192AAA420C3FBBB004EE98D /* BLEViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BLEViewController.swift; sourceTree = "<group>"; };
 		C192AAA720C431E8004EE98D /* MyProfileTableVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyProfileTableVC.swift; sourceTree = "<group>"; };
 		C192AAA920C4C8FA004EE98D /* Cells.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Cells.swift; sourceTree = "<group>"; };
+		C195073521855E76008F88CF /* AvatarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarViewController.swift; sourceTree = "<group>"; };
 		C197D3FE20D74EA700E3FBEE /* RegisterVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterVC.swift; sourceTree = "<group>"; };
 		C197D40020D74EC300E3FBEE /* ThirdPartLoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThirdPartLoginVC.swift; sourceTree = "<group>"; };
 		C1AB2BD12149210000CE6A2D /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
@@ -637,6 +639,7 @@
 				C192AAA720C431E8004EE98D /* MyProfileTableVC.swift */,
 				C17862CD20E2869F008F4042 /* BaseInfo.swift */,
 				C17862CB20E27C63008F4042 /* ChangeBaseInfo.swift */,
+				C195073521855E76008F88CF /* AvatarViewController.swift */,
 				C17D45F220F8A85A00029CAE /* ProfileEditVC.swift */,
 				C11A100020E9CC50000979B3 /* MyHealth.swift */,
 				C11A0FFE20E9B4E1000979B3 /* DrinkHistory.swift */,
@@ -1361,6 +1364,7 @@
 				C192AA1320C23770004EE98D /* DrinkViewController.swift in Sources */,
 				C16980DF20E8D3D20034E954 /* CleanCupViewController.swift in Sources */,
 				C1F6E04720C6D0060031200D /* WordPressWebServices.swift in Sources */,
+				C195073621855E76008F88CF /* AvatarViewController.swift in Sources */,
 				C11A100620EA1E9E000979B3 /* DeviceListViewController.swift in Sources */,
 				C15206232144D2D100F660B6 /* BlogVos.swift in Sources */,
 				C197D40120D74EC300E3FBEE /* ThirdPartLoginVC.swift in Sources */,

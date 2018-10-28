@@ -8,6 +8,23 @@
 
 import Foundation
 
+class BlogPostItemObject: NSObject {
+    
+    var id:Int = 0
+    var author: BlogAuthor?
+    var title: String?
+    var content:String?
+    var date:String?
+    var featured_image:String?
+    var URL:String?
+    var read: Int = 0
+    var likes: Int = 0
+    var stars: Int = 0
+    var comments: Int = 0
+    var myLike: Bool = false
+    var myStar: Bool = false
+    
+}
 
 struct BlogPostItem: WolfMapper {
     

@@ -21,6 +21,7 @@ class ExchangeBuyVC: UIViewController ,PayRequestDelegate{
     var oldGoods:WooGoodsItem?
     var goods:WooGoodsItem?
     var order:ExchangeOrderItem?
+    var _parent:UIViewController?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -61,6 +62,7 @@ class ExchangeBuyVC: UIViewController ,PayRequestDelegate{
     {
         self.dismiss(animated: true, completion: nil)
         bgImage.backgroundColor = UIColor(red:0/255.0, green:0/255.0, blue:0/255.0, alpha: 0)
+        
     }
     
     @IBAction func buyAction()
@@ -89,6 +91,10 @@ class ExchangeBuyVC: UIViewController ,PayRequestDelegate{
                         
                         _ = SweetAlert().showAlert(Language.getString("订单提交成功"), subTitle: "请寄回旧商品后，在订单详情里填写回寄水杯的具体信息", style: AlertStyle.success,buttonTitle: "确定", action: { _ in
                             self.closeAction();
+                            
+//                            let orderInfo = R.storyboard.main.returnOrderNumVC()!
+//                            orderInfo.order = myOrder
+//                            self._parent?.show(orderInfo, sender: nil)
                         })
                         
                     }

@@ -58,10 +58,27 @@ class PostListViewController: UITableViewController {
         self.navigationController?.setNavigationBarHidden(false, animated: false)
         self.navigationController?.navigationBar.topItem?.title = ""
         updateTitle()
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {
         updateTitle()
+    }
+    
+    @objc func updatePostData(_ notice:Notification){
+        
+
+        if  let blogData:BlogPostItem = (notice as NSNotification).userInfo?["data"] as? BlogPostItem
+        {
+            for i in 0..<posts.count
+            {
+                if posts[i].id == blogData.id
+                {
+                    posts[i] = blogData
+                }
+            }
+           
+        }
     }
     
     private func updateTitle()
@@ -96,6 +113,12 @@ class PostListViewController: UITableViewController {
         loadingMore = false
         self.updatePostList()
         
+        NotificationCenter.default.addObserver(self, selector: #selector(updatePostData), name: NSNotification.Name(rawValue: "updatePostData"), object: nil)
+    }
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        NotificationCenter.default.removeObserver(self)
     }
     
     func setInitData()
@@ -188,6 +211,7 @@ class PostListViewController: UITableViewController {
             self.tableView.reloadData()
         })
     }
+    
     
     @objc func topRefreshData() {
         

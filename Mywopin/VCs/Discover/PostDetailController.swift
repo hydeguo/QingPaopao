@@ -114,7 +114,7 @@ class PostDetailController: UIViewController, UITableViewDelegate, UITableViewDa
                         self.btnCell?.commentLabel.text = String(self.detailItem?.comments ?? 0)
                         self.tableView?.reloadData()
                     })
-                    NotificationCenter.default.post(name: NSNotification.Name(rawValue: "updatePostData"), object: self, userInfo: ["comment":1,"id":self.detailItem?.id ?? 0])
+                    NotificationCenter.default.post(name: NSNotification.Name(rawValue: "updatePostData"), object: self, userInfo: ["data":self.detailItem as Any])
                 }
             }) { (error) in}
         }

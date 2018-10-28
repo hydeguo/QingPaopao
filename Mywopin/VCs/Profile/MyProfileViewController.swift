@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 
-class MyProfileViewController: UIViewController {
+class MyProfileViewController: AvatarViewController {
     
     
     @IBOutlet var nameLabel:UILabel!
@@ -66,7 +66,10 @@ class MyProfileViewController: UIViewController {
             attendanceBtn.isEnabled = false
             attendanceBtn.setTitle("已签到", for: .normal)
         }
-        
+        if let myIcon = myClientVo?.icon
+        {
+            topPofileImage.image(fromUrl: myIcon)
+        }
     }
     func getDayString(day:Date)->String
     {
@@ -83,11 +86,6 @@ class MyProfileViewController: UIViewController {
     
     override func viewDidLayoutSubviews() {
         
-        if let myIcon = myClientVo?.icon
-        {
-            topPofileImage.image(fromUrl: myIcon)
-        }
-        
         
         drinkCupLabel.layer.cornerRadius = drinkCupLabel.height/2;
         drinkCupLabel.layer.masksToBounds = true;
@@ -98,6 +96,13 @@ class MyProfileViewController: UIViewController {
         drinkCupTotalLabeL.layer.borderColor = UIColor.white.cgColor
         drinkCupTotalLabeL.layer.borderWidth = 1;//边框宽度
     }
+    
+    @IBAction func clickAvatar()
+    {
+        changePic()
+    }
+    
+    
     func updateDrinkText()
     {
         if let _todayDrinks = todayDrinks
