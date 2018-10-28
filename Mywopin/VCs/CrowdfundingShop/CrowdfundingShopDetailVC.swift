@@ -22,7 +22,7 @@ class CrowdfundingShopDetailVC: UITableViewController ,UIWebViewDelegate{
     @IBOutlet var numPeopleLb:UILabel!
     @IBOutlet var remainDayLb:UILabel!
     @IBOutlet var moneyGetLb:UILabel!
-    @IBOutlet var stockNumLb:UILabel!
+//    @IBOutlet var stockNumLb:UILabel!
     
     
     @IBOutlet var pageC:UIImageView!
@@ -52,6 +52,7 @@ class CrowdfundingShopDetailVC: UITableViewController ,UIWebViewDelegate{
     let screenWidth = UIScreen.main.bounds.size.width
     let detailWebViewSection = 2
     var data:WooGoodsItem?
+    var selectedOptionIndex:Int = 0
     
     var activeFlag:Bool = false
     
@@ -136,10 +137,6 @@ class CrowdfundingShopDetailVC: UITableViewController ,UIWebViewDelegate{
                 activeFlag = true
             }
             
-            if (data!.stock_quantity ?? 0) <= 0
-            {
-                activeFlag = false
-            }
             
         }
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "crowdfundingTimeOut"), object: self, userInfo: ["data":activeFlag])
@@ -217,11 +214,21 @@ class CrowdfundingShopDetailVC: UITableViewController ,UIWebViewDelegate{
             priceBtn.layer.borderColor = UIColor.lightGray.cgColor
             priceBtn.isSelected = false
         }
+        
         let index = priceBtns.index(of: btn)!
+        self.selectedOptionIndex = index
         btn.isSelected = true
         btn.layer.borderColor = UIColor(red:255/255.0, green:38/255.0, blue:0/255.0, alpha: 1).cgColor
         selectedPriceLb.text = btn.titleLabel?.text
         selectedDisLb.text = data?.attributes[index].options[0] ?? ""
+        if (data?.attributes[index].options.count ?? 0) > 1, let imageUrl = data?.attributes[index].options[1]
+        {
+             selectedImage.image(fromUrl: imageUrl)
+        }
+        else
+        {
+            selectedImage.image(fromUrl: "")
+        }
     }
     
     override func viewDidLayoutSubviews() {

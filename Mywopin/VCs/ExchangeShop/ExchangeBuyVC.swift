@@ -18,7 +18,8 @@ class ExchangeBuyVC: UIViewController ,PayRequestDelegate{
     @IBOutlet var exchange_priceLf:UILabel!
     @IBOutlet var addressLf:UILabel!
     @IBOutlet var numEditer:BuyNumEditer!
-    var oldGoods:WooGoodsItem?
+//    var oldGoods:WooGoodsItem?
+    var discountPrice:String = ""
     var goods:WooGoodsItem?
     var order:ExchangeOrderItem?
     var _parent:UIViewController?
@@ -29,9 +30,9 @@ class ExchangeBuyVC: UIViewController ,PayRequestDelegate{
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        exchange_priceLf.text = (oldGoods?.price)! + Language.getString("元")
+        exchange_priceLf.text = discountPrice + Language.getString("元")
         original_priceLf.text = (goods?.price)! + Language.getString("元")
-        priceLf.text = "\((Int(goods!.price)! * Int(numEditer.numLf.text!)! - Int(oldGoods!.price)!) )\(Language.getString("元"))"
+        priceLf.text = "\((Int(goods!.price)! * Int(numEditer.numLf.text!)! - (Int(discountPrice) ?? 0)) )\(Language.getString("元"))"
         if let _selectedAddress = selectedAddress ?? getDefaultAddress()
         {
             
@@ -46,7 +47,7 @@ class ExchangeBuyVC: UIViewController ,PayRequestDelegate{
     func onchange()
     {
         
-        priceLf.text = "\((Int(goods!.price)! * Int(numEditer.numLf.text!)! - Int(oldGoods!.price)!) )\(Language.getString("元"))"
+        priceLf.text = "\((Int(goods!.price)! * Int(numEditer.numLf.text!)! - (Int(discountPrice) ?? 0) ) )\(Language.getString("元"))"
     }
     
     @IBAction func changeAddress()
@@ -72,7 +73,7 @@ class ExchangeBuyVC: UIViewController ,PayRequestDelegate{
         if let _selectedAddress = selectedAddress ?? getDefaultAddress()
         {
             HUD.show(.progress)
-            _ = Wolf.request(type: MyAPI.payMentExchange(addressId: _selectedAddress.addressId, title: goods?.name ?? "", image: goods?.images.first?.src ?? "", goodsId: goods!.id, num: Int(numEditer.numLf.text!)!, offerPrice: Int(oldGoods!.price)!, singlePrice: Int(goods!.price)!), completion: { (order: ExchangeOrderItem?, msg, code) in
+            _ = Wolf.request(type: MyAPI.payMentExchange(addressId: _selectedAddress.addressId, title: goods?.name ?? "", image: goods?.images.first?.src ?? "", goodsId: goods!.id, num: Int(numEditer.numLf.text!)!, offerPrice: Int(discountPrice) ?? 0, singlePrice: Int(goods!.price)!), completion: { (order: ExchangeOrderItem?, msg, code) in
                 
                 HUD.hide()
                 if(code == "0" ){

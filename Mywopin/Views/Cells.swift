@@ -195,7 +195,125 @@ class CrowdfundingCell: UITableViewCell {
     }
 }
 
-
+class Crowdfunding2Cell: UITableViewCell {
+    
+    @IBOutlet weak var imagePic: UIImageView!
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var persTitle: UILabel!
+    @IBOutlet weak var price: UILabel!
+    @IBOutlet weak var per_Silder: UISlider!
+    var sliderLabel: UILabel?
+    
+    @IBOutlet var numPeopleLb:UILabel!
+    @IBOutlet var remainDayLb:UILabel!
+    @IBOutlet var moneyGetLb:UILabel!
+    func createSliderUI()
+    {
+        if(sliderLabel != nil){
+            return
+        }
+        if let handleView = self.per_Silder.subviews.last as? UIImageView {
+            let s_thumb = UIImageView(image: UIImage(named: "slider_b"))
+            s_thumb.frame = CGRect(x: (handleView.bounds.width-50)/2, y: 0, width: 60, height: handleView.bounds.height)
+            handleView.addSubview(s_thumb)
+            
+            let label = UILabel(frame: s_thumb.frame)
+            label.backgroundColor = .clear
+            label.textAlignment = .center
+            handleView.addSubview(label)
+            
+            self.sliderLabel = label
+            //set label font, size, color, etc.
+            label.text = "50%"
+        }
+    }
+    func configure(goods:WooGoodsItem) -> Void {
+        if goods.images.count > 0
+        {
+            //            Log(goods.images.first!.src)
+            imagePic.image(fromUrl: goods.images.first!.src)
+        }
+        
+        
+        titleLabel.text = goods.name
+        
+        _ = Wolf.requestList(type: MyAPI.crowdfundingOrderTotalPeople(goodsId: goods.id), completion: { (info: [CrowdfundingPeople]?, msg, code) in
+            if(code == "0" )
+            {
+                if(info != nil && info!.count>0)
+                {
+                    self.numPeopleLb.text = "\(Int(info![0].totalPeople!))"
+                }
+                else
+                {
+                    self.numPeopleLb.text = "0 "
+                }
+            }
+            else
+            {
+                _ = SweetAlert().showAlert("", subTitle: msg, style: AlertStyle.warning)
+            }
+        }, failure: nil)
+        
+        _ = Wolf.requestList(type: MyAPI.crowdfundingOrderTotalMoney(goodsId: goods.id), completion: { (info: [CrowdfundingMoney]?, msg, code) in
+            if(code == "0" )
+            {
+                var totalPrice = 0
+                if(info != nil && info!.count>0)
+                {
+                    totalPrice = Int(info![0].totalPrice!)
+                }
+                if(self.sliderLabel == nil){
+                    self.createSliderUI()
+                }
+                self.moneyGetLb.text = "\(totalPrice) 元"
+                let persent = Int(totalPrice * 100 / Int(goods.price)!)
+                self.per_Silder.value = Float(CGFloat(persent)/100)
+                self.sliderLabel?.text = "\(persent)%"
+            }
+            else
+            {
+                _ = SweetAlert().showAlert("", subTitle: msg, style: AlertStyle.warning)
+            }
+        }, failure: nil)
+        
+        
+        
+        if let date_from =  goods.date_on_sale_from , let date_to = goods.date_on_sale_to
+        {
+            let dateFormatterGet = DateFormatter()
+            dateFormatterGet.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
+            
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "yyyy-MM-dd"
+            
+            let time_from = dateFormatterGet.date(from: date_from)!//2017-08-28T08:24:37
+            let time2 = dateFormatterGet.date(from: date_to)!//2017-08-28T08:24:37
+            let calendar = Calendar.current
+            let date1 = calendar.startOfDay(for: Date())
+            let date2 = calendar.startOfDay(for: time2)
+            
+            if time_from > Date()
+            {
+                remainDayLb.text = "\(dateFormatter.string(from: time_from)) 开始"
+             
+            }
+            else if Date() > time2
+            {
+                remainDayLb.text = "活动已结束"
+            }
+            else
+            {
+                let components = calendar.dateComponents([.day], from: date1, to: date2).day!
+                remainDayLb.text = "\(components)天"
+            
+            }
+            
+        }
+    }
+    
+    
+}
 
 class ExchangeOrderCell: UITableViewCell {
     

@@ -22,6 +22,7 @@ class ExchangeShopDetailVC: UITableViewController ,UIWebViewDelegate{
     @IBOutlet var stockNumLb:UILabel!
     @IBOutlet var dateLb:UILabel!
     
+    @IBOutlet var oldGoodsLb:UILabel!
     
     @IBOutlet var pageC:UIImageView!
     let scrollView = UIScrollView()
@@ -36,7 +37,8 @@ class ExchangeShopDetailVC: UITableViewController ,UIWebViewDelegate{
     let screenWidth = UIScreen.main.bounds.size.width
     let detailWebViewSection = 2
     var data:WooGoodsItem?
-    var oldGoods:WooGoodsItem?
+    var discountPrice:String = "0"
+//    var oldGoods:WooGoodsItem?
     
     var activeFlag:Bool = false
     
@@ -66,6 +68,11 @@ class ExchangeShopDetailVC: UITableViewController ,UIWebViewDelegate{
         subTitleLb.text = _subTitle.filterHTML()
         priceLb.text = "¥"+data!.price
         stockNumLb.text = "库存：\(data!.stock_quantity ?? 0)"
+        if (data?.attributes.count ?? 0) > 0
+        {
+            discountPrice = data?.attributes[0].name ?? "0"
+            oldGoodsLb.text = data?.attributes[0].options[0] ?? ""
+        }
         
         if let date_from =  data?.date_on_sale_from , let date_to = data?.date_on_sale_to
         {
@@ -183,51 +190,51 @@ class ExchangeShopDetailVC: UITableViewController ,UIWebViewDelegate{
         
         createImages()
     
-        _ = Wolf.requestBaseList(type: WooAPI.getExchangeOldProducts, completion: { (goods: [WooGoodsItem]?, msg, code) in
-            if(code == "0")
-            {
-                Log(goods?.count)
-                if let goodsItems = goods
-                {
-                    self.oldProducts = goodsItems
-                    self.tableView.reloadData()
-                    
-                    var choices:[String] = [] // ["第一个选项", "第二个选项", "第三个选项", "第四个选项"]
-                    for oldGoods in goodsItems
-                    {
-                        choices.append(oldGoods.name);
-                    }
-                    
-                    let defaultTitle = "请选择以旧换新的产品"
-                    let rect = CGRect(x: 0, y: 0, width: self.dropBoxViewContainer.frame.width , height: self.dropBoxViewContainer.frame.height)
-                    let dropBoxView = TGDropBoxView(parentVC: self, title: defaultTitle, items: choices, frame: rect)
-                    dropBoxView.isHightWhenShowList = true
-                    dropBoxView.willShowOrHideBoxListHandler = { (isShow) in
-                        if isShow { NSLog("will show choices") }
-                        else { NSLog("will hide choices") }
-                    }
-                    dropBoxView.didShowOrHideBoxListHandler = { (isShow) in
-                        if isShow { NSLog("did show choices") }
-                        else { NSLog("did hide choices") }
-                    }
-                    dropBoxView.didSelectBoxItemHandler = { (row) in
-                        NSLog("selected No.\(row): \(dropBoxView.currentTitle())")
-                        self.oldGoods = self.oldProducts[row]
-                    }
-                    self.dropBoxViewContainer.addSubview(dropBoxView)
-                    
-//                    dropBoxView.layer.cornerRadius = 5
-                    dropBoxView.layer.borderWidth = 1
-                    dropBoxView.layer.borderColor = UIColor.lightGray.cgColor
-                    
-                    
-                }
-            }
-            else
-            {
-                _ = SweetAlert().showAlert("Sorry", subTitle: msg, style: AlertStyle.warning)
-            }
-        }, failure: nil)
+//        _ = Wolf.requestBaseList(type: WooAPI.getExchangeOldProducts, completion: { (goods: [WooGoodsItem]?, msg, code) in
+//            if(code == "0")
+//            {
+//                Log(goods?.count)
+//                if let goodsItems = goods
+//                {
+//                    self.oldProducts = goodsItems
+//                    self.tableView.reloadData()
+//
+//                    var choices:[String] = [] // ["第一个选项", "第二个选项", "第三个选项", "第四个选项"]
+//                    for oldGoods in goodsItems
+//                    {
+//                        choices.append(oldGoods.name);
+//                    }
+//
+//                    let defaultTitle = "请选择以旧换新的产品"
+//                    let rect = CGRect(x: 0, y: 0, width: self.dropBoxViewContainer.frame.width , height: self.dropBoxViewContainer.frame.height)
+//                    let dropBoxView = TGDropBoxView(parentVC: self, title: defaultTitle, items: choices, frame: rect)
+//                    dropBoxView.isHightWhenShowList = true
+//                    dropBoxView.willShowOrHideBoxListHandler = { (isShow) in
+//                        if isShow { NSLog("will show choices") }
+//                        else { NSLog("will hide choices") }
+//                    }
+//                    dropBoxView.didShowOrHideBoxListHandler = { (isShow) in
+//                        if isShow { NSLog("did show choices") }
+//                        else { NSLog("did hide choices") }
+//                    }
+//                    dropBoxView.didSelectBoxItemHandler = { (row) in
+//                        NSLog("selected No.\(row): \(dropBoxView.currentTitle())")
+//                        self.oldGoods = self.oldProducts[row]
+//                    }
+//                    self.dropBoxViewContainer.addSubview(dropBoxView)
+//
+////                    dropBoxView.layer.cornerRadius = 5
+//                    dropBoxView.layer.borderWidth = 1
+//                    dropBoxView.layer.borderColor = UIColor.lightGray.cgColor
+//
+//
+//                }
+//            }
+//            else
+//            {
+//                _ = SweetAlert().showAlert("Sorry", subTitle: msg, style: AlertStyle.warning)
+//            }
+//        }, failure: nil)
     }
 
     

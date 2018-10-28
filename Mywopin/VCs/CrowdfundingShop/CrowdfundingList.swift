@@ -86,7 +86,7 @@ class CrowdfundingList: UITableViewController {
     
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "CrowdfundingCell", for: indexPath) as! CrowdfundingCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Crowdfunding2Cell", for: indexPath) as! Crowdfunding2Cell
         let goods = self.goods[indexPath.row]
         cell.configure(goods: goods);
         

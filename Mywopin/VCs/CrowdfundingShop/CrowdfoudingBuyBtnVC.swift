@@ -65,6 +65,7 @@ class CrowdfoudingBuyBtnVC: UIViewController {
         let vc = R.storyboard.shop.crowfoudingBuyVC()
         vc?.modalPresentationStyle = .custom
         vc?.goods = detailPage.data
+        vc?.selectedOptionIndex = detailPage.selectedOptionIndex
         self.present(vc!, animated: true, completion: { vc?.bgImage.backgroundColor = UIColor(red:0/255.0, green:0/255.0, blue:0/255.0, alpha: 0.5)})
         
     }

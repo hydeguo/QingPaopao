@@ -62,25 +62,25 @@ class ExchangeBuyBtnVC: UIViewController {
         guard let detailPage = childViewControllers.first as? ExchangeShopDetailVC else  {
             fatalError("Check storyboard for missing LocationTableViewController")
         }
-        if let exchagneGoods = detailPage.oldGoods
-        {
+//        if let exchagneGoods = detailPage.oldGoods
+//        {
             let vc = R.storyboard.shop.exchangeBuyVC()
             vc?.modalPresentationStyle = .custom
-            vc?.oldGoods = exchagneGoods
+            vc?.discountPrice = detailPage.discountPrice
             vc?.goods = detailPage.data
             vc?._parent = self
             self.present(vc!, animated: true, completion: { vc?.bgImage.backgroundColor = UIColor(red:0/255.0, green:0/255.0, blue:0/255.0, alpha: 0.5)})
-        }
-        else
-        {
-            
-            _ = SweetAlert().showAlert("Sorry", subTitle: Language.getString("请选择以旧换新的商品"), style: AlertStyle.warning)
+//        }
+//        else
+//        {
+//
+//            _ = SweetAlert().showAlert("Sorry", subTitle: Language.getString("请选择以旧换新的商品"), style: AlertStyle.warning)
 //            let vc = R.storyboard.shop.exchangeNewBuyVC()
 //            vc?.modalPresentationStyle = .custom
 //            vc?.goods = detailPage.data
 //            vc?.parentView = detailPage
 //            self.present(vc!, animated: true, completion: { vc?.bgImage.backgroundColor = UIColor(red:0/255.0, green:0/255.0, blue:0/255.0, alpha: 0.5)})
-        }
+//        }
         
     }
 }

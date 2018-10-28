@@ -38,7 +38,14 @@ class CrowfoudingBuyVC: UIViewController,PayRequestDelegate {
             selectedPrice = Int(option.name)!
             priceLf.text = "¥"+option.name
             titleLf.text = option.options[0]
-            goodsImage.image(fromUrl: goods!.images.first!.src)
+            if (option.options.count ) > 1
+            {
+                goodsImage.image(fromUrl: option.options[1])
+            }
+            else
+            {
+                goodsImage.image(fromUrl: "")
+            }
         }
         if let _selectedAddress = selectedAddress ?? getDefaultAddress()
         {
