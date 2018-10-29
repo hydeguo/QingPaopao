@@ -39,7 +39,7 @@ enum MyAPI {
     case getTodayDrinkList
     case getDrinkList
     case getUserData
-    case exchangeOrderUpdate(orderId:String,expressId:String,expressName:String,infoUserName:String,infoSex:String,infoPhone:String,infoCupModel:String,infoCupColor:String,infoBuyTime:String,infoUsage:String)
+    case exchangeOrderUpdate(orderId:String,expressId:String,expressName:String,infoUserName:String,infoPhone:String)
     case orderStatusUpdate(orderId:String,status:Int)
     case deleteOrder(orderId:String)
     case crowdfundingOrderTotalMoney(goodsId:Int)
@@ -127,8 +127,8 @@ extension MyAPI: TargetType {
             return .requestParameters(parameters: p, encoding: URLEncoding.default)
         case .drink(let target, let cupId):
             return .requestParameters(parameters: ["target" : target,"uuid" : cupId], encoding: URLEncoding.default)
-        case .exchangeOrderUpdate(let orderId , let expressId ,let expressName,let infoUserName,let infoSex,let infoPhone,let infoCupModel,let infoCupColor,let infoBuyTime ,let infoUsage):
-            return .requestParameters(parameters: ["orderId" : orderId,"expressId" : expressId,"expressName" : expressName,"infoUserName" : infoUserName,"infoSex" : infoSex,"infoPhone" : infoPhone,"infoCupModel" : infoCupModel,"infoCupColor" : infoCupColor,"infoBuyTime" : infoBuyTime,"infoUsage" : infoUsage], encoding: URLEncoding.default)
+        case .exchangeOrderUpdate(let orderId , let expressId ,let expressName,let infoUserName,let infoPhone):
+            return .requestParameters(parameters: ["orderId" : orderId,"expressId" : expressId,"expressName" : expressName,"infoUserName" : infoUserName,"infoPhone" : infoPhone], encoding: URLEncoding.default)
         case .orderStatusUpdate(let orderId , let status):
             return .requestParameters(parameters: ["orderId" : orderId,"status" : status], encoding: URLEncoding.default)
         case .deleteOrder(let orderId ):

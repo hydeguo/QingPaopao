@@ -46,7 +46,7 @@ class SystemSettingVC: UITableViewController {
 
 class VersionVC: UITableViewController {
     
-    @IBOutlet var verstionLB :UILabel!
+    @IBOutlet var verstionLB :UILabel?
     var appStoreVersion:String?
     var isNewest:Bool = false
     //MARK: Check if user is signed in or not
@@ -75,7 +75,7 @@ class VersionVC: UITableViewController {
         if let curverion = infoDictionary? ["CFBundleShortVersionString"] as? String,
             let identifier = infoDictionary?["CFBundleIdentifier"] as? String,let url = URL(string: "http://itunes.apple.com/lookup?bundleId=\(identifier)")
         {
-            verstionLB.text = "V\(curverion)"
+            verstionLB?.text = "V\(curverion)"
             
             do{
                 

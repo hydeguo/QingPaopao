@@ -167,12 +167,7 @@ class DrinkViewController: UIViewController, CLLocationManagerDelegate {
             }
             if identifier == "clean"
             {
-                if  startElectrolyFlag == true
-                {
-                    _ = SweetAlert().showAlert("提示", subTitle: "正在电解中", style: AlertStyle.none)
-                    return false
-                }
-                else if currentCup?.type == DeviceTypeBLE && BLEController.shared.cleanFlag ==  true && BLEController.shared.connectedDevice?.state == .connected
+                if currentCup?.type == DeviceTypeBLE && BLEController.shared.cleanFlag ==  true && BLEController.shared.connectedDevice?.state == .connected
                 {
                     _ = SweetAlert().showAlert("提示", subTitle: "清洗已经完成，請倒掉水和重開水杯", style: AlertStyle.none)
                     return false
@@ -182,6 +177,13 @@ class DrinkViewController: UIViewController, CLLocationManagerDelegate {
                     _ = SweetAlert().showAlert("提示", subTitle: "清洗已经完成，請倒掉水和重開水杯", style: AlertStyle.none)
                     return false
                 }
+                else if  startElectrolyFlag == true
+                {
+//                    _ = SweetAlert().showAlert("提示", subTitle: "正在电解中", style: AlertStyle.none)
+//                    return false
+                    stopElectroly()
+                }
+                
                 if let _cur = currentCup
                 {
                     var cupPower = 0

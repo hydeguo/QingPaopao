@@ -30,8 +30,19 @@ class ExchangeBuyVC: UIViewController ,PayRequestDelegate{
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        
+        let previousPrice = (goods?.price)! + Language.getString("元")
+        let attributeString: NSMutableAttributedString = NSMutableAttributedString(string: previousPrice, attributes: [:])
+        attributeString.addAttribute(NSAttributedStringKey.baselineOffset, value: 0, range: NSMakeRange(0, attributeString.length))
+        attributeString.addAttribute(NSAttributedStringKey.strikethroughStyle, value: 1, range: NSMakeRange(0, attributeString.length))
+        attributeString.addAttribute(NSAttributedStringKey.foregroundColor, value: UIColor.black, range: NSRange(location:0,length:attributeString.length))
+        
+        let currentPrice : NSMutableAttributedString = NSMutableAttributedString(string: "")
+        currentPrice.append(attributeString)
+        original_priceLf.attributedText = currentPrice
+        
         exchange_priceLf.text = discountPrice + Language.getString("元")
-        original_priceLf.text = (goods?.price)! + Language.getString("元")
+//        original_priceLf.text = (goods?.price)! + Language.getString("元")
         priceLf.text = "\((Int(goods!.price)! * Int(numEditer.numLf.text!)! - (Int(discountPrice) ?? 0)) )\(Language.getString("元"))"
         if let _selectedAddress = selectedAddress ?? getDefaultAddress()
         {
@@ -47,7 +58,7 @@ class ExchangeBuyVC: UIViewController ,PayRequestDelegate{
     func onchange()
     {
         
-        priceLf.text = "\((Int(goods!.price)! * Int(numEditer.numLf.text!)! - (Int(discountPrice) ?? 0) ) )\(Language.getString("元"))"
+        priceLf.text = "\((Int(goods!.price)! - (Int(discountPrice) ?? 0) ) * Int(numEditer.numLf.text!)!  )\(Language.getString("元"))"
     }
     
     @IBAction func changeAddress()
@@ -85,19 +96,11 @@ class ExchangeBuyVC: UIViewController ,PayRequestDelegate{
                         }
                         
                         self.order = myOrder
-//                        let payPrice = Int(self.goods!.price)! * Int(self.numEditer.numLf.text!)! - Int(self.oldGoods!.price)!
-//                        let address1Line = self.addressLf.text
-//                        PaySDK.instance.payDelegate = self
-//                        PaySDK.instance.getWechatPaySign(totalAmount: payPrice * 100, subject: address1Line!, payTitle: self.goods!.name,orderId:myOrder.orderId)
-                        
-                        _ = SweetAlert().showAlert(Language.getString("订单提交成功"), subTitle: "请寄回旧商品后，在订单详情里填写回寄水杯的具体信息", style: AlertStyle.success,buttonTitle: "确定", action: { _ in
-                            self.closeAction();
-                            
-//                            let orderInfo = R.storyboard.main.returnOrderNumVC()!
-//                            orderInfo.order = myOrder
-//                            self._parent?.show(orderInfo, sender: nil)
-                        })
-                        
+                        let payPrice = ((Int(self.goods!.price) ?? 0) - (Int(self.discountPrice) ?? 0 ))  * Int(self.numEditer.numLf.text!)!
+                        let address1Line = self.addressLf.text
+                        PaySDK.instance.payDelegate = self
+                        PaySDK.instance.getWechatPaySign(totalAmount: payPrice * 100, subject: address1Line!, payTitle: self.goods!.name,orderId:myOrder.orderId)
+  
                     }
                 }
                 
@@ -129,8 +132,14 @@ class ExchangeBuyVC: UIViewController ,PayRequestDelegate{
             HUD.hide()
             if(code == "0")
             {
-                _ = SweetAlert().showAlert(Language.getString("订单提交成功"), subTitle: "", style: AlertStyle.success,buttonTitle: "确定", action: { _ in
+          
+                _ = SweetAlert().showAlert(Language.getString("订单提交成功"), subTitle: "请继续完成申请表", style: AlertStyle.success,buttonTitle: "确定", action: { _ in
                     self.closeAction();
+                    
+                    let orderInfo = R.storyboard.main.returnOrderNumVC()!
+                    orderInfo.order = self.order
+                    self._parent?.show(orderInfo, sender: nil)
+
                 })
             }
             else

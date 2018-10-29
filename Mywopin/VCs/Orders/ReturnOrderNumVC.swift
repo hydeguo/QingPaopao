@@ -16,12 +16,7 @@ class ReturnOrderNumVC: UITableViewController ,UITextFieldDelegate,PayRequestDel
     @IBOutlet var deliveryExpressName:UITextField!
     
     @IBOutlet var infoUserNameTF:UITextField!
-    @IBOutlet var infoSexTF:UITextField!
     @IBOutlet var infoPhoneTF:UITextField!
-    @IBOutlet var infoCupModelTF:UITextField!
-    @IBOutlet var infoCupColorTF:UITextField!
-    @IBOutlet var infoBuyTimeTF:UITextField!
-    @IBOutlet var infoUsageTF:UITextField!
     
     @IBOutlet var buyBtn:UIButton?
     
@@ -35,42 +30,31 @@ class ReturnOrderNumVC: UITableViewController ,UITextFieldDelegate,PayRequestDel
         deliveryExpressName.text = order?.expressReturnName ?? ""
         
         infoUserNameTF.text = order?.infoUserName ?? ""
-        infoSexTF.text = order?.infoSex ?? ""
         infoPhoneTF.text = order?.infoPhone ?? ""
-        infoCupModelTF.text = order?.infoCupModel ?? ""
-        infoCupColorTF.text = order?.infoCupColor ?? ""
-        infoBuyTimeTF.text = order?.infoBuyTime ?? ""
-        infoUsageTF.text = order?.infoUsage ?? ""
-        
         
         deliveryOrder.delegate = self
         deliveryExpressName.delegate = self
         infoUserNameTF.delegate = self
-        infoSexTF.delegate = self
         infoPhoneTF.delegate = self
-        infoCupModelTF.delegate = self
-        infoCupColorTF.delegate = self
-        infoBuyTimeTF.delegate = self
-        infoUsageTF.delegate = self
         
-        if order!.orderStatus != orderStatusArr[0]
-        {
-            buyBtn?.isEnabled = false
-            buyBtn?.backgroundColor = UIColor.lightGray
-        }
+//        if order!.orderStatus != orderStatusArr[0]
+//        {
+//            buyBtn?.isEnabled = false
+//            buyBtn?.backgroundColor = UIColor.lightGray
+//        }
     }
     
     func textFieldDidBeginEditing(_ textField: UITextField) -> Void {
         
-        if(textField == infoUsageTF || textField == deliveryOrder || textField == deliveryExpressName){
-            
-            KeyboardAvoiding.avoidingView = self.tableView
-        }else{
-            if KeyboardAvoiding.isKeyboardVisible == false
-            {
-                KeyboardAvoiding.avoidingView = nil
-            }
-        }
+//        if(textField == infoUsageTF || textField == deliveryOrder || textField == deliveryExpressName){
+//
+//            KeyboardAvoiding.avoidingView = self.tableView
+//        }else{
+//            if KeyboardAvoiding.isKeyboardVisible == false
+//            {
+//                KeyboardAvoiding.avoidingView = nil
+//            }
+//        }
         
     }
     
@@ -87,28 +71,27 @@ class ReturnOrderNumVC: UITableViewController ,UITextFieldDelegate,PayRequestDel
         if deliveryOrder.text?.count == 0  ||
             deliveryExpressName.text?.count == 0 ||
             infoUserNameTF.text?.count == 0 ||
-            infoSexTF.text?.count == 0 ||
-            infoPhoneTF.text?.count == 0 ||
-            infoCupModelTF.text?.count == 0 ||
-            infoCupColorTF.text?.count == 0 ||
-            infoBuyTimeTF.text?.count == 0 ||
-            infoUsageTF.text?.count == 0
+            infoPhoneTF.text?.count == 0
         {
             _ = SweetAlert().showAlert("Sorry", subTitle: "请填写完整信息", style: AlertStyle.warning)
             return
         }
         
         
-        HUD.show(.progress)
-        
-        _ = Wolf.request(type: MyAPI.exchangeOrderUpdate(orderId: order!.orderId, expressId: deliveryOrder.text!,expressName:deliveryExpressName.text!, infoUserName: infoUserNameTF.text!, infoSex: infoSexTF.text!, infoPhone: infoPhoneTF.text!, infoCupModel: infoCupModelTF.text!, infoCupColor: infoCupColorTF.text!, infoBuyTime: infoBuyTimeTF.text!, infoUsage: infoUsageTF.text!), completion: { (order: BaseReponse?, msg, code) in
+        _ = Wolf.request(type: MyAPI.exchangeOrderUpdate(orderId: order!.orderId, expressId: deliveryOrder.text!,expressName:deliveryExpressName.text!, infoUserName: infoUserNameTF.text!, infoPhone: infoPhoneTF.text!), completion: { (order: BaseReponse?, msg, code) in
             
             if(code == "0")
             {
                 self.order?.expressReturnId = self.deliveryOrder.text!;
                 self.order?.expressReturnName = self.deliveryExpressName.text!;
-//                _ = SweetAlert().showAlert(Language.getString("保存成功"), subTitle: "", style: AlertStyle.success)
-                self.payAction();
+                _ = SweetAlert().showAlert(Language.getString("保存成功"), subTitle: "", style: AlertStyle.success,buttonTitle: "确定", action: { _ in
+                    if(self.navigationController != nil){
+                        self.navigationController?.popViewController(animated: true)
+                    }else{
+                        self.dismiss(animated: true, completion: nil)
+                    }
+                })
+//                self.payAction();
             }
             else
             {
