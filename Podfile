@@ -21,6 +21,7 @@ target 'Mywopin' do
 #    pod 'mob_paysdk/Channels/AliPay'
 #    pod 'mob_paysdk/Channels/UnionPay'
     pod 'Disk', '~> 0.3.3'
+    pod 'Toast-Swift'
     pod 'WordPress-Aztec-iOS', '1.0.2'
     pod 'WordPress-Editor-iOS', '1.0.2'
     pod 'Gridicons'

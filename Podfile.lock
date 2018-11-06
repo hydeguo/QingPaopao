@@ -83,6 +83,7 @@ PODS:
     - RxSwift (~> 4.0)
   - RxSwift (4.3.1)
   - SwiftyTimer (2.0.0)
+  - Toast-Swift (4.0.0)
   - WordPress-Aztec-iOS (1.0.2)
   - WordPress-Editor-iOS (1.0.2):
     - WordPress-Aztec-iOS (= 1.0.2)
@@ -104,6 +105,7 @@ DEPENDENCIES:
   - QRCodeReader.swift (~> 8.2.0)
   - R.swift
   - RxCocoa (~> 4.0)
+  - Toast-Swift
   - WordPress-Aztec-iOS (= 1.0.2)
   - WordPress-Editor-iOS (= 1.0.2)
 
@@ -137,6 +139,7 @@ SPEC REPOS:
     - RxCocoa
     - RxSwift
     - SwiftyTimer
+    - Toast-Swift
     - WordPress-Aztec-iOS
     - WordPress-Editor-iOS
 
@@ -169,9 +172,10 @@ SPEC CHECKSUMS:
   RxCocoa: 78763c7b07d02455598d9fc3c1ad091a28b73635
   RxSwift: fe0fd770a43acdb7d0a53da411c9b892e69bb6e4
   SwiftyTimer: 2efd74b060d69ad4f1496baf5bbedbe132125fcf
+  Toast-Swift: 594b5c5e5129f15438e410207e43287f027b3c00
   WordPress-Aztec-iOS: a736985cc6de6ffceb30a03e380d849b4956ae51
   WordPress-Editor-iOS: 571e9a168881af4cbe6cc909af603c278a5f0fe3
 
-PODFILE CHECKSUM: 76895b6152b935b45b48bda728eea6eb5e109b2d
+PODFILE CHECKSUM: e6556b6da95d9112ee00cbdf0fa729fabb6a6f9e
 
 COCOAPODS: 1.5.3

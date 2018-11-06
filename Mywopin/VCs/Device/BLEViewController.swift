@@ -109,6 +109,10 @@ class BLEViewController: UIViewController {
         
     }
     
+    @IBAction func onClickMore()
+    {
+        self.view.makeToast(Language.getString("刷新中"))
+    }
 
     @IBAction func onReturn()
     {

@@ -170,7 +170,7 @@ class DeviceListViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         
-        let deleteAction = UIContextualAction.init(style: UIContextualAction.Style.destructive, title: "Delete", handler: { (action, view, completion) in
+        let deleteAction = UIContextualAction.init(style: UIContextualAction.Style.destructive, title: "删除", handler: { (action, view, completion) in
             if (self.cups.count > 0) {
                 print("Deleted \(self.cups[indexPath.row].uuid)")
                 _ = Wolf.request(type: MyAPI.deleteACup(uuid: self.cups[indexPath.row].uuid), completion: { (user: User?, msg, code) in

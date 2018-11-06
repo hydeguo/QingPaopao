@@ -1051,7 +1051,7 @@ struct R: Rswift.Validatable {
   
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 41 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 42 localization keys.
     struct localizable {
       /// zh-Hans translation: 今天喝水统计
       /// 
@@ -1077,6 +1077,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: zh-Hans
       static let 关注话题 = Rswift.StringResource(key: "关注话题", tableName: "Localizable", bundle: R.hostingBundle, locales: ["zh-Hans"], comment: nil)
+      /// zh-Hans translation: 刷新中...
+      /// 
+      /// Locales: zh-Hans
+      static let 刷新中 = Rswift.StringResource(key: "刷新中", tableName: "Localizable", bundle: R.hostingBundle, locales: ["zh-Hans"], comment: nil)
       /// zh-Hans translation: 发布成功
       /// 
       /// Locales: zh-Hans
@@ -1258,6 +1262,13 @@ struct R: Rswift.Validatable {
       /// Locales: zh-Hans
       static func 关注话题(_: Void = ()) -> String {
         return NSLocalizedString("关注话题", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// zh-Hans translation: 刷新中...
+      /// 
+      /// Locales: zh-Hans
+      static func 刷新中(_: Void = ()) -> String {
+        return NSLocalizedString("刷新中", bundle: R.hostingBundle, comment: "")
       }
       
       /// zh-Hans translation: 发布成功
