@@ -269,11 +269,10 @@ class OrderListVC: UITableViewController,PayRequestDelegate {
     //    }
     
     
-    override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+    override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         
         
-        let delete = UITableViewRowAction(style: .destructive, title: "删除") { (action, indexPath) in
-            
+        let deleteAction = UIContextualAction.init(style: UIContextualAction.Style.destructive, title: "删除", handler: { (action, view, completion) in
             var orderId = ""
             if self.currentType == 0{
                 let order = self.scoresList[indexPath.row]
@@ -296,7 +295,8 @@ class OrderListVC: UITableViewController,PayRequestDelegate {
                 
                 self.tableView.reloadData()
             }, failure: nil)
-        }
+        })
+        
         var orderStatus = ""
         if currentType == 0{
             let order = scoresList[indexPath.row]
@@ -311,10 +311,19 @@ class OrderListVC: UITableViewController,PayRequestDelegate {
             orderStatus = order.orderStatus ?? ""
         }
         if orderStatus == orderStatusArr[0]{
-            return [delete]
+            
+            let config = UISwipeActionsConfiguration(actions: [deleteAction])   
+            config.performsFirstActionWithFullSwipe = false
+            return config
         }else{
-            return []
+            let config = UISwipeActionsConfiguration(actions: [])
+            config.performsFirstActionWithFullSwipe = false
+            return config
         }
+        
+
+        
+        
         
     }
     
