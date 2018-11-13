@@ -149,7 +149,7 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
   
-  /// This `R.image` struct is generated, and contains static references to 87 images.
+  /// This `R.image` struct is generated, and contains static references to 90 images.
   struct image {
     /// Image `AMCP_color_wheel`.
     static let amcp_color_wheel = Rswift.ImageResource(bundle: R.hostingBundle, name: "AMCP_color_wheel")
@@ -187,6 +187,8 @@ struct R: Rswift.Validatable {
     static let clean = Rswift.ImageResource(bundle: R.hostingBundle, name: "clean")
     /// Image `closeBtn`.
     static let closeBtn = Rswift.ImageResource(bundle: R.hostingBundle, name: "closeBtn")
+    /// Image `collectionIcon`.
+    static let collectionIcon = Rswift.ImageResource(bundle: R.hostingBundle, name: "collectionIcon")
     /// Image `comment-1`.
     static let comment1 = Rswift.ImageResource(bundle: R.hostingBundle, name: "comment-1")
     /// Image `comment`.
@@ -239,6 +241,8 @@ struct R: Rswift.Validatable {
     static let lightUI2 = Rswift.ImageResource(bundle: R.hostingBundle, name: "lightUI2")
     /// Image `light`.
     static let light = Rswift.ImageResource(bundle: R.hostingBundle, name: "light")
+    /// Image `likeIcon`.
+    static let likeIcon = Rswift.ImageResource(bundle: R.hostingBundle, name: "likeIcon")
     /// Image `like`.
     static let like = Rswift.ImageResource(bundle: R.hostingBundle, name: "like")
     /// Image `loading`.
@@ -247,6 +251,8 @@ struct R: Rswift.Validatable {
     static let more = Rswift.ImageResource(bundle: R.hostingBundle, name: "more")
     /// Image `msgBtn`.
     static let msgBtn = Rswift.ImageResource(bundle: R.hostingBundle, name: "msgBtn")
+    /// Image `msgIcon`.
+    static let msgIcon = Rswift.ImageResource(bundle: R.hostingBundle, name: "msgIcon")
     /// Image `numerous`.
     static let numerous = Rswift.ImageResource(bundle: R.hostingBundle, name: "numerous")
     /// Image `powerOff`.
@@ -416,6 +422,11 @@ struct R: Rswift.Validatable {
       return UIKit.UIImage(resource: R.image.closeBtn, compatibleWith: traitCollection)
     }
     
+    /// `UIImage(named: "collectionIcon", bundle: ..., traitCollection: ...)`
+    static func collectionIcon(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.collectionIcon, compatibleWith: traitCollection)
+    }
+    
     /// `UIImage(named: "comment", bundle: ..., traitCollection: ...)`
     static func comment(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.comment, compatibleWith: traitCollection)
@@ -551,6 +562,11 @@ struct R: Rswift.Validatable {
       return UIKit.UIImage(resource: R.image.like, compatibleWith: traitCollection)
     }
     
+    /// `UIImage(named: "likeIcon", bundle: ..., traitCollection: ...)`
+    static func likeIcon(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.likeIcon, compatibleWith: traitCollection)
+    }
+    
     /// `UIImage(named: "loading", bundle: ..., traitCollection: ...)`
     static func loading(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.loading, compatibleWith: traitCollection)
@@ -564,6 +580,11 @@ struct R: Rswift.Validatable {
     /// `UIImage(named: "msgBtn", bundle: ..., traitCollection: ...)`
     static func msgBtn(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.msgBtn, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "msgIcon", bundle: ..., traitCollection: ...)`
+    static func msgIcon(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.msgIcon, compatibleWith: traitCollection)
     }
     
     /// `UIImage(named: "numerous", bundle: ..., traitCollection: ...)`
@@ -769,12 +790,14 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
   
-  /// This `R.reuseIdentifier` struct is generated, and contains static references to 21 reuse identifiers.
+  /// This `R.reuseIdentifier` struct is generated, and contains static references to 28 reuse identifiers.
   struct reuseIdentifier {
     /// Reuse identifier `AddDevice`.
     static let addDevice: Rswift.ReuseIdentifier<AddDeviceCell> = Rswift.ReuseIdentifier(identifier: "AddDevice")
     /// Reuse identifier `AddressCell`.
     static let addressCell: Rswift.ReuseIdentifier<AddressCell> = Rswift.ReuseIdentifier(identifier: "AddressCell")
+    /// Reuse identifier `CommentMsgCell`.
+    static let commentMsgCell: Rswift.ReuseIdentifier<CommentMsgCell> = Rswift.ReuseIdentifier(identifier: "CommentMsgCell")
     /// Reuse identifier `CreditsOrderCell`.
     static let creditsOrderCell: Rswift.ReuseIdentifier<CreditsOrderCell> = Rswift.ReuseIdentifier(identifier: "CreditsOrderCell")
     /// Reuse identifier `Crowdfunding2Cell`.
@@ -785,16 +808,28 @@ struct R: Rswift.Validatable {
     static let crowdfundingOrderCell: Rswift.ReuseIdentifier<CrowdfundingOrderCell> = Rswift.ReuseIdentifier(identifier: "CrowdfundingOrderCell")
     /// Reuse identifier `Device`.
     static let device: Rswift.ReuseIdentifier<DeviceCell> = Rswift.ReuseIdentifier(identifier: "Device")
+    /// Reuse identifier `DrinkNoticeCell`.
+    static let drinkNoticeCell: Rswift.ReuseIdentifier<DrinkNoticeCell> = Rswift.ReuseIdentifier(identifier: "DrinkNoticeCell")
     /// Reuse identifier `ExchangeOrderCell`.
     static let exchangeOrderCell: Rswift.ReuseIdentifier<ExchangeOrderCell> = Rswift.ReuseIdentifier(identifier: "ExchangeOrderCell")
     /// Reuse identifier `FansCell`.
     static let fansCell: Rswift.ReuseIdentifier<FansCell> = Rswift.ReuseIdentifier(identifier: "FansCell")
+    /// Reuse identifier `MsgBarCell`.
+    static let msgBarCell: Rswift.ReuseIdentifier<MsgBarCell> = Rswift.ReuseIdentifier(identifier: "MsgBarCell")
+    /// Reuse identifier `NewCommentMsgCell`.
+    static let newCommentMsgCell: Rswift.ReuseIdentifier<NewCommentMsgCell> = Rswift.ReuseIdentifier(identifier: "NewCommentMsgCell")
     /// Reuse identifier `OldExchangeCell`.
     static let oldExchangeCell: Rswift.ReuseIdentifier<OldExchangeCell> = Rswift.ReuseIdentifier(identifier: "OldExchangeCell")
     /// Reuse identifier `Post`.
     static let post: Rswift.ReuseIdentifier<PostTableViewCell> = Rswift.ReuseIdentifier(identifier: "Post")
+    /// Reuse identifier `ReplyCommentMsgCell`.
+    static let replyCommentMsgCell: Rswift.ReuseIdentifier<ReplyCommentMsgCell> = Rswift.ReuseIdentifier(identifier: "ReplyCommentMsgCell")
     /// Reuse identifier `ScoresShopCell`.
     static let scoresShopCell: Rswift.ReuseIdentifier<ScoresShopCell> = Rswift.ReuseIdentifier(identifier: "ScoresShopCell")
+    /// Reuse identifier `SysLb`.
+    static let sysLb: Rswift.ReuseIdentifier<UIKit.UITableViewCell> = Rswift.ReuseIdentifier(identifier: "SysLb")
+    /// Reuse identifier `SysMsgCell`.
+    static let sysMsgCell: Rswift.ReuseIdentifier<SysMsgCell> = Rswift.ReuseIdentifier(identifier: "SysMsgCell")
     /// Reuse identifier `authorCell`.
     static let authorCell: Rswift.ReuseIdentifier<AuthorBlogCell> = Rswift.ReuseIdentifier(identifier: "authorCell")
     /// Reuse identifier `btnCell`.
@@ -817,7 +852,7 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
   
-  /// This `R.segue` struct is generated, and contains static references to 10 view controllers.
+  /// This `R.segue` struct is generated, and contains static references to 11 view controllers.
   struct segue {
     /// This struct is generated for `AddressListVC`, and contains static references to 1 segues.
     struct addressListVC {
@@ -883,6 +918,48 @@ struct R: Rswift.Validatable {
       /// For use inside `prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?)`.
       static func embedSegue(segue: UIKit.UIStoryboardSegue) -> Rswift.TypedStoryboardSegueInfo<UIKit.UIStoryboardSegue, InfosViewController, PostListViewController>? {
         return Rswift.TypedStoryboardSegueInfo(segueIdentifier: R.segue.infosViewController.embedSegue, segue: segue)
+      }
+      
+      fileprivate init() {}
+    }
+    
+    /// This struct is generated for `MessageViewController`, and contains static references to 4 segues.
+    struct messageViewController {
+      /// Segue identifier `SysMsgDetail`.
+      static let sysMsgDetail: Rswift.StoryboardSegueIdentifier<UIKit.UIStoryboardSegue, MessageViewController, PostDetailController> = Rswift.StoryboardSegueIdentifier(identifier: "SysMsgDetail")
+      /// Segue identifier `commentDetail`.
+      static let commentDetail: Rswift.StoryboardSegueIdentifier<UIKit.UIStoryboardSegue, MessageViewController, MyCommentListController> = Rswift.StoryboardSegueIdentifier(identifier: "commentDetail")
+      /// Segue identifier `newCommentDetail`.
+      static let newCommentDetail: Rswift.StoryboardSegueIdentifier<UIKit.UIStoryboardSegue, MessageViewController, NewMsgListController> = Rswift.StoryboardSegueIdentifier(identifier: "newCommentDetail")
+      /// Segue identifier `showLikePost`.
+      static let showLikePost: Rswift.StoryboardSegueIdentifier<UIKit.UIStoryboardSegue, MessageViewController, PostListViewController> = Rswift.StoryboardSegueIdentifier(identifier: "showLikePost")
+      
+      /// Optionally returns a typed version of segue `SysMsgDetail`.
+      /// Returns nil if either the segue identifier, the source, destination, or segue types don't match.
+      /// For use inside `prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?)`.
+      static func sysMsgDetail(segue: UIKit.UIStoryboardSegue) -> Rswift.TypedStoryboardSegueInfo<UIKit.UIStoryboardSegue, MessageViewController, PostDetailController>? {
+        return Rswift.TypedStoryboardSegueInfo(segueIdentifier: R.segue.messageViewController.sysMsgDetail, segue: segue)
+      }
+      
+      /// Optionally returns a typed version of segue `commentDetail`.
+      /// Returns nil if either the segue identifier, the source, destination, or segue types don't match.
+      /// For use inside `prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?)`.
+      static func commentDetail(segue: UIKit.UIStoryboardSegue) -> Rswift.TypedStoryboardSegueInfo<UIKit.UIStoryboardSegue, MessageViewController, MyCommentListController>? {
+        return Rswift.TypedStoryboardSegueInfo(segueIdentifier: R.segue.messageViewController.commentDetail, segue: segue)
+      }
+      
+      /// Optionally returns a typed version of segue `newCommentDetail`.
+      /// Returns nil if either the segue identifier, the source, destination, or segue types don't match.
+      /// For use inside `prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?)`.
+      static func newCommentDetail(segue: UIKit.UIStoryboardSegue) -> Rswift.TypedStoryboardSegueInfo<UIKit.UIStoryboardSegue, MessageViewController, NewMsgListController>? {
+        return Rswift.TypedStoryboardSegueInfo(segueIdentifier: R.segue.messageViewController.newCommentDetail, segue: segue)
+      }
+      
+      /// Optionally returns a typed version of segue `showLikePost`.
+      /// Returns nil if either the segue identifier, the source, destination, or segue types don't match.
+      /// For use inside `prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?)`.
+      static func showLikePost(segue: UIKit.UIStoryboardSegue) -> Rswift.TypedStoryboardSegueInfo<UIKit.UIStoryboardSegue, MessageViewController, PostListViewController>? {
+        return Rswift.TypedStoryboardSegueInfo(segueIdentifier: R.segue.messageViewController.showLikePost, segue: segue)
       }
       
       fileprivate init() {}
@@ -1051,7 +1128,7 @@ struct R: Rswift.Validatable {
   
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 42 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 50 localization keys.
     struct localizable {
       /// zh-Hans translation: 今天喝水统计
       /// 
@@ -1097,6 +1174,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: zh-Hans
       static let 喝水量 = Rswift.StringResource(key: "喝水量", tableName: "Localizable", bundle: R.hostingBundle, locales: ["zh-Hans"], comment: nil)
+      /// zh-Hans translation: 回复: 
+      /// 
+      /// Locales: zh-Hans
+      static let 回复 = Rswift.StringResource(key: "回复:", tableName: "Localizable", bundle: R.hostingBundle, locales: ["zh-Hans"], comment: nil)
       /// zh-Hans translation: 天
       /// 
       /// Locales: zh-Hans
@@ -1129,6 +1210,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: zh-Hans
       static let 我的粉丝 = Rswift.StringResource(key: "我的粉丝", tableName: "Localizable", bundle: R.hostingBundle, locales: ["zh-Hans"], comment: nil)
+      /// zh-Hans translation: 我的评论
+      /// 
+      /// Locales: zh-Hans
+      static let 我的评论 = Rswift.StringResource(key: "我的评论", tableName: "Localizable", bundle: R.hostingBundle, locales: ["zh-Hans"], comment: nil)
       /// zh-Hans translation: 拍照
       /// 
       /// Locales: zh-Hans
@@ -1141,6 +1226,18 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: zh-Hans
       static let 新增 = Rswift.StringResource(key: "新增", tableName: "Localizable", bundle: R.hostingBundle, locales: ["zh-Hans"], comment: nil)
+      /// zh-Hans translation: 新的评论
+      /// 
+      /// Locales: zh-Hans
+      static let 新的评论 = Rswift.StringResource(key: "新的评论", tableName: "Localizable", bundle: R.hostingBundle, locales: ["zh-Hans"], comment: nil)
+      /// zh-Hans translation: 新获得的赞
+      /// 
+      /// Locales: zh-Hans
+      static let 新获得的赞 = Rswift.StringResource(key: "新获得的赞", tableName: "Localizable", bundle: R.hostingBundle, locales: ["zh-Hans"], comment: nil)
+      /// zh-Hans translation: 最新收藏
+      /// 
+      /// Locales: zh-Hans
+      static let 最新收藏 = Rswift.StringResource(key: "最新收藏", tableName: "Localizable", bundle: R.hostingBundle, locales: ["zh-Hans"], comment: nil)
       /// zh-Hans translation: 最近一次喝水时间
       /// 
       /// Locales: zh-Hans
@@ -1165,6 +1262,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: zh-Hans
       static let 浏览历史 = Rswift.StringResource(key: "浏览历史", tableName: "Localizable", bundle: R.hostingBundle, locales: ["zh-Hans"], comment: nil)
+      /// zh-Hans translation: 消息
+      /// 
+      /// Locales: zh-Hans
+      static let 消息 = Rswift.StringResource(key: "消息", tableName: "Localizable", bundle: R.hostingBundle, locales: ["zh-Hans"], comment: nil)
       /// zh-Hans translation: 灯光设置
       /// 
       /// Locales: zh-Hans
@@ -1201,6 +1302,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: zh-Hans
       static let 设备 = Rswift.StringResource(key: "设备", tableName: "Localizable", bundle: R.hostingBundle, locales: ["zh-Hans"], comment: nil)
+      /// zh-Hans translation: 评论
+      /// 
+      /// Locales: zh-Hans
+      static let 评论 = Rswift.StringResource(key: "评论", tableName: "Localizable", bundle: R.hostingBundle, locales: ["zh-Hans"], comment: nil)
       /// zh-Hans translation: 请输入详细地址
       /// 
       /// Locales: zh-Hans
@@ -1221,6 +1326,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: zh-Hans
       static let selectTheSource = Rswift.StringResource(key: "Select the source", tableName: "Localizable", bundle: R.hostingBundle, locales: ["zh-Hans"], comment: nil)
+      /// zh-Hans translation: 阅读
+      /// 
+      /// Locales: zh-Hans
+      static let 阅读 = Rswift.StringResource(key: "阅读", tableName: "Localizable", bundle: R.hostingBundle, locales: ["zh-Hans"], comment: nil)
       
       /// zh-Hans translation: 今天喝水统计
       /// 
@@ -1299,6 +1408,13 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("喝水量", bundle: R.hostingBundle, comment: "")
       }
       
+      /// zh-Hans translation: 回复: 
+      /// 
+      /// Locales: zh-Hans
+      static func 回复(_: Void = ()) -> String {
+        return NSLocalizedString("回复:", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// zh-Hans translation: 天
       /// 
       /// Locales: zh-Hans
@@ -1355,6 +1471,13 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("我的粉丝", bundle: R.hostingBundle, comment: "")
       }
       
+      /// zh-Hans translation: 我的评论
+      /// 
+      /// Locales: zh-Hans
+      static func 我的评论(_: Void = ()) -> String {
+        return NSLocalizedString("我的评论", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// zh-Hans translation: 拍照
       /// 
       /// Locales: zh-Hans
@@ -1374,6 +1497,27 @@ struct R: Rswift.Validatable {
       /// Locales: zh-Hans
       static func 新增(_: Void = ()) -> String {
         return NSLocalizedString("新增", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// zh-Hans translation: 新的评论
+      /// 
+      /// Locales: zh-Hans
+      static func 新的评论(_: Void = ()) -> String {
+        return NSLocalizedString("新的评论", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// zh-Hans translation: 新获得的赞
+      /// 
+      /// Locales: zh-Hans
+      static func 新获得的赞(_: Void = ()) -> String {
+        return NSLocalizedString("新获得的赞", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// zh-Hans translation: 最新收藏
+      /// 
+      /// Locales: zh-Hans
+      static func 最新收藏(_: Void = ()) -> String {
+        return NSLocalizedString("最新收藏", bundle: R.hostingBundle, comment: "")
       }
       
       /// zh-Hans translation: 最近一次喝水时间
@@ -1416,6 +1560,13 @@ struct R: Rswift.Validatable {
       /// Locales: zh-Hans
       static func 浏览历史(_: Void = ()) -> String {
         return NSLocalizedString("浏览历史", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// zh-Hans translation: 消息
+      /// 
+      /// Locales: zh-Hans
+      static func 消息(_: Void = ()) -> String {
+        return NSLocalizedString("消息", bundle: R.hostingBundle, comment: "")
       }
       
       /// zh-Hans translation: 灯光设置
@@ -1481,6 +1632,13 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("设备", bundle: R.hostingBundle, comment: "")
       }
       
+      /// zh-Hans translation: 评论
+      /// 
+      /// Locales: zh-Hans
+      static func 评论(_: Void = ()) -> String {
+        return NSLocalizedString("评论", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// zh-Hans translation: 请输入详细地址
       /// 
       /// Locales: zh-Hans
@@ -1514,6 +1672,13 @@ struct R: Rswift.Validatable {
       /// Locales: zh-Hans
       static func selectTheSource(_: Void = ()) -> String {
         return NSLocalizedString("Select the source", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// zh-Hans translation: 阅读
+      /// 
+      /// Locales: zh-Hans
+      static func 阅读(_: Void = ()) -> String {
+        return NSLocalizedString("阅读", bundle: R.hostingBundle, comment: "")
       }
       
       fileprivate init() {}
@@ -1710,6 +1875,7 @@ struct _R: Rswift.Validatable {
       
       static func validate() throws {
         if UIKit.UIImage(named: "icon2") == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'icon2' is used in storyboard 'Main', but couldn't be loaded.") }
+        if UIKit.UIImage(named: "msgIcon") == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'msgIcon' is used in storyboard 'Main', but couldn't be loaded.") }
         if UIKit.UIImage(named: "分享") == nil { throw Rswift.ValidationError(description: "[R.swift] Image named '分享' is used in storyboard 'Main', but couldn't be loaded.") }
         if UIKit.UIImage(named: "arrow") == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'arrow' is used in storyboard 'Main', but couldn't be loaded.") }
         if UIKit.UIImage(named: "powerOff") == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'powerOff' is used in storyboard 'Main', but couldn't be loaded.") }
@@ -1742,6 +1908,7 @@ struct _R: Rswift.Validatable {
         if UIKit.UIImage(named: "资源 17") == nil { throw Rswift.ValidationError(description: "[R.swift] Image named '资源 17' is used in storyboard 'Main', but couldn't be loaded.") }
         if UIKit.UIImage(named: "资源 18") == nil { throw Rswift.ValidationError(description: "[R.swift] Image named '资源 18' is used in storyboard 'Main', but couldn't be loaded.") }
         if UIKit.UIImage(named: "资源 11") == nil { throw Rswift.ValidationError(description: "[R.swift] Image named '资源 11' is used in storyboard 'Main', but couldn't be loaded.") }
+        if UIKit.UIImage(named: "likeIcon") == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'likeIcon' is used in storyboard 'Main', but couldn't be loaded.") }
         if UIKit.UIImage(named: "unlike") == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'unlike' is used in storyboard 'Main', but couldn't be loaded.") }
         if UIKit.UIImage(named: "like") == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'like' is used in storyboard 'Main', but couldn't be loaded.") }
         if UIKit.UIImage(named: "资源 13") == nil { throw Rswift.ValidationError(description: "[R.swift] Image named '资源 13' is used in storyboard 'Main', but couldn't be loaded.") }

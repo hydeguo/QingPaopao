@@ -62,6 +62,9 @@
 		C15D267D2132F59500C6B1BF /* CrowdfundingShopDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C15D267C2132F59500C6B1BF /* CrowdfundingShopDetailVC.swift */; };
 		C15D267F2132F64500C6B1BF /* CrowdfoudingBuyBtnVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C15D267E2132F64500C6B1BF /* CrowdfoudingBuyBtnVC.swift */; };
 		C15D26812132F6A800C6B1BF /* CrowfoudingBuyVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C15D26802132F6A800C6B1BF /* CrowfoudingBuyVC.swift */; };
+		C16439742196BEF6005D01A5 /* BlogMsgCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = C16439732196BEF6005D01A5 /* BlogMsgCells.swift */; };
+		C16439762196CC94005D01A5 /* MessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C16439752196CC94005D01A5 /* MessageViewController.swift */; };
+		C164397821971F65005D01A5 /* NewMsgListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C164397721971F65005D01A5 /* NewMsgListController.swift */; };
 		C1662AF72150FA17008DA143 /* WechatPay.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1662AF32150FA16008DA143 /* WechatPay.swift */; };
 		C1662AF82150FA17008DA143 /* PaySDK.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1662AF42150FA16008DA143 /* PaySDK.swift */; };
 		C1662AF92150FA17008DA143 /* WechatAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1662AF52150FA16008DA143 /* WechatAuth.swift */; };
@@ -112,7 +115,6 @@
 		C192AA4C20C23EB7004EE98D /* Codables.swift in Sources */ = {isa = PBXBuildFile; fileRef = C192AA4220C23EB7004EE98D /* Codables.swift */; };
 		C192AA5020C37FCF004EE98D /* ColorPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = C192AA4F20C37FCF004EE98D /* ColorPicker.swift */; };
 		C192AA5420C3D54E004EE98D /* InfosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C192AA5120C3D54E004EE98D /* InfosViewController.swift */; };
-		C192AA5620C3D54E004EE98D /* MessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C192AA5320C3D54E004EE98D /* MessageViewController.swift */; };
 		C192AAA020C3EF66004EE98D /* mui-icons-extra.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C192AA9C20C3EF66004EE98D /* mui-icons-extra.ttf */; };
 		C192AAA120C3EF66004EE98D /* mui.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C192AA9D20C3EF66004EE98D /* mui.ttf */; };
 		C192AAA220C3EF66004EE98D /* SourceHanSans-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = C192AA9E20C3EF66004EE98D /* SourceHanSans-Light.otf */; };
@@ -158,6 +160,7 @@
 		C1C4295220D6AA1D0071532F /* SinaWeiboConnector.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C1C4293C20D6AA1D0071532F /* SinaWeiboConnector.framework */; };
 		C1C4295320D6AA1D0071532F /* ShareSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C1C4293D20D6AA1D0071532F /* ShareSDK.framework */; };
 		C1C4295420D6AA1D0071532F /* MOBFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C1C4293F20D6AA1D0071532F /* MOBFoundation.framework */; };
+		C1CB58B22199706900DE1D4B /* MyCommentListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1CB58B12199706900DE1D4B /* MyCommentListController.swift */; };
 		C1D0AF732147A2A1005C682B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C1D0AF722147A2A1005C682B /* GoogleService-Info.plist */; };
 		C1D5B60220F3B54F004DCE83 /* ReturnOrderNumVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1D5B60120F3B54E004DCE83 /* ReturnOrderNumVC.swift */; };
 		C1D5B60520F46104004DCE83 /* ExchangeOrderDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1D5B60420F46104004DCE83 /* ExchangeOrderDetailVC.swift */; };
@@ -271,6 +274,9 @@
 		C15D267C2132F59500C6B1BF /* CrowdfundingShopDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrowdfundingShopDetailVC.swift; sourceTree = "<group>"; };
 		C15D267E2132F64500C6B1BF /* CrowdfoudingBuyBtnVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrowdfoudingBuyBtnVC.swift; sourceTree = "<group>"; };
 		C15D26802132F6A800C6B1BF /* CrowfoudingBuyVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrowfoudingBuyVC.swift; sourceTree = "<group>"; };
+		C16439732196BEF6005D01A5 /* BlogMsgCells.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlogMsgCells.swift; sourceTree = "<group>"; };
+		C16439752196CC94005D01A5 /* MessageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageViewController.swift; sourceTree = "<group>"; };
+		C164397721971F65005D01A5 /* NewMsgListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewMsgListController.swift; sourceTree = "<group>"; };
 		C1662AF32150FA16008DA143 /* WechatPay.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WechatPay.swift; sourceTree = "<group>"; };
 		C1662AF42150FA16008DA143 /* PaySDK.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaySDK.swift; sourceTree = "<group>"; };
 		C1662AF52150FA16008DA143 /* WechatAuth.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WechatAuth.swift; sourceTree = "<group>"; };
@@ -326,7 +332,6 @@
 		C192AA4220C23EB7004EE98D /* Codables.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Codables.swift; sourceTree = "<group>"; };
 		C192AA4F20C37FCF004EE98D /* ColorPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPicker.swift; sourceTree = "<group>"; };
 		C192AA5120C3D54E004EE98D /* InfosViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfosViewController.swift; sourceTree = "<group>"; };
-		C192AA5320C3D54E004EE98D /* MessageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageViewController.swift; sourceTree = "<group>"; };
 		C192AA9C20C3EF66004EE98D /* mui-icons-extra.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "mui-icons-extra.ttf"; sourceTree = "<group>"; };
 		C192AA9D20C3EF66004EE98D /* mui.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = mui.ttf; sourceTree = "<group>"; };
 		C192AA9E20C3EF66004EE98D /* SourceHanSans-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SourceHanSans-Light.otf"; sourceTree = "<group>"; };
@@ -380,6 +385,7 @@
 		C1C4293C20D6AA1D0071532F /* SinaWeiboConnector.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SinaWeiboConnector.framework; sourceTree = "<group>"; };
 		C1C4293D20D6AA1D0071532F /* ShareSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ShareSDK.framework; sourceTree = "<group>"; };
 		C1C4293F20D6AA1D0071532F /* MOBFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = MOBFoundation.framework; sourceTree = "<group>"; };
+		C1CB58B12199706900DE1D4B /* MyCommentListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCommentListController.swift; sourceTree = "<group>"; };
 		C1D0AF722147A2A1005C682B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		C1D5B60120F3B54E004DCE83 /* ReturnOrderNumVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReturnOrderNumVC.swift; sourceTree = "<group>"; };
 		C1D5B60420F46104004DCE83 /* ExchangeOrderDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeOrderDetailVC.swift; sourceTree = "<group>"; };
@@ -493,6 +499,9 @@
 			children = (
 				C192AA5120C3D54E004EE98D /* InfosViewController.swift */,
 				C17FB86D21450ED7001F0030 /* PostDetailController.swift */,
+				C16439752196CC94005D01A5 /* MessageViewController.swift */,
+				C164397721971F65005D01A5 /* NewMsgListController.swift */,
+				C1CB58B12199706900DE1D4B /* MyCommentListController.swift */,
 				C1F6E04320C6CE580031200D /* InfoDetailViewController.swift */,
 				C16E27392143BD1900E26D8A /* EditorViewController.swift */,
 				C1008E0820C5668F00E73F8F /* PostListViewController.swift */,
@@ -759,7 +768,6 @@
 				C1383A4420DF97F400F1EBE6 /* Login */,
 				C17862C620E1218B008F4042 /* Profile */,
 				C1D5B60320F460B7004DCE83 /* Orders */,
-				C192AA5320C3D54E004EE98D /* MessageViewController.swift */,
 				C11A100720EA3006000979B3 /* Discover */,
 				C11A100420EA0D35000979B3 /* Device */,
 				C16980DD20E8D3730034E954 /* MainPage */,
@@ -778,6 +786,7 @@
 				C15AEF8720F07EE9009F4A0E /* TGDropBoxView.swift */,
 				C192AAA920C4C8FA004EE98D /* Cells.swift */,
 				C17FB86F21452BAE001F0030 /* BlogCells.swift */,
+				C16439732196BEF6005D01A5 /* BlogMsgCells.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1274,6 +1283,7 @@
 				C11A0FFF20E9B4E1000979B3 /* DrinkHistory.swift in Sources */,
 				C1662AF92150FA17008DA143 /* WechatAuth.swift in Sources */,
 				C192AA3820C23EA9004EE98D /* Tools.swift in Sources */,
+				C164397821971F65005D01A5 /* NewMsgListController.swift in Sources */,
 				C17FB87021452BAE001F0030 /* BlogCells.swift in Sources */,
 				C17862C320DBDD5E008F4042 /* WopinCommand.swift in Sources */,
 				C15D267D2132F59500C6B1BF /* CrowdfundingShopDetailVC.swift in Sources */,
@@ -1290,6 +1300,7 @@
 				C140635F2105692D00AB8914 /* FlexiblePageControl.swift in Sources */,
 				C1662AF82150FA17008DA143 /* PaySDK.swift in Sources */,
 				C172311D20FE249500BF6160 /* RKPieChartItem.swift in Sources */,
+				C16439762196CC94005D01A5 /* MessageViewController.swift in Sources */,
 				C1BA806D20D7679A007D2B48 /* SwiftRx(Extension).swift in Sources */,
 				C1D5B60520F46104004DCE83 /* ExchangeOrderDetailVC.swift in Sources */,
 				C192AA3120C23EA9004EE98D /* View(Extension).swift in Sources */,
@@ -1312,6 +1323,7 @@
 				C15AEF9420F0F087009F4A0E /* AddressInfoVC.swift in Sources */,
 				C1662AFA2150FA17008DA143 /* AlipayPay.swift in Sources */,
 				C1BA807420D7980A007D2B48 /* WolfBaseModel.swift in Sources */,
+				C1CB58B22199706900DE1D4B /* MyCommentListController.swift in Sources */,
 				C11160EC20EBC61C00921C37 /* DeviceInfoVC.swift in Sources */,
 				C192AA3020C23EA9004EE98D /* DatePickerViewController.swift in Sources */,
 				C15AEF9620F1990D009F4A0E /* AddressListVC.swift in Sources */,
@@ -1336,7 +1348,6 @@
 				C16E052D20DE4827009ED462 /* OtherExtensions.swift in Sources */,
 				C16E273A2143BD1900E26D8A /* EditorViewController.swift in Sources */,
 				C15D267F2132F64500C6B1BF /* CrowdfoudingBuyBtnVC.swift in Sources */,
-				C192AA5620C3D54E004EE98D /* MessageViewController.swift in Sources */,
 				C1F226F021295DE20066C9EC /* ScoresShopDetailVC.swift in Sources */,
 				C15AEF9820F2114C009F4A0E /* OrderListVC.swift in Sources */,
 				C1B9744D20FA3FE000BC2EB9 /* ChangeDeviceNameVC.swift in Sources */,
@@ -1350,6 +1361,7 @@
 				C1F226F6212964510066C9EC /* ScoresBuyBtnVC.swift in Sources */,
 				C158F721213B7A220090EE1A /* DeliverPageViewController.swift in Sources */,
 				C1803E0F2143F6980078D94C /* MediaRequest.swift in Sources */,
+				C16439742196BEF6005D01A5 /* BlogMsgCells.swift in Sources */,
 				C1F128292139150300BBD457 /* Toast.swift in Sources */,
 				C17FB86E21450ED7001F0030 /* PostDetailController.swift in Sources */,
 				C1406353210460C800AB8914 /* GoodsModel.swift in Sources */,

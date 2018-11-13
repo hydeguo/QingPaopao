@@ -25,6 +25,8 @@ class PostDetailController: UIViewController, UITableViewDelegate, UITableViewDa
     var authorCell:AuthorBlogCell?
     
     var postContent:BlogPostDetail?
+    var sysMsg:Bool = false
+    var showBackBtn:Bool = true
     var commentList:[BlogComment] = []
     
     var detailItem: BlogPostItem? {
@@ -46,8 +48,12 @@ class PostDetailController: UIViewController, UITableViewDelegate, UITableViewDa
         self.tableView?.estimatedRowHeight = 200
         self.tableView?.rowHeight = UITableViewAutomaticDimension
         
-        let returnButton = UIBarButtonItem(image: R.image.back(), style: .plain, target: self, action: #selector(onReturn))
-        self.navigationController!.topViewController!.navigationItem.leftBarButtonItem =  returnButton
+        if showBackBtn
+        {
+            
+            let returnButton = UIBarButtonItem(image: R.image.back(), style: .plain, target: self, action: #selector(onReturn))
+            self.navigationController?.topViewController?.navigationItem.leftBarButtonItem =  returnButton
+        }
         
         enterText?.delegate = self
         
@@ -74,6 +80,12 @@ class PostDetailController: UIViewController, UITableViewDelegate, UITableViewDa
     override func viewWillAppear(_ animated: Bool) {
         NotificationCenter.default.addObserver(self, selector: #selector(onWebLoaded), name: NSNotification.Name(rawValue: "webLoaded"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(replyToComment), name: NSNotification.Name(rawValue: "replyToComment"), object: nil)
+        
+        if sysMsg {
+            self.navigationItem.title = "系统消息"//titleString//String(htmlEncodedString: titleString);
+        }else{
+            self.navigationItem.title = "探索"//titleString//String(htmlEncodedString: titleString);
+        }
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -161,9 +173,6 @@ class PostDetailController: UIViewController, UITableViewDelegate, UITableViewDa
 //                }
 //            }) { (error) in}
             
-//            if let titleString = self.detailItem?.title {
-                self.navigationItem.title = "探索"//titleString//String(htmlEncodedString: titleString);
-//            }
             
             _ = Wolf.requestList(type: MyAPI.getBlogPostComments(id: _identifier), completion: { (comments: [BlogComment]?, msg, code) in
                 if let _comments = comments {
@@ -180,6 +189,9 @@ class PostDetailController: UIViewController, UITableViewDelegate, UITableViewDa
                             subComments.append(c)
                         }
                     }
+                    self.commentList.sort(by: { (c1, c2) -> Bool in
+                        return c1.likes ?? 0 > c2.likes ?? 0 
+                    })
                     
                     b:for sc in subComments.reversed()
                     {
@@ -212,7 +224,15 @@ class PostDetailController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
      func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return commentList.count + 6
+        if sysMsg ==  true
+        {
+            return 3
+        }
+        else
+        {
+            return commentList.count + 6
+        }
+        
     }
     
      func  tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

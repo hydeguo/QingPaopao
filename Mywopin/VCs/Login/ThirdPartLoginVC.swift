@@ -200,7 +200,7 @@ class ThirdPartLoginVC: UIViewController {
         thirdPartyLogin(userID: user.credential.uid, platform:  platform.rawValue,  completion: { (userData) in
             if(userData != nil){
                 myClientVo = userData
-                if( userData?.icon == nil ){
+                if( userData?.icon?.contains("profileIcon.png") == true ){
                     myClientVo?.icon = user.icon;
                     _ = Wolf.request(type: MyAPI.changeIcon(icon: user.icon), completion: { (returnUser2: User?, msg, code) in
                     }, failure: nil)

@@ -84,7 +84,34 @@ struct BlogComment: WolfMapper {
     var author_name:String?
     var avatar_URL: String?
     var type:String?
-    var myLike: Bool
+    var myLike: Bool?
+    var likes:Int?
+    
+    func didInit() {
+    }
+}
+
+struct NewCommentMsg: Codable {
+
+    var id:Int
+    var post:Int
+    var parent:Int
+    var author:Int?
+    var author_name:String?
+    var avatar_URL:String?
+    var content: String?
+    var date: String?
+    var type:String?
+    var postTitle:String?
+    var postThumbnail:String?
+   
+}
+
+struct MyCommentRes: WolfMapper {
+    
+    var comments:[BlogComment]
+    var commentsReplyMe:[BlogComment]
+    var relatedPosts: [BlogPostItem]
     
     func didInit() {
     }
@@ -95,6 +122,36 @@ struct FansData: WolfMapper {
     var _id:String
     var userName:String
     var icon: String?
+    
+    func didInit() {
+    }
+}
+
+struct BlogLikeMsgData: WolfMapper {
+    
+    var _id:String
+    var userName:String
+    var icon:String
+    var postData:BlogPostItem?
+    
+    func didInit() {
+    }
+}
+
+struct BlogMsgData: WolfMapper {
+    
+    var _id:String
+    var userId:String
+    var newComment:[NewCommentMsg]
+    var time:Int64?
+    
+    func didInit() {
+    }
+}
+
+struct CheckNewMsgData: WolfMapper {
+    
+    var count:Int
     
     func didInit() {
     }

@@ -70,11 +70,16 @@ class LandingVC: UIViewController {
         if user?.credential != nil{
             myThirdpartyVo = ShareSDK.currentUser(type)
             thirdPartyLogin(userID:user!.credential.uid , platform: type.rawValue) { (returnUser) in
-                if( returnUser?.icon == nil ){
+                if( returnUser?.icon?.contains("profileIcon.png") == true ){
                     _ = Wolf.request(type: MyAPI.changeIcon(icon: user!.icon), completion: { (returnUser2: User?, msg, code) in
                     }, failure: nil)
                 }
-                self.gotoMainScene()
+                if returnUser != nil
+                {
+                    self.gotoMainScene()
+                }else{
+                    self.pushTo(viewController: .welcome)
+                }
             }
         }else{
             self.pushTo(viewController: .welcome)

@@ -16,7 +16,7 @@ enum POST_MODE:String {
     case new = "new"
     case hot = "hot"
     case collect = "collect"
-//    case likes = "likes"
+    case likes = "likes"
     case following = "following"
     case my = "my"
     case someOne = "someOne"
@@ -64,6 +64,7 @@ class PostListViewController: UITableViewController {
     override func viewDidAppear(_ animated: Bool) {
         updateTitle()
     }
+
     
     @objc func updatePostData(_ notice:Notification){
         
@@ -92,9 +93,13 @@ class PostListViewController: UITableViewController {
             navigationController?.navigationBar.topItem?.title = Language.getString( "我的收藏")
         case .someOne:
             navigationController?.navigationBar.topItem?.title = Language.getString( "话题列表")
+        case .likes:
+            navigationController?.navigationBar.topItem?.title = Language.getString( "我的赞")
         default:
             navigationController?.navigationBar.topItem?.title = Language.getString( "探索")
         }
+        navigationController?.navigationBar.backItem?.title = ""
+        navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
     }
     
     override func viewDidLoad() {
@@ -144,6 +149,11 @@ class PostListViewController: UITableViewController {
             else if mode == .collect
             {
                 let retrievedMessage = try Disk.retrieve("collectPostList.json", from: .caches, as: [BlogPostItem].self)
+                posts = retrievedMessage
+            }
+            else if mode == .likes
+            {
+                let retrievedMessage = try Disk.retrieve("likesPostList.json", from: .caches, as: [BlogPostItem].self)
                 posts = retrievedMessage
             }
             else if mode == .following
@@ -299,6 +309,24 @@ class PostListViewController: UITableViewController {
                             if self.curPage == 1 {
                                 UserDefaults.standard.set(Date().timeIntervalSince1970, forKey: "refreshTime-\(self.mode.rawValue)");
                                 try Disk.save(_posts, to: .caches, as: "collectPostList.json")
+                            }
+                        } catch _ as NSError {}
+                        self.onReceiveNewData(_posts)
+                    }
+                }
+            }, failure: nil)
+        }
+        else if mode == .likes
+        {
+            _ = Wolf.requestList(type: MyAPI.getLikedPostList(page: curPage, num: numPrePage), completion: { (posts: [BlogPostItem]?, msg, code) in
+                if let _posts = posts {
+                    
+                    if self.mode == .likes
+                    {
+                        do {
+                            if self.curPage == 1 {
+                                UserDefaults.standard.set(Date().timeIntervalSince1970, forKey: "refreshTime-\(self.mode.rawValue)");
+                                try Disk.save(_posts, to: .caches, as: "likesPostList.json")
                             }
                         } catch _ as NSError {}
                         self.onReceiveNewData(_posts)

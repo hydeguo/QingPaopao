@@ -93,6 +93,7 @@ class CommentTableViewCell: UITableViewCell {
     @IBOutlet weak var authorLabel: UILabel?
     @IBOutlet weak var authorImageView: UIImageView?
     @IBOutlet weak var likeBtn: UIButton?
+    @IBOutlet weak var likeLabel: UILabel?
     @IBOutlet weak var commentBtn: UIButton?
     @IBOutlet weak var commentLabel: UILabel?
     
@@ -124,7 +125,10 @@ class CommentTableViewCell: UITableViewCell {
         self.authorImageView?.image(fromUrl: comment.avatar_URL ?? "")
         self.commentLabel?.text = comment.content?.htmlToString
         
-        self.likeBtn?.isSelected = comment.myLike
+        self.likeBtn?.isSelected = comment.myLike == true
+        self.likeLabel?.text = String(comment.likes ?? 0 )
+        
+        
     }
     
     @IBAction func onReply()
@@ -139,6 +143,7 @@ class CommentTableViewCell: UITableViewCell {
         if likeBtn?.isSelected == true
         {
             self.likeBtn?.isSelected = false
+            self.likeLabel?.text = String((Int(self.likeLabel?.text ?? "0") ?? 0) - 1 )
             _ = Wolf.request(type: MyAPI.unLikeBlogComment(id: comment?.id ?? 0), completion: { (info: BaseReponse?, msg, code) in
                  if code == "0" {
                     
@@ -148,6 +153,7 @@ class CommentTableViewCell: UITableViewCell {
         else
         {
             self.likeBtn?.isSelected = true
+            self.likeLabel?.text = String((Int(self.likeLabel?.text ?? "0") ?? 0) + 1 )
             _ = Wolf.request(type: MyAPI.likeBlogComment(id: comment?.id ?? 0), completion: { (info: BaseReponse?, msg, code) in
                  if code == "0" {
                     

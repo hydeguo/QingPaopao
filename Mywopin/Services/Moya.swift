@@ -54,7 +54,9 @@ enum MyAPI {
     case getFollowingBlogPostList(page:Int,num:Int)
     case getMyBlogPostList(page:Int,num:Int)
     case getOthersBlogPostList(userId:String,page:Int,num:Int)
+    case getMyCommentList(page:Int,num:Int)
     case deleteMyPost(id:Int)
+    case deleteMyComment(id:Int)
     case getFansList
     case getMyFollowList
     case searchBlogPostList(search:String)
@@ -70,6 +72,10 @@ enum MyAPI {
     case unLikeBlogComment(id:Int)
     case newComment(postId:Int,content:String,parent:Int)
     case newPost(title:String,content:String)
+    case checkNewMessage
+    case sysMessage
+    case newBlogMessage
+    
 }
 
 
@@ -153,6 +159,8 @@ extension MyAPI: TargetType {
             return .requestParameters(parameters: [ "page" : page,"num" : num], encoding: URLEncoding.default)
         case .getMyBlogPostList(let page,let num):
             return .requestParameters(parameters: [ "page" : page,"num" : num], encoding: URLEncoding.default)
+        case .getMyCommentList(let page,let num):
+            return .requestParameters(parameters: [ "page" : page,"num" : num], encoding: URLEncoding.default)
         case .getOthersBlogPostList(let userId,let page,let num):
             return .requestParameters(parameters: [ "userId" : userId,"page" : page,"num" : num], encoding: URLEncoding.default)
         case .unCollectBlogPost(let id):
@@ -167,6 +175,8 @@ extension MyAPI: TargetType {
             return .requestParameters(parameters: [ "postId" : id], encoding: URLEncoding.default)
         case .deleteMyPost(let id):
             return .requestParameters(parameters: [ "postId" : id], encoding: URLEncoding.default)
+        case .deleteMyComment(let id):
+            return .requestParameters(parameters: [ "commentId" : id], encoding: URLEncoding.default)
         case .doLikeBlogPost(let id):
             return .requestParameters(parameters: [ "postId" : id], encoding: URLEncoding.default)
         case .unLikeBlogPost(let id):
@@ -285,8 +295,12 @@ extension MyAPI: TargetType {
             return "/blog/followPosts"
         case .getMyBlogPostList,.getOthersBlogPostList:
             return "/blog/myPosts"
+        case .getMyCommentList:
+            return "/blog/myComments"
         case .deleteMyPost:
             return "/blog/deletePost"
+        case .deleteMyComment:
+            return "/blog/deleteComment"
         case .getColletionPostList:
             return "/blog/colletionPosts"
         case .getLikedPostList:
@@ -321,7 +335,12 @@ extension MyAPI: TargetType {
             return "/blog/newComment"
         case .newPost:
             return "/blog/newPost"
-            
+        case .checkNewMessage:
+            return "/blog/checkNewMessage"
+        case .sysMessage:
+            return "/blog/sysMessage"
+        case .newBlogMessage:
+            return "/blog/newBlogMessage"
         }
     }
     
@@ -340,12 +359,16 @@ extension MyAPI: TargetType {
                   .getHistoryBlogPostList,
                   .getFollowingBlogPostList,
                   .getMyBlogPostList,
+                  .getMyCommentList,
                   .getOthersBlogPostList,
                   .getFollowList,
                   .getColletionPostList,
                   .getLikedPostList,
                   .getFansList,
-                  .getMyFollowList:
+                  .getMyFollowList,
+                  .checkNewMessage,
+                  .sysMessage,
+                  .newBlogMessage:
             return .get
     
             default:

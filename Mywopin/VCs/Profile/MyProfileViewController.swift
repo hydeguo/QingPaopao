@@ -12,7 +12,8 @@ import UIKit
 
 class MyProfileViewController: AvatarViewController {
     
-    
+    static var checkNewMsg:CheckNewMsgData?
+    @IBOutlet var newMsgLabel:UILabel?
     @IBOutlet var nameLabel:UILabel!
     @IBOutlet var scoreLabel:UILabel!
     @IBOutlet var topPofileImage:UIImageView!
@@ -26,6 +27,16 @@ class MyProfileViewController: AvatarViewController {
         super.viewDidLoad()
 
         createGradientLayer(view: self.topView)
+        
+        if(MyProfileViewController.checkNewMsg == nil){
+
+            _ = Wolf.request(type: MyAPI.checkNewMessage, completion: { (data: CheckNewMsgData?, msg, code) in
+                if let _newMsg = data {
+                   MyProfileViewController.checkNewMsg = _newMsg
+                    self.updateMsgAlertUI()
+                }
+            }, failure: nil)
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -35,6 +46,17 @@ class MyProfileViewController: AvatarViewController {
         updateUI()
         
         updateDrinkText()
+        
+        updateMsgAlertUI()
+    }
+    
+    func updateMsgAlertUI(){
+        if let newMsgData =  MyProfileViewController.checkNewMsg{
+            newMsgLabel?.text = String(newMsgData.count)
+            newMsgLabel?.isHidden = newMsgData.count == 0
+        }else{
+            newMsgLabel?.isHidden = true
+        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
