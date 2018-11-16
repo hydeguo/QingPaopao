@@ -7091,7 +7091,7 @@ HIFI音响</string>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="X6a-ZF-Ip6">
-                                            <rect key="frame" x="292" y="9" width="50" height="50"/>
+                                            <rect key="frame" x="292" y="7" width="50" height="50"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                             <state key="normal" image="msgIcon"/>
                                             <connections>
@@ -7099,7 +7099,7 @@ HIFI音响</string>
                                             </connections>
                                         </button>
                                         <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ocq-q9-uKl">
-                                            <rect key="frame" x="32" y="9" width="50" height="50"/>
+                                            <rect key="frame" x="32" y="7" width="50" height="50"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                             <state key="normal" image="msgIcon"/>
                                             <connections>
@@ -7107,7 +7107,7 @@ HIFI音响</string>
                                             </connections>
                                         </button>
                                         <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YIr-EN-LQU">
-                                            <rect key="frame" x="163" y="8" width="50" height="50"/>
+                                            <rect key="frame" x="163" y="6" width="50" height="50"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                             <state key="normal" image="likeIcon"/>
                                             <connections>
@@ -7788,7 +7788,25 @@ E无法达到这一点）。——太田成男
                             <outlet property="delegate" destination="EkH-Mr-zuu" id="vnW-cP-yQj"/>
                         </connections>
                     </tableView>
+                    <connections>
+                        <outlet property="emptyView" destination="HJ7-hA-3r1" id="rCl-wt-dUh"/>
+                    </connections>
                 </tableViewController>
+                <view contentMode="scaleToFill" id="HJ7-hA-3r1">
+                    <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="没有的记录" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4PV-38-8cV">
+                            <rect key="frame" x="66" y="54" width="108" height="24"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <viewLayoutGuide key="safeArea" id="dJW-zM-fUp"/>
+                </view>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zxx-aB-ImF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-980" y="2273.6131934032987"/>
@@ -8168,12 +8186,28 @@ E无法达到这一点）。——太田成男
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="zAP-sf-mZI"/>
                     <connections>
+                        <outlet property="emptyView" destination="fZl-Al-W1l" id="0UU-Wq-5dg"/>
                         <outlet property="enterText" destination="c8o-Ss-MUL" id="rOH-in-bzK"/>
                         <outlet property="keyboardView" destination="zZL-y0-mbb" id="PQX-ek-QVz"/>
                         <outlet property="tableView" destination="vse-Ik-fjt" id="20z-7V-haS"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IGd-AN-0Ci" sceneMemberID="firstResponder"/>
+                <view contentMode="scaleToFill" id="fZl-Al-W1l">
+                    <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="没有的记录" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fty-TH-pig">
+                            <rect key="frame" x="66" y="54" width="108" height="24"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <viewLayoutGuide key="safeArea" id="Wej-Cl-WIl"/>
+                </view>
             </objects>
             <point key="canvasLocation" x="-1916" y="2273.6131934032987"/>
         </scene>

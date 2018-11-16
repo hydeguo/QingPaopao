@@ -215,7 +215,10 @@ class PostListViewController: UITableViewController {
         }else{
             self.posts = newPosts
         }
-        
+        if self.posts.count == 0
+        {
+            self.tableView.backgroundView = self.emptyView
+        }
         DispatchQueue.main.async(execute: {
             self.refreshControl?.endRefreshing()
             self.tableView.reloadData()

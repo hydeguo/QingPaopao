@@ -18,6 +18,8 @@ class MyCommentListController: UIViewController, UITableViewDelegate, UITableVie
     @IBOutlet var enterText:UITextField?
     @IBOutlet var tableView:UITableView!
     
+    @IBOutlet var emptyView:UIView?
+    
     var getByUserId:String?
     
     var myCommentRes:MyCommentRes?
@@ -117,6 +119,11 @@ class MyCommentListController: UIViewController, UITableViewDelegate, UITableVie
             self.tableView.refreshControl?.endRefreshing()
             self.tableView.reloadData()
             
+            if self.myCommentRes?.comments.count == 0
+            {
+                self.tableView.backgroundView = self.emptyView
+            }
+            
         }, failure: nil)
     }
     
@@ -160,6 +167,10 @@ class MyCommentListController: UIViewController, UITableViewDelegate, UITableVie
         }
     }
     
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
     // MARK: - Segues
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

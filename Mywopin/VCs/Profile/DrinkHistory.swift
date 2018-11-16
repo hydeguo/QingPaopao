@@ -207,6 +207,7 @@ class DrinkHistory: UIViewController {
         else if(segmentedControl.selectedSegmentIndex == 1)
         {
             partOneTitle.text = Language.getString("本周喝水统计")
+            partTwoTitle.text = Language.getString("本周喝水状况")
             partOneLine1Title.text = Language.getString("总喝水量")
             partOneLine2Title.text = Language.getString("达标天数")
             partOneLine1Value.text = String(self.total_week)  + Language.getString("杯")
@@ -223,6 +224,7 @@ class DrinkHistory: UIViewController {
         else if(segmentedControl.selectedSegmentIndex == 2)
         {
             partOneTitle.text = Language.getString("本月喝水统计")
+            partTwoTitle.text = Language.getString("本月喝水状况")
             partOneLine1Title.text = Language.getString("总喝水量")
             partOneLine2Title.text = Language.getString("达标天数")
             partOneLine1Value.text = String(self.total_month) + Language.getString("杯")

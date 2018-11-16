@@ -1128,7 +1128,7 @@ struct R: Rswift.Validatable {
   
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 50 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 52 localization keys.
     struct localizable {
       /// zh-Hans translation: 今天喝水统计
       /// 
@@ -1246,10 +1246,18 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: zh-Hans
       static let 未连接 = Rswift.StringResource(key: "未连接", tableName: "Localizable", bundle: R.hostingBundle, locales: ["zh-Hans"], comment: nil)
+      /// zh-Hans translation: 本周喝水状况
+      /// 
+      /// Locales: zh-Hans
+      static let 本周喝水状况 = Rswift.StringResource(key: "本周喝水状况", tableName: "Localizable", bundle: R.hostingBundle, locales: ["zh-Hans"], comment: nil)
       /// zh-Hans translation: 本周喝水统计
       /// 
       /// Locales: zh-Hans
       static let 本周喝水统计 = Rswift.StringResource(key: "本周喝水统计", tableName: "Localizable", bundle: R.hostingBundle, locales: ["zh-Hans"], comment: nil)
+      /// zh-Hans translation: 本月喝水状况
+      /// 
+      /// Locales: zh-Hans
+      static let 本月喝水状况 = Rswift.StringResource(key: "本月喝水状况", tableName: "Localizable", bundle: R.hostingBundle, locales: ["zh-Hans"], comment: nil)
       /// zh-Hans translation: 本月喝水统计
       /// 
       /// Locales: zh-Hans
@@ -1534,11 +1542,25 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("未连接", bundle: R.hostingBundle, comment: "")
       }
       
+      /// zh-Hans translation: 本周喝水状况
+      /// 
+      /// Locales: zh-Hans
+      static func 本周喝水状况(_: Void = ()) -> String {
+        return NSLocalizedString("本周喝水状况", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// zh-Hans translation: 本周喝水统计
       /// 
       /// Locales: zh-Hans
       static func 本周喝水统计(_: Void = ()) -> String {
         return NSLocalizedString("本周喝水统计", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// zh-Hans translation: 本月喝水状况
+      /// 
+      /// Locales: zh-Hans
+      static func 本月喝水状况(_: Void = ()) -> String {
+        return NSLocalizedString("本月喝水状况", bundle: R.hostingBundle, comment: "")
       }
       
       /// zh-Hans translation: 本月喝水统计

@@ -13,12 +13,13 @@ import Disk
 
 class NewMsgListController: UITableViewController {
     
+    @IBOutlet var emptyView:UIView?
+    
     var newMsg:BlogMsgData?
     var cellHeight:CGFloat = 140
     
     var getByUserId:String?
     
-    var myComments:[BlogComment] = []
     
     
     override func awakeFromNib() {
@@ -58,6 +59,10 @@ class NewMsgListController: UITableViewController {
         tableView.tableFooterView = UIView()
         
         
+        if newMsg == nil || newMsg?.newComment.count == 0
+        {
+            self.tableView.backgroundView = self.emptyView
+        }
     }
 
     override func didReceiveMemoryWarning() {

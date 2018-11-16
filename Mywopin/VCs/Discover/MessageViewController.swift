@@ -91,8 +91,8 @@ class MessageViewController: UITableViewController {
             if let _newMsg = posts {
                 self.newMsg = _newMsg
                 self.newMsgCell?.configure(_newMsg)
-                MyProfileViewController.checkNewMsg = nil
             }
+            MyProfileViewController.checkNewMsg = nil
         }, failure: nil)
     }
     
