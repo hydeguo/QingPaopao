@@ -45,7 +45,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         PaySDK.wxAppid = "wxf42ec50449767feb"
         PaySDK.instance.signUrl = server_url+"/getWeChatPaySign"
         
-        _ = WifiController.shared;  //init
         
         
         /**

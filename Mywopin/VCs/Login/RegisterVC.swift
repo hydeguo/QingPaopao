@@ -10,6 +10,7 @@ import Foundation
 import UIKit
 import Moya
 import RxSwift
+import Toast_Swift
 
 class RegisterVC: UIViewController  , UITextFieldDelegate{
     
@@ -42,6 +43,9 @@ class RegisterVC: UIViewController  , UITextFieldDelegate{
         userIDTF.delegate = self
         verifyTF.delegate = self
         passwordTF.delegate = self
+        
+        userIDTF.showToolBar()
+        verifyTF.showToolBar()
         //        submitBtn.layer.cornerRadius = 5
 //        submitBtn.layer.borderWidth = 1
 //        submitBtn.layer.borderColor = UIColor.lightGray.cgColor
@@ -86,11 +90,14 @@ class RegisterVC: UIViewController  , UITextFieldDelegate{
                 _ = SweetAlert().showAlert("Sorry", subTitle: "请输入验证码!", style: AlertStyle.error)
                 return
             }
-            
+            self.view.makeToastActivity(.center)
             registerUser(phone: phoneNum, userName: phoneNum, password: psw, v_code: v_code) { (userData) in
+                  self.view.hideToastActivity()
                 if userData != nil
                 {
+                    self.view.makeToastActivity(.center)
                     login(phone: phoneNum, psw: psw, platform: 0) { (user) in
+                          self.view.hideToastActivity()
                         if user != nil
                         {
                             self.gotoMainScene()

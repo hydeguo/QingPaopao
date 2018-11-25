@@ -49,6 +49,8 @@ class DrinkViewController: UIViewController, CLLocationManagerDelegate {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
+        _ = WifiController.shared;  //init
+        
         slider?.setThumbImage(UIImage(named:"slider"),for:.normal)
 
         sliderNum.asObservable().subscribe(onNext: {

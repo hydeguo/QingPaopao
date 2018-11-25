@@ -48,6 +48,7 @@ struct User: WolfMapper {
     var _id: String
     var userName: String?
     var userPwd: String?
+    var email: String?
     var icon: String?
     var phone: Int64?
     var scores: Double?

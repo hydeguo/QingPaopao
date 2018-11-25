@@ -11,7 +11,7 @@ import Foundation
 
 import UIKit
 import Moya
-
+import Toast_Swift
 
 class LoginVC: UIViewController , UITextFieldDelegate{
     
@@ -92,7 +92,9 @@ class LoginVC: UIViewController , UITextFieldDelegate{
                 _ = SweetAlert().showAlert("Sorry", subTitle: "请输入密码!", style: AlertStyle.error)
                 return
             }
+            self.view.makeToastActivity(.center)
             login(phone: phoneNum, psw: psw, platform: 0) { (user) in
+                self.view.hideToastActivity()
                 if user != nil
                 {
                     self.gotoMainScene()

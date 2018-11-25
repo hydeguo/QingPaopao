@@ -35,28 +35,31 @@ class LandingVC: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         if let userInformation = UserDefaults.standard.dictionary(forKey: "userInformation") {
-            let userId = userInformation["userId"] as! String
-            let password = userInformation["password"] as! String
-            let platform = userInformation["platform"] as! String
-            
-            if(platform == "0"){
-                login(phone: userId, psw: password, platform: 0) { (user) in
-                    if user != nil
-                    {
-                        self.gotoMainScene()
-                    }else{
-                        self.pushTo(viewController: .welcome)
+            if let userId = userInformation["userId"] as? String,
+            let password = userInformation["password"] as? String,
+            let platform = userInformation["platform"] as? String
+            {
+                if(platform == "0"){
+                    login(phone: userId, psw: password, platform: 0) { (user) in
+                        if user != nil
+                        {
+                            self.gotoMainScene()
+                        }else{
+                            self.pushTo(viewController: .welcome)
+                        }
+                    }
+                }else{
+                    let platformID = UInt(platform)
+                    if(platformID == SSDKPlatformType.typeQQ.rawValue){
+                        doThirdLogin(type: SSDKPlatformType.typeQQ)
+                    }else if(platformID == SSDKPlatformType.typeWechat.rawValue){
+                        doThirdLogin(type: SSDKPlatformType.typeWechat)
+                    }else if(platformID == SSDKPlatformType.typeSinaWeibo.rawValue){
+                        doThirdLogin(type: SSDKPlatformType.typeSinaWeibo)
                     }
                 }
             }else{
-                let platformID = UInt(platform)
-                if(platformID == SSDKPlatformType.typeQQ.rawValue){
-                    doThirdLogin(type: SSDKPlatformType.typeQQ)
-                }else if(platformID == SSDKPlatformType.typeWechat.rawValue){
-                    doThirdLogin(type: SSDKPlatformType.typeWechat)
-                }else if(platformID == SSDKPlatformType.typeSinaWeibo.rawValue){
-                    doThirdLogin(type: SSDKPlatformType.typeSinaWeibo)
-                }
+                self.pushTo(viewController: .welcome)
             }
             
         }else{

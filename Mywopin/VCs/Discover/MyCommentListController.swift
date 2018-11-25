@@ -86,6 +86,7 @@ class MyCommentListController: UIViewController, UITableViewDelegate, UITableVie
             HUD.show(.progress)
             _ = Wolf.request(type: MyAPI.newComment(postId: curCom.post, content: content, parent: 0), completion: { (postComment: BlogComment?, msg, code) in
                 HUD.hide()
+                self.enterText?.text = ""
                 if postComment != nil {
                     self.loadData()
                     PKHUD.sharedHUD.contentView = PKHUDSuccessView()
