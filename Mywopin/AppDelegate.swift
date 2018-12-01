@@ -55,11 +55,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
          *  如果您使用的时服务端托管平台信息时，第二、四项参数可以传入nil，第三项参数则根据服务端托管平台来决定要连接的社交SDK。
          */
         
-        ShareSDK.registerActivePlatforms( [], onImport: { (platform : SSDKPlatformType) in
-            
-        }) { (platform : SSDKPlatformType, appInfo : NSMutableDictionary?) in
-            
-        };
         ShareSDK.registerActivePlatforms(
             [
                 SSDKPlatformType.typeSinaWeibo.rawValue,
@@ -70,8 +65,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //                SSDKPlatformType.typeTwitter.rawValue,
 //                SSDKPlatformType.typeMail.rawValue,
 //                SSDKPlatformType.typeSMS.rawValue,
-                SSDKPlatformType.typeWechat.rawValue,
-                SSDKPlatformType.typeQQ.rawValue,
+                SSDKPlatformType.subTypeWechatSession.rawValue,
+                SSDKPlatformType.subTypeQQFriend.rawValue,
 //                SSDKPlatformType.typeRenren.rawValue,
 //                SSDKPlatformType.typeKaixin.rawValue,
 //                SSDKPlatformType.typeGooglePlus.rawValue,

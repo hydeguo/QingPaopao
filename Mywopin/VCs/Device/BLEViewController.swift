@@ -10,10 +10,11 @@ import Foundation
 import UIKit
 import Moya
 
+
 #if targetEnvironment(simulator)
 class BLEViewController: UIViewController {}
 #else
-class BLEViewController: UIViewController {
+class BLEViewController: UIViewController,CBCentralManagerDelegate  {
     
     @IBOutlet var statueLabel:UILabel!
     @IBOutlet var innercircle:UIImageView!
@@ -42,6 +43,7 @@ class BLEViewController: UIViewController {
     var discoveredDeviceBtnMap = [String : UIButton]()
     var discoveredDeviceList = [""]
     
+     var manager:CBCentralManager?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -58,6 +60,8 @@ class BLEViewController: UIViewController {
 //        createGradientLayer(view: self.innercircle, startPoint: CGPoint(x: 0, y: 0), endPoint: CGPoint(x: 1, y: 1))
         
         
+        manager          = CBCentralManager()
+        manager?.delegate = self
         
         innercircle.layer.borderWidth = 4
         innercircle.layer.borderColor = UIColor.white.cgColor
@@ -66,6 +70,27 @@ class BLEViewController: UIViewController {
         innercircle_b.layer.borderWidth = 2
         innercircle_b.layer.borderColor = UIColor.white.cgColor
         
+    }
+    
+    func centralManagerDidUpdateState(_ central: CBCentralManager) {
+        switch central.state {
+        case .poweredOn:
+            break
+        case .poweredOff:
+            print("Bluetooth is Off.")
+            _ = SweetAlert().showAlert("Sorry", subTitle: Language.getString("蓝牙处于关闭，请到系统设置打开蓝牙"), style: AlertStyle.warning)
+            break
+        case .resetting:
+            break
+        case .unauthorized:
+            break
+        case .unsupported:
+            break
+        case .unknown:
+            break
+        default:
+            break
+        }
     }
 
     @objc func scanDevice() {

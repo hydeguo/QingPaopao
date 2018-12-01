@@ -1128,7 +1128,7 @@ struct R: Rswift.Validatable {
   
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 52 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 53 localization keys.
     struct localizable {
       /// zh-Hans translation: 今天喝水统计
       /// 
@@ -1302,6 +1302,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: zh-Hans
       static let 绑定成功 = Rswift.StringResource(key: "绑定成功", tableName: "Localizable", bundle: R.hostingBundle, locales: ["zh-Hans"], comment: nil)
+      /// zh-Hans translation: 蓝牙处于关闭，请到系统设置打开蓝牙
+      /// 
+      /// Locales: zh-Hans
+      static let 蓝牙处于关闭请到系统设置打开蓝牙 = Rswift.StringResource(key: "蓝牙处于关闭，请到系统设置打开蓝牙", tableName: "Localizable", bundle: R.hostingBundle, locales: ["zh-Hans"], comment: nil)
       /// zh-Hans translation: 订单提交成功
       /// 
       /// Locales: zh-Hans
@@ -1638,6 +1642,13 @@ struct R: Rswift.Validatable {
       /// Locales: zh-Hans
       static func 绑定成功(_: Void = ()) -> String {
         return NSLocalizedString("绑定成功", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// zh-Hans translation: 蓝牙处于关闭，请到系统设置打开蓝牙
+      /// 
+      /// Locales: zh-Hans
+      static func 蓝牙处于关闭请到系统设置打开蓝牙(_: Void = ()) -> String {
+        return NSLocalizedString("蓝牙处于关闭，请到系统设置打开蓝牙", bundle: R.hostingBundle, comment: "")
       }
       
       /// zh-Hans translation: 订单提交成功

@@ -290,13 +290,16 @@ class ExchangeShopDetailVC: UITableViewController ,UIWebViewDelegate{
         // 使webView自适应高度
         detailWebView.isHidden = false
         webView.sizeToFit()
-        let height = webView.bounds.size.height
+        let height = webView.bounds.size.height + 50
         webView.frame = CGRect.init(x: 10, y: 0, width: screenWidth - 20, height: height)
         if !heightDict.keys.contains(webView.tag) {
             heightDict.updateValue(height, forKey: webView.tag)
             
             if heightDict.count >= 1 {
                 self.tableView.reloadData()
+                _ = setTimeout(delay: 0.1) {
+                    self.detailWebView.y = 40
+                }
 //                hideLoading()
             }
         }

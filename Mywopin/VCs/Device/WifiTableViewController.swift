@@ -46,6 +46,10 @@ class WifiTableViewController: UITableViewController, QRCodeReaderViewController
         wifiPasswordTextField.delegate = self
         scanQRcode(UIButton())
     }
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
     
     private func displaySpinner(onView : UIView) -> UIView {
         let spinnerView = UIView.init(frame: onView.bounds)

@@ -8,6 +8,9 @@
 
 import Foundation
 import UserNotifications
+import CoreLocation
+
+
 #if targetEnvironment(simulator)
 class DeviceInfoVC: UITableViewController{
     func onSetData(info:CupItem){}
@@ -49,6 +52,34 @@ class DeviceInfoVC: UITableViewController {
         }
         
         requestNotice()
+        
+        if let appSettings = NSURL(string: UIApplicationOpenSettingsURLString) {
+            
+            let locationAlert =  UserDefaults.standard.value(forKey: "LocationAlert") as? Bool
+            if !isLocationServiceOpen() && deviceInfo?.type == DeviceTypeWifi && locationAlert == false {
+                
+                UserDefaults.standard.set(true, forKey: "LocationAlert")
+                
+                let alertCon = UIAlertController.init(title: "定位功能被禁止，是否需要水杯获取坐标", message: nil, preferredStyle: .alert)
+                
+                let cancelAction = UIAlertAction.init(title: "取消", style: .cancel, handler: nil)
+                let okAction = UIAlertAction.init(title: "设定", style: .default, handler: { (action) in
+                    UIApplication.shared.open(appSettings as URL, options: [:], completionHandler: nil)
+                })
+                
+                alertCon.addAction(cancelAction)
+                alertCon.addAction(okAction)
+                self.present(alertCon, animated: true, completion: nil)
+            }
+        }
+    }
+    
+    func isLocationServiceOpen() -> Bool {
+        if CLLocationManager.authorizationStatus() == CLAuthorizationStatus.denied {
+            return false
+        } else {
+            return true
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
