@@ -39,11 +39,13 @@ class MyCommentListController: UIViewController, UITableViewDelegate, UITableVie
         self.navigationController?.navigationBar.topItem?.title = ""
         
 //        self.tableView.reloadData()
-        
+        self.keyboardView?.isHidden = true
     }
     
     override func viewDidAppear(_ animated: Bool) {
         updateTitle()
+        
+        self.keyboardView?.y = self.view.height
     }
     
     
@@ -87,6 +89,10 @@ class MyCommentListController: UIViewController, UITableViewDelegate, UITableVie
             _ = Wolf.request(type: MyAPI.newComment(postId: curCom.post, content: content, parent: 0), completion: { (postComment: BlogComment?, msg, code) in
                 HUD.hide()
                 self.enterText?.text = ""
+                
+                UIView.animate(withDuration: 0.5) {
+                    self.keyboardView?.y = self.view.height
+                }
                 if postComment != nil {
                     self.loadData()
                     PKHUD.sharedHUD.contentView = PKHUDSuccessView()
@@ -170,6 +176,9 @@ class MyCommentListController: UIViewController, UITableViewDelegate, UITableVie
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
+        UIView.animate(withDuration: 0.5) {
+            self.keyboardView?.y = self.view.height
+        }
         return true
     }
     // MARK: - Segues
@@ -266,6 +275,11 @@ class MyCommentListController: UIViewController, UITableViewDelegate, UITableVie
             if( btn.tag < myComments.count){
                 self.curSelectCom = myComments[btn.tag]
                 self.enterText?.becomeFirstResponder()
+                
+                UIView.animate(withDuration: 0.5) {
+                    self.keyboardView?.isHidden = false
+                    self.keyboardView?.y = self.view.height - self.keyboardView!.height
+                }
             }
         }
       

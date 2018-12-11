@@ -41,7 +41,7 @@ class PostTableViewCell: UITableViewCell {
             dateFormatterGet.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
             
             let dateFormatter = DateFormatter()
-            dateFormatter.dateFormat = "yyyy-MM-dd hh:mm"//"MMM dd,yyyy,hh:mm:ss"
+            dateFormatter.dateFormat = "yyyy-MM-dd HH:mm"//"MMM dd,yyyy,hh:mm:ss"
             
             let time = dateFormatterGet.date(from: dateStringFull)!//2017-08-28T08:24:37.783Z
             let timeText = dateFormatter.string(from: time)
@@ -113,7 +113,7 @@ class CommentTableViewCell: UITableViewCell {
             dateFormatterGet.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
             
             let dateFormatter = DateFormatter()
-            dateFormatter.dateFormat = "yyyy-MM-dd hh:mm"
+            dateFormatter.dateFormat = "yyyy-MM-dd HH:mm"
             
             let time = dateFormatterGet.date(from: dateStringFull)!//2017-08-28T08:24:37.783Z
             let timeText = dateFormatter.string(from: time)
@@ -216,7 +216,7 @@ class AuthorBlogCell: UITableViewCell {
             dateFormatterGet.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
             
             let dateFormatter = DateFormatter()
-            dateFormatter.dateFormat = "yyyy-MM-dd hh:mm"
+            dateFormatter.dateFormat = "yyyy-MM-dd HH:mm"
             
             let time = dateFormatterGet.date(from: dateStringFull)!//2017-08-28T08:24:37.783Z
             let timeText = dateFormatter.string(from: time)
