@@ -11,6 +11,7 @@ import UIKit
 import NetworkExtension
 import SystemConfiguration.CaptiveNetwork
 import Moya
+import Alamofire
 
 #if targetEnvironment(simulator)
 class WifiTableViewController: UITableViewController {}
@@ -192,54 +193,31 @@ class WifiTableViewController: UITableViewController, QRCodeReaderViewController
         alert.view.addSubview(loadingIndicator)
         present(alert, animated: true, completion: nil)
         
-        let headers = ["Content-Type" : "application/x-www-form-urlencoded",
-                       "Accept-Language" : "en-US,en;q=0.9,zh-CN;q=0.8,zh;q=0.7",
-                       "Connection" : "keep-alive",
-                       "scan" : "1"]
         
-        let postString = "" //ToDo: Cannot send the post data
+        //-------------------------------1------------------------------------
         
-        var request = URLRequest(url: URL(string: wopinWifiURL)!)
-        
-        request.httpMethod = "GET"
-        request.allHTTPHeaderFields = headers
-        request.httpBody = postString.data(using: .utf8)
-        print("Scanning wifi...")
-        let configuration = URLSessionConfiguration.default
-        configuration.timeoutIntervalForRequest = 15
-        let session = URLSession(configuration: configuration)
-        let dataTask = session.dataTask(with: request, completionHandler: { (data, response, error) -> Void in
-            if (error != nil) {
-                print("scanning wifi fail")
-                alert.dismiss(animated: false, completion: nil)
-                self.scanNearbyWifi(isPresent : true)
-            } else {
+        Alamofire.request(wopinWifiURL).responseString { response in
+
+            if let jsonString = response.result.value {
+
                 do {
-//                    let httpResponse = response as? HTTPURLResponse
-                    var jsonString = ""
-                    if let httpResponseData = String(data: data!, encoding: .utf8)
-                    {
-                        Log(httpResponseData)
-                        jsonString = String((httpResponseData.dropLast() ))
-                    }
-                    else if let httpResponseData2 = String(data: data!, encoding: .ascii)
-                    {
-                        Log(httpResponseData2)
-                        jsonString = String((httpResponseData2.dropLast() ))
-                    }
-                    jsonString = "[" + jsonString + "]"
-                    let ra = try JSONDecoder().decode([WifiScanResult].self, from: jsonString.data(using: .utf8)!)
+                    let newJsonString = "[" + jsonString + "]"
+                    let ra = try JSONDecoder().decode([WifiScanResult].self, from: newJsonString.data(using: .utf8)!)
                     for r in ra {
                         print(r.essid);
                         self.essids.append(r.essid)
                     }
                     self.essids.append("手动输入")
                 } catch {
+                    alert.dismiss(animated: false, completion: nil)
+                    self.scanNearbyWifi(isPresent : true)
+                    print("scanning wifi fail")
                     print(error)
+                    return
                 }
                 print("Scan Nearby Wifi Success!")
                 alert.dismiss(animated: false, completion: nil)
-                
+
                 let vc = R.storyboard.main.wifiScanListVC()
                 vc?.wifiTableViewController = self
                 vc?.essids = self.essids
@@ -248,9 +226,70 @@ class WifiTableViewController: UITableViewController, QRCodeReaderViewController
                 })
 
             }
-        })
+        }
+        
+        
+        //-------------------------------2------------------------------------
+        
+//        let headers = ["Content-Type" : "application/x-www-form-urlencoded",
+//                       "Accept-Language" : "en-US,en;q=0.9,zh-CN;q=0.8,zh;q=0.7",
+//                       "Connection" : "keep-alive",
+//                       "scan" : "1"]
+//
+//        let postString = "" //ToDo: Cannot send the post data
+        
+//        var request = URLRequest(url: URL(string: wopinWifiURL)!)
+//
+//        request.httpMethod = "GET"
+//        request.allHTTPHeaderFields = headers
+//        request.httpBody = postString.data(using: .utf8)
+//        print("Scanning wifi...")
+//        let configuration = URLSessionConfiguration.default
+//        configuration.timeoutIntervalForRequest = 15
+//        let session = URLSession(configuration: configuration)
+//        let dataTask = session.dataTask(with: request, completionHandler: { (data, response, error) -> Void in
+//            if (error != nil) {
+//                print("scanning wifi fail")
+//                alert.dismiss(animated: false, completion: nil)
+//                self.scanNearbyWifi(isPresent : true)
+//            } else {
+//                do {
+////                    let httpResponse = response as? HTTPURLResponse
+//                    var jsonString = ""
+//                    if let httpResponseData = String(data: data!, encoding: .utf8)
+//                    {
+//                        Log(httpResponseData)
+//                        jsonString = String((httpResponseData.dropLast() ))
+//                    }
+//                    else if let httpResponseData2 = String(data: data!, encoding: .ascii)
+//                    {
+//                        Log(httpResponseData2)
+//                        jsonString = String((httpResponseData2.dropLast() ))
+//                    }
+//                    jsonString = "[" + jsonString + "]"
+//                    let ra = try JSONDecoder().decode([WifiScanResult].self, from: jsonString.data(using: .utf8)!)
+//                    for r in ra {
+//                        print(r.essid);
+//                        self.essids.append(r.essid)
+//                    }
+//                    self.essids.append("手动输入")
+//                } catch {
+//                    print(error)
+//                }
+//                print("Scan Nearby Wifi Success!")
+//                alert.dismiss(animated: false, completion: nil)
+//
+//                let vc = R.storyboard.main.wifiScanListVC()
+//                vc?.wifiTableViewController = self
+//                vc?.essids = self.essids
+//                self.present(vc!, animated: true, completion: {
+//                    self.removeSpinner(spinner: self.sv!)
+//                })
+//
+//            }
+//        })
     
-        dataTask.resume()
+//        dataTask.resume()
     }
     
     func updateDeviceSetting() {
