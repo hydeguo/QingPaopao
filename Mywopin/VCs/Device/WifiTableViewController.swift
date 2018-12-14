@@ -196,8 +196,9 @@ class WifiTableViewController: UITableViewController, QRCodeReaderViewController
         
         //-------------------------------1------------------------------------
         
-        Alamofire.request(wopinWifiURL).responseString { response in
-
+        let header    = [ "scan" : "1" ]
+        Alamofire.request(wopinWifiURL,headers:header).responseString { response in
+            print(response)
             if let jsonString = response.result.value {
 
                 do {
@@ -226,6 +227,10 @@ class WifiTableViewController: UITableViewController, QRCodeReaderViewController
                 })
 
             }
+            else
+            {
+                alert.dismiss(animated: false, completion: nil)
+            }
         }
         
         
@@ -237,7 +242,7 @@ class WifiTableViewController: UITableViewController, QRCodeReaderViewController
 //                       "scan" : "1"]
 //
 //        let postString = "" //ToDo: Cannot send the post data
-        
+//
 //        var request = URLRequest(url: URL(string: wopinWifiURL)!)
 //
 //        request.httpMethod = "GET"
@@ -288,7 +293,7 @@ class WifiTableViewController: UITableViewController, QRCodeReaderViewController
 //
 //            }
 //        })
-    
+//
 //        dataTask.resume()
     }
     
