@@ -68,6 +68,10 @@ extension String {
     var htmlToString: String {
         return htmlToAttributedString?.string ?? ""
     }
+    
+    func removeSpacesAndNewlines() ->String {
+        return self.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
+    }
 }
 
 extension Date{

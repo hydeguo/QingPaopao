@@ -200,22 +200,22 @@ class WifiTableViewController: UITableViewController, QRCodeReaderViewController
         Alamofire.request(wopinWifiURL,headers:header).responseString { response in
             print(response)
             if let jsonString = response.result.value {
-
-                do {
-                    let newJsonString = "[" + jsonString + "]"
-                    let ra = try JSONDecoder().decode([WifiScanResult].self, from: newJsonString.data(using: .utf8)!)
-                    for r in ra {
-                        print(r.essid);
-                        self.essids.append(r.essid)
+                
+                let subarr = jsonString.components(separatedBy: ",\n")
+                
+                for r in subarr {
+                    do {
+                        let itemStr = r.removeSpacesAndNewlines()
+                        let ra = try JSONDecoder().decode(WifiScanResult.self, from: itemStr.data(using: .utf8)!)
+                        if let essid = ra.essid
+                        {
+                            self.essids.append(essid)
+                        }
+                    } catch {
+                        
                     }
-                    self.essids.append("手动输入")
-                } catch {
-                    alert.dismiss(animated: false, completion: nil)
-                    self.scanNearbyWifi(isPresent : true)
-                    print("scanning wifi fail")
-                    print(error)
-                    return
                 }
+                self.essids.append("手动输入")
                 print("Scan Nearby Wifi Success!")
                 alert.dismiss(animated: false, completion: nil)
 
@@ -418,6 +418,8 @@ class WifiTableViewController: UITableViewController, QRCodeReaderViewController
         let dataTask = session.dataTask(with: request, completionHandler: { (data, response, error) -> Void in
             if (error != nil) {
                 print("sendPasswordToCup Fail")
+                self.removeSpinner(spinner: self.sv!)
+                self.showSuccess(msg: Language.getString("连接异常，请重试"), OkAction: nil)
 //                print(error ?? "")
 //                if(self.retryPasswordToCup > 1){
 //                    Log("retry sendPasswordToCup")

@@ -35,8 +35,8 @@ enum WIFI_CUP_MODE:Int {
 }
 
 struct WifiScanResult: Codable {
-    let essid: String
-    let bssid: String
+    let essid: String?
+    let bssid: String?
     let rssid: String?
     let channel: String?
     
