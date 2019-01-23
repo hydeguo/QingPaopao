@@ -17,7 +17,7 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>3.0</string>
+	<string>3.1</string>
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>
@@ -46,7 +46,7 @@
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>64</string>
+	<string>65</string>
 	<key>Fonts provided by application </key>
 	<array>
 		<string>mui-icons-extra.ttf</string>
@@ -136,13 +136,13 @@
 		<true/>
 	</dict>
 	<key>NSBluetoothPeripheralUsageDescription</key>
-	<string>App need to use your Bluetooth</string>
+	<string>应用程序需要使用您的蓝牙连接设备</string>
 	<key>NSCameraUsageDescription</key>
-	<string>Camera access needed for QRcode</string>
+	<string>请求相机扫描Qrcode以连接wifi设备</string>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-	<string>App need to know your location</string>
+	<string>应用程序将获取您记录用户喝水活动的位置</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>App need to know your location</string>
+	<string>应用程序将获取您记录用户喝水活动的位置</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>此 App 需要您的同意才能读取媒体资料库</string>
 	<key>UIBackgroundModes</key>

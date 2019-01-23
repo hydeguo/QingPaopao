@@ -1142,10 +1142,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: zh-Hans
       static let 保存成功 = Rswift.StringResource(key: "保存成功", tableName: "Localizable", bundle: R.hostingBundle, locales: ["zh-Hans"], comment: nil)
-      /// zh-Hans translation: 停止电解
+      /// zh-Hans translation: 停止制氢
       /// 
       /// Locales: zh-Hans
-      static let 停止电解 = Rswift.StringResource(key: "停止电解", tableName: "Localizable", bundle: R.hostingBundle, locales: ["zh-Hans"], comment: nil)
+      static let 停止制氢 = Rswift.StringResource(key: "停止制氢", tableName: "Localizable", bundle: R.hostingBundle, locales: ["zh-Hans"], comment: nil)
       /// zh-Hans translation: 元
       /// 
       /// Locales: zh-Hans
@@ -1190,10 +1190,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: zh-Hans
       static let 已连接 = Rswift.StringResource(key: "已连接", tableName: "Localizable", bundle: R.hostingBundle, locales: ["zh-Hans"], comment: nil)
-      /// zh-Hans translation: 开始电解
+      /// zh-Hans translation: 开始制氢
       /// 
       /// Locales: zh-Hans
-      static let 开始电解 = Rswift.StringResource(key: "开始电解", tableName: "Localizable", bundle: R.hostingBundle, locales: ["zh-Hans"], comment: nil)
+      static let 开始制氢 = Rswift.StringResource(key: "开始制氢", tableName: "Localizable", bundle: R.hostingBundle, locales: ["zh-Hans"], comment: nil)
       /// zh-Hans translation: 总喝水量
       /// 
       /// Locales: zh-Hans
@@ -1364,11 +1364,11 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("保存成功", bundle: R.hostingBundle, comment: "")
       }
       
-      /// zh-Hans translation: 停止电解
+      /// zh-Hans translation: 停止制氢
       /// 
       /// Locales: zh-Hans
-      static func 停止电解(_: Void = ()) -> String {
-        return NSLocalizedString("停止电解", bundle: R.hostingBundle, comment: "")
+      static func 停止制氢(_: Void = ()) -> String {
+        return NSLocalizedString("停止制氢", bundle: R.hostingBundle, comment: "")
       }
       
       /// zh-Hans translation: 元
@@ -1448,11 +1448,11 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("已连接", bundle: R.hostingBundle, comment: "")
       }
       
-      /// zh-Hans translation: 开始电解
+      /// zh-Hans translation: 开始制氢
       /// 
       /// Locales: zh-Hans
-      static func 开始电解(_: Void = ()) -> String {
-        return NSLocalizedString("开始电解", bundle: R.hostingBundle, comment: "")
+      static func 开始制氢(_: Void = ()) -> String {
+        return NSLocalizedString("开始制氢", bundle: R.hostingBundle, comment: "")
       }
       
       /// zh-Hans translation: 总喝水量

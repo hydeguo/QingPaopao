@@ -181,7 +181,7 @@ class DrinkViewController: UIViewController, CLLocationManagerDelegate {
                 }
                 else if  startElectrolyFlag == true
                 {
-//                    _ = SweetAlert().showAlert("提示", subTitle: "正在电解中", style: AlertStyle.none)
+//                    _ = SweetAlert().showAlert("提示", subTitle: "正在制氢中", style: AlertStyle.none)
 //                    return false
                     stopElectroly()
                 }
@@ -245,7 +245,7 @@ class DrinkViewController: UIViewController, CLLocationManagerDelegate {
     private func startElectrolyUI()
     {
         actionBtn?.backgroundColor = UIColor.lightGray
-        actionBtn?.setTitle(Language.getString("停止电解"), for: .normal)
+        actionBtn?.setTitle(Language.getString("停止制氢"), for: .normal)
 //        self.slider.isEnabled = false
         startElectrolyFlag = true
         _timer?.invalidate()
@@ -258,7 +258,7 @@ class DrinkViewController: UIViewController, CLLocationManagerDelegate {
         _timer?.invalidate()
         sliderNum.value = sliderNum.value
         actionBtn?.backgroundColor = UIColor.colorFromRGB(0x49BBFF)
-        actionBtn?.setTitle(Language.getString("开始电解"), for: .normal)
+        actionBtn?.setTitle(Language.getString("开始制氢"), for: .normal)
 //        self.slider.isEnabled = true
         startElectrolyFlag = false
     }

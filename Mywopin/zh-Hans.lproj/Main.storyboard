@@ -23,7 +23,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="灯光调节" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9ew-c1-YQM">
-                                <rect key="frame" x="135" y="40" width="105" height="21"/>
+                                <rect key="frame" x="135" y="39" width="105" height="22"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="19"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -242,7 +242,7 @@
                                         <color key="backgroundColor" red="0.28627450980000002" green="0.73333333329999995" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                         <size key="titleShadowOffset" width="2" height="2"/>
-                                        <state key="normal" title="开始电解"/>
+                                        <state key="normal" title="开始制氢"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
                                                 <integer key="value" value="20"/>
@@ -324,7 +324,7 @@
                                 <color key="backgroundColor" white="0.0" alpha="0.5" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </imageView>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LZ3-T8-ZTn">
-                                <rect key="frame" x="16" y="70" width="343" height="197"/>
+                                <rect key="frame" x="16" y="69" width="343" height="198"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="清洗注意事项" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="edk-tG-MnJ">
@@ -431,7 +431,7 @@
                                         <rect key="frame" x="22" y="56" width="300" height="99"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                         <string key="text">1.水杯清洗完成，请倒掉水，重新加入可饮
-用水进行电解！
+用水进行制氢！
 2.此窗口会在您重启水杯之后自动消失!</string>
                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                         <nil key="textColor"/>
@@ -1101,7 +1101,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="蓝牙设置" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hha-OY-fcu">
-                                <rect key="frame" x="135" y="40" width="105" height="21"/>
+                                <rect key="frame" x="135" y="39" width="105" height="22"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="19"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -1218,7 +1218,7 @@
                                         </connections>
                                     </button>
                                     <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CFD-7r-Yge">
-                                        <rect key="frame" x="63" y="272" width="60" height="60"/>
+                                        <rect key="frame" x="63" y="273" width="60" height="60"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" white="1" alpha="0.5" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <state key="normal" title="Button">
@@ -1252,7 +1252,7 @@
                                         </connections>
                                     </button>
                                     <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Q7b-Ap-Oi3">
-                                        <rect key="frame" x="225" y="272" width="60" height="60"/>
+                                        <rect key="frame" x="225" y="273" width="60" height="60"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" white="1" alpha="0.5" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <state key="normal" title="Button">
@@ -1472,7 +1472,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="arrow" translatesAutoresizingMaskIntoConstraints="NO" id="k5J-AD-7ny">
-                                                    <rect key="frame" x="336" y="15" width="23" height="20"/>
+                                                    <rect key="frame" x="557" y="15" width="23" height="20"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="20" id="G9k-n9-HJx"/>
                                                         <constraint firstAttribute="width" constant="23" id="Qwl-Z7-5y3"/>
@@ -1518,7 +1518,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="arrow" translatesAutoresizingMaskIntoConstraints="NO" id="2CZ-kV-hmD">
-                                                    <rect key="frame" x="336" y="15" width="23" height="20"/>
+                                                    <rect key="frame" x="557" y="15" width="23" height="20"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="20" id="2JO-sL-4cv"/>
                                                         <constraint firstAttribute="width" constant="23" id="VHn-cO-Byp"/>
@@ -1579,7 +1579,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="arrow" translatesAutoresizingMaskIntoConstraints="NO" id="N1d-B8-Z4B">
-                                                    <rect key="frame" x="336" y="16" width="23" height="20"/>
+                                                    <rect key="frame" x="561" y="16" width="23" height="20"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="20" id="tVt-Vw-6yg"/>
                                                         <constraint firstAttribute="width" constant="23" id="vMN-mw-tuH"/>
@@ -1746,7 +1746,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="GJL-GW-e6J">
-                                            <rect key="frame" x="16" y="0.0" width="220" height="56"/>
+                                            <rect key="frame" x="16" y="4" width="220" height="56"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                             <nil key="highlightedColor"/>
@@ -1829,7 +1829,7 @@
                                 <rect key="frame" x="0.0" y="64" width="375" height="554"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="titleCell" rowHeight="43" id="HaL-Tu-WMj" customClass="TitleBlogCell" customModule="Mywopin" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="titleCell" rowHeight="43" id="HaL-Tu-WMj" customClass="TitleBlogCell" customModule="Mywopin" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="43"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="HaL-Tu-WMj" id="tS7-TS-8XC">
@@ -1854,7 +1854,7 @@
                                             <outlet property="title" destination="vFF-Kr-cxl" id="mhE-GD-UN2"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="authorCell" rowHeight="80" id="JR3-8I-zwu" customClass="AuthorBlogCell" customModule="Mywopin" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="authorCell" rowHeight="80" id="JR3-8I-zwu" customClass="AuthorBlogCell" customModule="Mywopin" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="71" width="375" height="80"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="JR3-8I-zwu" id="uEi-NG-8kz">
@@ -1919,7 +1919,7 @@
                                             <outlet property="readLabel" destination="WpW-sN-z6i" id="9QZ-32-AWa"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="webCell" rowHeight="390" id="ONt-4s-hFX" customClass="WebViewCell" customModule="Mywopin" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="webCell" rowHeight="390" id="ONt-4s-hFX" customClass="WebViewCell" customModule="Mywopin" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="151" width="375" height="390"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ONt-4s-hFX" id="DEy-Kg-Tng">
@@ -2060,7 +2060,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="精彩评论" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="6" translatesAutoresizingMaskIntoConstraints="NO" id="fgG-FP-gJw">
-                                                    <rect key="frame" x="18" y="78" width="359" height="25.5"/>
+                                                    <rect key="frame" x="18" y="78" width="584" height="25.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -2140,10 +2140,10 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view alpha="0.90000000000000002" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fAG-nH-irO">
-                                                    <rect key="frame" x="16" y="9" width="343" height="38.5"/>
+                                                    <rect key="frame" x="16" y="9" width="568" height="38.5"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="精彩评论" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="6" translatesAutoresizingMaskIntoConstraints="NO" id="8nu-Bf-TIt">
-                                                            <rect key="frame" x="12" y="10" width="319" height="38.5"/>
+                                                            <rect key="frame" x="12" y="10" width="544" height="38.5"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                             <color key="textColor" red="0.4941176471" green="0.4941176471" blue="0.4941176471" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
@@ -2453,14 +2453,14 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="手机震动" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Ww-b6-DF5">
-                                                    <rect key="frame" x="31" y="-10" width="70" height="21"/>
+                                                    <rect key="frame" x="31" y="0.0" width="70" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1ET-l5-QMY">
-                                                    <rect key="frame" x="300" y="-15" width="49" height="31"/>
+                                                    <rect key="frame" x="300" y="0.0" width="49" height="31"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                                 </switch>
                                             </subviews>
@@ -2474,14 +2474,14 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="水杯闪烁" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="crf-gc-UKm">
-                                                    <rect key="frame" x="31" y="-10" width="70" height="21"/>
+                                                    <rect key="frame" x="31" y="0.0" width="70" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Oyb-x9-H9B">
-                                                    <rect key="frame" x="300" y="-15" width="49" height="31"/>
+                                                    <rect key="frame" x="300" y="0.0" width="49" height="31"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                                 </switch>
                                             </subviews>
@@ -3415,12 +3415,12 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yzo-Ft-3xt">
-                                        <rect key="frame" x="0.0" y="35" width="375" height="270"/>
+                                        <rect key="frame" x="0.0" y="34" width="375" height="270"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </view>
                                     <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="10w-2q-SFz">
-                                        <rect key="frame" x="0.0" y="35" width="375" height="270"/>
+                                        <rect key="frame" x="0.0" y="34" width="375" height="270"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </view>
@@ -3687,7 +3687,7 @@
                                         <rect key="frame" x="0.0" y="267" width="337.5" height="66.5"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="klA-m9-G3t">
-                                                <rect key="frame" x="4" y="16" width="328" height="36"/>
+                                                <rect key="frame" x="4" y="15" width="328" height="36"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                                 <color key="backgroundColor" red="0.28627450980000002" green="0.73333333329999995" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <state key="normal" title="提交">
@@ -3763,7 +3763,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="身体基本信息" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fqq-08-pBK">
-                                                    <rect key="frame" x="116" y="0.0" width="145" height="22"/>
+                                                    <rect key="frame" x="116" y="2" width="145" height="22"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <nil key="textColor"/>
@@ -4543,7 +4543,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="新增设备" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dad-G0-gkA">
-                                <rect key="frame" x="135" y="40" width="105" height="21"/>
+                                <rect key="frame" x="135" y="39" width="105" height="22"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="19"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -4651,7 +4651,7 @@
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     </imageView>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="hand" translatesAutoresizingMaskIntoConstraints="NO" id="75L-8J-EL8">
-                                        <rect key="frame" x="104" y="220" width="103" height="43"/>
+                                        <rect key="frame" x="104" y="219" width="103" height="44"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES"/>
                                     </imageView>
                                 </subviews>
@@ -4937,7 +4937,7 @@ DQ
                                 <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" id="jam-9p-gCO">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" id="jam-9p-gCO">
                                         <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="jam-9p-gCO" id="Q6S-sF-HtJ">
@@ -7407,17 +7407,17 @@ HIFI音响</string>
 问：杯子的使用方法
 答：
 1 开机，长按开机键3秒
-2电解时间，默认5分钟，电解完成以后自动关机；
+2制氢时间，默认5分钟，制氢完成以后自动关机；
 3强制关机，开机状态长按开关键3秒，关机；
-4 手机操控，扫描杯底二维码下载氢泡泡APP，在手机上打开APP，通过手机蓝牙连接杯子，可以操控杯子灯光、电解时间、提醒喝水等功能；
-5新杯子最好用60度左右的热水，电解3-5次，倒掉。以后的就可以正常使用了；
-6 喝水建议：用60度左右的水，早晨一杯水电解两次后喝掉，上午1～2杯电解1次，下午1-2杯电解1次，晚上睡觉前电解两次1杯，按照此种方式饮用10天，会有较好效果。电解后，最好在20分钟内喝完
+4 手机操控，扫描杯底二维码下载氢泡泡APP，在手机上打开APP，通过手机蓝牙连接杯子，可以操控杯子灯光、制氢时间、提醒喝水等功能；
+5新杯子最好用60度左右的热水，制氢3-5次，倒掉。以后的就可以正常使用了；
+6 喝水建议：用60度左右的水，早晨一杯水制氢两次后喝掉，上午1～2杯制氢1次，下午1-2杯制氢1次，晚上睡觉前制氢两次1杯，按照此种方式饮用10天，会有较好效果。制氢后，最好在20分钟内喝完
 
 问：刚拆开的杯子里为什么会有水？
-答：杯子里的水是在工厂里组装时加的抑菌水，是为了湿润电解片和氢氧分离离子膜，激活并保持离子膜的活性，让用户在拿到杯子后就能有很好的制氢效果。在首次使用时，揭开硅胶塞后，倒掉即可。
+答：杯子里的水是在工厂里组装时加的抑菌水，是为了湿润制氢片和氢氧分离离子膜，激活并保持离子膜的活性，让用户在拿到杯子后就能有很好的制氢效果。在首次使用时，揭开硅胶塞后，倒掉即可。
 
 问：首次打开杯子如何操作？
-答：首次使用杯子，把杯中的硅胶塞拿去，倒掉火山口里的抑菌水，若没有电，则开始充电，充电时按钮显示红色，充满时按钮显示绿色；充满电后，到入60°左右的热水，电解倒掉，如此反复3-5次以后，就可以正常使用了。
+答：首次使用杯子，把杯中的硅胶塞拿去，倒掉火山口里的抑菌水，若没有电，则开始充电，充电时按钮显示红色，充满时按钮显示绿色；充满电后，到入60°左右的热水，制氢倒掉，如此反复3-5次以后，就可以正常使用了。
 
 
 问：杯子能否使用热开水？
@@ -7431,22 +7431,22 @@ HIFI音响</string>
 答：app界面中左下方有个蓝牙设置，点进去就可以连接蓝牙，记得先把手机蓝牙打开哦。
 
 问：如何设置制氢时间？
-答：不用app时，水杯开机后默认电解5分钟；用app操控时可以在0-20min任意调节。
+答：不用app时，水杯开机后默认制氢5分钟；用app操控时可以在0-20min任意调节。
 
 问：硅胶塞怎么使用呢？
 答：硅胶塞在使用时需要拿掉，当第一次打开杯子时，会看到中间有些水，这是为了湿润杜邦膜片。所以需要打开杯子，把这个硅胶塞拿去。若长期不使用时，要倒入一部分水后用硅胶塞盖住。保持杯子活性，防止灰尘落入。
 
 问：刚打开的杯子中为什么会有一股怪味？
-答：在包装塑封后，包装盒里的空气难以流动，导致塑封袋气味进入杯子，并不妨碍使用，用60°左右的热水水浸泡电解，并放在通风比较好的地方敞开杯子一段时间即可。
+答：在包装塑封后，包装盒里的空气难以流动，导致塑封袋气味进入杯子，并不妨碍使用，用60°左右的热水水浸泡制氢，并放在通风比较好的地方敞开杯子一段时间即可。
 
 问：水杯能否用饮水机除垢剂清洗？
-答：我们建议最好是用清水洗，可以用柠檬片泡一泡。因为除垢剂属于中强酸，会腐蚀杯子的电解片，不建议使用。
+答：我们建议最好是用清水洗，可以用柠檬片泡一泡。因为除垢剂属于中强酸，会腐蚀杯子的制氢片，不建议使用。
 
 问：为什么杯子制氢的气泡特别少？
 答：本产品采用的是美国杜邦离子膜，需要通过浸泡去增强它的通透性和导电性（即激活离子膜），浸泡时间越长，离子膜导电性和通透性就越强。产生氢气量就越多。多使用就会越来越好的。
 
-问：杯子用于电解什么水？
-答：氢POPO富氢水杯可用于电解可直饮饮用水。可直饮饮用水，即我们平时喝的水。包括烧开的自来水，纯净水，矿泉水。烧开的井水，山泉水等。
+问：杯子用于制氢什么水？
+答：氢POPO富氢水杯可用于制氢可直饮饮用水。可直饮饮用水，即我们平时喝的水。包括烧开的自来水，纯净水，矿泉水。烧开的井水，山泉水等。
 
 问：用什么充电头？
 答：普通的USB充电头，5V=1A、5V=2A、都可以
@@ -7656,7 +7656,7 @@ E无法达到这一点）。——太田成男
 答：临床上是有氢气呼吸治疗仪直接吸氢气的，但是没有办法普及，第一是氢气如果是以高浓度气体形式存在是易燃易爆的，虽然规范使用仪器肯定不会出现危险，但消费者多奇葩的都有，从安全性上就无法普及这样的仪器，任何企业都担负不起这样的风险。第二是氢气浓度和氢气吸入量不好控制，一些用户想效果好点就拼命吸氢气等反而会适得其反。从安全、适量、易普及等方面考虑，日常多以富氢水最为安全、有效。——氢分子物理化学性质，日本富氢水（水素水）市场安全调查
 
 25.喝氢水多了会容易上厕所吗？
-答：会的。氢POPO电解产生的富氢水是小分子团水，拥有更强的渗透力溶解力，加速内环境排毒交换，所以大小便排泄会增加。而且富氢水本身富含氢分子，氢分子会发挥选择性针对性抗氧化抗衰老效果，消除体内有害的活性氧生成水排出体外。——氢分子物理化学性质
+答：会的。氢POPO制氢产生的富氢水是小分子团水，拥有更强的渗透力溶解力，加速内环境排毒交换，所以大小便排泄会增加。而且富氢水本身富含氢分子，氢分子会发挥选择性针对性抗氧化抗衰老效果，消除体内有害的活性氧生成水排出体外。——氢分子物理化学性质
 </string>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -7827,7 +7827,7 @@ E无法达到这一点）。——太田成男
                                 <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="titleCell" rowHeight="43" id="O6D-js-qMj" customClass="TitleBlogCell" customModule="Mywopin" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="titleCell" rowHeight="43" id="O6D-js-qMj" customClass="TitleBlogCell" customModule="Mywopin" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="43"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="O6D-js-qMj" id="leF-Sx-Hrh">
@@ -7852,7 +7852,7 @@ E无法达到这一点）。——太田成男
                                             <outlet property="title" destination="iyT-fp-Eta" id="mb2-qR-1E9"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="authorCell" rowHeight="80" id="kd4-xp-7Vs" customClass="AuthorBlogCell" customModule="Mywopin" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="authorCell" rowHeight="80" id="kd4-xp-7Vs" customClass="AuthorBlogCell" customModule="Mywopin" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="71" width="375" height="80"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="kd4-xp-7Vs" id="3xt-dy-7S1">
@@ -7899,7 +7899,7 @@ E无法达到这一点）。——太田成男
                                             <outlet property="readLabel" destination="KfS-Zb-6Ot" id="ioo-wS-kxy"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="webCell" rowHeight="390" id="2mC-Vv-B59" customClass="WebViewCell" customModule="Mywopin" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="webCell" rowHeight="390" id="2mC-Vv-B59" customClass="WebViewCell" customModule="Mywopin" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="151" width="375" height="390"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="2mC-Vv-B59" id="bJb-ui-5Yi">
@@ -7965,7 +7965,7 @@ E无法达到这一点）。——太田成男
                                 <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="CommentMsgCell" rowHeight="207" id="Ipf-Cu-NVq" customClass="CommentMsgCell" customModule="Mywopin" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="CommentMsgCell" rowHeight="207" id="Ipf-Cu-NVq" customClass="CommentMsgCell" customModule="Mywopin" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="207"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Ipf-Cu-NVq" id="EfJ-Nh-gbA">
@@ -8091,7 +8091,7 @@ E无法达到这一点）。——太田成男
                                             <outlet property="replyBtn" destination="IQJ-J3-oCm" id="Gya-XR-DsE"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="ReplyCommentMsgCell" rowHeight="30" id="n7h-at-h8Y" customClass="ReplyCommentMsgCell" customModule="Mywopin" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="ReplyCommentMsgCell" rowHeight="30" id="n7h-at-h8Y" customClass="ReplyCommentMsgCell" customModule="Mywopin" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="235" width="375" height="30"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="n7h-at-h8Y" id="6cE-Te-fl8">

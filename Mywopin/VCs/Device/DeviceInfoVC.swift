@@ -140,7 +140,7 @@ class DeviceInfoVC: UITableViewController {
         let cupId:String=(notice as NSNotification).userInfo!["device"] as! String
         let cupPower:String=(notice as NSNotification).userInfo!["power"] as! String
         if(deviceInfo?.uuid == cupId){
-            if statusLf.titleLabel?.text != "电解中" && statusLf.titleLabel?.text != "清洗中"
+            if statusLf.titleLabel?.text != "制氢中" && statusLf.titleLabel?.text != "清洗中"
             {
                 statusLf.setTitle(Language.getString("已连接"), for: .normal)
             }
@@ -153,7 +153,7 @@ class DeviceInfoVC: UITableViewController {
             let H:Int=(notice as NSNotification).userInfo!["H"] as? Int ?? 0
             let M:String=(notice as NSNotification).userInfo!["M"] as? String ?? ""
             if(M == "1"){
-                statusLf.setTitle(Language.getString("电解中"), for: .normal)
+                statusLf.setTitle(Language.getString("制氢中"), for: .normal)
                 self.timeLf?.text = "\(String(format: "%02d", Int(H / 60))):\(String(format: "%02d", Int(CGFloat(H).truncatingRemainder(dividingBy: 60))))"
             }else if(M == "2") {
                 statusLf.setTitle(Language.getString("清洗中"), for: .normal)
