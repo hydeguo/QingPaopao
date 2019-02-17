@@ -103,7 +103,7 @@ class BLEViewController: UIViewController,CBCentralManagerDelegate  {
     
 
     
-    override func viewDidLayoutSubviews() {
+    override func viewDidAppear(_ animated: Bool) {
         
         let progressView = BLEProgressView()
         progressView.frame = self.bgView.bounds

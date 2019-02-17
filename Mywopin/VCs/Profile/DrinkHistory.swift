@@ -115,7 +115,8 @@ class DrinkHistory: UIViewController {
         _ = Wolf.requestList(type: MyAPI.getDrinkList, completion: { (info: [OneDayDrinks]?, msg, code) in
             if(code == "0" && info != nil)
             {
-                var numOfWeek = Date().dayOfWeek()
+                var numOfWeek = Calendar.current.component(.weekday, from: Date())
+                numOfWeek = numOfWeek==1 ? 7 : numOfWeek - 1
            
                 let dateStr = self.getDayString(day:Date())
                 if let oneDayDrink = self.getDateDrink(dayStr: dateStr, dataArr: info!){
