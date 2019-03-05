@@ -243,7 +243,7 @@ class CrowdfundingShopDetailVC: UITableViewController ,UIWebViewDelegate{
             if(indexPath.row == 0){
                 return 375
             }else if(indexPath.row == 1) {
-                return 110
+                return UITableViewAutomaticDimension
             }else if(indexPath.row == 2) {
                 return 110
             }else if(indexPath.row == 3) {
@@ -260,7 +260,7 @@ class CrowdfundingShopDetailVC: UITableViewController ,UIWebViewDelegate{
                 return _height
             }
         }
-        return 100
+        return UITableViewAutomaticDimension
     }
     override func viewWillAppear(_ animated: Bool) {
         

@@ -149,7 +149,7 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
   
-  /// This `R.image` struct is generated, and contains static references to 90 images.
+  /// This `R.image` struct is generated, and contains static references to 91 images.
   struct image {
     /// Image `AMCP_color_wheel`.
     static let amcp_color_wheel = Rswift.ImageResource(bundle: R.hostingBundle, name: "AMCP_color_wheel")
@@ -205,6 +205,8 @@ struct R: Rswift.Validatable {
     static let cup5 = Rswift.ImageResource(bundle: R.hostingBundle, name: "cup5")
     /// Image `cup`.
     static let cup = Rswift.ImageResource(bundle: R.hostingBundle, name: "cup")
+    /// Image `dafault`.
+    static let dafault = Rswift.ImageResource(bundle: R.hostingBundle, name: "dafault")
     /// Image `default profile`.
     static let defaultProfile = Rswift.ImageResource(bundle: R.hostingBundle, name: "default profile")
     /// Image `device`.
@@ -465,6 +467,11 @@ struct R: Rswift.Validatable {
     /// `UIImage(named: "cup5", bundle: ..., traitCollection: ...)`
     static func cup5(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.cup5, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "dafault", bundle: ..., traitCollection: ...)`
+    static func dafault(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.dafault, compatibleWith: traitCollection)
     }
     
     /// `UIImage(named: "default profile", bundle: ..., traitCollection: ...)`

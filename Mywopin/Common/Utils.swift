@@ -165,9 +165,11 @@ extension UIImageView {
     public func image(fromUrl urlString: String) {
         guard let url = URL(string: urlString.urlEncoded()) else {
             print("[warning]:Couldn't create URL from \(urlString)")
+            self.image = R.image.dafault()
             return
         }
-        self.kf.setImage(with: url)
+        self.kf.cancelDownloadTask()
+        self.kf.setImage(with: url, placeholder: R.image.dafault(), options: nil, progressBlock: nil, completionHandler: nil)
     }
 }
 

@@ -116,7 +116,7 @@ class ScoresShopDetailVC: UITableViewController ,UIWebViewDelegate{
             if(indexPath.row == 0){
                 return 375
             }else {
-                return 110
+                return UITableViewAutomaticDimension
             }
         }
         if indexPath.section == detailWebViewSection
