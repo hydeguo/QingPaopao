@@ -49,7 +49,7 @@ extension WooAPI: TargetType,AccessTokenAuthorizable {
         case .getScoresGoods:
             return .requestParameters(parameters:["consumer_key" : wooConsumerKey, "consumer_secret" : wooConsumerSecret,"category":20], encoding: URLEncoding.default)
         case .getNumerousGoods:
-            return .requestParameters(parameters:["consumer_key" : wooConsumerKey, "consumer_secret" : wooConsumerSecret,"category":17], encoding: URLEncoding.default)
+            return .requestParameters(parameters:["consumer_key" : wooConsumerKey, "consumer_secret" : wooConsumerSecret,"category":28], encoding: URLEncoding.default)
         default:
             return .requestParameters(parameters:["consumer_key" : wooConsumerKey, "consumer_secret" : wooConsumerSecret], encoding: URLEncoding.default)
         }
@@ -78,7 +78,7 @@ extension WooAPI: TargetType,AccessTokenAuthorizable {
         case .getScoresCategory:
             return "/wp-json/wc/v2/products/categories/20"
         case .getNumerousCategory:
-            return "/wp-json/wc/v2/products/categories/17"
+            return "/wp-json/wc/v2/products/categories/28"
         case .updateProduceStock(let id,_):
             return "/wp-json/wc/v2/products/\(id)"
         }

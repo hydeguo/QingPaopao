@@ -78,7 +78,7 @@ class MyProfileViewController: AvatarViewController {
     }
     
     func updateUI(){
-        let name = myClientVo?.userName ?? String(stringInterpolationSegment: myClientVo?.phone)
+        let name = myClientVo?.userName ?? "\(myClientVo?.phone ?? 0)"
         nameLabel.text = name
         let myScores = myClientVo?.scores != nil ? Int(myClientVo!.scores!) : 0
         scoreLabel.text = "\(myScores) 积分"

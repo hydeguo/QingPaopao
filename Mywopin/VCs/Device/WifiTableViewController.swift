@@ -120,11 +120,13 @@ class WifiTableViewController: UITableViewController, QRCodeReaderViewController
     private func connectToWpoinWifi(wopinSSID : String, wopinPW : String) {
         if #available(iOS 11.0, *) {
             let hotspotConfig = NEHotspotConfiguration(ssid: wopinSSID, passphrase: wopinPW, isWEP: false)
-            hotspotConfig.joinOnce = false
+            hotspotConfig.joinOnce = true
             NEHotspotConfigurationManager.shared.apply(hotspotConfig) {[unowned self] (error) in
                 
                 if let error = error {
-                    self.showError(error: error)
+                    self.showError(error: error, completion: { _ in
+                        self.navigationController?.popViewController(animated: true)
+                    })
                 }
                 else {
                     if (self.getWifiSsid() == wopinSSID) {
@@ -373,7 +375,7 @@ class WifiTableViewController: UITableViewController, QRCodeReaderViewController
             print("Could not start notifier")
         }
 
-        timer = setTimeout(delay: 30, block: {
+        timer = setTimeout(delay: 60, block: {
             print("Current connected ssid : \(self.getWifiSsid() ?? ""      )")
             if (self.getWifiSsid() != self.wopinSSID)
             {
@@ -483,10 +485,10 @@ class WifiTableViewController: UITableViewController, QRCodeReaderViewController
         dataTask.resume()
     }
     
-    private func showError(error: Error) {
+    private func showError(error: Error,completion:((UIAlertAction)->Void)?) {
         DispatchQueue.main.async {
             let alert = UIAlertController(title: "Error", message: error.localizedDescription, preferredStyle: .alert)
-            let action = UIAlertAction(title: "Darn", style: .default, handler: nil)
+            let action = UIAlertAction(title: "Darn", style: .default, handler: completion)
             alert.addAction(action)
             self.present(alert, animated: true, completion: nil)
         }
