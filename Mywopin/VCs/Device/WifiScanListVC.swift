@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Alamofire
 
 #if targetEnvironment(simulator)
 class WifiScanListVC: UIViewController {}
@@ -14,6 +15,7 @@ class WifiScanListVC: UIViewController {}
 class WifiScanListVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     var essids = [String]()
+    var timer:Timer?
     
     private var names: [String] = (50...99).map { String($0) }
     
@@ -33,6 +35,7 @@ class WifiScanListVC: UIViewController, UITableViewDataSource, UITableViewDelega
         print(currentCell?.textLabel!.text ?? "")
         let ssidStr = indexPath?.row == essids.count - 1 ? "" : currentCell?.textLabel!.text
         wifiTableViewController?.selectedSSID.text = ssidStr
+        wifiTableViewController?.selectedSSIDFlag = true
         self.dismiss(animated: true, completion: nil)
     }
     
@@ -59,7 +62,41 @@ class WifiScanListVC: UIViewController, UITableViewDataSource, UITableViewDelega
             self.tableView.reloadData()
         }
         
-        
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        timer?.invalidate()
+        timer = setInterval(interval: 6, block: refreshList)
+    }
+    override func viewWillDisappear(_ animated: Bool) {
+        timer?.invalidate()
+    }
+    
+    func refreshList(){
+        let header    = [ "scan" : "1" ]
+        Alamofire.request(wopinWifiURL,headers:header).responseString { response in
+            print(response)
+            
+            if let jsonString = response.result.value {
+                
+                self.essids.removeAll()
+                let subarr = jsonString.components(separatedBy: ",\n")
+                
+                for r in subarr {
+                    do {
+                        let itemStr = r.removeSpacesAndNewlines()
+                        let ra = try JSONDecoder().decode(WifiScanResult.self, from: itemStr.data(using: .utf8)!)
+                        if let essid = ra.essid
+                        {
+                            self.essids.append(essid)
+                        }
+                    } catch {
+                        
+                    }
+                }
+                self.essids.append("手动输入")
+                self.tableView.reloadData()
+            }
+        }
     }
 
 }

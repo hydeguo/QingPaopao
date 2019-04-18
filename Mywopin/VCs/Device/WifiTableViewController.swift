@@ -25,19 +25,31 @@ class WifiTableViewController: UITableViewController, QRCodeReaderViewController
     var device_id : String?
     var wopinSSID = ""
     var timer:Timer?
+    var timerSendPw:Timer?
+    var timerCheckWifi:Timer?
     var tipsAlert:UIAlertController?
-    var retryPasswordToCup = 2
+    var tipsAlertForWaitSSID:UIAlertController?
+    var retryPasswordToCup = 1000
+    var retryConnectAPSeconds:Double = 50
+    var retryConnectAPtime = Date().timeIntervalSince1970
     
-    @IBOutlet weak var selectedSSID: UITextField!
+    var selectedSSIDFlag:Bool = false
     @IBOutlet weak var wifiPasswordTextField: UITextField!
+    @IBOutlet weak var selectedSSID: UITextField!
     
     var sv : UIView?
     
     override func viewWillAppear(_ animated: Bool) {
         NotificationCenter.default.addObserver(self, selector: #selector(internetChanged), name: Notification.Name.reachabilityChanged, object: inetReachability)
+        NotificationCenter.default.addObserver(self, selector: #selector(onReceiveWifiDeviceData), name: NSNotification.Name(rawValue: WIFI_EVENT.WIFI_POWER.rawValue), object: nil)
+        timer?.invalidate()
     }
     override func viewWillDisappear(_ animated: Bool) {
-        
+        self.retryPasswordToCup = 0
+        timer?.invalidate()
+        timerCheckWifi?.invalidate()
+        timerCheckWifi = nil
+        inetReachability.stopNotifier()
         NotificationCenter.default.removeObserver(self);
     }
     
@@ -110,6 +122,7 @@ class WifiTableViewController: UITableViewController, QRCodeReaderViewController
             }
             print("connecting to \(self.wopinSSID) with password \(wopinPW)")
             self.sv = self.displaySpinner(onView: self.view)
+            self.retryConnectAPtime = Date().timeIntervalSince1970
             self.connectToWpoinWifi(wopinSSID : self.wopinSSID, wopinPW: wopinPW)
         }
         // Presents the readerVC as modal form sheet
@@ -119,21 +132,27 @@ class WifiTableViewController: UITableViewController, QRCodeReaderViewController
     
     private func connectToWpoinWifi(wopinSSID : String, wopinPW : String) {
         if #available(iOS 11.0, *) {
+            
             let hotspotConfig = NEHotspotConfiguration(ssid: wopinSSID, passphrase: wopinPW, isWEP: false)
-            hotspotConfig.joinOnce = true
+            hotspotConfig.joinOnce = false
             NEHotspotConfigurationManager.shared.apply(hotspotConfig) {[unowned self] (error) in
                 
                 if let error = error {
-                    self.showError(error: error, completion: { _ in
-                        self.navigationController?.popViewController(animated: true)
-                    })
+                    if Date().timeIntervalSince1970 - self.retryConnectAPtime  < self.retryConnectAPSeconds {
+                        self.connectToWpoinWifi(wopinSSID : self.wopinSSID, wopinPW: wopinPW)
+                    }else{
+                        self.showError(error: error, completion: { _ in
+                            self.navigationController?.popViewController(animated: true)
+                        })
+                    }
                 }
                 else {
                     if (self.getWifiSsid() == wopinSSID) {
 //                        self.showSuccess(msg: "")
                         DispatchQueue.main.asyncAfter(deadline: .now() + 5) { //delay task
-                            self.scanNearbyWifi(isPresent: true)
+                            self.reSelectWifiList()
                         }
+                        
                     } else {
                         self.removeSpinner(spinner: self.sv!)
                     }
@@ -182,29 +201,49 @@ class WifiTableViewController: UITableViewController, QRCodeReaderViewController
         return ssid
     }
     
+    @IBAction func reSelectWifiList(){
+
+        self.retryConnectAPtime = Date().timeIntervalSince1970
+        self.essids.removeAll()
+        self.scanNearbyWifi(isPresent: true)
+        self.selectedSSIDFlag = false
+        timerSendPw?.invalidate()
+        timerSendPw = setInterval(interval: 4, block: {
+            self.scanNearbyWifi(isPresent: true)
+        })
+    }
+    
+  
     func scanNearbyWifi(isPresent : Bool) {
         self.essids.removeAll()
         self.removeSpinner(spinner: self.sv!)
-        let alert = UIAlertController(title: nil, message: "请稍候...", preferredStyle: .alert)
         
-        let loadingIndicator = UIActivityIndicatorView(frame: CGRect(x: 10, y: 5, width: 50, height: 50))
-        loadingIndicator.hidesWhenStopped = true
-        loadingIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.gray
-        loadingIndicator.startAnimating();
-        
-        alert.view.addSubview(loadingIndicator)
-        present(alert, animated: true, completion: nil)
-        
+        if tipsAlertForWaitSSID == nil{
+            let alert = UIAlertController(title: nil, message: "请稍候...", preferredStyle: .alert)
+            let loadingIndicator = UIActivityIndicatorView(frame: CGRect(x: 10, y: 5, width: 50, height: 50))
+            loadingIndicator.hidesWhenStopped = true
+            loadingIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.gray
+            loadingIndicator.startAnimating();
+            
+            alert.view.addSubview(loadingIndicator)
+            present(alert, animated: true, completion: nil)
+            tipsAlertForWaitSSID = alert
+        }else if tipsAlertForWaitSSID?.view.superview == nil{
+            present(tipsAlertForWaitSSID!, animated: true, completion: nil)
+        }
         
         //-------------------------------1------------------------------------
         
         let header    = [ "scan" : "1" ]
         Alamofire.request(wopinWifiURL,headers:header).responseString { response in
             print(response)
-            if let jsonString = response.result.value {
+            
+            
+            
+            if let jsonString = response.result.value,self.selectedSSIDFlag == false {
                 
                 let subarr = jsonString.components(separatedBy: ",\n")
-                
+                self.essids.removeAll()
                 for r in subarr {
                     do {
                         let itemStr = r.removeSpacesAndNewlines()
@@ -217,9 +256,16 @@ class WifiTableViewController: UITableViewController, QRCodeReaderViewController
                         
                     }
                 }
+                
+                if self.essids.count == 0 , Date().timeIntervalSince1970 - self.retryConnectAPtime  < self.retryConnectAPSeconds {
+                    return
+                }
+                
+                self.timerSendPw?.invalidate()
+                
                 self.essids.append("手动输入")
                 print("Scan Nearby Wifi Success!")
-                alert.dismiss(animated: false, completion: nil)
+                self.tipsAlertForWaitSSID?.dismiss(animated: false, completion: nil)
 
                 let vc = R.storyboard.main.wifiScanListVC()
                 vc?.wifiTableViewController = self
@@ -228,10 +274,6 @@ class WifiTableViewController: UITableViewController, QRCodeReaderViewController
                     self.removeSpinner(spinner: self.sv!)
                 })
 
-            }
-            else
-            {
-                alert.dismiss(animated: false, completion: nil)
             }
         }
         
@@ -299,6 +341,7 @@ class WifiTableViewController: UITableViewController, QRCodeReaderViewController
 //        dataTask.resume()
     }
     
+    var retryUpdateDevice = 10
     func updateDeviceSetting() {
         
         if let _device_id = self.device_id
@@ -306,8 +349,8 @@ class WifiTableViewController: UITableViewController, QRCodeReaderViewController
             if(!WifiController.shared.savedWifi.contains(_device_id))
             {
                 WifiController.shared.savedWifi.append(_device_id)
-                UserDefaults.standard.set(WifiController.shared.savedWifi, forKey: "WiFi_list")
             }
+            UserDefaults.standard.set(WifiController.shared.savedWifi, forKey: "WiFi_list")
             WifiController.shared.reconnect()
             _ = Wolf.request(type: MyAPI.addOrUpdateACup(type: DeviceTypeWifi, uuid: _device_id, name: _device_id, add: true), completion: { (user: User?, msg, code) in
                 
@@ -324,14 +367,28 @@ class WifiTableViewController: UITableViewController, QRCodeReaderViewController
                     _ = SweetAlert().showAlert("Sorry", subTitle: msg, style: AlertStyle.warning)
                 }
             }) { (error) in
-                self.tipsAlert?.dismiss(animated: false, completion: nil)
-                _ = SweetAlert().showAlert("Sorry", subTitle: error?.errorDescription, style: AlertStyle.warning)
+                if self.retryUpdateDevice > 0{
+                    self.retryUpdateDevice -= 1
+                    _=setTimeout(delay: 3, block: {
+                        self.updateDeviceSetting()
+                    })
+                }else{
+                    self.tipsAlert?.dismiss(animated: false, completion: nil)
+                    _ = SweetAlert().showAlert("Sorry", subTitle: error?.errorDescription, style: AlertStyle.warning)
+                }
             }
         }
         else
         {
             self.tipsAlert?.dismiss(animated: false, completion: nil)
             self.showSuccess(msg: "连接异常，请重试", OkAction: nil)
+        }
+    }
+    
+    @objc func onReceiveWifiDeviceData(_ notice:Notification){
+        
+        if let cupId:String=(notice as NSNotification).userInfo!["device"] as? String, cupId == self.device_id{
+            newCupConected()
         }
     }
     
@@ -344,21 +401,28 @@ class WifiTableViewController: UITableViewController, QRCodeReaderViewController
             
             //reachability.isReachableViaWiFi is deprecated, right solution --> connection == .wifi
             if reachability.connection == .wifi {
-                if (self.getWifiSsid() != wopinSSID)
+                if (self.getWifiSsid() != wopinSSID && self.device_id != nil)
                 {
-                    timer?.invalidate()
-                    reachability.stopNotifier()
-                    //Wopin AP will be disconnected after the wifi configurtion
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                        print("Uploading to server")
-                        self.updateDeviceSetting()
-                    }
+                    newCupConected()
                 }
             }
         } else {
         }
     }
-
+    
+    private func newCupConected(){
+        
+        timer?.invalidate()
+        timerCheckWifi?.invalidate()
+        timerCheckWifi = nil
+        inetReachability.stopNotifier()
+        //Wopin AP will be disconnected after the wifi configurtion
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            print("Uploading to server")
+            self.updateDeviceSetting()
+        }
+    }
+    
     @IBAction func linkWifiWopin(_ sender: Any) {
         if (selectedSSID.text?.count == 0 || wifiPasswordTextField.text?.count == 0)
         {
@@ -375,9 +439,11 @@ class WifiTableViewController: UITableViewController, QRCodeReaderViewController
             print("Could not start notifier")
         }
 
+        timer?.invalidate()
         timer = setTimeout(delay: 60, block: {
             print("Current connected ssid : \(self.getWifiSsid() ?? ""      )")
-            if (self.getWifiSsid() != self.wopinSSID)
+            self.retryPasswordToCup = 0
+            if (self.getWifiSsid() != self.wopinSSID  && self.device_id != nil)
             {
                 self.updateDeviceSetting()
             }
@@ -388,9 +454,17 @@ class WifiTableViewController: UITableViewController, QRCodeReaderViewController
             }
         })
         
-        retryPasswordToCup = 2
-        sendPasswordToCup()
-    
+        retryPasswordToCup = 1000
+        
+        self.sendPasswordToCup()
+        self.timerSendPw?.invalidate()
+        timerSendPw = setInterval(interval: 5, block: {
+            if (self.retryPasswordToCup != 0) {
+                self.sendPasswordToCup()
+            }else{
+                self.timerSendPw?.invalidate()
+            }
+        })
     }
     
     func sendPasswordToCup()
@@ -398,50 +472,45 @@ class WifiTableViewController: UITableViewController, QRCodeReaderViewController
         print("sendPasswordToCup")
         let ssid = selectedSSID.text
         let password = wifiPasswordTextField.text
-        self.sv = self.displaySpinner(onView: self.view)
+        self.sv?.removeFromSuperview()
+        if self.tipsAlert?.view.superview == nil{
+            self.sv = self.displaySpinner(onView: self.view)
+        }
+        
         let headers = ["Content-Type" : "application/x-www-form-urlencoded",
                        "Accept-Language" : "en-US,en;q=0.9,zh-CN;q=0.8,zh;q=0.7",
                        "Connection" : "keep-alive",
                        "ssid" : ssid,
                        "password" : password]
         
-        let postString = "" //ToDo: Cannot send the post data??? So add the info in header first...
+        Alamofire.request(wopinWifiURL, method: .post, parameters: nil, encoding: URLEncoding.default, headers: headers as? HTTPHeaders).responseString { response in
         
-        var request = URLRequest(url: URL(string: wopinWifiURL)!)
-        
-        request.httpMethod = "POST"
-        request.allHTTPHeaderFields = headers as? [String : String]
-        request.httpBody = postString.data(using: .utf8)
-
-        //let session = URLSession.shared
-        let configuration = URLSessionConfiguration.default
-        configuration.timeoutIntervalForRequest = 200
-        let session = URLSession(configuration: configuration)
-        let dataTask = session.dataTask(with: request, completionHandler: { (data, response, error) -> Void in
-            if (error != nil) {
-                print("sendPasswordToCup Fail")
-                self.removeSpinner(spinner: self.sv!)
-                self.showSuccess(msg: Language.getString("连接异常，请重试"), OkAction: nil)
-//                print(error ?? "")
-//                if(self.retryPasswordToCup > 1){
-//                    Log("retry sendPasswordToCup")
-//                    self.retryPasswordToCup -= 1;
-//                    self.sendPasswordToCup();
-//                }
-            } else {
-                let httpResponse = response as? HTTPURLResponse
-                print(httpResponse ?? "")
-                let httpResponseData = String(data: data!, encoding: .utf8)
+            if let jsonString = response.result.value {
                 do {
-                    let ra = try JSONDecoder().decode(WifiResponse.self, from: (httpResponseData?.data(using: .utf8)!)!)
+                    let ra = try JSONDecoder().decode(WifiResponse.self, from: (jsonString.data(using: .utf8)!))
                     self.removeSpinner(spinner: self.sv!)
                     self.device_id = ra.deviceId
+                    self.timerSendPw?.invalidate()
                     
+                    if(!WifiController.shared.savedWifi.contains(ra.deviceId))
+                    {
+                        WifiController.shared.savedWifi.append(ra.deviceId)
+                    }
                     if (ra.status == "Connecting")
                     {
                         print(" sendPasswordToCup Connecting \(ra.deviceId)")
+                        if self.timerCheckWifi == nil{
+                            self.timerCheckWifi = setInterval(interval: 3, block: {
+                                if (self.getWifiSsid() != self.wopinSSID  && self.device_id != nil)
+                                {
+                                    self.newCupConected()
+                                }
+                            })
+                        }
                         DispatchQueue.main.async() {
                             
+                            self.sv?.removeFromSuperview()
+                            self.tipsAlert?.dismiss(animated: false, completion: nil)
                             self.tipsAlert = UIAlertController(title: nil, message: "设备连接网络中...", preferredStyle: .alert)
                             let loadingIndicator = UIActivityIndicatorView(frame: CGRect(x: 10, y: 5, width: 50, height: 50))
                             loadingIndicator.hidesWhenStopped = true
@@ -453,12 +522,11 @@ class WifiTableViewController: UITableViewController, QRCodeReaderViewController
                     }
                 } catch {
                     print(error)
-                    self.removeSpinner(spinner: self.sv!)
+                    //                    self.removeSpinner(spinner: self.sv!)
                 }
-                
             }
-        })
-        dataTask.resume()
+        }
+        
     }
 
     @IBAction func disconnectWopinWifi(_ sender: Any) {

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="8ey-Pi-8vV">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="8ey-Pi-8vV">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -4785,14 +4785,32 @@ DQ
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="59.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="扫描选取WIFI网络" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="yEm-uQ-Wyw">
-                                                    <rect key="frame" x="38" y="10" width="307" height="30"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="扫描选取WIFI网络" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="yEm-uQ-Wyw">
+                                                    <rect key="frame" x="38" y="19.5" width="276" height="21"/>
                                                     <nil key="textColor"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                 </textField>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bHr-NG-mrz">
+                                                    <rect key="frame" x="314" y="2.5" width="54" height="55"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="55" id="1rA-dT-PbP"/>
+                                                        <constraint firstAttribute="width" constant="54" id="EwJ-xM-Eh6"/>
+                                                    </constraints>
+                                                    <inset key="imageEdgeInsets" minX="20" minY="15" maxX="10" maxY="15"/>
+                                                    <state key="normal" image="arrow"/>
+                                                    <connections>
+                                                        <action selector="reSelectWifiList" destination="xcd-us-5Fy" eventType="touchUpInside" id="zk7-Oy-EZe"/>
+                                                    </connections>
+                                                </button>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstItem="bHr-NG-mrz" firstAttribute="centerY" secondItem="SgO-Ok-sV5" secondAttribute="centerY" id="06h-aX-3wl"/>
+                                                <constraint firstAttribute="trailing" secondItem="bHr-NG-mrz" secondAttribute="trailing" constant="7" id="AG5-Ua-fWN"/>
+                                                <constraint firstItem="yEm-uQ-Wyw" firstAttribute="centerY" secondItem="SgO-Ok-sV5" secondAttribute="centerY" id="BtS-rW-y9C"/>
+                                                <constraint firstItem="yEm-uQ-Wyw" firstAttribute="leading" secondItem="SgO-Ok-sV5" secondAttribute="leadingMargin" constant="22" id="Ygb-eC-oBO"/>
+                                                <constraint firstItem="bHr-NG-mrz" firstAttribute="leading" secondItem="yEm-uQ-Wyw" secondAttribute="trailing" id="hlK-hf-jPu"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" id="PS0-zB-zBK">
@@ -4802,14 +4820,18 @@ DQ
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="59.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入wifi密码" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5Cy-ld-1I6">
-                                                    <rect key="frame" x="36" y="13" width="304" height="30"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入wifi密码" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5Cy-ld-1I6">
+                                                    <rect key="frame" x="36" y="19.5" width="304" height="21"/>
                                                     <nil key="textColor"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <textInputTraits key="textInputTraits" secureTextEntry="YES" textContentType="password"/>
                                                 </textField>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstItem="5Cy-ld-1I6" firstAttribute="leading" secondItem="O2k-oW-cvl" secondAttribute="leadingMargin" constant="20" id="PbV-M7-Qc6"/>
+                                                <constraint firstItem="5Cy-ld-1I6" firstAttribute="centerY" secondItem="O2k-oW-cvl" secondAttribute="centerY" id="UMe-S2-hDd"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="5Cy-ld-1I6" secondAttribute="trailing" constant="19" id="oxn-VF-wwY"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" rowHeight="120" id="eUz-gv-vlg">
@@ -8217,7 +8239,7 @@ E无法达到这一点）。——太田成男
         <image name="BG1-1" width="750" height="437"/>
         <image name="Qrcode" width="350" height="383"/>
         <image name="arrow" width="225" height="225"/>
-        <image name="back" width="34" height="54"/>
+        <image name="back" width="17" height="27"/>
         <image name="bg1" width="750.5" height="480.5"/>
         <image name="bigIcon" width="244" height="244"/>
         <image name="blueBG" width="750.5" height="1334.5"/>
@@ -8228,12 +8250,12 @@ E无法达到这一点）。——太田成男
         <image name="comment" width="17" height="16"/>
         <image name="comment-1" width="17" height="16"/>
         <image name="cup" width="233" height="475"/>
-        <image name="default profile" width="54" height="54"/>
+        <image name="default profile" width="27" height="27"/>
         <image name="device" width="104" height="102"/>
         <image name="drinkIcon1" width="255" height="255"/>
         <image name="email" width="24" height="24"/>
         <image name="hand" width="67.5" height="94"/>
-        <image name="health" width="750" height="340"/>
+        <image name="health" width="375" height="170"/>
         <image name="icon" width="162" height="147"/>
         <image name="icon1" width="66" height="66"/>
         <image name="icon2" width="66" height="66"/>
@@ -8253,7 +8275,7 @@ E无法达到这一点）。——太田成男
         <image name="powerOn" width="40" height="40"/>
         <image name="profileIcon" width="44" height="44"/>
         <image name="qq-1" width="51" height="55"/>
-        <image name="qrcode-1" width="430" height="430"/>
+        <image name="qrcode-1" width="215" height="215"/>
         <image name="sina" width="53" height="46"/>
         <image name="star" width="18" height="17"/>
         <image name="unStar" width="18" height="17"/>

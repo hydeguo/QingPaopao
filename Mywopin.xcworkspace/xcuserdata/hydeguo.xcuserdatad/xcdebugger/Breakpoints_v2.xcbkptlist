@@ -1914,7 +1914,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Mywopin/Controller/WifiController.swift"
-            timestampString = "561722408.754752"
+            timestampString = "576832102.584273"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "176"
@@ -1930,7 +1930,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Mywopin/Controller/WifiController.swift"
-            timestampString = "561722408.754806"
+            timestampString = "576832102.58435"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "174"
@@ -2602,12 +2602,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Mywopin/VCs/Device/WifiTableViewController.swift"
-            timestampString = "566488506.770633"
+            timestampString = "576832102.5853601"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "194"
-            endingLineNumber = "194"
-            landmarkName = "scanNearbyWifi(isPresent:)"
+            startingLineNumber = "195"
+            endingLineNumber = "195"
+            landmarkName = "getWifiSsid()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -2640,6 +2640,54 @@
             startingLineNumber = "168"
             endingLineNumber = "168"
             landmarkName = "image(fromUrl:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Mywopin/Controller/WifiController.swift"
+            timestampString = "576832102.585832"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "279"
+            endingLineNumber = "279"
+            landmarkName = "mqtt(_:didReceiveMessage:id:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Mywopin/Controller/WifiController.swift"
+            timestampString = "576832102.585888"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "256"
+            endingLineNumber = "256"
+            landmarkName = "mqtt(_:didReceiveMessage:id:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Mywopin/VCs/Device/WifiTableViewController.swift"
+            timestampString = "576832102.585943"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "482"
+            endingLineNumber = "482"
+            landmarkName = "sendPasswordToCup()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
